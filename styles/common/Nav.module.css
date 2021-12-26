@@ -1,0 +1,23 @@
+.nav {
+  color: var(--gray-0);
+  padding: 1rem;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.nav a:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.active {
+  color: var(--gray-1);
+  font-weight: bold;
+}
