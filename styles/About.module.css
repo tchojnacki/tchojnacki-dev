@@ -1,0 +1,24 @@
+.landing {
+  padding: 4rem;
+}
+
+.heroText {
+  line-height: 1.2;
+}
+
+.heroTitle {
+  color: var(--indigo-3);
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.heroParagraph {
+  color: var(--gray-0);
+  font-size: 1.5rem;
+}
