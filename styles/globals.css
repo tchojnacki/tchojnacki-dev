@@ -1,16 +1,17 @@
-html,
+:root {
+  --indigo-0: #15192d;
+  --indigo-1: #1c274f;
+  --indigo-2: #3e63dd;
+  --indigo-3: #849dff;
+  --gray-0: #9ba1a6;
+  --gray-1: #ecedee;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+}
+
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
+  min-height: 100vh;
+  color: var(--gray-1);
+  background-color: var(--indigo-0);
 }
