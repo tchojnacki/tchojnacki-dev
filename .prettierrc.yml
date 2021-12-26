@@ -1,0 +1,4 @@
+printWidth: 100
+semicolons: false
+singleQuote: true
+arrowParens: 'avoid'
