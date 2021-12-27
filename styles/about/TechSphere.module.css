@@ -10,4 +10,5 @@
   width: 0;
   display: flex;
   justify-content: center;
+  font-size: calc(0.064 * var(--sphere-size));
 }
