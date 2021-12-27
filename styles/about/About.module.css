@@ -58,6 +58,21 @@
 
 .heroButtons {
   display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.heroSocialLink {
+  display: inline-block;
+}
+
+.heroSocialLink path {
+  fill: var(--gray-0);
+  transition-duration: var(--transition-duration);
+}
+
+.heroSocialLink:hover path {
+  fill: var(--gray-1);
 }
 
 @media (max-width: 1000px) {
