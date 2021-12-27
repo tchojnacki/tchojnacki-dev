@@ -1,5 +1,13 @@
 .sphere {
-  width: 250px;
-  height: 250px;
+  width: var(--sphere-size);
+  height: var(--sphere-size);
   background: radial-gradient(var(--indigo-1), transparent 50%);
+  position: relative;
+}
+
+.point {
+  position: absolute;
+  width: 0;
+  display: flex;
+  justify-content: center;
 }

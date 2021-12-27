@@ -25,7 +25,19 @@ const Landing = () => (
       </div>
     </section>
     <section className={styles.sphereWrapper}>
-      <TechSphere />
+      <TechSphere
+        items={[
+          'React',
+          'Next.js',
+          'TypeScript',
+          'Flutter',
+          'JavaScript',
+          'CSS',
+          'HTML',
+          'Dart',
+          'Java',
+        ]}
+      />
     </section>
     <section className={styles.waveSection}>
       <Wave />
