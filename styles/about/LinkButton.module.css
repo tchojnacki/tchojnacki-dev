@@ -1,0 +1,11 @@
+.button {
+  display: inline-block;
+  background-color: var(--indigo-2);
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  transition-duration: var(--transition-duration);
+}
+
+.button:hover {
+  background-color: var(--indigo-3);
+}

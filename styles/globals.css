@@ -6,6 +6,8 @@
   --gray-0: #9ba1a6;
   --gray-1: #ecedee;
 
+  --transition-duration: 0.25s;
+
   font-family: 'Inter', sans-serif;
   font-size: 16px;
 }

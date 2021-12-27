@@ -11,12 +11,14 @@
   .nav {
     gap: 0;
     flex-wrap: wrap;
+    justify-content: space-evenly;
   }
 }
 
 .nav a {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
+  transition-duration: var(--transition-duration);
 }
 
 .nav a:hover {

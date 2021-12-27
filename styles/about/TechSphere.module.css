@@ -1,0 +1,5 @@
+.sphere {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(var(--indigo-1), transparent 50%);
+}

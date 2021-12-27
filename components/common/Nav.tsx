@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import styles from '@/styles/common/Nav.module.css'
 import { useRouter } from 'next/router'
+import styles from '@/styles/common/Nav.module.css'
 
 interface NavLinkProps {
   href: string
@@ -17,15 +17,13 @@ const NavLink = ({ href, children }: NavLinkProps) => {
   )
 }
 
-const Nav = () => {
-  return (
-    <nav className={styles.nav}>
-      <NavLink href="/">About</NavLink>
-      <NavLink href="/projects">Projects</NavLink>
-      <NavLink href="/experience">Experience</NavLink>
-      <NavLink href="/blog">Blog</NavLink>
-    </nav>
-  )
-}
+const Nav = () => (
+  <nav className={styles.nav}>
+    <NavLink href="/">About</NavLink>
+    <NavLink href="/projects">Projects</NavLink>
+    <NavLink href="/experience">Experience</NavLink>
+    <NavLink href="/blog">Blog</NavLink>
+  </nav>
+)
 
 export default Nav
