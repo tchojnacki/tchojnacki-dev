@@ -4,8 +4,15 @@
   animation: wave 1s ease-in-out 1s;
 }
 
+@media (prefers-reduced-motion) {
+  .container {
+    animation: none;
+  }
+}
+
 @keyframes wave {
-  from {
+  from,
+  to {
     transform: none;
   }
 
@@ -15,9 +22,5 @@
 
   75% {
     transform: rotate(30deg);
-  }
-
-  to {
-    transform: none;
   }
 }

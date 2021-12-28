@@ -16,6 +16,12 @@
   opacity: 0.5;
 }
 
+@media (prefers-reduced-motion) {
+  .text {
+    animation: none;
+  }
+}
+
 @keyframes caret {
   from,
   to {
