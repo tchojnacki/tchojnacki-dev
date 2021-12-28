@@ -5,6 +5,7 @@ import LinkButton from '@/components/about/LinkButton'
 import SimpleIconSvg from '@/components/common/SimpleIconSvg'
 import styles from '@/styles/about/Landing.module.css'
 import WavingEmoji from './WavingEmoji'
+import HeroTypewriter from './HeroTypewriter'
 
 const Landing = () => (
   <main className={styles.landing}>
@@ -13,7 +14,9 @@ const Landing = () => (
         Hello <WavingEmoji />, my name is
       </h2>
       <h1 className={styles.heroTitle}>Tomasz Chojnacki</h1>
-      <p className={styles.heroParagraph}>I am a software developer.</p>
+      <p className={styles.heroParagraph}>
+        I am a <HeroTypewriter />
+      </p>
       <div className={styles.heroButtons}>
         <LinkButton href="/projects">View Projects</LinkButton>
         <a className={styles.heroSocialLink} href="https://github.com/tchojnacki">

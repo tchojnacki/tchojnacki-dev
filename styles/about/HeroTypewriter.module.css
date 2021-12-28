@@ -1,0 +1,27 @@
+.text {
+  position: relative;
+}
+
+.text::after {
+  content: '';
+  display: inline-block;
+
+  position: absolute;
+  width: 2px;
+  height: 1em;
+  right: -0.25rem;
+  top: calc((100% - 1em) / 2);
+
+  animation: caret 1s infinite step-end;
+  opacity: 0.5;
+}
+
+@keyframes caret {
+  from,
+  to {
+    background-color: transparent;
+  }
+  50% {
+    background-color: var(--gray-1);
+  }
+}
