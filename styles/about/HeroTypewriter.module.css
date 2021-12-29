@@ -5,6 +5,7 @@
 .text::after {
   content: '';
   display: inline-block;
+  background-color: var(--gray-0);
 
   position: absolute;
   width: 2px;
@@ -24,9 +25,9 @@
 @keyframes caret {
   from,
   to {
-    background-color: transparent;
+    opacity: 0;
   }
   50% {
-    background-color: var(--gray-0);
+    opacity: 1;
   }
 }
