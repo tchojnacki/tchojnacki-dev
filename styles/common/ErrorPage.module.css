@@ -1,0 +1,42 @@
+.errorPage {
+  min-height: 100vh;
+  margin-top: -4rem;
+  display: grid;
+  place-items: center;
+}
+
+.errorText {
+  text-align: center;
+}
+
+.errorCode {
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--indigo-3);
+  animation: shake var(--transition-duration) 0.75s;
+}
+
+@media (prefers-reduced-motion) {
+  .errorCode {
+    animation: none;
+  }
+}
+
+.errorDescription {
+  font-size: 2rem;
+}
+
+@keyframes shake {
+  from,
+  to {
+    transform: none;
+  }
+
+  25% {
+    transform: rotate(-10deg);
+  }
+
+  75% {
+    transform: rotate(10deg);
+  }
+}

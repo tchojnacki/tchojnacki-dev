@@ -14,6 +14,10 @@
   --enter-transform: translateX(50px);
 }
 
+.scaling {
+  --enter-transform: scale(0.75);
+}
+
 @media (prefers-reduced-motion) {
   .enter {
     animation: none;
