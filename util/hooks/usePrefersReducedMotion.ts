@@ -1,5 +1,7 @@
 import React from 'react'
 
+// Adapted from: https://www.joshwcomeau.com/react/prefers-reduced-motion
+
 const QUERY = '(prefers-reduced-motion: no-preference)'
 
 export function usePrefersReducedMotion() {

@@ -36,6 +36,7 @@ const Landing = () => {
             'Next.js',
             'TypeScript',
             'Flutter',
+            'Node.js',
             'JavaScript',
             'CSS',
             'HTML',
