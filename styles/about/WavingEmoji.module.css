@@ -1,0 +1,26 @@
+.container {
+  display: inline-block;
+  transform-origin: 75% 75%;
+  animation: wave 1s ease-in-out 1s;
+}
+
+@media (prefers-reduced-motion) {
+  .container {
+    animation: none;
+  }
+}
+
+@keyframes wave {
+  from,
+  to {
+    transform: none;
+  }
+
+  25% {
+    transform: rotate(-30deg);
+  }
+
+  75% {
+    transform: rotate(30deg);
+  }
+}

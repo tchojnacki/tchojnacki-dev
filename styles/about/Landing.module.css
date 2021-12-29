@@ -1,0 +1,116 @@
+.landing {
+  min-height: calc(100vh - 4rem);
+  display: grid;
+  grid-template-rows: 1fr 5vh 15vh;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'text sphere'
+    '. sphere'
+    '. .';
+  gap: 0 2rem;
+  place-items: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+@media (max-width: 1000px) {
+  .landing {
+    grid-template-rows: auto auto 10vh;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'text'
+      'sphere'
+      '.';
+    gap: 2rem 0;
+  }
+}
+
+.heroText {
+  grid-area: text;
+  line-height: 1.2;
+  padding: 2rem 1rem 1rem;
+  place-self: start center;
+}
+
+@media (max-width: 1000px) {
+  .heroText {
+    text-align: center;
+  }
+}
+
+.heroTitle {
+  color: var(--indigo-3);
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.heroParagraph {
+  color: var(--gray-0);
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 4rem;
+  display: inline-block;
+}
+
+.heroButtons {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.heroSocialLink {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+}
+
+.heroSocialLink path {
+  fill: var(--gray-0);
+  transition-duration: var(--transition-duration);
+}
+
+.heroSocialLink:hover path {
+  fill: var(--gray-1);
+}
+
+@media (max-width: 1000px) {
+  .heroButtons {
+    justify-content: center;
+  }
+}
+
+.sphereWrapper {
+  grid-area: sphere;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: end center;
+  overflow: hidden;
+}
+
+@media (max-width: 1000px) {
+  .sphereWrapper {
+    min-height: 75vw;
+    place-items: center;
+  }
+}
+
+.waveSection {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20vh;
+  z-index: -1;
+}
+
+@media (max-width: 1000px) {
+  .waveSection {
+    height: 10vh;
+  }
+}
