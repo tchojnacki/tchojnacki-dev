@@ -2,6 +2,7 @@ import styles from '@/styles/about/Wave.module.css'
 
 const Wave = () => (
   <svg
+    aria-hidden="true"
     className={styles.waveSvg}
     viewBox="0 0 1280 185"
     xmlns="http://www.w3.org/2000/svg"

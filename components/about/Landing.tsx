@@ -21,10 +21,18 @@ const Landing = () => {
         </p>
         <div className={styles.heroButtons}>
           <LinkButton href="/projects">View Projects</LinkButton>
-          <a className={styles.heroSocialLink} href="https://github.com/tchojnacki">
+          <a
+            className={styles.heroSocialLink}
+            href="https://github.com/tchojnacki"
+            aria-label="GitHub"
+          >
             <SimpleIconSvg icon={siGithub} />
           </a>
-          <a className={styles.heroSocialLink} href="https://www.linkedin.com/in/tchojnacki">
+          <a
+            className={styles.heroSocialLink}
+            href="https://www.linkedin.com/in/tchojnacki"
+            aria-label="LinkedIn"
+          >
             <SimpleIconSvg icon={siLinkedin} />
           </a>
         </div>
