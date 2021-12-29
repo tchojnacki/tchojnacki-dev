@@ -16,7 +16,7 @@
 }
 
 @media (prefers-reduced-motion) {
-  .text {
+  .text::after {
     animation: none;
   }
 }

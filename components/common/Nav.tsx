@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styles from '@/styles/common/Nav.module.css'
-import { useEnterAnimation } from '@/util/useEnterAnimation'
+import onLoad from '@/styles/common/onLoad.module.css'
 
 interface NavLinkProps {
   href: string
@@ -18,17 +18,13 @@ const NavLink = ({ href, children }: NavLinkProps) => {
   )
 }
 
-const Nav = () => {
-  const navRef = useEnterAnimation('top')
-
-  return (
-    <nav className={styles.nav} ref={navRef}>
-      <NavLink href="/">About</NavLink>
-      <NavLink href="/projects">Projects</NavLink>
-      <NavLink href="/experience">Experience</NavLink>
-      <NavLink href="/blog">Blog</NavLink>
-    </nav>
-  )
-}
+const Nav = () => (
+  <nav className={[styles.nav, onLoad.enter, onLoad.fromTop].join(' ')}>
+    <NavLink href="/">About</NavLink>
+    <NavLink href="/projects">Projects</NavLink>
+    <NavLink href="/experience">Experience</NavLink>
+    <NavLink href="/blog">Blog</NavLink>
+  </nav>
+)
 
 export default Nav

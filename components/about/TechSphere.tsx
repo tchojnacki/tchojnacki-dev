@@ -1,9 +1,10 @@
 import React from 'react'
-import styles from '@/styles/about/TechSphere.module.css'
 import { initialPositions, posToTransform, rotateY } from '@/util/fibonacciSphere'
-import { useMouseOffsetX } from '@/util/useMouseOffsetX'
-import { useParentSize } from '@/util/useParentSize'
+import { useMouseOffsetX } from '@/util/hooks/useMouseOffsetX'
+import { useParentSize } from '@/util/hooks/useParentSize'
 import { isClientSide } from '@/util/isClientSide'
+import { usePrefersReducedMotion } from '@/util/hooks/usePrefersReducedMotion'
+import styles from '@/styles/about/TechSphere.module.css'
 
 interface TechSphereProps {
   items: string[]
@@ -12,8 +13,11 @@ interface TechSphereProps {
 const TechSphere = ({ items }: TechSphereProps) => {
   const positions = React.useMemo(() => initialPositions(items.length), [items.length])
 
+  const prefersReducedMotion = usePrefersReducedMotion()
+
   const mouseOffset = useMouseOffsetX()
-  const angle = isClientSide() ? (mouseOffset / window.innerWidth) * 2 * Math.PI : 0
+  const angle =
+    isClientSide() && !prefersReducedMotion ? (mouseOffset / window.innerWidth) * 2 * Math.PI : 0
 
   const { width, height, childRef } = useParentSize<HTMLUListElement>()
   const size = Math.max(Math.floor((Math.min(width, height) * 0.75) / 25) * 25, 200)

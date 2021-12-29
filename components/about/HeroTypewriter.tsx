@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTypewriter } from '@/util/useTypewriter'
+import { useTypewriter } from '@/util/hooks/useTypewriter'
 import styles from '@/styles/about/HeroTypewriter.module.css'
 
 const HeroTypewriter = () => {

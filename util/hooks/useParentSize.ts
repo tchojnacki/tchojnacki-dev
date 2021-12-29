@@ -19,5 +19,7 @@ export function useParentSize<ChildElem extends HTMLElement>() {
     return () => resizeObserver.unobserve(parent)
   }, [])
 
+  React.useDebugValue(`${size.inlineSize} x ${size.blockSize}`)
+
   return { width: size.inlineSize, height: size.blockSize, childRef }
 }
