@@ -5,8 +5,8 @@ import LinkButton from '@/components/about/LinkButton'
 import SimpleIconSvg from '@/components/common/SimpleIconSvg'
 import WavingEmoji from '@/components/about/WavingEmoji'
 import HeroTypewriter from '@/components/about/HeroTypewriter'
-import styles from '@/styles/about/Landing.module.css'
-import onLoad from '@/styles/common/onLoad.module.css'
+import styles from '@/styles/about/Landing.module.scss'
+import onLoad from '@/styles/common/onLoad.module.scss'
 
 const Landing = () => {
   return (

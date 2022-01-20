@@ -1,0 +1,31 @@
+@use '../vars' as v;
+
+.nav {
+  color: v.$gray-0;
+  padding: v.$nav-height / 4;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+
+  @media (max-width: v.$main-bp) {
+    gap: 0;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  a {
+    padding: (v.$nav-height / 8) 1rem;
+    border-radius: 0.5rem;
+    transition-duration: v.$transition-duration;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+}
+
+.active {
+  color: v.$gray-1;
+  font-weight: bold;
+}

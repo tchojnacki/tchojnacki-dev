@@ -1,0 +1,32 @@
+@use '../vars' as v;
+
+.text {
+  position: relative;
+
+  &::after {
+    content: '';
+    display: inline-block;
+    background-color: v.$gray-0;
+    position: absolute;
+    width: 2px;
+    height: 1em;
+    right: -0.25rem;
+    top: calc((100% - 1em) / 2);
+    animation: caret 1s infinite step-end;
+
+    @media (prefers-reduced-motion) {
+      animation: none;
+    }
+  }
+}
+
+@keyframes caret {
+  from,
+  to {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}

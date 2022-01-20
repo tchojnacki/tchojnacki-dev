@@ -1,5 +1,9 @@
 .enter {
   animation: enterOnLoad 0.5s ease-in forwards;
+
+  @media (prefers-reduced-motion) {
+    animation: none;
+  }
 }
 
 .fromLeft {
@@ -16,12 +20,6 @@
 
 .scaling {
   --enter-transform: scale(0.75);
-}
-
-@media (prefers-reduced-motion) {
-  .enter {
-    animation: none;
-  }
 }
 
 @keyframes enterOnLoad {

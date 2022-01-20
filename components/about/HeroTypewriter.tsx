@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTypewriter } from '@/util/hooks/useTypewriter'
-import styles from '@/styles/about/HeroTypewriter.module.css'
+import styles from '@/styles/about/HeroTypewriter.module.scss'
 
 const HeroTypewriter = () => {
   const text = useTypewriter(['software engineer.', 'student.', 'frontend developer.'], {

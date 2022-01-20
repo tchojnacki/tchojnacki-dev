@@ -4,7 +4,7 @@ import { useMouseOffsetX } from '@/util/hooks/useMouseOffsetX'
 import { useParentSize } from '@/util/hooks/useParentSize'
 import { isClientSide } from '@/util/isClientSide'
 import { usePrefersReducedMotion } from '@/util/hooks/usePrefersReducedMotion'
-import styles from '@/styles/about/TechSphere.module.css'
+import styles from '@/styles/about/TechSphere.module.scss'
 
 interface TechSphereProps {
   items: string[]

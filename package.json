@@ -11,6 +11,7 @@
     "next": "12.0.7",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "sass": "^1.49.0",
     "simple-icons": "^6.4.0"
   },
   "devDependencies": {

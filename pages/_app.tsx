@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import Nav from '@/components/common/Nav'
 import '@/styles/preflight.css'
-import '@/styles/globals.css'
+import '@/styles/global.scss'
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <>

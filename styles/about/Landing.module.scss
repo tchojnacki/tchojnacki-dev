@@ -1,3 +1,5 @@
+@use '../vars' as v;
+
 .landing {
   min-height: calc(100vh - 4rem);
   display: grid;
@@ -11,10 +13,8 @@
   place-items: center;
   position: relative;
   overflow-x: hidden;
-}
 
-@media (max-width: 1000px) {
-  .landing {
+  @media (max-width: v.$main-bp) {
     grid-template-rows: auto auto 10vh;
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -30,16 +30,14 @@
   line-height: 1.2;
   padding: 2rem 1rem 1rem;
   place-self: start center;
-}
 
-@media (max-width: 1000px) {
-  .heroText {
+  @media (max-width: v.$main-bp) {
     text-align: center;
   }
 }
 
 .heroTitle {
-  color: var(--indigo-3);
+  color: v.$indigo-3;
   font-size: 3rem;
   font-weight: bold;
 }
@@ -50,7 +48,7 @@
 }
 
 .heroParagraph {
-  color: var(--gray-0);
+  color: v.$gray-0;
   font-size: 1.5rem;
   margin-top: 1.5rem;
   margin-bottom: 4rem;
@@ -61,26 +59,24 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+
+  @media (max-width: v.$main-bp) {
+    justify-content: center;
+  }
 }
 
 .heroSocialLink {
   display: inline-block;
   width: 2rem;
   height: 2rem;
-}
 
-.heroSocialLink path {
-  fill: var(--gray-0);
-  transition-duration: var(--transition-duration);
-}
+  & path {
+    fill: v.$gray-0;
+    transition-duration: v.$transition-duration;
+  }
 
-.heroSocialLink:hover path {
-  fill: var(--gray-1);
-}
-
-@media (max-width: 1000px) {
-  .heroButtons {
-    justify-content: center;
+  &:hover path {
+    fill: v.$gray-1;
   }
 }
 
@@ -92,10 +88,8 @@
   display: grid;
   place-items: end center;
   overflow: hidden;
-}
 
-@media (max-width: 1000px) {
-  .sphereWrapper {
+  @media (max-width: v.$main-bp) {
     min-height: 75vw;
     place-items: center;
   }
@@ -107,10 +101,8 @@
   width: 100%;
   height: 20vh;
   z-index: -1;
-}
 
-@media (max-width: 1000px) {
-  .waveSection {
+  @media (max-width: v.$main-bp) {
     height: 10vh;
   }
 }

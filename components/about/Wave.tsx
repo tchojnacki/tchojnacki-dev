@@ -1,4 +1,4 @@
-import styles from '@/styles/about/Wave.module.css'
+import styles from '@/styles/about/Wave.module.scss'
 
 const Wave = () => (
   <svg

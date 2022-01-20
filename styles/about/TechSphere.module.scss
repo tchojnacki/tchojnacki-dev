@@ -1,7 +1,9 @@
+@use '../vars' as v;
+
 .sphere {
   width: var(--sphere-size);
   height: var(--sphere-size);
-  background: radial-gradient(var(--indigo-1), transparent 50%);
+  background: radial-gradient(v.$indigo-1, transparent 50%);
   position: relative;
 }
 

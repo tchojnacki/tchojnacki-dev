@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import styles from '@/styles/common/Nav.module.css'
-import onLoad from '@/styles/common/onLoad.module.css'
+import styles from '@/styles/common/Nav.module.scss'
+import onLoad from '@/styles/common/onLoad.module.scss'
 
 interface NavLinkProps {
   href: string

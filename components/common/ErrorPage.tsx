@@ -1,5 +1,5 @@
-import styles from '@/styles/common/ErrorPage.module.css'
-import onLoad from '@/styles/common/onLoad.module.css'
+import styles from '@/styles/common/ErrorPage.module.scss'
+import onLoad from '@/styles/common/onLoad.module.scss'
 
 interface ErrorPageProps {
   code: number

@@ -1,6 +1,8 @@
+@use '../vars' as v;
+
 .errorPage {
   min-height: 100vh;
-  margin-top: -4rem;
+  margin-top: -(v.$nav-height);
   display: grid;
   place-items: center;
 }
@@ -12,12 +14,10 @@
 .errorCode {
   font-size: 4rem;
   font-weight: bold;
-  color: var(--indigo-3);
-  animation: shake var(--transition-duration) 0.75s;
-}
+  color: v.$indigo-3;
+  animation: shake v.$transition-duration 0.75s;
 
-@media (prefers-reduced-motion) {
-  .errorCode {
+  @media (prefers-reduced-motion) {
     animation: none;
   }
 }
