@@ -29,7 +29,7 @@
   grid-area: text;
   line-height: 1.2;
   padding: 2rem 1rem 1rem;
-  place-self: start center;
+  place-self: center;
 
   @media (max-width: v.$main-bp) {
     text-align: center;
