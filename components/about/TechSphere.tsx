@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 import { initialPositions, posToTransform, rotateY } from '@/util/fibonacciSphere'
 import { useMouseOffsetX } from '@/util/hooks/useMouseOffsetX'
 import { useParentSize } from '@/util/hooks/useParentSize'
@@ -20,7 +21,7 @@ const TechSphere = ({ items }: TechSphereProps) => {
     isClientSide() && !prefersReducedMotion ? (mouseOffset / window.innerWidth) * 2 * Math.PI : 0
 
   const { width, height, childRef } = useParentSize<HTMLUListElement>()
-  const size = Math.max(Math.floor((Math.min(width, height) * 0.75) / 25) * 25, 200)
+  const size = _.clamp(_.round(Math.min(width, height) * 0.75, 25), 200, 600)
 
   const elements = items.map((item, i) => {
     const pos = rotateY(positions[i], angle)

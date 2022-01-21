@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 const { sin, cos, PI } = Math
 
 const GOLDEN_RATIO = (1 + Math.sqrt(5)) / 2
@@ -15,7 +17,7 @@ export const rotateY = ({ x, y, z }: Pos3D, alpha: number): Pos3D => ({
 })
 
 export const initialPositions = (n: number) => {
-  const positions = Array.from({ length: n }).map((_, i) => {
+  const positions = _.times(n, i => {
     const theta = (2 * PI * i) / GOLDEN_RATIO
     const phi = Math.acos(1 - (2 * (i + 0.5)) / n)
 
