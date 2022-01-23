@@ -1,8 +1,9 @@
+@use 'sass:math';
 @use '../vars' as v;
 
 .nav {
   color: v.$gray-0;
-  padding: v.$nav-height / 4;
+  padding: math.div(v.$nav-height, 4);
   line-height: 1;
   display: flex;
   justify-content: center;
@@ -14,13 +15,21 @@
     justify-content: space-evenly;
   }
 
+  @media (max-width: v.$nav-bp) {
+    justify-content: end;
+  }
+
   a {
-    padding: (v.$nav-height / 8) 1rem;
+    padding: math.div(v.$nav-height, 8) 1rem;
     border-radius: 0.5rem;
     transition-duration: v.$transition-duration;
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    @media (max-width: v.$nav-bp) {
+      display: none;
     }
   }
 }
