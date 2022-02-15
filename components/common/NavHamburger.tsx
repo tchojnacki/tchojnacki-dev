@@ -8,7 +8,7 @@ interface NavHamburgerProps {
 const NavHamburger = ({ menuOpen, toggle }: NavHamburgerProps) => (
   <button
     className={styles.hamburger}
-    aria-pressed={menuOpen}
+    aria-expanded={menuOpen}
     aria-label={menuOpen ? 'Close' : 'Open'}
     onClick={toggle}
   >

@@ -50,7 +50,7 @@ $hamburger-size: v.$nav-height * 0.375;
     }
   }
 
-  &[aria-pressed='true'] {
+  &[aria-expanded='true'] {
     div:not(.twoPart) {
       transform: scale(0);
     }

@@ -2,6 +2,8 @@
 @use '../vars' as v;
 
 .nav {
+  position: relative;
+  z-index: 2;
   color: v.$gray-0;
   padding: math.div(v.$nav-height, 4);
   line-height: 1;
@@ -37,4 +39,25 @@
 .active {
   color: v.$gray-1;
   font-weight: bold;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  color: v.$gray-0;
+  font-size: 1.5rem;
+  padding: v.$nav-height;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-end;
+  background-color: v.$indigo-1;
+
+  @media (max-width: v.$nav-bp) {
+    &.shown {
+      display: flex;
+    }
+  }
 }
