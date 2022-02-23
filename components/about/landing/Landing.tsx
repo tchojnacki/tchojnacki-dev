@@ -1,17 +1,20 @@
+import classNames from 'classnames'
 import { siGithub, siLinkedin } from 'simple-icons/icons'
-import TechSphere from '@/components/about/TechSphere'
-import Wave from '@/components/about/Wave'
-import LinkButton from '@/components/about/LinkButton'
-import SimpleIconSvg from '@/components/common/SimpleIconSvg'
-import WavingEmoji from '@/components/about/WavingEmoji'
-import HeroTypewriter from '@/components/about/HeroTypewriter'
-import styles from '@/styles/about/Landing.module.css'
-import onLoad from '@/styles/common/onLoad.module.css'
 
-const Landing = () => {
+import HeroTypewriter from '@/components/about/landing/HeroTypewriter'
+import LinkButton from '@/components/about/landing/LinkButton'
+import TechSphere from '@/components/about/landing/TechSphere'
+import Wave from '@/components/about/landing/Wave'
+import WavingEmoji from '@/components/about/landing/WavingEmoji'
+import SimpleIconSvg from '@/components/common/SimpleIconSvg'
+
+import styles from '@/styles/about/landing/Landing.module.scss'
+import onLoad from '@/styles/common/onLoad.module.scss'
+
+export default function Landing() {
   return (
     <main className={styles.landing}>
-      <section className={[styles.heroText, onLoad.enter, onLoad.fromLeft].join(' ')}>
+      <section className={classNames(styles.heroText, onLoad.enter, onLoad.fromLeft)}>
         <h2 className={styles.heroSubtitle}>
           Hello <WavingEmoji />, my name is
         </h2>
@@ -37,7 +40,7 @@ const Landing = () => {
           </a>
         </div>
       </section>
-      <section className={[styles.sphereWrapper, onLoad.enter, onLoad.fromRight].join(' ')}>
+      <section className={classNames(styles.sphereWrapper, onLoad.enter, onLoad.fromRight)}>
         <TechSphere
           items={[
             'React',
@@ -59,5 +62,3 @@ const Landing = () => {
     </main>
   )
 }
-
-export default Landing

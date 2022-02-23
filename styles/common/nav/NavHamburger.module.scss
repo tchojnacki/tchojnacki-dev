@@ -1,0 +1,66 @@
+@use 'sass:math';
+@use '../../vars' as v;
+
+$hamburger-size: v.$nav-height * 0.375;
+
+.hamburger {
+  display: none;
+  box-sizing: content-box;
+  width: $hamburger-size;
+  height: $hamburger-size;
+  padding: math.div(math.div(v.$nav-height, 2) - $hamburger-size, 2) 1rem;
+  flex-direction: column;
+  justify-content: space-between;
+
+  div {
+    width: 100%;
+    height: 0.125rem;
+
+    &:not(.twoPart),
+    &.twoPart::before,
+    &.twoPart::after {
+      background-color: v.$gray-0;
+      transition: background v.$transition-duration, transform v.$transition-duration;
+      border-radius: 0.0625rem;
+    }
+
+    &.twoPart {
+      position: relative;
+
+      &::before,
+      &::after {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  @media (max-width: v.$nav-bp) {
+    display: flex;
+  }
+
+  &:hover {
+    div:not(.twoPart),
+    .twoPart::before,
+    .twoPart::after {
+      background-color: v.$gray-1;
+    }
+  }
+
+  &[aria-expanded='true'] {
+    div:not(.twoPart) {
+      transform: scale(0);
+    }
+
+    .twoPart::before {
+      transform: rotate(-45deg) scale(1.41);
+    }
+
+    .twoPart::after {
+      transform: rotate(45deg) scale(1.41);
+    }
+  }
+}

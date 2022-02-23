@@ -1,0 +1,15 @@
+@use '../../vars' as v;
+
+.button {
+  display: inline-block;
+  line-height: 1;
+  color: v.$gray-2;
+  background-color: v.$indigo-2;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition-duration: v.$transition-duration;
+
+  &:hover {
+    background-color: v.$indigo-3;
+  }
+}

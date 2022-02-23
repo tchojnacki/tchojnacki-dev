@@ -1,16 +1,19 @@
+import _ from 'lodash'
 import React from 'react'
+
 import { initialPositions, posToTransform, rotateY } from '@/util/fibonacciSphere'
 import { useMouseOffsetX } from '@/util/hooks/useMouseOffsetX'
 import { useParentSize } from '@/util/hooks/useParentSize'
-import { isClientSide } from '@/util/isClientSide'
 import { usePrefersReducedMotion } from '@/util/hooks/usePrefersReducedMotion'
-import styles from '@/styles/about/TechSphere.module.css'
+import { isClientSide } from '@/util/isClientSide'
+
+import styles from '@/styles/about/landing/TechSphere.module.scss'
 
 interface TechSphereProps {
   items: string[]
 }
 
-const TechSphere = ({ items }: TechSphereProps) => {
+export default function TechSphere({ items }: TechSphereProps) {
   const positions = React.useMemo(() => initialPositions(items.length), [items.length])
 
   const prefersReducedMotion = usePrefersReducedMotion()
@@ -20,7 +23,7 @@ const TechSphere = ({ items }: TechSphereProps) => {
     isClientSide() && !prefersReducedMotion ? (mouseOffset / window.innerWidth) * 2 * Math.PI : 0
 
   const { width, height, childRef } = useParentSize<HTMLUListElement>()
-  const size = Math.max(Math.floor((Math.min(width, height) * 0.75) / 25) * 25, 200)
+  const size = _.clamp(_.round(Math.min(width, height) * 0.75, 25), 200, 600)
 
   const elements = items.map((item, i) => {
     const pos = rotateY(positions[i], angle)
@@ -48,5 +51,3 @@ const TechSphere = ({ items }: TechSphereProps) => {
     </ul>
   )
 }
-
-export default TechSphere
