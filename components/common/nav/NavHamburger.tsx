@@ -5,17 +5,17 @@ interface NavHamburgerProps {
   toggle: () => void
 }
 
-const NavHamburger = ({ menuOpen, toggle }: NavHamburgerProps) => (
-  <button
-    className={styles.hamburger}
-    aria-expanded={menuOpen}
-    aria-label={menuOpen ? 'Close' : 'Open'}
-    onClick={toggle}
-  >
-    <div />
-    <div className={styles.twoPart} />
-    <div />
-  </button>
-)
-
-export default NavHamburger
+export default function NavHamburger({ menuOpen, toggle }: NavHamburgerProps) {
+  return (
+    <button
+      className={styles.hamburger}
+      aria-expanded={menuOpen}
+      aria-label={menuOpen ? 'Close' : 'Open'}
+      onClick={toggle}
+    >
+      <div />
+      <div className={styles.twoPart} />
+      <div />
+    </button>
+  )
+}

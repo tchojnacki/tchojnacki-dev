@@ -12,7 +12,7 @@ interface NavLinkProps {
   children: string
 }
 
-const NavLink = ({ href, children }: NavLinkProps) => {
+function NavLink({ href, children }: NavLinkProps) {
   const router = useRouter()
 
   return (
@@ -22,16 +22,18 @@ const NavLink = ({ href, children }: NavLinkProps) => {
   )
 }
 
-const NavLinks = () => (
-  <>
-    <NavLink href="/">About</NavLink>
-    <NavLink href="/projects">Projects</NavLink>
-    <NavLink href="/experience">Experience</NavLink>
-    <NavLink href="/blog">Blog</NavLink>
-  </>
-)
+function NavLinks() {
+  return (
+    <>
+      <NavLink href="/">About</NavLink>
+      <NavLink href="/projects">Projects</NavLink>
+      <NavLink href="/experience">Experience</NavLink>
+      <NavLink href="/blog">Blog</NavLink>
+    </>
+  )
+}
 
-const Nav = () => {
+export default function Nav() {
   const [open, setOpen] = React.useState(false)
 
   return (
@@ -46,5 +48,3 @@ const Nav = () => {
     </>
   )
 }
-
-export default Nav

@@ -6,7 +6,7 @@ import styles from '@/styles/about/landing/HeroTypewriter.module.scss'
 
 const TYPEWRITER_TEXTS = ['software engineer.', 'student.', 'frontend developer.']
 
-const HeroTypewriter = () => {
+export default function HeroTypewriter() {
   const text = useTypewriter(TYPEWRITER_TEXTS, {
     type: 100,
     beforeTyping: 500,
@@ -15,5 +15,3 @@ const HeroTypewriter = () => {
 
   return <span className={styles.text}>{text}</span>
 }
-
-export default HeroTypewriter

@@ -1,5 +1,5 @@
 import ErrorPage from '@/components/common/ErrorPage'
 
-const Error404 = () => <ErrorPage code={404}>Not Found 👀</ErrorPage>
-
-export default Error404
+export default function Error404() {
+  return <ErrorPage code={404}>Not Found 👀</ErrorPage>
+}

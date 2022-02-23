@@ -11,7 +11,7 @@ import SimpleIconSvg from '@/components/common/SimpleIconSvg'
 import styles from '@/styles/about/landing/Landing.module.scss'
 import onLoad from '@/styles/common/onLoad.module.scss'
 
-const Landing = () => {
+export default function Landing() {
   return (
     <main className={styles.landing}>
       <section className={classNames(styles.heroText, onLoad.enter, onLoad.fromLeft)}>
@@ -62,5 +62,3 @@ const Landing = () => {
     </main>
   )
 }
-
-export default Landing

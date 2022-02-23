@@ -5,7 +5,7 @@ import styles from '@/styles/about/landing/WavingEmoji.module.scss'
 
 const WAVING_DELAY = 1000
 
-const WavingEmoji = () => {
+export default function WavingEmoji() {
   const [isPlaying, setIsPlaying] = React.useState(false)
   const startPlaying = React.useCallback(() => setIsPlaying(true), [])
   const stopPlaying = React.useCallback(() => setIsPlaying(false), [])
@@ -36,5 +36,3 @@ const WavingEmoji = () => {
     </span>
   )
 }
-
-export default WavingEmoji

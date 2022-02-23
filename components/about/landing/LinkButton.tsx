@@ -7,10 +7,10 @@ interface LinkButtonProps {
   href: string
 }
 
-const LinkButton = ({ children, href }: LinkButtonProps) => (
-  <Link href={href}>
-    <a className={styles.button}>{children}</a>
-  </Link>
-)
-
-export default LinkButton
+export default function LinkButton({ children, href }: LinkButtonProps) {
+  return (
+    <Link href={href}>
+      <a className={styles.button}>{children}</a>
+    </Link>
+  )
+}

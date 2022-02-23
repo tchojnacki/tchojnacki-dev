@@ -13,7 +13,7 @@ interface TechSphereProps {
   items: string[]
 }
 
-const TechSphere = ({ items }: TechSphereProps) => {
+export default function TechSphere({ items }: TechSphereProps) {
   const positions = React.useMemo(() => initialPositions(items.length), [items.length])
 
   const prefersReducedMotion = usePrefersReducedMotion()
@@ -51,5 +51,3 @@ const TechSphere = ({ items }: TechSphereProps) => {
     </ul>
   )
 }
-
-export default TechSphere

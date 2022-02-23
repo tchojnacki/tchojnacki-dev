@@ -1,9 +1,8 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import Landing from '@/components/about/landing/Landing'
 
-const About: NextPage = () => {
+export default function About() {
   return (
     <>
       <Head>
@@ -13,5 +12,3 @@ const About: NextPage = () => {
     </>
   )
 }
-
-export default About
