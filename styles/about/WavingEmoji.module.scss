@@ -1,7 +1,11 @@
 .container {
   display: inline-block;
   transform-origin: 75% 75%;
-  animation: wave 1s ease-in-out 1s;
+  cursor: pointer;
+}
+
+.playing {
+  animation: wave 1s ease-in-out;
 
   @media (prefers-reduced-motion) {
     animation: none;
