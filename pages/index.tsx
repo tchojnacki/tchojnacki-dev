@@ -6,8 +6,7 @@ const About: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Tomasz Chojnacki</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>About | Tomasz Chojnacki</title>
       </Head>
       <Landing />
     </>
