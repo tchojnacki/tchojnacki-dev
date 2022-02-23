@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-import styles from '@/styles/common/Nav.module.scss'
+import styles from '@/styles/common/nav/Nav.module.scss'
 import onLoad from '@/styles/common/onLoad.module.scss'
 
 interface NavLinkProps {

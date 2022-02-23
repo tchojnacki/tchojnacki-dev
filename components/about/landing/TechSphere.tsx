@@ -7,7 +7,7 @@ import { useParentSize } from '@/util/hooks/useParentSize'
 import { usePrefersReducedMotion } from '@/util/hooks/usePrefersReducedMotion'
 import { isClientSide } from '@/util/isClientSide'
 
-import styles from '@/styles/about/TechSphere.module.scss'
+import styles from '@/styles/about/landing/TechSphere.module.scss'
 
 interface TechSphereProps {
   items: string[]

@@ -1,14 +1,14 @@
 import classNames from 'classnames'
 import { siGithub, siLinkedin } from 'simple-icons/icons'
 
-import HeroTypewriter from '@/components/about/HeroTypewriter'
-import LinkButton from '@/components/about/LinkButton'
-import TechSphere from '@/components/about/TechSphere'
-import Wave from '@/components/about/Wave'
-import WavingEmoji from '@/components/about/WavingEmoji'
+import HeroTypewriter from '@/components/about/landing/HeroTypewriter'
+import LinkButton from '@/components/about/landing/LinkButton'
+import TechSphere from '@/components/about/landing/TechSphere'
+import Wave from '@/components/about/landing/Wave'
+import WavingEmoji from '@/components/about/landing/WavingEmoji'
 import SimpleIconSvg from '@/components/common/SimpleIconSvg'
 
-import styles from '@/styles/about/Landing.module.scss'
+import styles from '@/styles/about/landing/Landing.module.scss'
 import onLoad from '@/styles/common/onLoad.module.scss'
 
 const Landing = () => {

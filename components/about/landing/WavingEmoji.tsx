@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import React from 'react'
 
-import styles from '@/styles/about/WavingEmoji.module.scss'
+import styles from '@/styles/about/landing/WavingEmoji.module.scss'
 
 const WAVING_DELAY = 1000
 

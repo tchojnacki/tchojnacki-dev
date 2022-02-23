@@ -1,4 +1,4 @@
-import styles from '@/styles/common/NavHamburger.module.scss'
+import styles from '@/styles/common/nav/NavHamburger.module.scss'
 
 interface NavHamburgerProps {
   menuOpen: boolean

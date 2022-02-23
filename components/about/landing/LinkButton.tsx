@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import styles from '@/styles/about/LinkButton.module.scss'
+import styles from '@/styles/about/landing/LinkButton.module.scss'
 
 interface LinkButtonProps {
   children: string
