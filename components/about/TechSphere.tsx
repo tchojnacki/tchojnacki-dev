@@ -1,10 +1,12 @@
-import React from 'react'
 import _ from 'lodash'
+import React from 'react'
+
 import { initialPositions, posToTransform, rotateY } from '@/util/fibonacciSphere'
 import { useMouseOffsetX } from '@/util/hooks/useMouseOffsetX'
 import { useParentSize } from '@/util/hooks/useParentSize'
-import { isClientSide } from '@/util/isClientSide'
 import { usePrefersReducedMotion } from '@/util/hooks/usePrefersReducedMotion'
+import { isClientSide } from '@/util/isClientSide'
+
 import styles from '@/styles/about/TechSphere.module.scss'
 
 interface TechSphereProps {

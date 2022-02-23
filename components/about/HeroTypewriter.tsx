@@ -1,5 +1,7 @@
 import React from 'react'
+
 import { useTypewriter } from '@/util/hooks/useTypewriter'
+
 import styles from '@/styles/about/HeroTypewriter.module.scss'
 
 const TYPEWRITER_TEXTS = ['software engineer.', 'student.', 'frontend developer.']

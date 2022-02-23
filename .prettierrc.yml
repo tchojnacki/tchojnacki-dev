@@ -2,3 +2,5 @@ printWidth: 100
 semi: false
 singleQuote: true
 arrowParens: 'avoid'
+importOrder: ['^@/components/', '^@/util/', '^@/styles/']
+importOrderSeparation: true

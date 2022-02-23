@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+
 import Landing from '@/components/about/Landing'
 
 const About: NextPage = () => {

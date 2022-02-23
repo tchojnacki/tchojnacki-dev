@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+
 import styles from '@/styles/common/ErrorPage.module.scss'
 import onLoad from '@/styles/common/onLoad.module.scss'
 

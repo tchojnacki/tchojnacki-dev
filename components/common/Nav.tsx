@@ -1,10 +1,11 @@
+import NavHamburger from './NavHamburger'
+import classNames from 'classnames'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import NavHamburger from './NavHamburger'
+
 import styles from '@/styles/common/Nav.module.scss'
 import onLoad from '@/styles/common/onLoad.module.scss'
-import classNames from 'classnames'
 
 interface NavLinkProps {
   href: string

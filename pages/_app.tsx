@@ -1,8 +1,10 @@
 import type { AppProps } from 'next/app'
 import React from 'react'
+
 import Nav from '@/components/common/Nav'
-import '@/styles/preflight.css'
+
 import '@/styles/global.scss'
+import '@/styles/preflight.css'
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <>
