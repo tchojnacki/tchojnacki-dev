@@ -4,6 +4,7 @@ import React from 'react'
 import NavHamburger from './NavHamburger'
 import styles from '@/styles/common/Nav.module.scss'
 import onLoad from '@/styles/common/onLoad.module.scss'
+import classNames from 'classnames'
 
 interface NavLinkProps {
   href: string
@@ -15,7 +16,7 @@ const NavLink = ({ href, children }: NavLinkProps) => {
 
   return (
     <Link href={href}>
-      <a className={router.pathname === href ? styles.active : ''}>{children}</a>
+      <a className={classNames({ [styles.active]: router.pathname === href })}>{children}</a>
     </Link>
   )
 }
@@ -34,11 +35,11 @@ const Nav = () => {
 
   return (
     <>
-      <nav className={[styles.nav, onLoad.enter, onLoad.fromTop].join(' ')}>
+      <nav className={classNames(styles.nav, onLoad.enter, onLoad.fromTop)}>
         <NavLinks />
         <NavHamburger menuOpen={open} toggle={() => setOpen(prev => !prev)} />
       </nav>
-      <nav className={styles.overlay + (open ? ` ${styles.shown}` : '')}>
+      <nav className={classNames(styles.overlay, { [styles.shown]: open })}>
         <NavLinks />
       </nav>
     </>

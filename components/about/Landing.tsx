@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { siGithub, siLinkedin } from 'simple-icons/icons'
 import TechSphere from '@/components/about/TechSphere'
 import Wave from '@/components/about/Wave'
@@ -11,7 +12,7 @@ import onLoad from '@/styles/common/onLoad.module.scss'
 const Landing = () => {
   return (
     <main className={styles.landing}>
-      <section className={[styles.heroText, onLoad.enter, onLoad.fromLeft].join(' ')}>
+      <section className={classNames(styles.heroText, onLoad.enter, onLoad.fromLeft)}>
         <h2 className={styles.heroSubtitle}>
           Hello <WavingEmoji />, my name is
         </h2>
@@ -37,7 +38,7 @@ const Landing = () => {
           </a>
         </div>
       </section>
-      <section className={[styles.sphereWrapper, onLoad.enter, onLoad.fromRight].join(' ')}>
+      <section className={classNames(styles.sphereWrapper, onLoad.enter, onLoad.fromRight)}>
         <TechSphere
           items={[
             'React',
