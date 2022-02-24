@@ -1,0 +1,26 @@
+@use '../../vars' as v;
+
+.card {
+  background-color: v.$indigo-0;
+  padding: 2rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0.25rem 0.25rem 0.25rem transparentize($color: v.$indigo-3, $amount: 0.75);
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+
+  & h5 {
+    font-size: 1.25rem;
+    line-height: 1;
+    text-align: center;
+  }
+
+  & svg {
+    height: 4rem;
+
+    & path {
+      fill: v.$gray-1;
+    }
+  }
+}

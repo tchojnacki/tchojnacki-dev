@@ -41,20 +41,7 @@ export default function Landing() {
         </div>
       </section>
       <section className={classNames(styles.sphereWrapper, onLoad.enter, onLoad.fromRight)}>
-        <TechSphere
-          items={[
-            'React',
-            'Next.js',
-            'TypeScript',
-            'Flutter',
-            'Node.js',
-            'JavaScript',
-            'CSS',
-            'HTML',
-            'Dart',
-            'Java',
-          ]}
-        />
+        <TechSphere />
       </section>
       <section className={styles.waveSection}>
         <Wave />

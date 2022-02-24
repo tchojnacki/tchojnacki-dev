@@ -1,0 +1,25 @@
+@use '../../vars' as v;
+
+.section {
+  background-color: v.$indigo-1;
+  margin-top: -1px;
+}
+
+.sectionHeader {
+  font-size: 2rem;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.skillTypeHeader {
+  font-size: 1.5rem;
+  padding-left: 2rem;
+  margin-top: 2rem;
+}
+
+.cardWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15ch, 1fr));
+  padding: 2rem;
+  gap: 1rem;
+}
