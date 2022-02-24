@@ -2,22 +2,25 @@
 
 .card {
   background-color: v.$indigo-0;
-  padding: 2rem 1rem;
+  padding: 1em;
   border-radius: 0.5rem;
-  box-shadow: 0.25rem 0.25rem 0.25rem transparentize($color: v.$indigo-3, $amount: 0.75);
+  box-shadow: 0.25rem 0.25rem 0.25rem transparentize($color: v.$indigo-3, $amount: 0.9);
   display: flex;
-  gap: 1rem;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  gap: 1em;
+  aspect-ratio: 1;
 
   & h5 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
     line-height: 1;
     text-align: center;
+    white-space: nowrap;
   }
 
   & svg {
-    height: 4rem;
+    height: 4em;
 
     & path {
       fill: v.$gray-1;

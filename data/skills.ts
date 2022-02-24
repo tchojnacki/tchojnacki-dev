@@ -1,21 +1,5 @@
 import { SimpleIcon } from 'simple-icons'
-import {
-  siCss3,
-  siDart,
-  siFigma,
-  siFlutter,
-  siGit,
-  siGithub,
-  siHtml5,
-  siIntellijidea,
-  siJava,
-  siJavascript,
-  siNextdotjs,
-  siNodedotjs,
-  siReact,
-  siTypescript,
-  siVisualstudiocode,
-} from 'simple-icons/icons'
+import * as si from 'simple-icons/icons'
 
 interface SkillDefinition {
   name: string
@@ -33,76 +17,95 @@ export const SKILL_ARRAY: SkillDefinition[] = [
   {
     name: 'React',
     type: 'framework',
-    icon: siReact,
+    icon: si.siReact,
   },
   {
     name: 'Next.js',
     type: 'framework',
-    icon: siNextdotjs,
+    icon: si.siNextdotjs,
   },
   {
     name: 'TypeScript',
     type: 'language',
-    icon: siTypescript,
+    icon: si.siTypescript,
   },
   {
     name: 'Node.js',
     type: 'framework',
-    icon: siNodedotjs,
+    icon: si.siNodedotjs,
   },
   {
     name: 'JavaScript',
     type: 'language',
-    icon: siJavascript,
+    icon: si.siJavascript,
   },
   {
     name: 'Java',
     type: 'language',
-    icon: siJava,
+    icon: si.siJava,
   },
   {
     name: 'Flutter',
     type: 'framework',
-    icon: siFlutter,
+    icon: si.siFlutter,
   },
   {
     name: 'Dart',
     type: 'language',
-    icon: siDart,
+    icon: si.siDart,
   },
   {
     name: 'CSS',
     type: 'language',
-    icon: siCss3,
+    icon: si.siCss3,
   },
   {
     name: 'HTML',
     type: 'language',
-    icon: siHtml5,
+    icon: si.siHtml5,
   },
   {
     name: 'Git',
     type: 'tool',
-    icon: siGit,
+    icon: si.siGit,
   },
   {
     name: 'GitHub',
     type: 'tool',
-    icon: siGithub,
+    icon: si.siGithub,
+  },
+  {
+    name: 'MongoDB',
+    type: 'tool',
+    icon: si.siMongodb,
+  },
+  {
+    name: 'Heroku',
+    type: 'tool',
+    icon: si.siHeroku,
   },
   {
     name: 'Figma',
     type: 'tool',
-    icon: siFigma,
+    icon: si.siFigma,
   },
   {
     name: 'VS Code',
     type: 'tool',
-    icon: siVisualstudiocode,
+    icon: si.siVisualstudiocode,
   },
   {
     name: 'IntelliJ IDEA',
     type: 'tool',
-    icon: siIntellijidea,
+    icon: si.siIntellijidea,
   },
 ]
+
+/*
+TODO: subskills
+
+Java: Kotlin
+CSS: Sass
+Node.js: npm & yarn, Express
+MongoDB: mongoose
+*/

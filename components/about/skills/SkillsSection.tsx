@@ -1,4 +1,4 @@
-import { siReact } from 'simple-icons/icons'
+import classNames from 'classnames'
 
 import SkillCard from '@/components/about/skills/SkillCard'
 
@@ -13,7 +13,7 @@ export default function SkillsSection() {
       {Object.entries(SKILL_TYPE_NAMES).map(([type, label]) => (
         <>
           <h4 className={styles.skillTypeHeader}>{label}</h4>
-          <div className={styles.cardWrapper}>
+          <div className={classNames(styles.cardWrapper, { [styles.small]: type === 'tool' })}>
             {SKILL_ARRAY.filter(skill => skill.type === type).map(skill => (
               <SkillCard key={skill.name} name={skill.name} icon={skill.icon} />
             ))}
