@@ -15,7 +15,7 @@ export default function SkillsSection() {
           <h4 className={styles.skillTypeHeader}>{label}</h4>
           <div className={classNames(styles.cardWrapper, { [styles.small]: type === 'tool' })}>
             {SKILL_ARRAY.filter(skill => skill.type === type).map(skill => (
-              <SkillCard key={skill.name} name={skill.name} icon={skill.icon} />
+              <SkillCard key={skill.name} skill={skill} />
             ))}
           </div>
         </>
