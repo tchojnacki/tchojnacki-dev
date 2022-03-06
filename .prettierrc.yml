@@ -2,5 +2,5 @@ printWidth: 100
 semi: false
 singleQuote: true
 arrowParens: 'avoid'
-importOrder: ['^@/components/', '^@/util/', '^@/styles/']
+importOrder: ['^@/components/', '^@/data/', '^@/util/', '^@/styles/']
 importOrderSeparation: true

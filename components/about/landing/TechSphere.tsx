@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import React from 'react'
 
+import { SKILL_ARRAY } from '@/data/skills'
+
 import { initialPositions, posToTransform, rotateY } from '@/util/fibonacciSphere'
 import { useMouseOffsetX } from '@/util/hooks/useMouseOffsetX'
 import { useParentSize } from '@/util/hooks/useParentSize'
@@ -9,13 +11,10 @@ import { isClientSide } from '@/util/isClientSide'
 
 import styles from '@/styles/about/landing/TechSphere.module.scss'
 
-interface TechSphereProps {
-  items: string[]
-}
+const items = SKILL_ARRAY.filter(skill => skill.type !== 'tool').map(skill => skill.name)
+const positions = initialPositions(items.length)
 
-export default function TechSphere({ items }: TechSphereProps) {
-  const positions = React.useMemo(() => initialPositions(items.length), [items.length])
-
+export default function TechSphere() {
   const prefersReducedMotion = usePrefersReducedMotion()
 
   const mouseOffset = useMouseOffsetX()
