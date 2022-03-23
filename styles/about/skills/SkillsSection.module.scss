@@ -1,8 +1,13 @@
 @use '../../vars' as v;
 
-.section {
+.sectionBackground {
   background-color: v.$indigo-1;
   margin-top: -1px;
+}
+
+.section {
+  max-width: v.$main-bp;
+  margin: 0 auto;
 }
 
 .sectionHeader {
@@ -15,17 +20,14 @@
 .skillTypeHeader {
   font-size: 1.5rem;
   padding-left: 2rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .cardWrapper {
   display: grid;
   padding: 1rem 2rem;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr));
   place-items: start stretch;
-
-  &.small {
-    font-size: 0.66rem;
-  }
+  grid-auto-flow: dense;
 }

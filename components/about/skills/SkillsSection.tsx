@@ -9,18 +9,20 @@ import styles from '@/styles/about/skills/SkillsSection.module.scss'
 
 export default function SkillsSection() {
   return (
-    <section className={styles.section}>
-      <h3 className={styles.sectionHeader}>Skills</h3>
-      {Object.entries(SKILL_TYPE_NAMES).map(([type, label]) => (
-        <React.Fragment key={type}>
-          <h4 className={styles.skillTypeHeader}>{label}</h4>
-          <div className={classNames(styles.cardWrapper, { [styles.small]: type === 'tool' })}>
-            {SKILL_ARRAY.filter(skill => skill.type === type).map(skill => (
-              <SkillCard key={skill.name} skill={skill} />
-            ))}
-          </div>
-        </React.Fragment>
-      ))}
+    <section className={styles.sectionBackground}>
+      <div className={styles.section}>
+        <h3 className={styles.sectionHeader}>Skills</h3>
+        {Object.entries(SKILL_TYPE_NAMES).map(([type, label]) => (
+          <React.Fragment key={type}>
+            <h4 className={styles.skillTypeHeader}>{label}</h4>
+            <div className={styles.cardWrapper}>
+              {SKILL_ARRAY.filter(skill => skill.type === type).map(skill => (
+                <SkillCard key={skill.name} skill={skill} />
+              ))}
+            </div>
+          </React.Fragment>
+        ))}
+      </div>
     </section>
   )
 }

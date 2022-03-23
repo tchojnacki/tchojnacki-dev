@@ -35,11 +35,6 @@ export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
     type: 'tool',
     icon: si.siNpm,
   },
-  EXPRESS: {
-    name: 'Express',
-    type: 'library',
-    icon: si.siExpress,
-  },
   JAVASCRIPT: {
     name: 'JavaScript',
     type: 'language',
@@ -54,6 +49,11 @@ export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
     name: 'Kotlin',
     type: 'language',
     icon: si.siKotlin,
+  },
+  PYTHON: {
+    name: 'Python',
+    type: 'language',
+    icon: si.siPython,
   },
   FLUTTER: {
     name: 'Flutter',
@@ -104,15 +104,5 @@ export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
     name: 'Figma',
     type: 'tool',
     icon: si.siFigma,
-  },
-  VSCODE: {
-    name: 'VS Code',
-    type: 'tool',
-    icon: si.siVisualstudiocode,
-  },
-  INTELLIJ: {
-    name: 'IntelliJ IDEA',
-    type: 'tool',
-    icon: si.siIntellijidea,
   },
 }
