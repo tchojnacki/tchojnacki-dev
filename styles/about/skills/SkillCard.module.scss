@@ -1,58 +1,36 @@
 @use '../../vars' as v;
 
-.cardWrapper {
+.card {
+  aspect-ratio: 1;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  box-shadow: 0.25rem 0.25rem 0.25rem transparentize($color: v.$indigo-3, $amount: 0.9);
-  background-color: mix(v.$indigo-0, v.$indigo-1);
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  border-radius: 0.75rem;
+  background-color: v.$indigo-0;
+  padding: 1em;
 
-  .cardFooter {
-    font-size: 0.8rem;
-    padding: 0.5em 1rem;
+  grid-row: span 2;
+  grid-column: span 2;
 
-    & li {
-      display: flex;
-      align-items: center;
-
-      & svg {
-        height: 1em;
-        margin-right: 0.5em;
-
-        & path {
-          fill: v.$gray-0;
-        }
-      }
-    }
+  &.minor {
+    grid-row: span 1;
+    grid-column: span 1;
+    font-size: 0.6rem;
   }
 
-  .card {
-    background-color: v.$indigo-0;
-    padding: 1em;
-    border-radius: 0 0 0.5rem 0.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1em;
-    aspect-ratio: 1;
-    box-shadow: 0 0.25rem 0.25rem transparentize($color: v.$indigo-3, $amount: 0.95);
+  & h5 {
+    font-size: 1.25em;
+    text-align: center;
+    white-space: nowrap;
+  }
 
-    & h5 {
-      font-size: 1.25em;
-      line-height: 1;
-      text-align: center;
-      white-space: nowrap;
-    }
+  & svg {
+    height: 4em;
 
-    & svg {
-      height: 4em;
-
-      & path {
-        fill: v.$gray-1;
-      }
+    & path {
+      fill: v.$gray-1;
     }
   }
 }
