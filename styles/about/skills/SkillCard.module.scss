@@ -6,10 +6,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1.5em;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  box-shadow: 0.25rem 0.25rem 0.25rem transparentize($color: v.$indigo-3, $amount: 0.9);
+  gap: 1em;
+  border-radius: 0.75rem;
   background-color: v.$indigo-0;
   padding: 1em;
 
@@ -19,12 +17,11 @@
   &.minor {
     grid-row: span 1;
     grid-column: span 1;
-    font-size: 0.5rem;
+    font-size: 0.6rem;
   }
 
   & h5 {
     font-size: 1.25em;
-    line-height: 1;
     text-align: center;
     white-space: nowrap;
   }

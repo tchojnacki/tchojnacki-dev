@@ -1,11 +1,21 @@
+@use 'sass:math';
 @use '../../vars' as v;
+
+$skill-display-padding: 2rem;
+$skill-display-gap: 1rem;
+$skill-column-count: 5;
+
+$skill-column-size: math.div(
+  v.$main-bp - 2 * $skill-display-padding - (2 * $skill-column-count - 1) * $skill-display-gap,
+  2 * $skill-column-count
+);
 
 .sectionBackground {
   background-color: v.$indigo-1;
   margin-top: -1px;
 }
 
-.section {
+.sectionContent {
   max-width: v.$main-bp;
   margin: 0 auto;
 }
@@ -14,7 +24,6 @@
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
-  padding: 0.5rem 0;
 }
 
 .skillTypeHeader {
@@ -25,9 +34,8 @@
 
 .cardWrapper {
   display: grid;
-  padding: 1rem 2rem;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr));
-  place-items: start stretch;
+  padding: 1rem $skill-display-padding;
+  gap: $skill-display-gap;
+  grid-template-columns: repeat(auto-fill, minmax($skill-column-size, 1fr));
   grid-auto-flow: dense;
 }

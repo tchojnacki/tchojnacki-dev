@@ -10,7 +10,7 @@ import styles from '@/styles/about/skills/SkillsSection.module.scss'
 export default function SkillsSection() {
   return (
     <section className={styles.sectionBackground}>
-      <div className={styles.section}>
+      <div className={styles.sectionContent}>
         <h3 className={styles.sectionHeader}>Skills</h3>
         {Object.entries(SKILL_TYPE_NAMES).map(([type, label]) => (
           <React.Fragment key={type}>
