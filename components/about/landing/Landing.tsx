@@ -43,9 +43,9 @@ export default function Landing() {
       <section className={classNames(styles.sphereWrapper, onLoad.enter, onLoad.fromRight)}>
         <TechSphere />
       </section>
-      <section className={styles.waveSection}>
+      <div className={styles.waveWrapper}>
         <Wave />
-      </section>
+      </div>
     </main>
   )
 }

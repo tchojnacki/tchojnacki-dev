@@ -15,11 +15,11 @@ export default function SkillsSection() {
         {Object.entries(SKILL_TYPE_NAMES).map(([type, label]) => (
           <React.Fragment key={type}>
             <h4 className={styles.skillTypeHeader}>{label}</h4>
-            <div className={styles.cardWrapper}>
+            <ul className={styles.cardWrapper}>
               {SKILL_ARRAY.filter(skill => skill.type === type).map(skill => (
                 <SkillCard key={skill.name} skill={skill} />
               ))}
-            </div>
+            </ul>
           </React.Fragment>
         ))}
       </div>
