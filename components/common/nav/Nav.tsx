@@ -27,7 +27,6 @@ function NavLinks() {
     <>
       <NavLink href="/">About</NavLink>
       <NavLink href="/projects">Projects</NavLink>
-      <NavLink href="/experience">Experience</NavLink>
       <NavLink href="/blog">Blog</NavLink>
     </>
   )
