@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import React from 'react'
 
 import { SKILL_ARRAY } from '@/data/skills'
 import { isClientSide, useMouseOffsetX, useParentSize, usePrefersReducedMotion } from '@/util'

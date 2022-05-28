@@ -9,7 +9,6 @@ import { LinkButton } from '../LinkButton'
 import { TechSphere } from '../TechSphere'
 import { Wave } from '../Wave'
 import { WavingEmoji } from '../WavingEmoji'
-
 import styles from './Landing.module.scss'
 
 export function Landing() {

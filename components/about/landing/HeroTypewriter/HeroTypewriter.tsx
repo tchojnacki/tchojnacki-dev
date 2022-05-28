@@ -1,5 +1,3 @@
-import React from 'react'
-
 import styles from './HeroTypewriter.module.scss'
 import { useTypewriter } from './useTypewriter'
 

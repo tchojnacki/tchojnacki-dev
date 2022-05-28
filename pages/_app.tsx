@@ -1,5 +1,4 @@
 import type { AppProps } from 'next/app'
-import React from 'react'
 
 import { Nav } from '@/components'
 import '@/styles/global.scss'

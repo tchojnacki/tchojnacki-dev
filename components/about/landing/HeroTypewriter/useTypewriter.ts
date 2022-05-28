@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface TypewriterDelays {
   type: number
@@ -42,11 +42,11 @@ function* textStates(
 }
 
 export function useTypewriter(texts: string[], delays: TypewriterDelays) {
-  const [currentText, setCurrentText] = React.useState(texts[0])
+  const [currentText, setCurrentText] = useState(texts[0])
 
-  const generatorRef = React.useRef(textStates(texts, delays))
+  const generatorRef = useRef(textStates(texts, delays))
 
-  React.useEffect(() => {
+  useEffect(() => {
     const nextStage = generatorRef.current.next().value
 
     const timeoutId = setTimeout(() => setCurrentText(nextStage.changeTo), nextStage.afterDelay)

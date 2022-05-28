@@ -1,10 +1,10 @@
-import React from 'react'
+import { useCallback, useDebugValue, useEffect, useState } from 'react'
 
 export function useMouseOffsetX() {
-  const [firstX, setFirstX] = React.useState<number | null>(null)
-  const [currentXOffset, setCurrentXOffset] = React.useState(0)
+  const [firstX, setFirstX] = useState<number | null>(null)
+  const [currentXOffset, setCurrentXOffset] = useState(0)
 
-  const handleMouseMove = React.useCallback(
+  const handleMouseMove = useCallback(
     (e: MouseEvent) => {
       let localFirstX = firstX
 
@@ -18,13 +18,13 @@ export function useMouseOffsetX() {
     [firstX]
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener('mousemove', handleMouseMove)
 
     return () => document.removeEventListener('mousemove', handleMouseMove)
   }, [handleMouseMove])
 
-  React.useDebugValue(currentXOffset)
+  useDebugValue(currentXOffset)
 
   return currentXOffset
 }

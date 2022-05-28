@@ -1,12 +1,11 @@
 import classNames from 'classnames'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import onLoad from '@/styles/onLoad.module.scss'
 
 import { NavHamburger } from '../NavHamburger'
-
 import styles from './Nav.module.scss'
 
 interface NavLinkProps {
@@ -43,9 +42,9 @@ function NavLinks() {
 }
 
 function useDialog() {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
-  const dialogRef = React.useRef<HTMLDialogElement | null>(null)
+  const dialogRef = useRef<HTMLDialogElement | null>(null)
 
   const toggleDialog = () => {
     if (!isOpen) {
@@ -57,7 +56,7 @@ function useDialog() {
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     const dialog = dialogRef.current
 
     const onCloseHandler = () => {

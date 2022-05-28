@@ -1,6 +1,5 @@
 import classNames from 'classnames'
 import { Omit } from 'lodash'
-import React from 'react'
 
 import { SimpleIconSvg } from '@/components/common/SimpleIconSvg'
 import { SkillDefinition } from '@/data/skills'

@@ -1,24 +1,24 @@
 import classNames from 'classnames'
-import React from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import styles from './WavingEmoji.module.scss'
 
 const WAVING_DELAY = 1000
 
 export function WavingEmoji() {
-  const [isPlaying, setIsPlaying] = React.useState(false)
-  const startPlaying = React.useCallback(() => setIsPlaying(true), [])
-  const stopPlaying = React.useCallback(() => setIsPlaying(false), [])
+  const [isPlaying, setIsPlaying] = useState(false)
+  const startPlaying = useCallback(() => setIsPlaying(true), [])
+  const stopPlaying = useCallback(() => setIsPlaying(false), [])
 
-  const ref = React.useRef<HTMLSpanElement>(null)
-  React.useEffect(() => {
+  const ref = useRef<HTMLSpanElement>(null)
+  useEffect(() => {
     const elem = ref.current
     elem?.addEventListener('animationend', stopPlaying)
 
     return () => elem?.removeEventListener('animationend', stopPlaying)
   }, [stopPlaying])
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timeoutId = setTimeout(() => {
       setIsPlaying(true)
     }, WAVING_DELAY)

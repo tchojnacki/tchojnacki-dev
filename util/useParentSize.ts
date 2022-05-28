@@ -1,11 +1,11 @@
-import React from 'react'
+import { useDebugValue, useEffect, useRef, useState } from 'react'
 
 export function useParentSize<ChildElem extends HTMLElement>() {
-  const [size, setSize] = React.useState({ inlineSize: 0, blockSize: 0 })
+  const [size, setSize] = useState({ inlineSize: 0, blockSize: 0 })
 
-  const childRef = React.useRef<ChildElem>(null)
+  const childRef = useRef<ChildElem>(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const parent = childRef.current?.parentElement
 
     if (!parent) {
@@ -19,7 +19,7 @@ export function useParentSize<ChildElem extends HTMLElement>() {
     return () => resizeObserver.unobserve(parent)
   }, [])
 
-  React.useDebugValue(`${size.inlineSize} x ${size.blockSize}`)
+  useDebugValue(`${size.inlineSize} x ${size.blockSize}`)
 
   return { width: size.inlineSize, height: size.blockSize, childRef }
 }
