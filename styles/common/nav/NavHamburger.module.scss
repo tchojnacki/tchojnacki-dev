@@ -4,10 +4,11 @@
 $hamburger-size: v.$nav-height * 0.375;
 
 .hamburger {
-  display: none;
+  display: flex;
   box-sizing: content-box;
   width: $hamburger-size;
   height: $hamburger-size;
+  flex-shrink: 0;
   padding: math.div(math.div(v.$nav-height, 2) - $hamburger-size, 2) 1rem;
   flex-direction: column;
   justify-content: space-between;
@@ -38,10 +39,6 @@ $hamburger-size: v.$nav-height * 0.375;
     }
   }
 
-  @media (max-width: v.$nav-bp) {
-    display: flex;
-  }
-
   &:hover {
     div:not(.twoPart),
     .twoPart::before,
@@ -62,5 +59,11 @@ $hamburger-size: v.$nav-height * 0.375;
     .twoPart::after {
       transform: rotate(45deg) scale(1.41);
     }
+  }
+}
+
+.mobileOnly {
+  @media (min-width: v.$nav-bp) {
+    display: none;
   }
 }

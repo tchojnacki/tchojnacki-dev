@@ -2,82 +2,106 @@
 @use '../../vars' as v;
 
 .nav {
-  position: relative;
-  z-index: 2;
-  color: v.$gray-0;
   padding: math.div(v.$nav-height, 4);
-  line-height: 1;
-  display: flex;
-  justify-content: center;
-  gap: 4rem;
-
-  @media (max-width: v.$main-bp) {
-    gap: 0;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-  }
 
   @media (max-width: v.$nav-bp) {
+    display: flex;
     justify-content: end;
   }
 
-  a {
-    padding: math.div(v.$nav-height, 8) 1rem;
-    border-radius: 0.5rem;
-    transition-duration: v.$transition-duration;
+  ul {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
 
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.05);
+    @media (max-width: v.$main-bp) {
+      gap: 0;
+      justify-content: space-evenly;
     }
 
     @media (max-width: v.$nav-bp) {
       display: none;
     }
-  }
-}
 
-.active {
-  color: v.$gray-1;
-  font-weight: bold;
-}
+    a {
+      display: block;
+      line-height: 1;
+      padding: math.div(v.$nav-height, 8) 1rem;
+      border-radius: 0.5rem;
+      transition-duration: v.$transition-duration;
 
-.overlay {
-  display: none;
-  position: absolute;
-  z-index: 1;
-  overflow: hidden;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  color: v.$gray-0;
-  font-size: 1.5rem;
-  padding: v.$nav-height math.div(v.$nav-height, 4) + 1rem;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: flex-end;
-  background: url('/img/menu-blob.svg') no-repeat top right / contain;
-
-  @media (max-width: v.$nav-bp) {
-    &.shown {
-      display: flex;
-      animation: showOverlay 1s forwards;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+      }
     }
   }
 }
 
-@keyframes showOverlay {
-  from {
-    max-height: 0;
-    max-width: 0;
-    opacity: 0;
-    border-bottom-left-radius: 50%;
+.navLink {
+  color: v.$gray-0;
+
+  &.active {
+    color: v.$gray-1;
+    font-weight: bold;
+  }
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+
+  overflow: hidden;
+  margin: 0 0 auto auto;
+  padding: 0;
+  background: url('/img/menu-blob.svg') no-repeat top right / contain;
+  width: 100vmin;
+  height: 100vmin;
+
+  nav {
+    padding: math.div(v.$nav-height, 4);
+
+    & > button {
+      margin-left: auto;
+    }
+
+    ul {
+      margin-top: 1rem;
+
+      a {
+        display: block;
+        padding: 0.5rem 1rem;
+        font-size: 1.5rem;
+        text-align: right;
+      }
+    }
   }
 
-  to {
-    max-height: 100%;
-    max-width: 100%;
-    opacity: 1;
-    border-bottom-left-radius: 0;
+  transition-property: opacity max-height max-width border-radius visibility;
+  transition-duration: 2 * v.$transition-duration;
+
+  &:not([open]) {
+    visibility: hidden;
+    opacity: 0;
+    max-width: 0%;
+    max-height: 0%;
+    border-radius: 0 0 0 100%;
   }
+
+  &[open] {
+    visibility: visible;
+    opacity: 1;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+}
+
+.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bodyScrollHidden {
+  overflow: hidden;
 }
