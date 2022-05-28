@@ -63,10 +63,18 @@ function useDialog() {
       document.body.classList.remove(styles.bodyScrollHidden)
     }
 
+    const onClickHandler = (e: MouseEvent) => {
+      if (e.target === e.currentTarget || e.target instanceof HTMLAnchorElement) {
+        dialog?.close()
+      }
+    }
+
     dialog?.addEventListener('close', onCloseHandler)
+    dialog?.addEventListener('click', onClickHandler)
 
     return () => {
       dialog?.removeEventListener('close', onCloseHandler)
+      dialog?.removeEventListener('click', onClickHandler)
     }
   }, [])
 
@@ -79,8 +87,10 @@ export default function Nav() {
   return (
     <>
       <dialog className={styles.dialog} ref={dialogRef}>
-        <NavHamburger menuOpen={isOpen} toggle={toggleDialog} />
-        <NavLinks />
+        <nav>
+          <NavHamburger menuOpen={isOpen} toggle={toggleDialog} />
+          <NavLinks />
+        </nav>
       </dialog>
       <nav className={classNames(styles.nav, onLoad.enter, onLoad.fromTop)}>
         <NavLinks />

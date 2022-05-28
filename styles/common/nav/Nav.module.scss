@@ -54,24 +54,32 @@
 
   overflow: hidden;
   margin: 0 0 auto auto;
-  padding: math.div(v.$nav-height, 4);
+  padding: 0;
   background: url('/img/menu-blob.svg') no-repeat top right / contain;
   width: 100vmin;
   height: 100vmin;
 
-  ul {
-    margin-top: 1rem;
+  nav {
+    padding: math.div(v.$nav-height, 4);
 
-    a {
-      display: block;
-      padding: 0.5rem 1rem;
-      font-size: 1.5rem;
-      text-align: right;
+    & > button {
+      margin-left: auto;
+    }
+
+    ul {
+      margin-top: 1rem;
+
+      a {
+        display: block;
+        padding: 0.5rem 1rem;
+        font-size: 1.5rem;
+        text-align: right;
+      }
     }
   }
 
   transition-property: opacity max-height max-width border-radius visibility;
-  transition-duration: v.$transition-duration;
+  transition-duration: 2 * v.$transition-duration;
 
   &:not([open]) {
     visibility: hidden;
