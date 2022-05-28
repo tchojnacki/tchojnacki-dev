@@ -41,43 +41,45 @@
   font-weight: bold;
 }
 
-.overlay {
-  display: none;
-  position: absolute;
-  z-index: 1;
+.dialog {
+  display: flex;
   overflow: hidden;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
+  margin: 0 0 auto auto;
+  padding: math.div(v.$nav-height, 4);
+  background: url('/img/menu-blob.svg') no-repeat top right / contain;
+  width: 100vmin;
+  height: 100vmin;
   color: v.$gray-0;
   font-size: 1.5rem;
-  padding: v.$nav-height math.div(v.$nav-height, 4) + 1rem;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: flex-start;
   align-items: flex-end;
-  background: url('/img/menu-blob.svg') no-repeat top right / contain;
+  gap: 1rem;
 
-  @media (max-width: v.$nav-bp) {
-    &.shown {
-      display: flex;
-      animation: showOverlay 1s forwards;
-    }
+  transition-property: opacity max-height max-width border-radius visibility;
+  transition-duration: v.$transition-duration;
+
+  &:not([open]) {
+    visibility: hidden;
+    opacity: 0;
+    max-width: 0%;
+    max-height: 0%;
+    border-radius: 0 0 0 100%;
+  }
+
+  &[open] {
+    visibility: visible;
+    opacity: 1;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 0;
   }
 }
 
-@keyframes showOverlay {
-  from {
-    max-height: 0;
-    max-width: 0;
-    opacity: 0;
-    border-bottom-left-radius: 50%;
-  }
+.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
-  to {
-    max-height: 100%;
-    max-width: 100%;
-    opacity: 1;
-    border-bottom-left-radius: 0;
-  }
+.bodyScrollHidden {
+  overflow: hidden;
 }
