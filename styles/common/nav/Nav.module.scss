@@ -2,59 +2,73 @@
 @use '../../vars' as v;
 
 .nav {
-  position: relative;
-  z-index: 2;
-  color: v.$gray-0;
   padding: math.div(v.$nav-height, 4);
-  line-height: 1;
-  display: flex;
-  justify-content: center;
-  gap: 4rem;
-
-  @media (max-width: v.$main-bp) {
-    gap: 0;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-  }
 
   @media (max-width: v.$nav-bp) {
+    display: flex;
     justify-content: end;
   }
 
-  a {
-    padding: math.div(v.$nav-height, 8) 1rem;
-    border-radius: 0.5rem;
-    transition-duration: v.$transition-duration;
+  ul {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
 
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.05);
+    @media (max-width: v.$main-bp) {
+      gap: 0;
+      justify-content: space-evenly;
     }
 
     @media (max-width: v.$nav-bp) {
       display: none;
     }
+
+    a {
+      display: block;
+      line-height: 1;
+      padding: math.div(v.$nav-height, 8) 1rem;
+      border-radius: 0.5rem;
+      transition-duration: v.$transition-duration;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+    }
   }
 }
 
-.active {
-  color: v.$gray-1;
-  font-weight: bold;
+.navLink {
+  color: v.$gray-0;
+
+  &.active {
+    color: v.$gray-1;
+    font-weight: bold;
+  }
 }
 
 .dialog {
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+
   overflow: hidden;
   margin: 0 0 auto auto;
   padding: math.div(v.$nav-height, 4);
   background: url('/img/menu-blob.svg') no-repeat top right / contain;
   width: 100vmin;
   height: 100vmin;
-  color: v.$gray-0;
-  font-size: 1.5rem;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-end;
-  gap: 1rem;
+
+  ul {
+    margin-top: 1rem;
+
+    a {
+      display: block;
+      padding: 0.5rem 1rem;
+      font-size: 1.5rem;
+      text-align: right;
+    }
+  }
 
   transition-property: opacity max-height max-width border-radius visibility;
   transition-duration: v.$transition-duration;

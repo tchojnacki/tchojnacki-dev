@@ -17,18 +17,26 @@ function NavLink({ href, children }: NavLinkProps) {
 
   return (
     <Link href={href}>
-      <a className={classNames({ [styles.active]: router.pathname === href })}>{children}</a>
+      <a className={classNames(styles.navLink, { [styles.active]: router.pathname === href })}>
+        {children}
+      </a>
     </Link>
   )
 }
 
 function NavLinks() {
   return (
-    <>
-      <NavLink href="/">About</NavLink>
-      <NavLink href="/projects">Projects</NavLink>
-      <NavLink href="/blog">Blog</NavLink>
-    </>
+    <ul>
+      <li>
+        <NavLink href="/">About</NavLink>
+      </li>
+      <li>
+        <NavLink href="/projects">Projects</NavLink>
+      </li>
+      <li>
+        <NavLink href="/blog">Blog</NavLink>
+      </li>
+    </ul>
   )
 }
 
