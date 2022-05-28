@@ -1,0 +1,10 @@
+@use '@/styles/vars' as v;
+
+.waveSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.wavePath {
+  fill: v.$indigo-1;
+}
