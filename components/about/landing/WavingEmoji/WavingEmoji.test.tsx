@@ -7,7 +7,7 @@ describe('WavingEmoji', () => {
   it('renders the emoji', () => {
     render(<WavingEmoji />)
 
-    const emoji = screen.getByText(/👋/)
+    const emoji = screen.getByRole('button', { name: /:wave:/ })
 
     expect(emoji).toBeInTheDocument()
   })
