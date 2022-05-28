@@ -1,8 +1,8 @@
 import classNames from 'classnames'
-import Head from 'next/head'
 
 import onLoad from '@/styles/onLoad.module.scss'
 
+import { Title } from '../Title'
 import styles from './ErrorPage.module.scss'
 
 interface ErrorPageProps {
@@ -13,9 +13,7 @@ interface ErrorPageProps {
 export function ErrorPage({ code, children }: ErrorPageProps) {
   return (
     <>
-      <Head>
-        <title>{code} | Tomasz Chojnacki</title>
-      </Head>
+      <Title>{code.toString()}</Title>
       <main className={styles.errorPage}>
         <header className={classNames(styles.errorText, onLoad.enter, onLoad.scaling)}>
           <h1 className={styles.errorCode}>{code}</h1>
