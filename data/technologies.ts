@@ -10,95 +10,30 @@ export interface TechnologyDefinition {
 }
 
 export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
-  REACT: {
-    name: 'React',
-    type: 'library',
-    icon: si.siReact,
-  },
-  NEXT: {
-    name: 'Next.js',
-    type: 'library',
-    icon: si.siNextdotjs,
-  },
-  NEST: {
-    name: 'NestJS',
-    type: 'library',
-    icon: si.siNestjs,
-  },
-  TYPESCRIPT: {
-    name: 'TypeScript',
+  CSS: {
+    name: 'CSS',
     type: 'language',
-    icon: si.siTypescript,
-  },
-  NODE: {
-    name: 'Node.js',
-    type: 'library',
-    icon: si.siNodedotjs,
-  },
-  JEST: {
-    name: 'Jest',
-    type: 'library',
-    icon: si.siJest,
-  },
-  NPM: {
-    name: 'npm',
-    type: 'tool',
-    icon: si.siNpm,
-  },
-  YARN: {
-    name: 'Yarn',
-    type: 'tool',
-    icon: si.siYarn,
-  },
-  JAVASCRIPT: {
-    name: 'JavaScript',
-    type: 'language',
-    icon: si.siJavascript,
-  },
-  JAVA: {
-    name: 'Java',
-    type: 'language',
-    icon: si.siJava,
-  },
-  KOTLIN: {
-    name: 'Kotlin',
-    type: 'language',
-    icon: si.siKotlin,
-  },
-  PYTHON: {
-    name: 'Python',
-    type: 'language',
-    icon: si.siPython,
-  },
-  FLUTTER: {
-    name: 'Flutter',
-    type: 'library',
-    icon: si.siFlutter,
+    icon: si.siCss3,
   },
   DART: {
     name: 'Dart',
     type: 'language',
     icon: si.siDart,
   },
-  CSS: {
-    name: 'CSS',
-    type: 'language',
-    icon: si.siCss3,
+  DOCKER: {
+    name: 'Docker',
+    type: 'tool',
+    icon: si.siDocker,
   },
-  SASS: {
-    name: 'Sass',
-    type: 'language',
-    icon: si.siSass,
+  FLUTTER: {
+    name: 'Flutter',
+    type: 'library',
+    icon: si.siFlutter,
   },
-  HTML: {
-    name: 'HTML',
-    type: 'language',
-    icon: si.siHtml5,
-  },
-  RUST: {
-    name: 'Rust',
-    type: 'language',
-    icon: si.siRust,
+  FIGMA: {
+    name: 'Figma',
+    type: 'tool',
+    icon: si.siFigma,
   },
   GIT: {
     name: 'Git',
@@ -110,29 +45,94 @@ export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
     type: 'tool',
     icon: si.siGithub,
   },
-  MONGO: {
-    name: 'MongoDB',
-    type: 'tool',
-    icon: si.siMongodb,
-  },
   HEROKU: {
     name: 'Heroku',
     type: 'tool',
     icon: si.siHeroku,
   },
-  DOCKER: {
-    name: 'Docker',
+  HTML: {
+    name: 'HTML',
+    type: 'language',
+    icon: si.siHtml5,
+  },
+  JAVA: {
+    name: 'Java',
+    type: 'language',
+    icon: si.siJava,
+  },
+  JAVASCRIPT: {
+    name: 'JavaScript',
+    type: 'language',
+    icon: si.siJavascript,
+  },
+  JEST: {
+    name: 'Jest',
+    type: 'library',
+    icon: si.siJest,
+  },
+  KOTLIN: {
+    name: 'Kotlin',
+    type: 'language',
+    icon: si.siKotlin,
+  },
+  MONGO: {
+    name: 'MongoDB',
     type: 'tool',
-    icon: si.siDocker,
+    icon: si.siMongodb,
+  },
+  NEST: {
+    name: 'NestJS',
+    type: 'library',
+    icon: si.siNestjs,
+  },
+  NEXT: {
+    name: 'Next.js',
+    type: 'library',
+    icon: si.siNextdotjs,
+  },
+  NODE: {
+    name: 'Node.js',
+    type: 'library',
+    icon: si.siNodedotjs,
+  },
+  NPM: {
+    name: 'npm',
+    type: 'tool',
+    icon: si.siNpm,
+  },
+  PYTHON: {
+    name: 'Python',
+    type: 'language',
+    icon: si.siPython,
+  },
+  REACT: {
+    name: 'React',
+    type: 'library',
+    icon: si.siReact,
+  },
+  RUST: {
+    name: 'Rust',
+    type: 'language',
+    icon: si.siRust,
+  },
+  SASS: {
+    name: 'Sass',
+    type: 'language',
+    icon: si.siSass,
+  },
+  TYPESCRIPT: {
+    name: 'TypeScript',
+    type: 'language',
+    icon: si.siTypescript,
   },
   VSCODE: {
     name: 'VS Code',
     type: 'tool',
     icon: si.siVisualstudiocode,
   },
-  FIGMA: {
-    name: 'Figma',
+  YARN: {
+    name: 'Yarn',
     type: 'tool',
-    icon: si.siFigma,
+    icon: si.siYarn,
   },
 }
