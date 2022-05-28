@@ -10,7 +10,7 @@ export function WavingEmoji() {
   const startPlaying = useCallback(() => setIsPlaying(true), [])
   const stopPlaying = useCallback(() => setIsPlaying(false), [])
 
-  const ref = useRef<HTMLSpanElement>(null)
+  const ref = useRef<HTMLButtonElement>(null)
   useEffect(() => {
     const elem = ref.current
     elem?.addEventListener('animationend', stopPlaying)
@@ -27,12 +27,13 @@ export function WavingEmoji() {
   }, [])
 
   return (
-    <span
+    <button
+      aria-label=":wave:"
       ref={ref}
       onClick={startPlaying}
       className={classNames(styles.container, { [styles.playing]: isPlaying })}
     >
       👋
-    </span>
+    </button>
   )
 }

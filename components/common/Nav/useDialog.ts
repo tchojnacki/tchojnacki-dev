@@ -5,7 +5,7 @@ import styles from './Nav.module.scss'
 export function useDialog() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const dialogRef = useRef<HTMLDialogElement | null>(null)
+  const dialogRef = useRef<HTMLDialogElement>(null)
 
   const toggleDialog = () => {
     if (!isOpen) {

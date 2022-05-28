@@ -4,7 +4,6 @@ import { siGithub, siLinkedin } from 'simple-icons/icons'
 import { SimpleIconSvg } from '@/components/common/SimpleIconSvg'
 import onLoad from '@/styles/onLoad.module.scss'
 
-import { HeroTypewriter } from '../HeroTypewriter'
 import { LinkButton } from '../LinkButton'
 import { TechSphere } from '../TechSphere'
 import { Wave } from '../Wave'
@@ -19,9 +18,7 @@ export function Landing() {
           Hello <WavingEmoji />, my name is
         </h2>
         <h1 className={styles.heroTitle}>Tomasz Chojnacki</h1>
-        <p className={styles.heroParagraph}>
-          I am a <HeroTypewriter />
-        </p>
+        <p className={styles.heroParagraph}>I am a software developer.</p>
         <div className={styles.heroButtons}>
           <LinkButton href="/projects">View Projects</LinkButton>
           <a
