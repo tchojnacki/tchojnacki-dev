@@ -1,4 +1,3 @@
-export * from './HeroTypewriter'
 export * from './Landing'
 export * from './LinkButton'
 export * from './TechSphere'
