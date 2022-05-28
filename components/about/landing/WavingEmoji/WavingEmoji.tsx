@@ -1,11 +1,11 @@
 import classNames from 'classnames'
 import React from 'react'
 
-import styles from '@/styles/about/landing/WavingEmoji.module.scss'
+import styles from './WavingEmoji.module.scss'
 
 const WAVING_DELAY = 1000
 
-export default function WavingEmoji() {
+export function WavingEmoji() {
   const [isPlaying, setIsPlaying] = React.useState(false)
   const startPlaying = React.useCallback(() => setIsPlaying(true), [])
   const stopPlaying = React.useCallback(() => setIsPlaying(false), [])

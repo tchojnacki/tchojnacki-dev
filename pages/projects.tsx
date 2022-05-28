@@ -1,4 +1,4 @@
-import ErrorPage from '@/components/common/ErrorPage'
+import { ErrorPage } from '@/components'
 
 export default function Projects() {
   return <ErrorPage code={503}>Under Construction 🏗</ErrorPage>

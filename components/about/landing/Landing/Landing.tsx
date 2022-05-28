@@ -1,17 +1,18 @@
 import classNames from 'classnames'
 import { siGithub, siLinkedin } from 'simple-icons/icons'
 
-import HeroTypewriter from '@/components/about/landing/HeroTypewriter'
-import LinkButton from '@/components/about/landing/LinkButton'
-import TechSphere from '@/components/about/landing/TechSphere'
-import Wave from '@/components/about/landing/Wave'
-import WavingEmoji from '@/components/about/landing/WavingEmoji'
-import SimpleIconSvg from '@/components/common/SimpleIconSvg'
+import { SimpleIconSvg } from '@/components/common/SimpleIconSvg'
+import onLoad from '@/styles/onLoad.module.scss'
 
-import styles from '@/styles/about/landing/Landing.module.scss'
-import onLoad from '@/styles/common/onLoad.module.scss'
+import { HeroTypewriter } from '../HeroTypewriter'
+import { LinkButton } from '../LinkButton'
+import { TechSphere } from '../TechSphere'
+import { Wave } from '../Wave'
+import { WavingEmoji } from '../WavingEmoji'
 
-export default function Landing() {
+import styles from './Landing.module.scss'
+
+export function Landing() {
   return (
     <main className={styles.landing}>
       <section className={classNames(styles.heroText, onLoad.enter, onLoad.fromLeft)}>

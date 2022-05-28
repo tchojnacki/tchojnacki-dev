@@ -1,7 +1,6 @@
 import Head from 'next/head'
 
-import Landing from '@/components/about/landing/Landing'
-import SkillsSection from '@/components/about/skills/SkillsSection'
+import { Landing, SkillsSection } from '@/components'
 
 export default function About() {
   return (

@@ -1,15 +1,16 @@
 import classNames from 'classnames'
 import Head from 'next/head'
 
-import styles from '@/styles/common/ErrorPage.module.scss'
-import onLoad from '@/styles/common/onLoad.module.scss'
+import onLoad from '@/styles/onLoad.module.scss'
+
+import styles from './ErrorPage.module.scss'
 
 interface ErrorPageProps {
   code: number
   children: string
 }
 
-export default function ErrorPage({ code, children }: ErrorPageProps) {
+export function ErrorPage({ code, children }: ErrorPageProps) {
   return (
     <>
       <Head>

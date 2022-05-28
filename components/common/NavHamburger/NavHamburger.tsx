@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 
-import styles from '@/styles/common/nav/NavHamburger.module.scss'
+import styles from './NavHamburger.module.scss'
 
 interface NavHamburgerProps {
   menuOpen: boolean
@@ -8,7 +8,7 @@ interface NavHamburgerProps {
   mobileOnly?: boolean
 }
 
-export default function NavHamburger({ menuOpen, toggle, mobileOnly }: NavHamburgerProps) {
+export function NavHamburger({ menuOpen, toggle, mobileOnly }: NavHamburgerProps) {
   return (
     <button
       className={classNames(styles.hamburger, { [styles.mobileOnly]: mobileOnly })}

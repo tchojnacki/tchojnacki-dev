@@ -1,6 +1,6 @@
-import styles from '@/styles/about/landing/Wave.module.scss'
+import styles from './Wave.module.scss'
 
-export default function Wave() {
+export function Wave() {
   return (
     <svg
       aria-hidden="true"

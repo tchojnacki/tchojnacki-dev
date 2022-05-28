@@ -1,13 +1,12 @@
-import classNames from 'classnames'
 import React from 'react'
-
-import SkillCard from '@/components/about/skills/SkillCard'
 
 import { SKILL_ARRAY, SKILL_TYPE_NAMES } from '@/data/skills'
 
-import styles from '@/styles/about/skills/SkillsSection.module.scss'
+import { SkillCard } from '../SkillCard'
 
-export default function SkillsSection() {
+import styles from './SkillsSection.module.scss'
+
+export function SkillsSection() {
   return (
     <section className={styles.sectionBackground}>
       <div className={styles.sectionContent}>

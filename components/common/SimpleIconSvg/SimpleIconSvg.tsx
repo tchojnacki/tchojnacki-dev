@@ -4,7 +4,7 @@ interface SimpleIconProps {
   icon: SimpleIcon
 }
 
-export default function SimpleIconSvg({ icon }: SimpleIconProps) {
+export function SimpleIconSvg({ icon }: SimpleIconProps) {
   return (
     <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <title>{icon.title}</title>

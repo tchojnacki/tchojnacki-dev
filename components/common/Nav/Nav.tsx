@@ -1,11 +1,13 @@
-import NavHamburger from './NavHamburger'
 import classNames from 'classnames'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-import styles from '@/styles/common/nav/Nav.module.scss'
-import onLoad from '@/styles/common/onLoad.module.scss'
+import onLoad from '@/styles/onLoad.module.scss'
+
+import { NavHamburger } from '../NavHamburger'
+
+import styles from './Nav.module.scss'
 
 interface NavLinkProps {
   href: string
@@ -81,7 +83,7 @@ function useDialog() {
   return { isOpen, dialogRef, toggleDialog }
 }
 
-export default function Nav() {
+export function Nav() {
   const { isOpen, toggleDialog, dialogRef } = useDialog()
 
   return (

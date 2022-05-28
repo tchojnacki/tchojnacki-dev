@@ -1,12 +1,11 @@
 import React from 'react'
 
-import { useTypewriter } from '@/util/hooks/useTypewriter'
-
-import styles from '@/styles/about/landing/HeroTypewriter.module.scss'
+import styles from './HeroTypewriter.module.scss'
+import { useTypewriter } from './useTypewriter'
 
 const TYPEWRITER_TEXTS = ['software engineer.', 'student.', 'frontend developer.']
 
-export default function HeroTypewriter() {
+export function HeroTypewriter() {
   const text = useTypewriter(TYPEWRITER_TEXTS, {
     type: 100,
     beforeTyping: 500,

@@ -1,12 +1,12 @@
 @use 'sass:math';
-@use '../../vars' as v;
+@use '@/styles/vars' as v;
 
 .nav {
   padding: math.div(v.$nav-height, 4);
 
   @media (max-width: v.$nav-bp) {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   ul {

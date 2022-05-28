@@ -2,19 +2,15 @@ import _ from 'lodash'
 import React from 'react'
 
 import { SKILL_ARRAY } from '@/data/skills'
+import { isClientSide, useMouseOffsetX, useParentSize, usePrefersReducedMotion } from '@/util'
 
-import { initialPositions, posToTransform, rotateY } from '@/util/fibonacciSphere'
-import { useMouseOffsetX } from '@/util/hooks/useMouseOffsetX'
-import { useParentSize } from '@/util/hooks/useParentSize'
-import { usePrefersReducedMotion } from '@/util/hooks/usePrefersReducedMotion'
-import { isClientSide } from '@/util/isClientSide'
-
-import styles from '@/styles/about/landing/TechSphere.module.scss'
+import styles from './TechSphere.module.scss'
+import { initialPositions, posToTransform, rotateY } from './fibonacciSphere'
 
 const items = SKILL_ARRAY.filter(skill => skill.type !== 'tool').map(skill => skill.name)
 const positions = initialPositions(items.length)
 
-export default function TechSphere() {
+export function TechSphere() {
   const prefersReducedMotion = usePrefersReducedMotion()
 
   const mouseOffset = useMouseOffsetX()

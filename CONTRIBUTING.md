@@ -1,4 +1,5 @@
 # Workflow
+
 1. Add an issue with correct label and milestone.
 2. Assign yourself to the issue.
 3. Create a branch with a descriptive name.
@@ -7,6 +8,7 @@
 6. Merge the PR.
 
 # Commit messages
+
 The commit message should be structured as follows:
 
 ```
