@@ -7,30 +7,30 @@ export type SkillDefinition = TechnologyDefinition & {
 export const SKILL_TYPE_NAMES: Record<TechnologyType, string> = {
   language: 'Languages',
   library: 'Frameworks, libraries & runtimes',
-  tool: 'Tools',
+  tool: 'Tools & devops',
 }
 
-/**
- * Ordered from highest importance to lowest.
- */
 export const SKILL_ARRAY: SkillDefinition[] = [
   T.TYPESCRIPT,
   T.JAVASCRIPT,
-  T.JAVA,
   T.REACT,
-  T.NEXT,
-  T.NODEJS,
-  T.FLUTTER,
-  T.CSS,
-  T.HTML,
-  { ...T.KOTLIN, minor: true },
+  T.NODE,
+  { ...T.NEXT, minor: true },
+  { ...T.NEST, minor: true },
+  { ...T.CSS, minor: true },
+  { ...T.HTML, minor: true },
+  { ...T.JAVA, minor: true },
   { ...T.PYTHON, minor: true },
-  { ...T.DART, minor: true },
+  { ...T.RUST, minor: true },
   { ...T.SASS, minor: true },
+  { ...T.JEST, minor: true },
   { ...T.GIT, minor: true },
   { ...T.GITHUB, minor: true },
+  { ...T.MONGO, minor: true },
+  { ...T.DOCKER, minor: true },
   { ...T.NPM, minor: true },
-  { ...T.MONGODB, minor: true },
+  { ...T.YARN, minor: true },
   { ...T.HEROKU, minor: true },
+  { ...T.VSCODE, minor: true },
   { ...T.FIGMA, minor: true },
 ]

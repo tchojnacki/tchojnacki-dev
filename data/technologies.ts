@@ -20,20 +20,35 @@ export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
     type: 'library',
     icon: si.siNextdotjs,
   },
+  NEST: {
+    name: 'NestJS',
+    type: 'library',
+    icon: si.siNestjs,
+  },
   TYPESCRIPT: {
     name: 'TypeScript',
     type: 'language',
     icon: si.siTypescript,
   },
-  NODEJS: {
+  NODE: {
     name: 'Node.js',
     type: 'library',
     icon: si.siNodedotjs,
+  },
+  JEST: {
+    name: 'Jest',
+    type: 'library',
+    icon: si.siJest,
   },
   NPM: {
     name: 'npm',
     type: 'tool',
     icon: si.siNpm,
+  },
+  YARN: {
+    name: 'Yarn',
+    type: 'tool',
+    icon: si.siYarn,
   },
   JAVASCRIPT: {
     name: 'JavaScript',
@@ -80,6 +95,11 @@ export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
     type: 'language',
     icon: si.siHtml5,
   },
+  RUST: {
+    name: 'Rust',
+    type: 'language',
+    icon: si.siRust,
+  },
   GIT: {
     name: 'Git',
     type: 'tool',
@@ -90,7 +110,7 @@ export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
     type: 'tool',
     icon: si.siGithub,
   },
-  MONGODB: {
+  MONGO: {
     name: 'MongoDB',
     type: 'tool',
     icon: si.siMongodb,
@@ -99,6 +119,16 @@ export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
     name: 'Heroku',
     type: 'tool',
     icon: si.siHeroku,
+  },
+  DOCKER: {
+    name: 'Docker',
+    type: 'tool',
+    icon: si.siDocker,
+  },
+  VSCODE: {
+    name: 'VS Code',
+    type: 'tool',
+    icon: si.siVisualstudiocode,
   },
   FIGMA: {
     name: 'Figma',
