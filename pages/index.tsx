@@ -1,13 +1,9 @@
-import Head from 'next/head'
-
-import { Landing, SkillsSection } from '@/components'
+import { Landing, SkillsSection, Title } from '@/components'
 
 export default function About() {
   return (
     <>
-      <Head>
-        <title>About | Tomasz Chojnacki</title>
-      </Head>
+      <Title>About</Title>
       <Landing />
       <SkillsSection />
     </>
