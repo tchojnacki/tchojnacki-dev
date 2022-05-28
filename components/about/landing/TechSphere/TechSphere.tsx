@@ -1,12 +1,12 @@
 import _ from 'lodash'
 
-import { SKILL_ARRAY } from '@/data/skills'
+import { SPHERE_SKILL_ARRAY } from '@/data/skills'
 import { isClientSide, useMouseOffsetX, useParentSize, usePrefersReducedMotion } from '@/util'
 
 import styles from './TechSphere.module.scss'
 import { initialPositions, posToTransform, rotateY } from './fibonacciSphere'
 
-const items = SKILL_ARRAY.filter(skill => skill.type !== 'tool').map(skill => skill.name)
+const items = SPHERE_SKILL_ARRAY.filter(skill => skill.type !== 'tool').map(skill => skill.name)
 const positions = initialPositions(items.length)
 
 export function TechSphere() {

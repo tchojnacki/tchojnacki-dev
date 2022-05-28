@@ -1,7 +1,7 @@
 import { SimpleIcon } from 'simple-icons'
 import * as si from 'simple-icons/icons'
 
-export type TechnologyType = 'language' | 'library' | 'tool'
+type TechnologyType = 'language' | 'library' | 'tool'
 
 export interface TechnologyDefinition {
   name: string
