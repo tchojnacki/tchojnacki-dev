@@ -1,24 +1,23 @@
-import { Fragment } from 'react'
-
-import { SKILL_ARRAY, SKILL_TYPE_NAMES } from '@/data/skills'
+import { SECTION_SKILLS } from '@/data/skills'
 
 import { SkillCard } from '../SkillCard'
-import styles from './SkillsSection.module.scss'
+import { SkillCardWrapper } from '../SkillCardWrapper'
+import styles from '../skills.module.scss'
 
 export function SkillsSection() {
   return (
     <section className={styles.sectionBackground}>
-      <div className={styles.sectionContent}>
-        <h3 className={styles.sectionHeader}>Skills</h3>
-        {Object.entries(SKILL_TYPE_NAMES).map(([type, label]) => (
-          <Fragment key={type}>
+      <h3 className={styles.sectionHeader}>Skills</h3>
+      <div className={styles.tabWrapper}>
+        {SECTION_SKILLS.map(({ label, width, height, largest, items }) => (
+          <section key={label} className={styles.tab}>
             <h4 className={styles.skillTypeHeader}>{label}</h4>
-            <ul className={styles.cardWrapper}>
-              {SKILL_ARRAY.filter(skill => skill.type === type).map(skill => (
-                <SkillCard key={skill.name} skill={skill} />
+            <SkillCardWrapper width={width} height={height} largest={largest}>
+              {items.map(([skill, size]) => (
+                <SkillCard key={skill.name} skill={skill} size={size} />
               ))}
-            </ul>
-          </Fragment>
+            </SkillCardWrapper>
+          </section>
         ))}
       </div>
     </section>

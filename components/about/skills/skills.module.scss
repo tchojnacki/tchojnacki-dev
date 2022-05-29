@@ -1,0 +1,84 @@
+@use '@/styles/vars' as v;
+
+$skills-bp: 420px;
+$card-size: 7rem;
+$header-size: 1.25rem;
+
+.sectionBackground {
+  background-color: v.$indigo-1;
+  margin-top: -1px;
+  padding: 0 2rem;
+}
+
+.sectionHeader {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.skillTypeHeader {
+  font-size: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.tabWrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .tab {
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.cardWrapper {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-width, 1), calc($card-size / var(--grid-largest, 1)));
+  grid-template-rows: repeat(var(--grid-height, 1), 1fr);
+  grid-auto-flow: dense row;
+  gap: 0.5rem;
+
+  @media (max-width: $skills-bp) {
+    grid-template-columns: repeat(var(--grid-height, 1), 1fr);
+    grid-template-rows: repeat(var(--grid-width, 1), 1fr);
+    grid-auto-flow: dense column;
+  }
+}
+
+.card {
+  aspect-ratio: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  border-radius: 0.75rem;
+  background-color: v.$indigo-0;
+  padding: 1rem;
+
+  grid-row: span var(--skill-size, 1);
+  grid-column: span var(--skill-size, 1);
+
+  & h5 {
+    font-size: calc($header-size * var(--skill-size, 1) / var(--grid-largest, 1));
+    text-align: center;
+    white-space: nowrap;
+
+    @media (max-width: $skills-bp) {
+      display: none;
+    }
+  }
+
+  & svg {
+    height: 100%;
+
+    & path {
+      fill: v.$gray-1;
+    }
+  }
+}
