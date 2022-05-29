@@ -15,8 +15,8 @@ export interface SkillCardProps {
 export function SkillCard({ skill, s }: SkillCardProps) {
   return (
     <li className={classNames(styles.card)} style={{ '--skill-size': s } as CSSProperties}>
-      <h5>{skill.name}</h5>
       <SimpleIconSvg icon={skill.icon} />
+      <h5>{skill.name}</h5>
     </li>
   )
 }

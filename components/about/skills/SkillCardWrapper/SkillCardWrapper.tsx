@@ -10,7 +10,7 @@ interface SkillCardWrapperProps {
   l?: number
 }
 
-export function SkillCardWrapper({ children, w, h, l = 1 }: SkillCardWrapperProps) {
+export function SkillCardWrapper({ children, w, h, l }: SkillCardWrapperProps) {
   return (
     <ul
       className={styles.cardWrapper}
