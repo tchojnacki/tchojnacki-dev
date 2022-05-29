@@ -6,7 +6,7 @@ import { isClientSide, useMouseOffsetX, useParentSize, usePrefersReducedMotion }
 import styles from './TechSphere.module.scss'
 import { initialPositions, posToTransform, rotateY } from './fibonacciSphere'
 
-const items = SPHERE_SKILL_ARRAY.filter(skill => skill.type !== 'tool').map(skill => skill.name)
+const items = SPHERE_SKILL_ARRAY.map(skill => skill.name)
 const positions = initialPositions(items.length)
 
 export function TechSphere() {

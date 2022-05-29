@@ -5,16 +5,22 @@ import styles from '../skills.module.scss'
 
 interface SkillCardWrapperProps {
   children: ReactElement<SkillCardProps> | Array<ReactElement<SkillCardProps>>
-  w: number
-  h: number
-  l?: number
+  width: number
+  height: number
+  largest?: number
 }
 
-export function SkillCardWrapper({ children, w, h, l }: SkillCardWrapperProps) {
+export function SkillCardWrapper({ children, width, height, largest }: SkillCardWrapperProps) {
   return (
     <ul
       className={styles.cardWrapper}
-      style={{ '--grid-width': w, '--grid-height': h, '--grid-largest': l } as CSSProperties}
+      style={
+        {
+          '--grid-width': width,
+          '--grid-height': height,
+          '--grid-largest': largest,
+        } as CSSProperties
+      }
     >
       {children}
     </ul>

@@ -9,12 +9,12 @@ import styles from '../skills.module.scss'
 
 export interface SkillCardProps {
   skill: Omit<TechnologyDefinition, 'type'>
-  s?: number
+  size?: number
 }
 
-export function SkillCard({ skill, s }: SkillCardProps) {
+export function SkillCard({ skill, size }: SkillCardProps) {
   return (
-    <li className={classNames(styles.card)} style={{ '--skill-size': s } as CSSProperties}>
+    <li className={classNames(styles.card)} style={{ '--skill-size': size } as CSSProperties}>
       <SimpleIconSvg icon={skill.icon} />
       <h5>{skill.name}</h5>
     </li>
