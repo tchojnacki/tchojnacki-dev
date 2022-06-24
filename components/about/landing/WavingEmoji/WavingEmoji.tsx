@@ -1,6 +1,8 @@
 import classNames from 'classnames'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
+import { Emoji } from '@/components/common'
+
 import styles from './WavingEmoji.module.scss'
 
 const WAVING_DELAY = 1000
@@ -28,12 +30,11 @@ export function WavingEmoji() {
 
   return (
     <button
-      aria-label=":wave:"
       ref={ref}
       onClick={startPlaying}
       className={classNames(styles.container, { [styles.playing]: isPlaying })}
     >
-      👋
+      <Emoji>👋</Emoji>
     </button>
   )
 }

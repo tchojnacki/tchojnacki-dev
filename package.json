@@ -15,7 +15,8 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "sass": "^1.49.0",
-    "simple-icons": "^6.4.0"
+    "simple-icons": "^6.4.0",
+    "twemoji": "^14.0.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
