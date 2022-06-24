@@ -3,7 +3,6 @@ import _ from 'lodash'
 import { SPHERE_SKILL_ARRAY } from '@/data/skills'
 import { isClientSide, useMouseOffsetX, useParentSize, usePrefersReducedMotion } from '@/util'
 
-import styles from './TechSphere.module.scss'
 import { initialPositions, posToTransform, rotateY } from './fibonacciSphere'
 
 const items = SPHERE_SKILL_ARRAY.map(skill => skill.name)
@@ -34,11 +33,15 @@ export function TechSphere() {
   return (
     <ul
       ref={childRef}
-      className={styles.sphere}
+      className="relative w-[var(--sphere-size)] h-[var(--sphere-size)] bg-[radial-gradient(theme(colors.indigo.4),transparent_50%)]"
       style={{ '--sphere-size': `${size}px` } as React.CSSProperties}
     >
       {elements.map(({ name, style }) => (
-        <li className={styles.point} key={name} style={style}>
+        <li
+          className="absolute w-0 flex justify-center"
+          key={name}
+          style={{ ...style, fontSize: 'calc(0.064 * var(--sphere-size))' }}
+        >
           {name}
         </li>
       ))}

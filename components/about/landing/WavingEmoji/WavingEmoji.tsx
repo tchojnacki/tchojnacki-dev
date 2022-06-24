@@ -32,7 +32,9 @@ export function WavingEmoji() {
     <button
       ref={ref}
       onClick={startPlaying}
-      className={classNames(styles.container, { [styles.playing]: isPlaying })}
+      className={classNames('inline-block origin-[75%_75%] cursor-pointer', {
+        [styles.playing]: isPlaying,
+      })}
     >
       <Emoji>👋</Emoji>
     </button>

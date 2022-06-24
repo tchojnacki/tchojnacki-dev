@@ -1,7 +1,7 @@
 import classNames from 'classnames'
-import { siGithub, siLinkedin } from 'simple-icons/icons'
 
 import { SimpleIconSvg } from '@/components/common/SimpleIconSvg'
+import { SOCIAL_LINKS } from '@/data/socials'
 import onLoad from '@/styles/onLoad.module.scss'
 
 import { LinkButton } from '../LinkButton'
@@ -26,26 +26,14 @@ export function Landing() {
         <p className="text-slate-11 text-2xl mt-6 mb-16 inline-block">I am a software developer.</p>
         <div className="flex gap-8 items-center justify-center lg:justify-start">
           <LinkButton href="/projects">View Projects</LinkButton>
-          <a
-            className="group inline-block h-8 w-8"
-            href="https://github.com/tchojnacki"
-            aria-label="GitHub"
-          >
-            <SimpleIconSvg
-              icon={siGithub}
-              pathClassName="fill-slate-11 group-hover:fill-slate-12 duration-200"
-            />
-          </a>
-          <a
-            className="group inline-block h-8 w-8"
-            href="https://www.linkedin.com/in/tchojnacki"
-            aria-label="LinkedIn"
-          >
-            <SimpleIconSvg
-              icon={siLinkedin}
-              pathClassName="fill-slate-11 group-hover:fill-slate-12 duration-200"
-            />
-          </a>
+          {SOCIAL_LINKS.map(({ label, href, icon }) => (
+            <a className="group inline-block h-8 w-8" href={href} aria-label={label} key={label}>
+              <SimpleIconSvg
+                icon={icon}
+                pathClassName="fill-slate-11 group-hover:fill-slate-12 duration-200"
+              />
+            </a>
+          ))}
         </div>
       </section>
       <section
