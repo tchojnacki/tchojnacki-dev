@@ -1,6 +1,11 @@
 # tchojnacki.dev - a personal website 🧑‍💻
-![](https://img.shields.io/github/checks-status/tchojnacki/tchojnacki-dev/main)
-![](https://img.shields.io/github/issues-pr-closed/tchojnacki/tchojnacki-dev)
+<div align="center">
+
+[![vercel](https://img.shields.io/github/deployments/tchojnacki/tchojnacki-dev/Production?label=vercel&logo=vercel)](https://tchojnacki.dev/)
+[![checks](https://img.shields.io/github/checks-status/tchojnacki/tchojnacki-dev/main)](https://github.com/tchojnacki/tchojnacki-dev/actions)
+[![pull requests](https://img.shields.io/github/issues-pr-closed/tchojnacki/tchojnacki-dev)](https://github.com/tchojnacki/tchojnacki-dev/pulls)
+
+</div>
 
 ![The landing page of the website.](./docs/landing.png)
 
