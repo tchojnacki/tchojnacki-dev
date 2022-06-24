@@ -11,7 +11,7 @@ import { WavingEmoji } from '../WavingEmoji'
 
 export function Landing() {
   return (
-    <main className="min-h-[calc(100vh-theme(space.nav-height))] grid grid-rows-[auto_auto_10vh] lg:grid-rows-[1fr_5vh_15vh] grid-cols-1 lg:grid-cols-2 grid-areas-landing-mobile lg:grid-areas-landing-desktop gap-x-0 lg:gap-x-8 gap-y-8 lg:gap-y-0 place-items-center relative overflow-x-hidden">
+    <main className="min-h-[calc(100vh-theme(spacing.nav-height))] grid grid-rows-[auto_auto_10vh] lg:grid-rows-[1fr_5vh_15vh] grid-cols-1 lg:grid-cols-2 grid-areas-landing-mobile lg:grid-areas-landing-desktop gap-x-0 lg:gap-x-8 gap-y-8 lg:gap-y-0 place-items-center relative overflow-x-hidden">
       <section
         className={classNames(
           'grid-in-text place-self-center p-4 pt-8 text-center lg:text-left',

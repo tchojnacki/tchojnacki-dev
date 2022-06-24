@@ -13,17 +13,40 @@ module.exports = {
         11: '#9ba1a6',
         12: '#ecedee',
       },
-      white: '#ffffff',
+      'pure-white': '#ffffff',
+      'pure-black': '#000000',
     },
     gridTemplateAreas: {
       'landing-desktop': ['text sphere', '. sphere', '. .'],
       'landing-mobile': ['text', 'sphere', '.'],
     },
     extend: {
-      space: {
+      spacing: {
         'nav-height': '4rem',
+        'hamburger-size': '1.5rem',
+      },
+      keyframes: {
+        errshake: {
+          'from, to': { transform: 'none' },
+          '25%': { transform: 'rotate(-10deg)' },
+          '75%': { transform: 'rotate(10deg)' },
+        },
+        emojiwave: {
+          'from, to': { transform: 'none' },
+          '25%': { transform: 'rotate(-30deg)' },
+          '75%': { transform: 'rotate(30deg)' },
+        },
+      },
+      animation: {
+        errshake: 'errshake 200ms 600ms',
+        emojiwave: 'emojiwave 1s ease-in-out',
       },
     },
   },
-  plugins: [require('@savvywombat/tailwindcss-grid-areas')],
+  plugins: [
+    require('@savvywombat/tailwindcss-grid-areas'),
+    require('tailwindcss/plugin')(function ({ addVariant }) {
+      addVariant('pseudo', ['&::before', '&::after'])
+    }),
+  ],
 }

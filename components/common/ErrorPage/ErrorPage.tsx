@@ -15,10 +15,12 @@ export function ErrorPage({ code, children }: ErrorPageProps) {
   return (
     <>
       <Title>{code.toString()}</Title>
-      <main className={styles.errorPage}>
-        <header className={classNames(styles.errorText, onLoad.enter, onLoad.scaling)}>
-          <h1 className={styles.errorCode}>{code}</h1>
-          <h2 className={styles.errorDescription}>{children}</h2>
+      <main className="min-h-[100vh] mt-[calc(-1*theme(spacing.nav-height))] grid place-items-center p-4">
+        <header className={classNames('text-center', onLoad.enter, onLoad.scaling)}>
+          <h1 className="text-6xl mb-4 font-bold text-indigo-11 animate-errshake motion-reduce:animate-none">
+            {code}
+          </h1>
+          <h2 className="text-3xl">{children}</h2>
         </header>
       </main>
     </>
