@@ -2,7 +2,24 @@
 module.exports = {
   content: ['./{components,pages}/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    colors: {
+      indigo: {
+        11: '#849dff',
+      },
+      slate: {
+        11: '#9ba1a6',
+        12: '#ecedee',
+      },
+    },
+    gridTemplateAreas: {
+      'landing-desktop': ['text sphere', '. sphere', '. .'],
+      'landing-mobile': ['text', 'sphere', '.'],
+    },
+    extend: {
+      space: {
+        'nav-height': '4rem',
+      },
+    },
   },
-  plugins: [],
+  plugins: [require('@savvywombat/tailwindcss-grid-areas')],
 }

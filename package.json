@@ -19,6 +19,7 @@
     "twemoji": "^14.0.2"
   },
   "devDependencies": {
+    "@savvywombat/tailwindcss-grid-areas": "^2.1.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@trivago/prettier-plugin-sort-imports": "^3.2.0",
