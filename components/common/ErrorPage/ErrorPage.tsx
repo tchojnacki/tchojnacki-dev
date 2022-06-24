@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import { ReactNode } from 'react'
 
 import onLoad from '@/styles/onLoad.module.scss'
 
@@ -7,7 +8,7 @@ import styles from './ErrorPage.module.scss'
 
 interface ErrorPageProps {
   code: number
-  children: string
+  children: ReactNode
 }
 
 export function ErrorPage({ code, children }: ErrorPageProps) {
