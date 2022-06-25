@@ -3,8 +3,7 @@ import classNames from 'classnames'
 import onLoad from '@/styles/onLoad.module.scss'
 
 import { NavHamburger } from '../NavHamburger'
-import styles from './Nav.module.scss'
-import { NavLinks } from './NavLinks'
+import { NavLinkList } from './NavLinkList'
 import { useDialog } from './useDialog'
 
 export function Nav() {
@@ -20,20 +19,23 @@ export function Nav() {
           open:visible open:opacity-100 open:max-w-full open:max-h-full open:rounded-none'
         ref={dialogRef}
       >
-        <nav className={classNames('p-[calc(theme(spacing.nav-height)/4)]', styles.dialogNav)}>
+        <nav className="p-[calc(theme(spacing.nav-height)/4)]">
           <NavHamburger menuOpen={isOpen} toggle={toggleDialog} />
-          <NavLinks />
+          <NavLinkList listClassName="mt-4" itemClassName="px-4 py-3 text-2xl text-right" />
         </nav>
       </dialog>
       <nav
         className={classNames(
-          'p-[calc(theme(spacing.nav-height)/4)] flex justify-end sm:block',
-          styles.nav,
+          'h-[theme(spacing.nav-height)] p-[calc(theme(spacing.nav-height)/4)] \
+          flex justify-end sm:block',
           onLoad.enter,
           onLoad.fromTop
         )}
       >
-        <NavLinks />
+        <NavLinkList
+          listClassName="hidden sm:flex justify-center gap-16"
+          itemClassName="px-4 py-[calc(theme(spacing.nav-height)/8)] rounded-lg hover:bg-pure-white/5"
+        />
         <NavHamburger mobileOnly menuOpen={isOpen} toggle={toggleDialog} />
       </nav>
     </>
