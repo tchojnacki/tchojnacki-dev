@@ -11,10 +11,10 @@ import { WavingEmoji } from '../WavingEmoji'
 
 export function Landing() {
   return (
-    <main className="min-h-[calc(100vh-theme(spacing.nav-height))] grid grid-rows-[auto_auto_10vh] lg:grid-rows-[1fr_5vh_15vh] grid-cols-1 lg:grid-cols-2 grid-areas-landing-mobile lg:grid-areas-landing-desktop gap-x-0 lg:gap-x-8 gap-y-8 lg:gap-y-0 place-items-center relative overflow-x-hidden">
+    <main className="relative grid min-h-[calc(100vh-theme(spacing.nav-height))] grid-cols-1 grid-rows-[auto_auto_10vh] place-items-center gap-x-0 gap-y-8 overflow-x-hidden grid-areas-landing-mobile lg:grid-cols-2 lg:grid-rows-[1fr_5vh_15vh] lg:gap-x-8 lg:gap-y-0 lg:grid-areas-landing-desktop">
       <section
         className={classNames(
-          'grid-in-text place-self-center p-4 pt-8 text-center lg:text-left',
+          'place-self-center p-4 pt-8 text-center grid-in-text lg:text-left',
           onLoad.enter,
           onLoad.fromLeft
         )}
@@ -22,9 +22,9 @@ export function Landing() {
         <h2 className="text-2xl font-bold">
           Hello <WavingEmoji />, my name is
         </h2>
-        <h1 className="text-5xl leading-tight font-bold text-indigo-11">Tomasz Chojnacki</h1>
-        <p className="text-slate-11 text-2xl mt-6 mb-16 inline-block">I am a software developer.</p>
-        <div className="flex gap-8 items-center justify-center lg:justify-start">
+        <h1 className="text-5xl font-bold leading-tight text-indigo-11">Tomasz Chojnacki</h1>
+        <p className="mt-6 mb-16 inline-block text-2xl text-slate-11">I am a software developer.</p>
+        <div className="flex items-center justify-center gap-8 lg:justify-start">
           <LinkButton href="/projects">View Projects</LinkButton>
           {SOCIAL_LINKS.map(({ label, href, icon }) => (
             <a className="group inline-block h-8 w-8" href={href} aria-label={label} key={label}>
@@ -38,14 +38,14 @@ export function Landing() {
       </section>
       <section
         className={classNames(
-          'grid-in-sphere p-4 w-full h-full grid items-center lg:items-end justify-items-center overflow-hidden min-h-[75vw] lg:min-h-full',
+          'grid h-full min-h-[75vw] w-full items-center justify-items-center overflow-hidden p-4 grid-in-sphere lg:min-h-full lg:items-end',
           onLoad.enter,
           onLoad.fromRight
         )}
       >
         <TechSphere />
       </section>
-      <div className="absolute bottom-0 w-full h-[10vh] lg:h-[20vh] -z-10">
+      <div className="absolute bottom-0 -z-10 h-[10vh] w-full lg:h-[20vh]">
         <Wave />
       </div>
     </main>

@@ -24,9 +24,7 @@ export function NavHamburger({ menuOpen, toggle, mobileOnly }: NavHamburgerProps
   return (
     <button
       className={classNames(
-        'group w-hamburger-size h-hamburger-size px-4 \
-        py-[calc((theme(spacing.nav-height)/2_-_theme(spacing.hamburger-size))/2)] flex flex-col \
-        justify-between ml-auto box-content shrink-0',
+        'group ml-auto box-content flex h-hamburger-size w-hamburger-size shrink-0 flex-col justify-between px-4 py-[calc((theme(spacing.nav-height)/2_-_theme(spacing.hamburger-size))/2)]',
         mobileOnly && 'sm:hidden'
       )}
       aria-expanded={menuOpen}

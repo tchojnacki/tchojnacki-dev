@@ -33,12 +33,12 @@ export function TechSphere() {
   return (
     <ul
       ref={childRef}
-      className="relative w-[var(--sphere-size)] h-[var(--sphere-size)] bg-[radial-gradient(theme(colors.indigo.4),transparent_50%)]"
+      className="relative h-[var(--sphere-size)] w-[var(--sphere-size)] bg-[radial-gradient(theme(colors.indigo.4),transparent_50%)]"
       style={{ '--sphere-size': `${size}px` } as React.CSSProperties}
     >
       {elements.map(({ name, style }) => (
         <li
-          className="absolute w-0 flex justify-center"
+          className="absolute flex w-0 justify-center"
           key={name}
           style={{ ...style, fontSize: 'calc(0.064 * var(--sphere-size))' }}
         >

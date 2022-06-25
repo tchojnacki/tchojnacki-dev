@@ -2,7 +2,7 @@ export function Wave() {
   return (
     <svg
       aria-hidden="true"
-      className="w-full h-full"
+      className="h-full w-full"
       viewBox="0 0 1280 185"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="none"

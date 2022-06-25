@@ -16,8 +16,8 @@ export function NavLink({ href, children, className }: NavLinkProps) {
       <a
         className={classNames(
           className,
-          'text-slate-11 block leading-none duration-200',
-          router.pathname === href && 'text-slate-12 font-bold'
+          'block leading-none text-slate-11 duration-200',
+          router.pathname === href && 'font-bold text-slate-12'
         )}
       >
         {children}

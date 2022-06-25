@@ -12,11 +12,11 @@ export function Nav() {
   return (
     <>
       <dialog
-        className='flex flex-col justify-start items-end overflow-hidden mt-0 mr-0 mb-auto ml-auto \
-          p-0 bg-pure-black/0 bg-[url("/img/menu-blob.svg")] bg-no-repeat bg-right-top bg-contain \
-          backdrop:bg-pure-black/50 w-[100vmin] h-[100vmin] duration-500 \
-          invisible opacity-0 max-w-0 max-h-0 rounded-bl-full \
-          open:visible open:opacity-100 open:max-w-full open:max-h-full open:rounded-none'
+        className='invisible mt-0 mr-0 mb-auto ml-auto flex
+          h-[100vmin] max-h-0 w-[100vmin] max-w-0 flex-col items-end justify-start
+          overflow-hidden rounded-bl-full bg-pure-black/0 bg-[url("/img/menu-blob.svg")] bg-contain
+          bg-right-top bg-no-repeat p-0 opacity-0 duration-500 backdrop:bg-pure-black/50
+          open:visible open:max-h-full open:max-w-full open:rounded-none open:opacity-100'
         ref={dialogRef}
       >
         <nav className="p-[calc(theme(spacing.nav-height)/4)]">
@@ -26,8 +26,7 @@ export function Nav() {
       </dialog>
       <nav
         className={classNames(
-          'h-[theme(spacing.nav-height)] p-[calc(theme(spacing.nav-height)/4)] \
-          flex justify-end sm:block',
+          'flex h-[theme(spacing.nav-height)] justify-end p-[calc(theme(spacing.nav-height)/4)] sm:block',
           onLoad.enter,
           onLoad.fromTop
         )}
