@@ -7,7 +7,7 @@ interface TitleProps {
 export function Title({ children }: TitleProps) {
   return (
     <Head>
-      <title>{children} | Tomasz Chojnacki</title>
+      <title>{`${children} | Tomasz Chojnacki`}</title>
     </Head>
   )
 }
