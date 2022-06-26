@@ -4,7 +4,6 @@ import { ReactNode } from 'react'
 import onLoad from '@/styles/onLoad.module.scss'
 
 import { Title } from '../Title'
-import styles from './ErrorPage.module.scss'
 
 interface ErrorPageProps {
   code: number

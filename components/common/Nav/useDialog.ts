@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 
-import styles from './Nav.module.scss'
-
 export function useDialog() {
   const [isOpen, setIsOpen] = useState(false)
 
