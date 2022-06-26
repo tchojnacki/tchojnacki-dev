@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { ReactNode } from 'react'
 
-import onLoad from '@/styles/onLoad.module.scss'
+import onLoad from '@/styles/onLoad.module.css'
 
 import { Title } from '../Title'
 

@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 
-import onLoad from '@/styles/onLoad.module.scss'
+import onLoad from '@/styles/onLoad.module.css'
 
 import { NavHamburger } from '../NavHamburger'
 import { NavLinkList } from './NavLinkList'

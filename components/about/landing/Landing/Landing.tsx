@@ -2,7 +2,7 @@ import classNames from 'classnames'
 
 import { SimpleIconSvg } from '@/components/common/SimpleIconSvg'
 import { SOCIAL_LINKS } from '@/data/socials'
-import onLoad from '@/styles/onLoad.module.scss'
+import onLoad from '@/styles/onLoad.module.css'
 
 import { LinkButton } from '../LinkButton'
 import { TechSphere } from '../TechSphere'
