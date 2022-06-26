@@ -5,6 +5,7 @@ module.exports = {
     // https://www.radix-ui.com/docs/colors/palette-composition/the-scales
     colors: {
       indigo: {
+        2: '#15192d',
         4: '#1c274f',
         9: '#3e63dd',
         11: '#849dff',
