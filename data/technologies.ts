@@ -58,7 +58,7 @@ export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
   JAVA: {
     name: 'Java',
     type: 'language',
-    icon: si.siJava,
+    icon: si.siOpenjdk,
   },
   JAVASCRIPT: {
     name: 'JavaScript',
