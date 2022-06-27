@@ -1,7 +1,5 @@
 import Link from 'next/link'
 
-import styles from './LinkButton.module.scss'
-
 interface LinkButtonProps {
   children: string
   href: string
@@ -10,7 +8,9 @@ interface LinkButtonProps {
 export function LinkButton({ children, href }: LinkButtonProps) {
   return (
     <Link href={href}>
-      <a className={styles.button}>{children}</a>
+      <a className="inline-block rounded-xl bg-indigo-9 px-6 py-3 leading-none text-pure-white duration-200 hover:bg-indigo-11">
+        {children}
+      </a>
     </Link>
   )
 }

@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 
-import styles from './Nav.module.scss'
-
 export function useDialog() {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -11,7 +9,7 @@ export function useDialog() {
     if (!isOpen) {
       dialogRef.current?.showModal()
       setIsOpen(true)
-      document.body.classList.add(styles.bodyScrollHidden)
+      document.body.classList.add('overflow-hidden')
     } else {
       dialogRef.current?.close()
     }
@@ -22,7 +20,7 @@ export function useDialog() {
 
     const onCloseHandler = () => {
       setIsOpen(false)
-      document.body.classList.remove(styles.bodyScrollHidden)
+      document.body.classList.remove('overflow-hidden')
     }
 
     const onClickHandler = (e: MouseEvent) => {

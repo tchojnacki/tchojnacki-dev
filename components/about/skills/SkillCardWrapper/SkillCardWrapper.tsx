@@ -1,7 +1,6 @@
 import { CSSProperties, ReactElement } from 'react'
 
 import { SkillCardProps } from '../SkillCard'
-import styles from '../skills.module.scss'
 
 interface SkillCardWrapperProps {
   children: ReactElement<SkillCardProps> | Array<ReactElement<SkillCardProps>>
@@ -10,10 +9,10 @@ interface SkillCardWrapperProps {
   largest?: number
 }
 
-export function SkillCardWrapper({ children, width, height, largest }: SkillCardWrapperProps) {
+export function SkillCardWrapper({ children, width, height, largest = 1 }: SkillCardWrapperProps) {
   return (
     <ul
-      className={styles.cardWrapper}
+      className="grid grid-flow-col-dense grid-cols-[repeat(var(--grid-height),1fr)] grid-rows-[repeat(var(--grid-width),1fr)] gap-2 sm:grid-flow-row-dense sm:grid-cols-[repeat(var(--grid-width),calc(8rem/var(--grid-largest)))] sm:grid-rows-[repeat(var(--grid-height),calc(8rem/var(--grid-largest)))]"
       style={
         {
           '--grid-width': width,

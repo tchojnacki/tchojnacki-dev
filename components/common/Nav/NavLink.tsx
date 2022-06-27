@@ -1,20 +1,25 @@
-import classNames from 'classnames'
+import { classList } from '@/util'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-
-import styles from './Nav.module.scss'
 
 interface NavLinkProps {
   href: string
   children: string
+  className?: string
 }
 
-export function NavLink({ href, children }: NavLinkProps) {
+export function NavLink({ href, children, className }: NavLinkProps) {
   const router = useRouter()
 
   return (
     <Link href={href}>
-      <a className={classNames(styles.navLink, { [styles.active]: router.pathname === href })}>
+      <a
+        className={classList(
+          className,
+          'block leading-none duration-200',
+          router.pathname === href ? 'font-bold text-slate-12' : 'text-slate-11'
+        )}
+      >
         {children}
       </a>
     </Link>

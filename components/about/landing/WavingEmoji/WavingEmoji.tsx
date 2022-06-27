@@ -1,9 +1,7 @@
-import classNames from 'classnames'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { Emoji } from '@/components/common'
-
-import styles from './WavingEmoji.module.scss'
+import { classList } from '@/util'
 
 const WAVING_DELAY = 1000
 
@@ -32,7 +30,10 @@ export function WavingEmoji() {
     <button
       ref={ref}
       onClick={startPlaying}
-      className={classNames(styles.container, { [styles.playing]: isPlaying })}
+      className={classList(
+        'inline-block origin-[75%_75%] cursor-pointer',
+        isPlaying && 'animate-emojiwave motion-reduce:animate-none'
+      )}
     >
       <Emoji>👋</Emoji>
     </button>

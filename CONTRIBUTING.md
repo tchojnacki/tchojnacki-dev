@@ -19,7 +19,6 @@ The commit message should be structured as follows:
   - `feat` - add a feature
   - `refactor` - changes that don't add a feature nor fix a bug
   - `fix` - fix a bug
-  - `style` - changes to whitespaces, formatting, etc.
   - `test` - add tests
   - `docs` - changes to documentation (README, CONTRIBUTING, etc.)
   - `build` - changes to the build system (npm, etc.), or deployment (CI/CD)

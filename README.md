@@ -10,15 +10,13 @@
 ![The landing page of the website.](./docs/landing.png)
 
 ## Technology 🔧
-- Next.js
-- React
+- Next.js + React
+- Tailwind CSS
 - TypeScript
-- SASS
-- Lodash
 - Jest
+- Lodash
 - Git
-- ESLint
-- Prettier
+- ESLint + Prettier
 
 ## Deployment 🚀
 ### Production 🌐
