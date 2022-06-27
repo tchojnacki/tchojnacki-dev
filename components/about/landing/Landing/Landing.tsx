@@ -30,7 +30,7 @@ export function Landing() {
       <section className="grid h-full min-h-[75vw] w-full animate-enteronload items-center justify-items-center overflow-hidden p-4 grid-in-sphere onenter-fromright motion-reduce:animate-none lg:min-h-full lg:items-end">
         <TechSphere />
       </section>
-      <div className="absolute bottom-0 -z-10 h-[10vh] w-full lg:h-[20vh]">
+      <div className="absolute bottom-0 h-[10vh] w-full lg:h-[20vh]">
         <Wave />
       </div>
     </main>

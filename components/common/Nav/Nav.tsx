@@ -23,7 +23,7 @@ export function Nav() {
       <nav className="flex h-[theme(spacing.nav-height)] animate-enteronload justify-end p-[calc(theme(spacing.nav-height)/4)] onenter-fromtop motion-reduce:animate-none sm:block">
         <NavLinkList
           listClassName="hidden sm:flex justify-center gap-16"
-          itemClassName="px-4 py-[calc(theme(spacing.nav-height)/8)] rounded-lg hover:bg-pure-white/5"
+          itemClassName="px-4 py-[calc(theme(spacing.nav-height)/8)] rounded-lg hover:bg-indigo-11/10"
         />
         <NavHamburger mobileOnly menuOpen={isOpen} toggle={toggleDialog} />
       </nav>

@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import { classList } from '@/util'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -14,10 +14,10 @@ export function NavLink({ href, children, className }: NavLinkProps) {
   return (
     <Link href={href}>
       <a
-        className={classNames(
+        className={classList(
           className,
-          'block leading-none text-slate-11 duration-200',
-          router.pathname === href && 'font-bold text-slate-12'
+          'block leading-none duration-200',
+          router.pathname === href ? 'font-bold text-slate-12' : 'text-slate-11'
         )}
       >
         {children}

@@ -6,8 +6,7 @@
   font-size: 16px;
 }
 
+html,
 body {
   min-height: 100vh;
-  color: #ecedee;
-  background-color: #15192d;
 }
