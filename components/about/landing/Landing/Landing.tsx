@@ -1,8 +1,5 @@
-import classNames from 'classnames'
-
 import { SimpleIconSvg } from '@/components/common/SimpleIconSvg'
 import { SOCIAL_LINKS } from '@/data/socials'
-import onLoad from '@/styles/onLoad.module.css'
 
 import { LinkButton } from '../LinkButton'
 import { TechSphere } from '../TechSphere'
@@ -12,13 +9,7 @@ import { WavingEmoji } from '../WavingEmoji'
 export function Landing() {
   return (
     <main className="relative grid min-h-[calc(100vh-theme(spacing.nav-height))] grid-cols-1 grid-rows-[auto_auto_10vh] place-items-center gap-x-0 gap-y-8 overflow-x-hidden grid-areas-landing-mobile lg:grid-cols-2 lg:grid-rows-[1fr_5vh_15vh] lg:gap-x-8 lg:gap-y-0 lg:grid-areas-landing-desktop">
-      <section
-        className={classNames(
-          'place-self-center p-4 pt-8 text-center grid-in-text lg:text-left',
-          onLoad.enter,
-          onLoad.fromLeft
-        )}
-      >
+      <section className="animate-enteronload place-self-center p-4 pt-8 text-center grid-in-text onenter-fromleft motion-reduce:animate-none lg:text-left">
         <h2 className="text-2xl font-bold">
           Hello <WavingEmoji />, my name is
         </h2>
@@ -36,13 +27,7 @@ export function Landing() {
           ))}
         </div>
       </section>
-      <section
-        className={classNames(
-          'grid h-full min-h-[75vw] w-full items-center justify-items-center overflow-hidden p-4 grid-in-sphere lg:min-h-full lg:items-end',
-          onLoad.enter,
-          onLoad.fromRight
-        )}
-      >
+      <section className="grid h-full min-h-[75vw] w-full animate-enteronload items-center justify-items-center overflow-hidden p-4 grid-in-sphere onenter-fromright motion-reduce:animate-none lg:min-h-full lg:items-end">
         <TechSphere />
       </section>
       <div className="absolute bottom-0 -z-10 h-[10vh] w-full lg:h-[20vh]">

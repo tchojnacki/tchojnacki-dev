@@ -1,7 +1,4 @@
-import classNames from 'classnames'
 import { ReactNode } from 'react'
-
-import onLoad from '@/styles/onLoad.module.css'
 
 import { Title } from '../Title'
 
@@ -15,7 +12,7 @@ export function ErrorPage({ code, children }: ErrorPageProps) {
     <>
       <Title>{code.toString()}</Title>
       <main className="mt-[calc(-1*theme(spacing.nav-height))] grid min-h-[100vh] place-items-center p-4">
-        <header className={classNames('text-center', onLoad.enter, onLoad.scaling)}>
+        <header className="animate-enteronload text-center onenter-scaling motion-reduce:animate-none">
           <h1 className="mb-4 animate-errshake text-6xl font-bold text-indigo-11 motion-reduce:animate-none">
             {code}
           </h1>

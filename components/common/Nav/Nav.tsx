@@ -1,7 +1,3 @@
-import classNames from 'classnames'
-
-import onLoad from '@/styles/onLoad.module.css'
-
 import { NavHamburger } from '../NavHamburger'
 import { NavLinkList } from './NavLinkList'
 import { useDialog } from './useDialog'
@@ -24,13 +20,7 @@ export function Nav() {
           <NavLinkList listClassName="mt-4" itemClassName="px-4 py-3 text-2xl text-right" />
         </nav>
       </dialog>
-      <nav
-        className={classNames(
-          'flex h-[theme(spacing.nav-height)] justify-end p-[calc(theme(spacing.nav-height)/4)] sm:block',
-          onLoad.enter,
-          onLoad.fromTop
-        )}
-      >
+      <nav className="flex h-[theme(spacing.nav-height)] animate-enteronload justify-end p-[calc(theme(spacing.nav-height)/4)] onenter-fromtop motion-reduce:animate-none sm:block">
         <NavLinkList
           listClassName="hidden sm:flex justify-center gap-16"
           itemClassName="px-4 py-[calc(theme(spacing.nav-height)/8)] rounded-lg hover:bg-pure-white/5"

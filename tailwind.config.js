@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./{components,pages}/**/*.{js,ts,jsx,tsx}'],
@@ -21,33 +23,61 @@ module.exports = {
       'landing-desktop': ['text sphere', '. sphere', '. .'],
       'landing-mobile': ['text', 'sphere', '.'],
     },
+    keyframes: {
+      errshake: {
+        'from, to': { transform: 'none' },
+        '25%': { transform: 'rotate(-10deg)' },
+        '75%': { transform: 'rotate(10deg)' },
+      },
+      emojiwave: {
+        'from, to': { transform: 'none' },
+        '25%': { transform: 'rotate(-30deg)' },
+        '75%': { transform: 'rotate(30deg)' },
+      },
+      enteronload: {
+        from: {
+          opacity: 0,
+          transform: 'var(--enter-transform, none)',
+        },
+        to: {
+          opacity: 1,
+          transform: 'none',
+        },
+      },
+    },
+    animation: {
+      none: 'none',
+      errshake: 'errshake 200ms 600ms',
+      emojiwave: 'emojiwave 1s ease-in-out',
+      enteronload: 'enteronload 400ms ease-in forwards',
+    },
     extend: {
       spacing: {
         'nav-height': '4rem',
         'hamburger-size': '1.5rem',
       },
-      keyframes: {
-        errshake: {
-          'from, to': { transform: 'none' },
-          '25%': { transform: 'rotate(-10deg)' },
-          '75%': { transform: 'rotate(10deg)' },
-        },
-        emojiwave: {
-          'from, to': { transform: 'none' },
-          '25%': { transform: 'rotate(-30deg)' },
-          '75%': { transform: 'rotate(30deg)' },
-        },
-      },
-      animation: {
-        errshake: 'errshake 200ms 600ms',
-        emojiwave: 'emojiwave 1s ease-in-out',
-      },
     },
   },
   plugins: [
     require('@savvywombat/tailwindcss-grid-areas'),
-    require('tailwindcss/plugin')(function ({ addVariant }) {
+    plugin(({ addVariant }) => {
       addVariant('pseudo', ['&::before', '&::after'])
+    }),
+    plugin(({ addUtilities }) => {
+      addUtilities({
+        '.onenter-fromleft': {
+          '--enter-transform': 'translateX(-50px)',
+        },
+        '.onenter-fromtop': {
+          '--enter-transform': 'translateY(-50px)',
+        },
+        '.onenter-fromright': {
+          '--enter-transform': 'translateX(50px)',
+        },
+        '.onenter-scaling': {
+          '--enter-transform': 'scale(0.75)',
+        },
+      })
     }),
   ],
 }
