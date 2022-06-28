@@ -1,22 +1,13 @@
 const nextJest = require('next/jest')
 
+const createJestConfig = nextJest({
+  dir: './',
+})
+
 const customJestConfig = {
-  moduleDirectories: ['node_modules', '<rootDir>/'],
+  moduleDirectories: ['node_modules', '<rootDir>/src/'],
   testEnvironment: 'jest-environment-jsdom',
   setupFiles: ['<rootDir>/jest.mocks.js'],
 }
 
-const createJestConfig = nextJest({
-  dir: './',
-})(customJestConfig)
-
-module.exports = async () => {
-  const jestConfig = await createJestConfig()
-
-  const moduleNameMapper = {
-    ...jestConfig.moduleNameMapper,
-    '^@/(.*)$': '<rootDir>/src/$1',
-  }
-
-  return { ...jestConfig, moduleNameMapper }
-}
+module.exports = createJestConfig(customJestConfig)

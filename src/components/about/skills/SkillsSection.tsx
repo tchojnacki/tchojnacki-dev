@@ -1,4 +1,4 @@
-import { SECTION_SKILLS } from '@/data/skills'
+import { SECTION_SKILLS } from 'data/skills'
 
 import { SkillCard } from './SkillCard'
 import { SkillCardWrapper } from './SkillCardWrapper'

@@ -1,4 +1,4 @@
-import { Landing, SkillsSection, Title } from '@/components'
+import { Landing, SkillsSection, Title } from 'components'
 
 export default function About() {
   return (

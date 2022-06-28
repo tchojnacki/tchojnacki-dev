@@ -1,4 +1,4 @@
-import { classList } from '@/util'
+import { classList } from 'utils'
 
 interface NavHamburgerProps {
   menuOpen: boolean

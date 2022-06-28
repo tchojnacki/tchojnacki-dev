@@ -1,4 +1,4 @@
-import { classList } from '@/util'
+import { classList } from 'utils'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 

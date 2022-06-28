@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 
-import { Landing } from '@/components'
+import { Landing } from 'components'
 
 describe('Landing', () => {
   it('renders the heading', () => {

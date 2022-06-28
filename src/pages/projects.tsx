@@ -1,4 +1,4 @@
-import { Emoji, ErrorPage } from '@/components'
+import { Emoji, ErrorPage } from 'components'
 
 export default function Projects() {
   return (

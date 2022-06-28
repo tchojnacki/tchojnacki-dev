@@ -1,8 +1,8 @@
 import clamp from 'lodash/clamp'
 import round from 'lodash/round'
 
-import { SPHERE_SKILL_ARRAY } from '@/data/skills'
-import { isClientSide, useMouseOffsetX, useParentSize, usePrefersReducedMotion } from '@/util'
+import { SPHERE_SKILL_ARRAY } from 'data/skills'
+import { isClientSide, useMouseOffsetX, useParentSize, usePrefersReducedMotion } from 'utils'
 
 import { initialPositions, posToTransform, rotateY } from './fibonacciSphere'
 

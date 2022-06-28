@@ -1,5 +1,5 @@
-import { SimpleIconSvg } from '@/components/common/SimpleIconSvg'
-import { SOCIAL_LINKS } from '@/data/socials'
+import { SimpleIconSvg } from 'components/common/SimpleIconSvg'
+import { SOCIAL_LINKS } from 'data/socials'
 
 import { LinkButton } from './LinkButton'
 import { TechSphere } from '../techSphere'
