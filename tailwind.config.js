@@ -19,6 +19,10 @@ module.exports = {
       'pure-white': '#ffffff',
       'pure-black': '#000000',
     },
+    fontWeight: {
+      normal: 400,
+      bold: 600,
+    },
     gridTemplateAreas: {
       'landing-desktop': ['text sphere', '. sphere', '. .'],
       'landing-mobile': ['text', 'sphere', '.'],
