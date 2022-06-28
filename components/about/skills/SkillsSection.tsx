@@ -1,7 +1,7 @@
 import { SECTION_SKILLS } from '@/data/skills'
 
-import { SkillCard } from '../SkillCard'
-import { SkillCardWrapper } from '../SkillCardWrapper'
+import { SkillCard } from './SkillCard'
+import { SkillCardWrapper } from './SkillCardWrapper'
 
 export function SkillsSection() {
   return (

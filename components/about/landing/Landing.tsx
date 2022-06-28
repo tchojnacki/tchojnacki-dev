@@ -1,10 +1,10 @@
 import { SimpleIconSvg } from '@/components/common/SimpleIconSvg'
 import { SOCIAL_LINKS } from '@/data/socials'
 
-import { LinkButton } from '../LinkButton'
-import { TechSphere } from '../TechSphere'
-import { Wave } from '../Wave'
-import { WavingEmoji } from '../WavingEmoji'
+import { LinkButton } from './LinkButton'
+import { TechSphere } from '../techSphere'
+import { Wave } from './Wave'
+import { WavingEmoji } from './WavingEmoji'
 
 export function Landing() {
   return (

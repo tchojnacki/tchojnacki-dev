@@ -1,6 +1,6 @@
 import { CSSProperties, ReactElement } from 'react'
 
-import { SkillCardProps } from '../SkillCard'
+import { SkillCardProps } from './SkillCard'
 
 interface SkillCardWrapperProps {
   children: ReactElement<SkillCardProps> | Array<ReactElement<SkillCardProps>>
