@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import times from 'lodash/times'
 
 const { sin, cos, PI } = Math
 
@@ -17,7 +17,7 @@ export const rotateY = ({ x, y, z }: Pos3D, alpha: number): Pos3D => ({
 })
 
 export const initialPositions = (n: number) => {
-  const positions = _.times(n, i => {
+  const positions = times(n, i => {
     const theta = (2 * PI * i) / GOLDEN_RATIO
     const phi = Math.acos(1 - (2 * (i + 0.5)) / n)
 

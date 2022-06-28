@@ -1,4 +1,5 @@
-import _ from 'lodash'
+import clamp from 'lodash/clamp'
+import round from 'lodash/round'
 
 import { SPHERE_SKILL_ARRAY } from '@/data/skills'
 import { isClientSide, useMouseOffsetX, useParentSize, usePrefersReducedMotion } from '@/util'
@@ -16,7 +17,7 @@ export function TechSphere() {
     isClientSide() && !prefersReducedMotion ? (mouseOffset / window.innerWidth) * 2 * Math.PI : 0
 
   const { width, height, childRef } = useParentSize<HTMLUListElement>()
-  const size = _.clamp(_.round(Math.min(width, height) * 0.75, 25), 200, 600)
+  const size = clamp(round(Math.min(width, height) * 0.75, 25), 200, 600)
 
   const elements = items.map((item, i) => {
     const pos = rotateY(positions[i], angle)

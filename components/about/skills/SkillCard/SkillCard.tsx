@@ -1,4 +1,3 @@
-import { Omit } from 'lodash'
 import { CSSProperties } from 'react'
 
 import { SimpleIconSvg } from '@/components/common/SimpleIconSvg'
