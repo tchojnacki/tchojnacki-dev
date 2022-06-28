@@ -21,6 +21,16 @@ jobs:
         with:
           node-version: 18.x
 
+      - name: Cache Next.js
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+
       - name: Install dependencies
         run: npm ci
 
@@ -30,5 +40,8 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Test
+      - name: Test with coverage
         run: npm run test
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
