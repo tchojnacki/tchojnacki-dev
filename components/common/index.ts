@@ -1,5 +1,5 @@
 export * from './ErrorPage'
-export * from './Nav'
+export * from './nav'
 export * from './NavHamburger'
 export * from './SimpleIconSvg'
 export * from './Title'

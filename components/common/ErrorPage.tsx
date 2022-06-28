@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { Title } from '../Title'
+import { Title } from './Title'
 
 interface ErrorPageProps {
   code: number
