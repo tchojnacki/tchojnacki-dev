@@ -1,13 +1,14 @@
-# tchojnacki.dev - a personal website 🧑‍💻
+# [tchojnacki.dev](https://tchojnacki.dev) - a personal website 🧑‍💻
 <div align="center">
 
-[![vercel](https://img.shields.io/github/deployments/tchojnacki/tchojnacki-dev/Production?label=vercel&logo=vercel)](https://tchojnacki.dev/)
+[![vercel](https://img.shields.io/github/deployments/tchojnacki/tchojnacki-dev/Production?label=vercel&logo=vercel)](https://tchojnacki.dev)
 [![checks](https://img.shields.io/github/checks-status/tchojnacki/tchojnacki-dev/main)](https://github.com/tchojnacki/tchojnacki-dev/actions)
-[![pull requests](https://img.shields.io/github/issues-pr-closed/tchojnacki/tchojnacki-dev)](https://github.com/tchojnacki/tchojnacki-dev/pulls)
+[![codecov](https://codecov.io/gh/tchojnacki/tchojnacki-dev/branch/main/graph/badge.svg?token=XUHWAY4YYO)](https://codecov.io/gh/tchojnacki/tchojnacki-dev)
+[![issues](https://img.shields.io/github/issues/tchojnacki/tchojnacki-dev)](https://github.com/tchojnacki/tchojnacki-dev/issues)
 
 </div>
 
-![The landing page of the website.](./docs/landing.png)
+![The landing page of the website.](./.github/docs/landing.png)
 
 ## Technology 🔧
 - Next.js + React
@@ -20,7 +21,7 @@
 
 ## Deployment 🚀
 ### Production 🌐
-The website is available online at [tchojnacki.dev](https://tchojnacki.dev/), deployed through [Vercel](https://vercel.com/home).
+The website is available online at [tchojnacki.dev](https://tchojnacki.dev), deployed through [Vercel](https://vercel.com/home).
 
 ### Development 🏗
 Run the development server:
