@@ -8,7 +8,7 @@
 
 </div>
 
-![The landing page of the website.](./docs/landing.png)
+![The landing page of the website.](./.github/docs/landing.png)
 
 ## Technology 🔧
 - Next.js + React
