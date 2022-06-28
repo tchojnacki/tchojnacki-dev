@@ -2,7 +2,7 @@ const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./{components,pages}/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/{components,pages}/**/*.{js,ts,jsx,tsx}'],
   theme: {
     // https://www.radix-ui.com/docs/colors/palette-composition/the-scales
     colors: {

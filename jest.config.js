@@ -15,7 +15,7 @@ module.exports = async () => {
 
   const moduleNameMapper = {
     ...jestConfig.moduleNameMapper,
-    '^@/(.*)$': '<rootDir>/$1',
+    '^@/(.*)$': '<rootDir>/src/$1',
   }
 
   return { ...jestConfig, moduleNameMapper }
