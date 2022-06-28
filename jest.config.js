@@ -7,7 +7,10 @@ const createJestConfig = nextJest({
 const customJestConfig = {
   moduleDirectories: ['node_modules', '<rootDir>/src/'],
   testEnvironment: 'jest-environment-jsdom',
-  setupFiles: ['<rootDir>/jest.mocks.js'],
+  setupFiles: [
+    '<rootDir>/tests/mocks/ResizeObserver.mock.ts',
+    '<rootDir>/tests/mocks/watchMedia.mock.ts',
+  ],
 }
 
 module.exports = createJestConfig(customJestConfig)
