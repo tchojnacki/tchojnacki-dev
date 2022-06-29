@@ -1,3 +1,5 @@
+// @ts-check
+
 const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */

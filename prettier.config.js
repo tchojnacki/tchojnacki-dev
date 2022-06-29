@@ -1,4 +1,5 @@
-// prettier.config.js
+// @ts-check
+
 module.exports = {
   plugins: [
     require('prettier-plugin-tailwindcss'),
