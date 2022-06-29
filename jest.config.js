@@ -1,6 +1,8 @@
 // @ts-check
 
-const { default: nextJest } = require('next/jest')
+const nextJest = /** @type {import('next/jest').default} */ (
+  /** @type {unknown} */ (require('next/jest'))
+)
 
 const createJestConfig = nextJest({
   dir: './',
