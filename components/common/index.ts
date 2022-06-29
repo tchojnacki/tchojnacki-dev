@@ -1,6 +1,0 @@
-export * from './ErrorPage'
-export * from './Nav'
-export * from './NavHamburger'
-export * from './SimpleIconSvg'
-export * from './Title'
-export * from './Emoji'
