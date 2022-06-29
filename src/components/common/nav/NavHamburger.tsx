@@ -1,4 +1,4 @@
-import { classList } from 'utils'
+import { classList } from 'shared'
 
 interface NavHamburgerProps {
   menuOpen: boolean

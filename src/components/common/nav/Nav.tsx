@@ -1,6 +1,7 @@
-import { NavHamburger } from '../NavHamburger'
+import { useDialog } from 'hooks'
+
+import { NavHamburger } from './NavHamburger'
 import { NavLinkList } from './NavLinkList'
-import { useDialog } from './useDialog'
 
 export function Nav() {
   const { isOpen, toggleDialog, dialogRef } = useDialog()

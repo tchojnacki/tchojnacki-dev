@@ -1,6 +1,7 @@
-import { classList } from 'utils'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+
+import { classList } from 'shared'
 
 interface NavLinkProps {
   href: string

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { Emoji } from 'components/common'
-import { classList } from 'utils'
+import { Emoji } from 'components'
+import { classList } from 'shared'
 
 const WAVING_DELAY = 1000
 

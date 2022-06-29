@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react'
 
-import { SimpleIconSvg } from 'components/common/SimpleIconSvg'
-import { TechnologyDefinition } from 'data/technologies'
+import { SimpleIconSvg } from 'components'
+import { TechnologyDefinition } from 'data'
 
 export interface SkillCardProps {
   skill: Omit<TechnologyDefinition, 'type'>

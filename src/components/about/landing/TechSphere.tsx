@@ -1,10 +1,9 @@
 import clamp from 'lodash/clamp'
 import round from 'lodash/round'
 
-import { SPHERE_SKILL_ARRAY } from 'data/skills'
-import { isClientSide, useMouseOffsetX, useParentSize, usePrefersReducedMotion } from 'utils'
-
-import { initialPositions, posToTransform, rotateY } from './fibonacciSphere'
+import { SPHERE_SKILL_ARRAY } from 'data'
+import { useMouseOffsetX, useParentSize, usePrefersReducedMotion } from 'hooks'
+import { initialPositions, isClientSide, posToTransform, rotateY } from 'shared'
 
 const items = SPHERE_SKILL_ARRAY.map(skill => skill.name)
 const positions = initialPositions(items.length)
