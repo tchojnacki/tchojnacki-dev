@@ -61,7 +61,6 @@ module.exports = {
     extend: {
       spacing: {
         'nav-height': '4rem',
-        'hamburger-size': '1.5rem',
       },
     },
   },
