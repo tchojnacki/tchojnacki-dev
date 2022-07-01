@@ -12,9 +12,9 @@ export function NavHamburger({ menuOpen, toggle, className }: NavHamburgerProps)
   const Icon = menuOpen ? X : Menu
   return (
     <button
-      className={classList('block p-1', className)}
+      className={classList('block px-3 py-1', className)}
       aria-expanded={menuOpen}
-      aria-label={menuOpen ? 'Close' : 'Open'}
+      aria-label={menuOpen ? 'Close menu' : 'Open menu'}
       onClick={toggle}
     >
       <Icon className="stroke-slate-11 hover:stroke-slate-12 duration-200" />

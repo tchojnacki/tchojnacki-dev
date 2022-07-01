@@ -1,11 +1,18 @@
 import { useDialog } from 'hooks'
 
-import { Sun } from '../icons'
+import { Moon, Sun } from '../icons'
 import { NavHamburger } from './NavHamburger'
 import { NavLinkList } from './NavLinkList'
 
-export function Nav() {
+interface NavProps {
+  toggleTheme: () => void
+  currentTheme: 'light' | 'dark'
+}
+
+export function Nav({ toggleTheme, currentTheme }: NavProps) {
   const { isOpen, toggleDialog, dialogRef } = useDialog()
+
+  const ThemeIcon = currentTheme === 'dark' ? Sun : Moon
 
   return (
     <>
@@ -19,7 +26,7 @@ export function Nav() {
       >
         <nav className="p-[calc(theme(spacing.nav-height)/4)]">
           <NavHamburger menuOpen={isOpen} toggle={toggleDialog} className="ml-auto" />
-          <NavLinkList listClassName="mt-2" itemClassName="px-2 py-2 text-xl text-right" />
+          <NavLinkList listClassName="mt-2" itemClassName="px-4 py-2 text-xl text-right" />
         </nav>
       </dialog>
       <nav className="flex justify-end items-center h-[theme(spacing.nav-height)] animate-enteronload p-[calc(theme(spacing.nav-height)/4)] onenter-fromtop motion-reduce:animate-none leading-none">
@@ -29,8 +36,12 @@ export function Nav() {
         />
         <ul className="flex items-center">
           <li>
-            <button className="p-1">
-              <Sun className="stroke-slate-11 hover:stroke-slate-12 duration-200" />
+            <button
+              className="px-3 py-1"
+              aria-label={`Switch to ${currentTheme === 'dark' ? 'light' : 'dark'} theme`}
+              onClick={toggleTheme}
+            >
+              <ThemeIcon className="stroke-slate-11 hover:stroke-slate-12 duration-200" />
             </button>
           </li>
           <li>
