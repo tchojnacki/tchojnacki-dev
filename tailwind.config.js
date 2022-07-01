@@ -5,6 +5,7 @@ const plugin = require('tailwindcss/plugin')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/{components,pages}/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     // https://www.radix-ui.com/docs/colors/palette-composition/the-scales
     colors: {

@@ -3,10 +3,10 @@ import { classList } from 'shared'
 interface NavHamburgerProps {
   menuOpen: boolean
   toggle: () => void
-  mobileOnly?: boolean
+  className?: string
 }
 
-export function NavHamburger({ menuOpen, toggle, mobileOnly }: NavHamburgerProps) {
+export function NavHamburger({ menuOpen, toggle, className }: NavHamburgerProps) {
   const singularBarClass = classList(
     'w-full h-0.5 bg-slate-11 group-hover:bg-slate-12 duration-200 rounded-sm',
     menuOpen && 'scale-0'
@@ -20,8 +20,8 @@ export function NavHamburger({ menuOpen, toggle, mobileOnly }: NavHamburgerProps
   return (
     <button
       className={classList(
-        'group ml-auto box-content flex h-hamburger-size w-hamburger-size shrink-0 flex-col justify-between px-4 py-[calc((theme(spacing.nav-height)/2_-_theme(spacing.hamburger-size))/2)]',
-        mobileOnly && 'sm:hidden'
+        'group box-content flex h-hamburger-size w-hamburger-size shrink-0 flex-col justify-between px-4 py-[calc((theme(spacing.nav-height)/2_-_theme(spacing.hamburger-size))/2)]',
+        className
       )}
       aria-expanded={menuOpen}
       aria-label={menuOpen ? 'Close' : 'Open'}
