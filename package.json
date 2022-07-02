@@ -9,12 +9,14 @@
     "test": "jest --coverage"
   },
   "dependencies": {
+    "clsx": "^1.1.1",
     "lodash": "^4.17.21",
     "next": "^12.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "simple-icons": "^7.3.0",
-    "twemoji": "^14.0.2"
+    "twemoji": "^14.0.2",
+    "use-local-storage-state": "^18.1.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^12.2.0",
