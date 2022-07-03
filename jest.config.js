@@ -11,10 +11,9 @@ const createJestConfig = nextJest({
 const customJestConfig = {
   moduleDirectories: ['node_modules', '<rootDir>/src/'],
   testEnvironment: 'jest-environment-jsdom',
-  setupFiles: [
-    '<rootDir>/tests/mocks/ResizeObserver.mock.ts',
-    '<rootDir>/tests/mocks/watchMedia.mock.ts',
-  ],
+  setupFiles: ['ResizeObserver', 'showModal', 'watchMedia'].map(
+    file => `<rootDir>/tests/mocks/${file}.mock.ts`
+  ),
 }
 
 module.exports = createJestConfig(customJestConfig)

@@ -7,7 +7,7 @@ describe('Landing', () => {
   it('renders the heading', () => {
     render(<Landing />)
 
-    const heading = screen.getByRole('heading', { name: /Tomasz Chojnacki/ })
+    const heading = screen.getByRole('heading', { name: 'Tomasz Chojnacki' })
 
     expect(heading).toBeInTheDocument()
   })
