@@ -1,7 +1,6 @@
+import clsx from 'clsx'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-
-import { classList } from 'shared'
 
 interface NavLinkProps {
   href: string
@@ -15,10 +14,12 @@ export function NavLink({ href, children, className }: NavLinkProps) {
   return (
     <Link href={href}>
       <a
-        className={classList(
+        className={clsx(
           className,
-          'block leading-none duration-200',
-          router.pathname === href ? 'font-bold text-slate-12' : 'text-slate-11'
+          'block duration-200',
+          router.pathname === href
+            ? 'font-bold text-slate-3 dark:text-slate-12'
+            : 'text-slate-8 dark:text-slate-11'
         )}
       >
         {children}

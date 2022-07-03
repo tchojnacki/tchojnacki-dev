@@ -1,35 +1,23 @@
-import { classList } from 'shared'
+import clsx from 'clsx'
+
+import { Menu, X } from '../icons'
 
 interface NavHamburgerProps {
   menuOpen: boolean
   toggle: () => void
-  mobileOnly?: boolean
+  className?: string
 }
 
-export function NavHamburger({ menuOpen, toggle, mobileOnly }: NavHamburgerProps) {
-  const singularBarClass = classList(
-    'w-full h-0.5 bg-slate-11 group-hover:bg-slate-12 duration-200 rounded-sm',
-    menuOpen && 'scale-0'
-  )
-
-  const doubleBarClass = classList(
-    'w-full h-0.5 relative pseudo:bg-slate-11 group-hover:pseudo:bg-slate-12 pseudo:block pseudo:content-[""] pseudo:absolute pseudo:w-full pseudo:h-full pseudo:rounded-sm pseudo:duration-200',
-    menuOpen && 'before:rotate-[-45deg] after:rotate-[45deg] pseudo:scale-[1.41]'
-  )
-
+export function NavHamburger({ menuOpen, toggle, className }: NavHamburgerProps) {
+  const Icon = menuOpen ? X : Menu
   return (
     <button
-      className={classList(
-        'group ml-auto box-content flex h-hamburger-size w-hamburger-size shrink-0 flex-col justify-between px-4 py-[calc((theme(spacing.nav-height)/2_-_theme(spacing.hamburger-size))/2)]',
-        mobileOnly && 'sm:hidden'
-      )}
+      className={clsx('block px-3 py-1 group', className)}
       aria-expanded={menuOpen}
-      aria-label={menuOpen ? 'Close' : 'Open'}
+      aria-label={menuOpen ? 'Close menu' : 'Open menu'}
       onClick={toggle}
     >
-      <div className={singularBarClass} />
-      <div className={doubleBarClass} />
-      <div className={singularBarClass} />
+      <Icon className="stroke-slate-8 group-hover:stroke-slate-3 dark:stroke-slate-11 dark:group-hover:stroke-slate-12 duration-200" />
     </button>
   )
 }
