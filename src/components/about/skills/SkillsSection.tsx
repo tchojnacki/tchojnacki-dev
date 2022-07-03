@@ -5,7 +5,7 @@ import { SkillCardWrapper } from './SkillCardWrapper'
 
 export function SkillsSection() {
   return (
-    <section className="mt-[-1px] bg-indigo-4 px-8">
+    <section className="mt-[-1px] bg-indigo-11 dark:bg-indigo-4 px-8">
       <h3 className="text-center text-4xl font-bold">Skills</h3>
       <div className="flex flex-wrap justify-center">
         {SECTION_SKILLS.map(({ label, width, height, largest, items }) => (

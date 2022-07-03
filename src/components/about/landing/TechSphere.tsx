@@ -33,7 +33,7 @@ export function TechSphere() {
   return (
     <ul
       ref={childRef}
-      className="relative h-[var(--sphere-size)] w-[var(--sphere-size)] bg-[radial-gradient(theme(colors.indigo.4),transparent_50%)]"
+      className="relative h-[var(--sphere-size)] w-[var(--sphere-size)] bg-[radial-gradient(theme(colors.indigo.11),transparent_50%)] dark:bg-[radial-gradient(theme(colors.indigo.4),transparent_50%)]"
       style={{ '--sphere-size': `${size}px` } as React.CSSProperties}
     >
       {elements.map(({ name, style }) => (

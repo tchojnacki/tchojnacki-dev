@@ -17,7 +17,7 @@ export function NavHamburger({ menuOpen, toggle, className }: NavHamburgerProps)
       aria-label={menuOpen ? 'Close menu' : 'Open menu'}
       onClick={toggle}
     >
-      <Icon className="stroke-slate-7 group-hover:stroke-slate-1 dark:stroke-slate-11 dark:group-hover:stroke-slate-12 duration-200" />
+      <Icon className="stroke-slate-8 group-hover:stroke-slate-3 dark:stroke-slate-11 dark:group-hover:stroke-slate-12 duration-200" />
     </button>
   )
 }

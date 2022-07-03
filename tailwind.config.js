@@ -12,17 +12,15 @@ module.exports = {
       indigo: {
         2: '#15192d',
         4: '#1c274f',
-        9: '#3e63dd',
+        8: '#2f4eb2',
         11: '#849dff',
       },
       slate: {
-        1: '#151718',
         3: '#202425',
-        7: '#3a3f42',
+        8: '#4c5155',
         11: '#9ba1a6',
         12: '#ecedee',
       },
-      'pure-white': '#ffffff',
       'pure-black': '#000000',
     },
     fontWeight: {
