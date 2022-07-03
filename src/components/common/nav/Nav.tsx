@@ -18,8 +18,9 @@ export function Nav({ toggleTheme, currentTheme }: NavProps) {
     <>
       <dialog
         className='invisible mt-0 mr-0 mb-auto ml-auto flex
-          h-[min(100vmin,30rem)] max-h-16 w-[min(100vmin,30rem)] max-w-16 flex-col items-end justify-start
-          overflow-hidden rounded-bl-full bg-pure-black/0 bg-[url("/img/menu-blob.svg")] bg-contain
+          h-[min(100vmin,30rem)] max-h-16 w-[min(100vmin,30rem)] max-w-16 flex-col items-end
+          justify-start overflow-hidden rounded-bl-[50%] bg-pure-black/0 bg-contain
+          bg-[url("/img/light-menu-blob.svg")] dark:bg-[url("/img/dark-menu-blob.svg")]
           bg-right-top bg-no-repeat p-0 opacity-0 duration-500 backdrop:bg-pure-black/50
           open:visible open:max-h-full open:max-w-full open:rounded-none open:opacity-100'
         ref={dialogRef}
