@@ -9,7 +9,7 @@ export interface TechnologyDefinition {
   icon: SimpleIcon
 }
 
-export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
+export const TECHNOLOGIES = {
   CSS: {
     name: 'CSS',
     type: 'language',
@@ -24,6 +24,11 @@ export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
     name: 'Docker',
     type: 'tool',
     icon: si.siDocker,
+  },
+  EXPRESS: {
+    name: 'Express',
+    type: 'library',
+    icon: si.siExpress,
   },
   FLUTTER: {
     name: 'Flutter',
@@ -55,6 +60,11 @@ export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
     type: 'language',
     icon: si.siHtml5,
   },
+  IMMER: {
+    name: 'Immer',
+    type: 'library',
+    icon: si.siImmer,
+  },
   JAVA: {
     name: 'Java',
     type: 'language',
@@ -75,10 +85,20 @@ export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
     type: 'language',
     icon: si.siKotlin,
   },
+  LODASH: {
+    name: 'Lodash',
+    type: 'library',
+    icon: si.siLodash,
+  },
   MONGO: {
     name: 'MongoDB',
     type: 'tool',
     icon: si.siMongodb,
+  },
+  MUI: {
+    name: 'MUI',
+    type: 'library',
+    icon: si.siMui,
   },
   NEST: {
     name: 'NestJS',
@@ -100,6 +120,11 @@ export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
     type: 'tool',
     icon: si.siNpm,
   },
+  PASSPORT: {
+    name: 'Passport',
+    type: 'library',
+    icon: si.siPassport,
+  },
   PYTHON: {
     name: 'Python',
     type: 'language',
@@ -120,10 +145,20 @@ export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
     type: 'language',
     icon: si.siSass,
   },
+  SWAGGER: {
+    name: 'Swagger',
+    type: 'tool',
+    icon: si.siSwagger,
+  },
   TYPESCRIPT: {
     name: 'TypeScript',
     type: 'language',
     icon: si.siTypescript,
+  },
+  VITE: {
+    name: 'Vite',
+    type: 'tool',
+    icon: si.siVite,
   },
   VSCODE: {
     name: 'VS Code',
@@ -135,4 +170,4 @@ export const TECHNOLOGIES: Record<string, TechnologyDefinition> = {
     type: 'tool',
     icon: si.siYarn,
   },
-}
+} as const

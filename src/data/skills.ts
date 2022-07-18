@@ -1,5 +1,7 @@
 import { TECHNOLOGIES as T, TechnologyDefinition } from './technologies'
 
+type SectionItems = [TechnologyDefinition, number][]
+
 export const SPHERE_SKILL_ARRAY = [
   T.TYPESCRIPT,
   T.JAVASCRIPT,
@@ -13,9 +15,7 @@ export const SPHERE_SKILL_ARRAY = [
   T.PYTHON,
   T.RUST,
   T.SASS,
-]
-
-type SectionItems = [TechnologyDefinition, number][]
+] as const
 
 export const SECTION_SKILLS = [
   {
@@ -57,4 +57,4 @@ export const SECTION_SKILLS = [
       1,
     ]) as SectionItems,
   },
-]
+] as const

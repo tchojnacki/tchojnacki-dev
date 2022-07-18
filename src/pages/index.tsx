@@ -1,4 +1,4 @@
-import { Landing, SkillsSection, Title } from 'components'
+import { Landing, ProjectsSection, SkillsSection, Title } from 'components'
 
 export default function About() {
   return (
@@ -6,6 +6,7 @@ export default function About() {
       <Title>About</Title>
       <Landing />
       <SkillsSection />
+      <ProjectsSection />
     </>
   )
 }
