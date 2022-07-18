@@ -25,10 +25,20 @@ export const TECHNOLOGIES = {
     type: 'tool',
     icon: si.siDocker,
   },
+  ESLINT: {
+    name: 'ESLint',
+    type: 'tool',
+    icon: si.siEslint,
+  },
   EXPRESS: {
     name: 'Express',
     type: 'library',
     icon: si.siExpress,
+  },
+  FASTAPI: {
+    name: 'FastAPI',
+    type: 'library',
+    icon: si.siFastapi,
   },
   FLUTTER: {
     name: 'Flutter',
@@ -125,6 +135,11 @@ export const TECHNOLOGIES = {
     type: 'library',
     icon: si.siPassport,
   },
+  PRETTIER: {
+    name: 'Prettier',
+    type: 'tool',
+    icon: si.siPrettier,
+  },
   PYTHON: {
     name: 'Python',
     type: 'language',
@@ -150,10 +165,30 @@ export const TECHNOLOGIES = {
     type: 'tool',
     icon: si.siSwagger,
   },
+  TAILWIND: {
+    name: 'Tailwind CSS',
+    type: 'library',
+    icon: si.siTailwindcss,
+  },
+  THREEJS: {
+    name: 'Three.js',
+    type: 'library',
+    icon: si.siThreedotjs,
+  },
   TYPESCRIPT: {
     name: 'TypeScript',
     type: 'language',
     icon: si.siTypescript,
+  },
+  UVICORN: {
+    name: 'Uvicorn',
+    type: 'tool',
+    icon: si.siGunicorn,
+  },
+  VERCEL: {
+    name: 'Vercel',
+    type: 'tool',
+    icon: si.siVercel,
   },
   VITE: {
     name: 'Vite',
