@@ -2,7 +2,7 @@ import { TECHNOLOGIES as T, TechnologyDefinition } from './technologies'
 
 interface ProjectTag {
   displayName: string
-  color: string
+  backgroundColor: string
 }
 
 interface ProjectPart {
@@ -20,15 +20,15 @@ export interface ProjectDefinition {
 const TAGS = {
   SOLO: {
     displayName: 'Solo Project',
-    color: 'red',
+    backgroundColor: '#067a6e',
   },
   TEAM: {
     displayName: 'Team Project',
-    color: 'red',
+    backgroundColor: '#9c2bac',
   },
   DEPRECATED: {
     displayName: 'Deprecated',
-    color: 'orange',
+    backgroundColor: '#ca3214',
   },
 } as const
 
@@ -49,13 +49,13 @@ export const PROJECTS = {
     name: 'JeszCoChcesz',
     tags: [TAGS.TEAM],
     description:
-      'Fullstack web application, online food delivery system connecting restaurants with health-conscious users.',
+      'Full-stack web application, online food delivery system connecting restaurants with health-conscious users.',
     parts: [
-      { name: 'Frontend', technologies: [T.REACT, T.TYPESCRIPT, T.MUI, T.IMMER, T.LODASH] },
-      { name: 'Backend', technologies: [T.NEST, T.TYPESCRIPT, T.MONGO, T.EXPRESS, T.PASSPORT] },
+      { name: 'Front-end', technologies: [T.REACT, T.TYPESCRIPT, T.MUI, T.IMMER, T.LODASH] },
+      { name: 'Back-end', technologies: [T.NEST, T.TYPESCRIPT, T.MONGO, T.EXPRESS, T.PASSPORT] },
       {
         name: 'Tools',
-        technologies: [T.DOCKER, T.SWAGGER, T.JEST, T.YARN, T.VITE, T.GIT, T.HEROKU, T.FIGMA],
+        technologies: [T.DOCKER, T.JEST, T.SWAGGER, T.VITE, T.YARN, T.GIT, T.HEROKU, T.FIGMA],
       },
     ],
   },

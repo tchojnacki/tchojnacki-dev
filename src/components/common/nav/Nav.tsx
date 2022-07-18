@@ -33,7 +33,7 @@ export function Nav({ toggleTheme, currentTheme }: NavProps) {
       <nav className="flex justify-end items-center h-[theme(spacing.nav-height)] animate-enteronload p-[calc(theme(spacing.nav-height)/4)] onenter-fromtop motion-reduce:animate-none leading-none">
         <NavLinkList
           listClassName="hidden sm:flex gap-16 mx-auto"
-          itemClassName="px-4 py-[calc(theme(spacing.nav-height)/8)] rounded-lg hover:bg-indigo-11/10"
+          itemClassName="px-4 py-[calc(theme(spacing.nav-height)/8)] rounded-lg hover:bg-indigo-11/30 dark:hover:bg-indigo-11/10"
         />
         <ul className="flex items-center">
           <li>
