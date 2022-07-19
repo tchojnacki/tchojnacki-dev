@@ -4,7 +4,7 @@ import { FeaturedProject } from './FeaturedProject'
 
 export function FeaturedProjectList() {
   return (
-    <ul className="flex flex-col items-center gap-16 py-16">
+    <ul className="flex flex-col items-center gap-16 px-8 py-16">
       {FEATURED_PROJECTS.map((p, i) => (
         <FeaturedProject key={i} project={p} />
       ))}
