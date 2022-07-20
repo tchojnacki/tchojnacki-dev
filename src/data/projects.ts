@@ -69,7 +69,7 @@ export const PROJECTS = {
     name: 'FANDOM-Monaco',
     tags: [TAGS.SOLO, TAGS.DEPRECATED],
     description: 'Browser extension that integrates Monaco Editor with Fandom.',
-    parts: [{ name: 'Extension', technologies: [] }],
+    parts: [{ name: 'Extension', technologies: [T.JAVASCRIPT, T.CSS, T.HTML] }],
   },
   SCRIPTINGTANKS: {
     name: 'Tanks',
@@ -115,4 +115,6 @@ export const FEATURED_PROJECTS = [
   PROJECTS.CODERSCAMPFULLSTACK,
   PROJECTS.SCRIPTINGTANKS,
   PROJECTS.TCHOJNACKIDEV,
+  PROJECTS.SPOTIFYMOSAIC,
+  PROJECTS.FANDOMMONACO,
 ] as const
