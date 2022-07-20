@@ -9,12 +9,10 @@ export class Technology {
 
   public static readonly LIST = {
     CSS: new Technology(ICONS.siCss3, 'CSS'),
-    DART: new Technology(ICONS.siDart),
     DOCKER: new Technology(ICONS.siDocker),
     ESLINT: new Technology(ICONS.siEslint),
     EXPRESS: new Technology(ICONS.siExpress),
     FASTAPI: new Technology(ICONS.siFastapi),
-    FLUTTER: new Technology(ICONS.siFlutter),
     FIGMA: new Technology(ICONS.siFigma),
     GIT: new Technology(ICONS.siGit),
     GITHUB: new Technology(ICONS.siGithub),
@@ -25,7 +23,6 @@ export class Technology {
     JAVA: new Technology(ICONS.siOpenjdk, 'Java'),
     JAVASCRIPT: new Technology(ICONS.siJavascript),
     JEST: new Technology(ICONS.siJest),
-    KOTLIN: new Technology(ICONS.siKotlin),
     LODASH: new Technology(ICONS.siLodash),
     MONGO: new Technology(ICONS.siMongodb),
     MUI: new Technology(ICONS.siMui),
