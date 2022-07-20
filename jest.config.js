@@ -14,6 +14,7 @@ const customJestConfig = {
   setupFiles: ['ResizeObserver', 'showModal', 'watchMedia'].map(
     file => `<rootDir>/tests/mocks/${file}.mock.ts`
   ),
+  coveragePathIgnorePatterns: ['/index.tsx?$'],
 }
 
 module.exports = createJestConfig(customJestConfig)

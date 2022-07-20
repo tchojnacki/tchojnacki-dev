@@ -1,17 +1,18 @@
 import { CSSProperties } from 'react'
 
 import { SimpleIconSvg } from 'components'
-import { TechnologyDefinition } from 'data'
+import { Technology } from 'data'
 
 export interface SkillCardProps {
-  skill: Omit<TechnologyDefinition, 'type'>
+  skill: Technology
   size?: number
 }
 
 export function SkillCard({ skill, size = 1 }: SkillCardProps) {
   return (
     <li
-      className="col-[span_var(--skill-size)] row-[span_var(--skill-size)] flex flex-col items-center gap-2 rounded-xl bg-slate-12 dark:bg-indigo-2 p-3 pt-5"
+      className="col-[span_var(--skill-size)] row-[span_var(--skill-size)] flex flex-col items-center gap-2 rounded-xl
+      bg-slate-12 dark:bg-indigo-2 p-3 pt-5 shadow-md shadow-indigo-2/25 dark:shadow-indigo-11/10"
       style={{ '--skill-size': size } as CSSProperties}
     >
       <SimpleIconSvg

@@ -1,9 +1,8 @@
 import { SimpleIconSvg } from 'components'
 import { SOCIAL_LINKS } from 'data'
 
-import { LinkButton } from './LinkButton'
+import { LinkButton, Wave } from '../common'
 import { TechSphere } from './TechSphere'
-import { Wave } from './Wave'
 import { WavingEmoji } from './WavingEmoji'
 
 export function Landing() {
@@ -35,7 +34,7 @@ export function Landing() {
         <TechSphere />
       </section>
       <div className="absolute bottom-0 h-[10vh] w-full lg:h-[20vh]">
-        <Wave />
+        <Wave path="fill-indigo-11 dark:fill-indigo-4" />
       </div>
     </main>
   )
