@@ -2,10 +2,10 @@ import clsx from 'clsx'
 import { Fragment } from 'react'
 
 import { SimpleIconSvg } from 'components'
-import { ProjectDefinition } from 'data'
+import { Project } from 'data'
 
 interface FeaturedProjectProps {
-  project: ProjectDefinition
+  project: Project
   flipped?: boolean
 }
 

@@ -2,56 +2,38 @@ import { Technology } from './technologies'
 
 const T = Technology.LIST
 
-interface ProjectTag {
-  displayName: string
-  backgroundColor: string
+class ProjectTag {
+  private constructor(
+    public readonly displayName: string,
+    public readonly backgroundColor: string
+  ) {}
+
+  public static readonly SOLO = new ProjectTag('Solo Project', '#067a6e')
+  public static readonly TEAM = new ProjectTag('Team Project', '#9c2bac')
+  public static readonly DEPRECATED = new ProjectTag('DEPRECATED', '#ca3214')
 }
 
-interface ProjectPart {
-  name: string
-  technologies: readonly Technology[]
+class ProjectPart {
+  public constructor(public readonly name: string, public readonly technologies: Technology[]) {}
 }
 
-export interface ProjectDefinition {
-  name: string
-  tags: readonly ProjectTag[]
-  description: string
-  parts: readonly ProjectPart[]
-}
+export class Project {
+  public constructor(
+    public readonly name: string,
+    public readonly tags: readonly ProjectTag[],
+    public readonly description: string,
+    public readonly parts: readonly ProjectPart[]
+  ) {}
 
-const TAGS = {
-  SOLO: {
-    displayName: 'Solo Project',
-    backgroundColor: '#067a6e',
-  },
-  TEAM: {
-    displayName: 'Team Project',
-    backgroundColor: '#9c2bac',
-  },
-  DEPRECATED: {
-    displayName: 'Deprecated',
-    backgroundColor: '#ca3214',
-  },
-} as const
-
-export const PROJECTS = {
-  CODERSCAMPFULLSTACK: {
-    name: 'JeszCoChcesz',
-    tags: [TAGS.TEAM],
-    description:
+  public static readonly LIST = {
+    CODERSCAMPFULLSTACK: new Project(
+      'JeszCoChcesz',
+      [ProjectTag.TEAM],
       'Full-stack web application, online food delivery system connecting restaurants with health-conscious users.',
-    parts: [
-      {
-        name: 'Front-end',
-        technologies: [T.REACT, T.TYPESCRIPT, T.MUI, T.IMMER, T.LODASH, T.HTML],
-      },
-      {
-        name: 'Back-end',
-        technologies: [T.NEST, T.TYPESCRIPT, T.MONGO, T.EXPRESS, T.PASSPORT, T.NODE],
-      },
-      {
-        name: 'Tools',
-        technologies: [
+      [
+        new ProjectPart('Front End', [T.REACT, T.TYPESCRIPT, T.MUI, T.IMMER, T.LODASH, T.HTML]),
+        new ProjectPart('Back End', [T.NEST, T.TYPESCRIPT, T.MONGO, T.EXPRESS, T.PASSPORT, T.NODE]),
+        new ProjectPart('Tools', [
           T.JEST,
           T.SWAGGER,
           T.DOCKER,
@@ -63,60 +45,56 @@ export const PROJECTS = {
           T.FIGMA,
           T.PRETTIER,
           T.GITHUB,
-        ],
-      },
-    ],
-  },
-  FANDOMMONACO: {
-    name: 'FANDOM-Monaco',
-    tags: [TAGS.SOLO, TAGS.DEPRECATED],
-    description: 'Browser extension that integrates Monaco Editor with Fandom.',
-    parts: [{ name: 'Extension', technologies: [T.JAVASCRIPT, T.CSS, T.HTML] }],
-  },
-  SCRIPTINGTANKS: {
-    name: 'Tanks',
-    tags: [TAGS.SOLO],
-    description:
+        ]),
+      ]
+    ),
+    FANDOMMONACO: new Project(
+      'FANDOM-Monaco',
+      [ProjectTag.SOLO, ProjectTag.DEPRECATED],
+      'Browser extension that integrates Monaco Editor with Fandom.',
+      [new ProjectPart('Extension', [T.JAVASCRIPT, T.CSS, T.HTML])]
+    ),
+    SCRIPTINGTANKS: new Project(
+      'Tanks',
+      [ProjectTag.SOLO],
       'Online real-time multiplayer game. Final project for the Script Languages university course.',
-    parts: [
-      {
-        name: 'Front-end',
-        technologies: [T.THREE, T.REACT, T.IMMER, T.TYPESCRIPT, T.LODASH, T.HTML],
-      },
-      { name: 'Back-end', technologies: [T.PYTHON, T.FASTAPI, T.GUNICORN] },
-      {
-        name: 'Tools',
-        technologies: [T.DOCKER, T.VITE, T.HEROKU, T.NPM, T.GIT, T.PRETTIER, T.GITHUB],
-      },
-    ],
-  },
-  SPOTIFYMOSAIC: {
-    name: 'Mosaics for Spotify',
-    tags: [TAGS.SOLO],
-    description: 'A CLI tool for generating Spotify playlist covers using album artworks.',
-    parts: [{ name: 'CLI', technologies: [T.RUST] }],
-  },
-  TCHOJNACKIDEV: {
-    name: 'tchojnacki.dev',
-    tags: [TAGS.SOLO],
-    description: 'Website acting as my personal portfolio and blog.',
-    parts: [
-      {
-        name: 'Website',
-        technologies: [T.NEXT, T.REACT, T.TAILWIND, T.TYPESCRIPT, T.LODASH, T.HTML],
-      },
-      {
-        name: 'Tools',
-        technologies: [T.JEST, T.GIT, T.VERCEL, T.ESLINT, T.PRETTIER, T.FIGMA, T.NPM, T.GITHUB],
-      },
-    ],
-  },
-} as const
+      [
+        new ProjectPart('Front End', [T.THREE, T.REACT, T.IMMER, T.TYPESCRIPT, T.LODASH, T.HTML]),
+        new ProjectPart('Back End', [T.PYTHON, T.FASTAPI, T.GUNICORN]),
+        new ProjectPart('Tools', [T.DOCKER, T.VITE, T.HEROKU, T.NPM, T.GIT, T.PRETTIER, T.GITHUB]),
+      ]
+    ),
+    SPOTIFYMOSAIC: new Project(
+      'Mosaics for Spotify',
+      [ProjectTag.SOLO],
+      'A CLI tool for generating Spotify playlist covers using album artworks.',
+      [new ProjectPart('CLI', [T.RUST])]
+    ),
+    TCHOJNACKIDEV: new Project(
+      'tchojnacki.dev',
+      [ProjectTag.SOLO],
+      'Website acting as my personal portfolio and blog.',
+      [
+        new ProjectPart('Website', [T.NEXT, T.REACT, T.TAILWIND, T.TYPESCRIPT, T.LODASH, T.HTML]),
+        new ProjectPart('Tools', [
+          T.JEST,
+          T.GIT,
+          T.VERCEL,
+          T.ESLINT,
+          T.PRETTIER,
+          T.FIGMA,
+          T.NPM,
+          T.GITHUB,
+        ]),
+      ]
+    ),
+  } as const
 
-export const FEATURED_PROJECTS = [
-  PROJECTS.CODERSCAMPFULLSTACK,
-  PROJECTS.SCRIPTINGTANKS,
-  PROJECTS.TCHOJNACKIDEV,
-  PROJECTS.SPOTIFYMOSAIC,
-  PROJECTS.FANDOMMONACO,
-] as const
+  public static readonly FEATURED = [
+    Project.LIST.CODERSCAMPFULLSTACK,
+    Project.LIST.SCRIPTINGTANKS,
+    Project.LIST.TCHOJNACKIDEV,
+    Project.LIST.SPOTIFYMOSAIC,
+    Project.LIST.FANDOMMONACO,
+  ] as const
+}

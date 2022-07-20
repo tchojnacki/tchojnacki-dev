@@ -7,7 +7,7 @@ export class Technology {
     public readonly name: string = icon.title
   ) {}
 
-  public static LIST = {
+  public static readonly LIST = {
     CSS: new Technology(ICONS.siCss3, 'CSS'),
     DART: new Technology(ICONS.siDart),
     DOCKER: new Technology(ICONS.siDocker),
