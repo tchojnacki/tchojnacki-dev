@@ -11,11 +11,15 @@ interface FeaturedProjectProps {
 
 export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
   return (
-    <li className="max-w-[64rem] grid lg:grid-cols-8 lg:grid-rows-1 items-center">
+    <li
+      className="max-w-[64rem] grid lg:grid-cols-8 lg:grid-rows-1 items-center rounded-3xl
+      shadow-md shadow-indigo-2/25 dark:shadow-indigo-11/10 lg:shadow-none"
+    >
       <div
         className={clsx(
           flipped ? 'lg:col-start-4' : 'lg:col-start-1',
-          'lg:col-span-5 lg:row-span-full rounded-t-3xl lg:rounded-b-3xl overflow-hidden'
+          'lg:col-span-5 lg:row-span-full rounded-t-3xl lg:rounded-b-3xl overflow-hidden',
+          'shadow-none lg:shadow-md lg:shadow-indigo-2/25 dark:lg:shadow-indigo-11/10'
         )}
       >
         <picture>
@@ -27,7 +31,7 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
           flipped
             ? 'lg:col-start-1 bg-gradient-to-l lg:rounded-bl-none lg:rounded-tr-3xl'
             : 'lg:col-start-4 bg-gradient-to-r lg:rounded-br-none lg:rounded-tl-3xl',
-          'lg:col-span-5 lg:row-span-full rounded-b-3xl p-8 flex flex-col overflow-hidden',
+          'lg:col-span-5 lg:row-span-full rounded-b-3xl p-8 flex flex-col overflow-hidden z-[1]',
           'from-indigo-11 to-indigo-11 lg:to-slate-12',
           'dark:from-indigo-4 dark:to-indigo-4 dark:lg:to-indigo-2'
         )}
