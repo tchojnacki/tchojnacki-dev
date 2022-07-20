@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { Fragment } from 'react'
 
 import { SimpleIconSvg } from 'components'
@@ -5,25 +6,31 @@ import { ProjectDefinition } from 'data'
 
 interface FeaturedProjectProps {
   project: ProjectDefinition
+  flipped?: boolean
 }
 
-export function FeaturedProject({ project }: FeaturedProjectProps) {
+export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
   return (
     <li className="max-w-[64rem] grid lg:grid-cols-8 lg:grid-rows-1 items-center">
       <div
-        className="lg:col-start-1 lg:col-span-5 lg:row-span-full
-        rounded-t-3xl lg:rounded-b-3xl overflow-hidden"
+        className={clsx(
+          flipped ? 'lg:col-start-4' : 'lg:col-start-1',
+          'lg:col-span-5 lg:row-span-full rounded-t-3xl lg:rounded-b-3xl overflow-hidden'
+        )}
       >
         <picture>
           <img alt={project.name} src="/static/projects/placeholder.png" />
         </picture>
       </div>
       <div
-        className="lg:col-start-4 lg:col-span-5 lg:row-span-full
-        rounded-b-3xl lg:rounded-br-none lg:rounded-tl-3xl
-        bg-gradient-to-r from-indigo-11 to-indigo-11 lg:to-slate-12
-      dark:from-indigo-4 dark:to-indigo-4 dark:lg:to-indigo-2
-        p-8 flex flex-col overflow-hidden"
+        className={clsx(
+          flipped
+            ? 'lg:col-start-1 bg-gradient-to-l lg:rounded-bl-none lg:rounded-tr-3xl'
+            : 'lg:col-start-4 bg-gradient-to-r lg:rounded-br-none lg:rounded-tl-3xl',
+          'lg:col-span-5 lg:row-span-full rounded-b-3xl p-8 flex flex-col overflow-hidden',
+          'from-indigo-11 to-indigo-11 lg:to-slate-12',
+          'dark:from-indigo-4 dark:to-indigo-4 dark:lg:to-indigo-2'
+        )}
       >
         <h4 className="flex lg:items-center mb-5 gap-4 flex-col lg:flex-row">
           <span className="text-3xl font-bold mr-auto">{project.name}</span>

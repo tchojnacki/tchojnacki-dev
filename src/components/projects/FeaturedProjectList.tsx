@@ -2,11 +2,15 @@ import { FEATURED_PROJECTS, PROJECTS as P } from 'data'
 
 import { FeaturedProject } from './FeaturedProject'
 
-export function FeaturedProjectList() {
+interface FeaturedProjectListProps {
+  length?: number
+}
+
+export function FeaturedProjectList({ length = 3 }: FeaturedProjectListProps) {
   return (
     <ul className="flex flex-col items-center gap-16 px-8 py-16">
-      {FEATURED_PROJECTS.map((p, i) => (
-        <FeaturedProject key={i} project={p} />
+      {FEATURED_PROJECTS.slice(0, length).map((p, i) => (
+        <FeaturedProject key={i} project={p} flipped={i % 2 === 1} />
       ))}
     </ul>
   )
