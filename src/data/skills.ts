@@ -1,6 +1,8 @@
-import { TECHNOLOGIES as T, TechnologyDefinition } from './technologies'
+import { Technology } from './technologies'
 
-type SectionItems = [TechnologyDefinition, number][]
+const T = Technology.LIST
+
+type SectionItems = [Technology, number][]
 
 export const SPHERE_SKILL_ARRAY = [
   T.TYPESCRIPT,

@@ -1,10 +1,10 @@
 import { CSSProperties } from 'react'
 
 import { SimpleIconSvg } from 'components'
-import { TechnologyDefinition } from 'data'
+import { Technology } from 'data'
 
 export interface SkillCardProps {
-  skill: Omit<TechnologyDefinition, 'type'>
+  skill: Technology
   size?: number
 }
 

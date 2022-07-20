@@ -1,4 +1,6 @@
-import { TECHNOLOGIES as T, TechnologyDefinition } from './technologies'
+import { Technology } from './technologies'
+
+const T = Technology.LIST
 
 interface ProjectTag {
   displayName: string
@@ -7,7 +9,7 @@ interface ProjectTag {
 
 interface ProjectPart {
   name: string
-  technologies: readonly TechnologyDefinition[]
+  technologies: readonly Technology[]
 }
 
 export interface ProjectDefinition {
@@ -79,9 +81,9 @@ export const PROJECTS = {
     parts: [
       {
         name: 'Front-end',
-        technologies: [T.THREEJS, T.REACT, T.IMMER, T.TYPESCRIPT, T.LODASH, T.HTML],
+        technologies: [T.THREE, T.REACT, T.IMMER, T.TYPESCRIPT, T.LODASH, T.HTML],
       },
-      { name: 'Back-end', technologies: [T.PYTHON, T.FASTAPI, T.UVICORN] },
+      { name: 'Back-end', technologies: [T.PYTHON, T.FASTAPI, T.GUNICORN] },
       {
         name: 'Tools',
         technologies: [T.DOCKER, T.VITE, T.HEROKU, T.NPM, T.GIT, T.PRETTIER, T.GITHUB],
