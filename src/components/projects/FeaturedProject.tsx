@@ -19,7 +19,7 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
         )}
       >
         <picture>
-          <img alt={project.name} src="/static/projects/placeholder.png" />
+          <img alt={project.name} src={`/static/projects/${project.image ?? 'placeholder'}.png`} />
         </picture>
       </div>
       <div

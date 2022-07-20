@@ -20,6 +20,7 @@ class ProjectPart {
 export class Project {
   public constructor(
     public readonly name: string,
+    public readonly image: string | null,
     public readonly tags: readonly ProjectTag[],
     public readonly description: string,
     public readonly parts: readonly ProjectPart[]
@@ -28,6 +29,7 @@ export class Project {
   public static readonly LIST = {
     CODERSCAMPFULLSTACK: new Project(
       'JeszCoChcesz',
+      'coderscampfullstack',
       [ProjectTag.TEAM],
       'Full-stack web application, online food delivery system connecting restaurants with health-conscious users.',
       [
@@ -50,12 +52,14 @@ export class Project {
     ),
     FANDOMMONACO: new Project(
       'FANDOM-Monaco',
+      null,
       [ProjectTag.SOLO, ProjectTag.DEPRECATED],
       'Browser extension that integrates Monaco Editor with Fandom.',
       [new ProjectPart('Extension', [T.JAVASCRIPT, T.CSS, T.HTML])]
     ),
     SCRIPTINGTANKS: new Project(
       'Tanks',
+      'scriptingtanks',
       [ProjectTag.SOLO],
       'Online real-time multiplayer game. Final project for the Script Languages university course.',
       [
@@ -66,12 +70,14 @@ export class Project {
     ),
     SPOTIFYMOSAIC: new Project(
       'Mosaics for Spotify',
+      null,
       [ProjectTag.SOLO],
       'A CLI tool for generating Spotify playlist covers using album artworks.',
       [new ProjectPart('CLI', [T.RUST])]
     ),
     TCHOJNACKIDEV: new Project(
       'tchojnacki.dev',
+      'tchojnackidev',
       [ProjectTag.SOLO],
       'Website acting as my personal portfolio and blog.',
       [
