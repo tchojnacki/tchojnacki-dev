@@ -23,7 +23,13 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
           'shadow-none lg:shadow-md lg:shadow-indigo-2/25 dark:lg:shadow-indigo-11/10'
         )}
       >
-        <Image layout="responsive" src={project.image} placeholder="blur" alt={project.name} />
+        <Image
+          alt={project.name}
+          layout="responsive"
+          src={project.image}
+          sizes="(max-width: 1024px) 100vw, 1024px"
+          placeholder="blur"
+        />
       </div>
       <div
         className={clsx(
