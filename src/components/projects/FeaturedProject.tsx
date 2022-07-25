@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import Image from 'next/image'
 import { Fragment } from 'react'
 
 import { SimpleIconSvg } from 'components'
@@ -22,9 +23,7 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
           'shadow-none lg:shadow-md lg:shadow-indigo-2/25 dark:lg:shadow-indigo-11/10'
         )}
       >
-        <picture>
-          <img alt={project.name} src={`/static/projects/${project.image ?? 'placeholder'}.png`} />
-        </picture>
+        <Image layout="responsive" src={project.image} placeholder="blur" alt={project.name} />
       </div>
       <div
         className={clsx(
