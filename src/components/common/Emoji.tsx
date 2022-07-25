@@ -2,9 +2,10 @@ import twemoji from 'twemoji'
 
 interface EmojiProps {
   children: string
+  size?: number
 }
 
-export function Emoji({ children }: EmojiProps) {
+export function Emoji({ children, size }: EmojiProps) {
   return (
     <span
       dangerouslySetInnerHTML={{
@@ -12,6 +13,9 @@ export function Emoji({ children }: EmojiProps) {
           folder: 'svg',
           ext: '.svg',
           className: 'inline-block h-[1em] align-[-0.125em]',
+          attributes: size
+            ? () => ({ width: size.toString(), height: size.toString() })
+            : () => ({}),
         }),
       }}
     />
