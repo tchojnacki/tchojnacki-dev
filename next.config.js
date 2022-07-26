@@ -1,7 +1,7 @@
 // @ts-check
 
 /** @type {import('next').NextConfig} */
-const defaultConfig = {
+const baseConfig = {
   reactStrictMode: true,
 }
 
@@ -9,4 +9,4 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
-module.exports = withBundleAnalyzer(defaultConfig)
+module.exports = withBundleAnalyzer(baseConfig)
