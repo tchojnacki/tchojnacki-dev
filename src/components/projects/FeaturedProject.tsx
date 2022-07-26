@@ -18,6 +18,7 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
     >
       <div
         className={clsx(
+          'animate-enteronload motion-reduce:animate-none onenter-scaling',
           flipped ? 'lg:col-start-4' : 'lg:col-start-1',
           'lg:col-span-5 lg:row-span-full rounded-t-3xl lg:rounded-b-3xl overflow-hidden',
           'shadow-none lg:shadow-md lg:shadow-indigo-2/25 dark:lg:shadow-indigo-11/10'
@@ -33,9 +34,10 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
       </div>
       <div
         className={clsx(
+          'animate-enteronload motion-reduce:animate-none',
           flipped
-            ? 'lg:col-start-1 bg-gradient-to-l lg:rounded-bl-none lg:rounded-tr-3xl'
-            : 'lg:col-start-4 bg-gradient-to-r lg:rounded-br-none lg:rounded-tl-3xl',
+            ? 'lg:col-start-1 bg-gradient-to-l lg:rounded-bl-none lg:rounded-tr-3xl onenter-fromleft'
+            : 'lg:col-start-4 bg-gradient-to-r lg:rounded-br-none lg:rounded-tl-3xl onenter-fromright',
           'lg:col-span-5 lg:row-span-full rounded-b-3xl p-8 flex flex-col z-[1]',
           'from-indigo-11 to-indigo-11 lg:to-slate-12',
           'dark:from-indigo-4 dark:to-indigo-4 dark:lg:to-indigo-2'
