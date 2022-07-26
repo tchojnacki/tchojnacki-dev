@@ -9,8 +9,8 @@ export function Wave({ path, svg }: WaveProps) {
   return (
     <svg
       aria-hidden="true"
-      className={clsx('h-full w-full', svg)}
-      viewBox="0 0 1280 185"
+      className={clsx('w-full max-h-64', svg)}
+      viewBox="0 0 1280 180"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="none"
     >

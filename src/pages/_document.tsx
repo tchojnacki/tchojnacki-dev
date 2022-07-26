@@ -10,7 +10,7 @@ export default function Document() {
           rel="stylesheet"
         />
       </Head>
-      <body>
+      <body className="bg-indigo-4">
         <Main />
         <NextScript />
       </body>
