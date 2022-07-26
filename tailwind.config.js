@@ -28,7 +28,7 @@ module.exports = {
       bold: 600,
     },
     gridTemplateAreas: {
-      'landing-desktop': ['text sphere', '. sphere', '. .'],
+      'landing-desktop': ['. text sphere .', '. . sphere .', '. . . .'],
       'landing-mobile': ['text', 'sphere', '.'],
     },
     keyframes: {

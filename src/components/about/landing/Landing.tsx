@@ -8,8 +8,9 @@ import { WavingEmoji } from './WavingEmoji'
 export function Landing() {
   return (
     <main
-      className="relative grid min-h-[calc(100vh-theme(spacing.nav-height))] grid-cols-1 grid-rows-[repeat(3,auto)]
-      place-items-center overflow-x-hidden grid-areas-landing-mobile lg:grid-cols-2 lg:grid-rows-[1fr_10vh_10vh]
+      className="relative grid min-h-[calc(min(100vh,96rem)-theme(spacing.nav-height))] grid-cols-1
+      grid-rows-[repeat(3,auto)] place-items-center overflow-x-hidden grid-areas-landing-mobile
+      lg:grid-cols-[minmax(0,1fr)_repeat(2,minmax(0,48rem))_minmax(0,1fr)] lg:grid-rows-[1fr_repeat(2,10vh)]
       lg:grid-areas-landing-desktop"
     >
       <section
@@ -44,7 +45,7 @@ export function Landing() {
       >
         <TechSphere />
       </section>
-      <div className="lg:absolute bottom-0 w-full lg:h-[20vh] flex flex-col justify-end">
+      <div className="lg:absolute bottom-0 w-full h-full lg:h-[20vh] flex flex-col justify-end">
         <Wave path="fill-indigo-11 dark:fill-indigo-4" />
       </div>
     </main>

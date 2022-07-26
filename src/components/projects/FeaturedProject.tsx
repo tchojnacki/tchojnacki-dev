@@ -13,7 +13,7 @@ interface FeaturedProjectProps {
 export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
   return (
     <li
-      className="max-w-[64rem] grid lg:grid-cols-8 lg:grid-rows-1 items-center rounded-3xl
+      className="max-w-[64rem] w-full grid lg:grid-cols-8 lg:grid-rows-1 items-center rounded-3xl
       shadow-md shadow-indigo-2/25 dark:shadow-indigo-11/10 lg:shadow-none"
     >
       <div
