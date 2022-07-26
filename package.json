@@ -8,6 +8,7 @@
     "lint": "next lint",
     "test": "jest --coverage"
   },
+  "sideEffects": false,
   "dependencies": {
     "clsx": "^1.1.1",
     "lodash": "^4.17.21",
