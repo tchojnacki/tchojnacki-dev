@@ -10,11 +10,14 @@ export default function App({ Component, pageProps }: AppProps) {
   const toggleTheme = () => setTheme(prev => (prev === 'dark' ? 'light' : 'dark'))
 
   return (
-    <div className={clsx({ dark: theme === 'dark' }, 'overflow-x-hidden')}>
-      <div className="bg-slate-12 text-slate-3 dark:bg-indigo-2 dark:text-slate-12">
-        <Nav currentTheme={theme} toggleTheme={toggleTheme} />
-        <Component {...pageProps} />
-      </div>
+    <div
+      className={clsx(
+        theme === 'dark' ? 'dark bg-indigo-2 text-slate-12' : 'bg-slate-12 text-slate-3',
+        'overflow-x-hidden'
+      )}
+    >
+      <Nav currentTheme={theme} toggleTheme={toggleTheme} />
+      <Component {...pageProps} />
     </div>
   )
 }
