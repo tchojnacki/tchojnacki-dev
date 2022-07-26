@@ -1,6 +1,8 @@
 {
   "name": "tchojnacki-dev",
   "private": true,
+  "sideEffects": false,
+  "browserslist": [">0.5%", "last 2 versions", "not dead", "not op_mini all"],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -8,7 +10,6 @@
     "lint": "next lint",
     "test": "jest --coverage"
   },
-  "sideEffects": false,
   "dependencies": {
     "clsx": "^1.2.1",
     "lodash": "^4.17.21",
