@@ -1,4 +1,5 @@
 import { StaticImageData } from 'next/image'
+import { Api, BrandGithub, Download, ExternalLink, Icon } from 'tabler-icons-react'
 
 import coderscampfullstackImg from '../media/projects/coderscampfullstack.png'
 import placeholderImg from '../media/projects/placeholder.png'
@@ -14,13 +15,30 @@ class ProjectTag {
     public readonly backgroundColor: string
   ) {}
 
-  public static readonly SOLO = new ProjectTag('Solo Project', '#067a6e')
-  public static readonly TEAM = new ProjectTag('Team Project', '#9c2bac')
-  public static readonly DEPRECATED = new ProjectTag('DEPRECATED', '#ca3214')
+  public static readonly Solo = new ProjectTag('Solo Project', '#067a6e')
+  public static readonly Group = new ProjectTag('Group Project', '#9c2bac')
+  public static readonly Deprecated = new ProjectTag('DEPRECATED', '#ca3214')
 }
 
 class ProjectPart {
   public constructor(public readonly name: string, public readonly technologies: Technology[]) {}
+}
+
+class ProjectLink {
+  private constructor(
+    public readonly link: string,
+    public readonly displayName: string,
+    public readonly IconComponent: Icon
+  ) {}
+
+  public static readonly GitHub = (projectName: string, owner: string = 'tchojnacki') =>
+    new ProjectLink(`https://github.com/${owner}/${projectName}`, 'Source', BrandGithub)
+
+  public static readonly Deploy = (link: string) => new ProjectLink(link, 'Visit', ExternalLink)
+
+  public static readonly Download = (link: string) => new ProjectLink(link, 'Download', Download)
+
+  public static readonly Swagger = (link: string) => new ProjectLink(link, 'Swagger', Api)
 }
 
 export class Project {
@@ -28,6 +46,7 @@ export class Project {
     public readonly name: string,
     public readonly image: StaticImageData,
     public readonly tags: readonly ProjectTag[],
+    public readonly links: readonly ProjectLink[],
     public readonly description: string,
     public readonly parts: readonly ProjectPart[]
   ) {}
@@ -36,7 +55,12 @@ export class Project {
     CODERSCAMPFULLSTACK: new Project(
       'JeszCoChcesz',
       coderscampfullstackImg,
-      [ProjectTag.TEAM],
+      [ProjectTag.Group],
+      [
+        ProjectLink.Deploy('https://coderscamp2021-hk-fullstack.herokuapp.com'),
+        ProjectLink.Swagger('https://coderscamp2021-hk-fullstack.herokuapp.com/api'),
+        ProjectLink.GitHub('CodersCamp2021.Project.Fullstack', 'CodersCamp2021-HK'),
+      ],
       'Full-stack web application, online food delivery system connecting restaurants with health-conscious users.',
       [
         new ProjectPart('Front End', [T.REACT, T.TYPESCRIPT, T.MUI, T.IMMER, T.LODASH, T.HTML]),
@@ -59,14 +83,22 @@ export class Project {
     FANDOMMONACO: new Project(
       'FANDOM-Monaco',
       placeholderImg,
-      [ProjectTag.SOLO, ProjectTag.DEPRECATED],
+      [ProjectTag.Solo, ProjectTag.Deprecated],
+      [
+        ProjectLink.Download('https://github.com/tchojnacki/FANDOM-Monaco/releases/latest'),
+        ProjectLink.GitHub('FANDOM-Monaco'),
+      ],
       'Browser extension that integrates Monaco Editor with Fandom.',
       [new ProjectPart('Extension', [T.JAVASCRIPT, T.CSS, T.HTML])]
     ),
     SCRIPTINGTANKS: new Project(
       'Tanks',
       scriptingtanksImg,
-      [ProjectTag.SOLO],
+      [ProjectTag.Solo],
+      [
+        ProjectLink.Deploy('https://scripting-tanks.herokuapp.com'),
+        ProjectLink.GitHub('scripting-tanks'),
+      ],
       'Online real-time multiplayer game. Final project for the Script Languages university course.',
       [
         new ProjectPart('Front End', [T.THREE, T.REACT, T.IMMER, T.TYPESCRIPT, T.LODASH, T.HTML]),
@@ -77,14 +109,19 @@ export class Project {
     SPOTIFYMOSAIC: new Project(
       'Mosaics for Spotify',
       placeholderImg,
-      [ProjectTag.SOLO],
+      [ProjectTag.Solo],
+      [
+        ProjectLink.Download('https://crates.io/crates/spotifymosaic'),
+        ProjectLink.GitHub('spotifymosaic'),
+      ],
       'A CLI tool for generating Spotify playlist covers using album artworks.',
       [new ProjectPart('CLI', [T.RUST])]
     ),
     TCHOJNACKIDEV: new Project(
       'tchojnacki.dev',
       tchojnackidevImg,
-      [ProjectTag.SOLO],
+      [ProjectTag.Solo],
+      [ProjectLink.Deploy('https://tchojnacki.dev/'), ProjectLink.GitHub('tchojnacki-dev')],
       'Website acting as my personal portfolio and blog.',
       [
         new ProjectPart('Website', [T.NEXT, T.REACT, T.TAILWIND, T.TYPESCRIPT, T.LODASH, T.HTML]),

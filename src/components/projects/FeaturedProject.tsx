@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import { Fragment } from 'react'
+import { BrandGithub, ExternalLink } from 'tabler-icons-react'
 
 import { SimpleIconSvg } from 'components'
 import { Project } from 'data'
@@ -19,7 +20,7 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
     >
       <div
         className={clsx(
-          'lg:animate-enteronload lg:motion-reduce:animate-none lg:onenter-scaling',
+          'lg:animate-enteronload lg:motion-reduce:animate-none lg:onenter-scaling relative',
           flipped ? 'lg:col-start-4' : 'lg:col-start-1',
           'lg:col-span-5 lg:row-span-full rounded-t-3xl lg:rounded-b-3xl overflow-hidden',
           'shadow-none lg:shadow-md lg:shadow-indigo-2/25 dark:lg:shadow-indigo-11/10'
@@ -32,6 +33,21 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
           sizes="(max-width: 1024px) 100vw, 1024px"
           placeholder="blur"
         />
+        <div className="absolute left-0 top-0 w-full h-full flex">
+          <ul className={clsx('p-4 inline-flex flex-col gap-2', flipped && 'ml-auto')}>
+            {project.links.map(({ displayName, IconComponent, link }) => (
+              <li key={displayName}>
+                <a
+                  href={link}
+                  className="flex gap-2 px-4 py-2 bg-indigo-8 text-slate-12 rounded-xl
+                  duration-200 hover:brightness-150"
+                >
+                  <IconComponent /> {displayName}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div
         className={clsx(
