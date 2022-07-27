@@ -23,7 +23,7 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
           flipped ? 'lg:col-start-4' : 'lg:col-start-1',
           'lg:col-span-5 lg:row-span-full rounded-t-3xl lg:rounded-b-3xl overflow-hidden',
           'shadow-none lg:shadow-md lg:shadow-indigo-2/25 dark:lg:shadow-indigo-11/10',
-          'peer duration-200 ease-in scale-100 lg:hover:scale-110'
+          'peer duration-200 ease-in scale-100 lg:hover:scale-105'
         )}
       >
         <Image
@@ -65,15 +65,24 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
         <h4 className="flex lg:items-center mb-5 gap-4 flex-col lg:flex-row">
           <span className="text-3xl font-bold mr-auto">{project.name}</span>
           <ul className="flex gap-2">
-            {project.tags.map(({ displayName, backgroundColor }) => (
-              <li
-                key={displayName}
-                style={{ backgroundColor }}
-                className="rounded-full px-3 text-slate-12 whitespace-nowrap"
-              >
-                {displayName}
-              </li>
-            ))}
+            {project.tags.map(({ displayName, backgroundColor, link }) => {
+              const props = {
+                style: { backgroundColor },
+                className: 'rounded-full px-3 text-slate-12 whitespace-nowrap block',
+              }
+
+              return link ? (
+                <li key={displayName}>
+                  <a href={link} {...props}>
+                    {displayName}
+                  </a>
+                </li>
+              ) : (
+                <li key={displayName} {...props}>
+                  {displayName}
+                </li>
+              )
+            })}
           </ul>
         </h4>
         <p>{project.description}</p>

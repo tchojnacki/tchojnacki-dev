@@ -12,11 +12,15 @@ const T = Technology.LIST
 class ProjectTag {
   private constructor(
     public readonly displayName: string,
-    public readonly backgroundColor: string
+    public readonly backgroundColor: string,
+    public readonly link?: string
   ) {}
 
   public static readonly Solo = new ProjectTag('Solo Project', '#067a6e')
-  public static readonly Group = new ProjectTag('Group Project', '#9c2bac')
+
+  public static readonly Group = (project: string) =>
+    new ProjectTag('Group Project', '#9c2bac', `https://github.com/${project}/graphs/contributors`)
+
   public static readonly Deprecated = new ProjectTag('DEPRECATED', '#ca3214')
 }
 
@@ -55,7 +59,7 @@ export class Project {
     CODERSCAMPFULLSTACK: new Project(
       'JeszCoChcesz',
       coderscampfullstackImg,
-      [ProjectTag.Group],
+      [ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Project.Fullstack')],
       [
         ProjectLink.Deploy('https://coderscamp2021-hk-fullstack.herokuapp.com'),
         ProjectLink.Swagger('https://coderscamp2021-hk-fullstack.herokuapp.com/api'),
