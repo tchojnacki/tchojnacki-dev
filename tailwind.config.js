@@ -57,7 +57,7 @@ module.exports = {
       none: 'none',
       errshake: 'errshake 200ms 600ms',
       emojiwave: 'emojiwave 1s ease-in-out',
-      enteronload: 'enteronload 400ms ease-in forwards',
+      enteronload: 'enteronload 500ms ease-out',
     },
     extend: {
       spacing: {
