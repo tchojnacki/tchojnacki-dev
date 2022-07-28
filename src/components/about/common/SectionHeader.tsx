@@ -1,7 +1,16 @@
 interface SectionHeaderProps {
   children: string
+  slug?: string
 }
 
-export function SectionHeader({ children }: SectionHeaderProps) {
-  return <h3 className="text-center text-4xl font-bold capitalize">{children}</h3>
+const textToSlug = (text: string) => text.toLowerCase().replace(/\s+/g, '-')
+
+export function SectionHeader({ children, slug }: SectionHeaderProps) {
+  const id = slug ?? textToSlug(children)
+
+  return (
+    <h3 id={id} className="text-center text-4xl font-bold capitalize pt-4">
+      <a href={`#${id}`}>{children}</a>
+    </h3>
+  )
 }
