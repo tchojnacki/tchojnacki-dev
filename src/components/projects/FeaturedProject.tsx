@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import Image from 'next/image'
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
+import { ZoomCancel, ZoomIn } from 'tabler-icons-react'
 
 import { SimpleIconSvg } from 'components'
 import { Project } from 'data'
@@ -11,6 +12,11 @@ interface FeaturedProjectProps {
 }
 
 export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
+  const [isActive, setIsActive] = useState(false)
+  const toggleActive = () => setIsActive(prev => !prev)
+
+  const ZoomIcon = isActive ? ZoomCancel : ZoomIn
+
   return (
     <li
       className="max-w-[64rem] w-full grid lg:grid-cols-8 lg:grid-rows-1 items-center rounded-3xl
@@ -23,7 +29,8 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
           flipped ? 'lg:col-start-4' : 'lg:col-start-1',
           'lg:col-span-5 lg:row-span-full rounded-t-3xl lg:rounded-b-3xl overflow-hidden',
           'shadow-none lg:shadow-md lg:shadow-indigo-2/25 dark:lg:shadow-indigo-11/10',
-          'peer duration-200 ease-in scale-100 lg:hover:scale-105'
+          'duration-200 ease-in scale-100',
+          isActive && 'lg:scale-105'
         )}
       >
         <Image
@@ -33,14 +40,41 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
           sizes="(max-width: 1024px) 100vw, 1024px"
           placeholder="blur"
         />
-        <div className="absolute left-0 top-0 w-full h-full flex">
-          <ul className={clsx('p-4 inline-flex flex-col gap-2', flipped && 'lg:ml-auto')}>
+        <div
+          className={clsx(
+            'text-slate-12 absolute left-0 top-0 w-full h-full grid grid-rows-[1fr]',
+            flipped
+              ? 'grid-cols-[1fr_auto] grid-areas-featured-project-flipped'
+              : 'grid-cols-[auto_1fr] grid-areas-featured-project-normal'
+          )}
+        >
+          <button
+            aria-label="Zoom"
+            className={clsx(
+              'col-start-1 col-end-[-1] row-start-1 row-end-[-1]',
+              'flex justify-center items-center group duration-200',
+              !isActive && 'bg-pure-black/25'
+            )}
+            onClick={toggleActive}
+          >
+            <ZoomIcon
+              className={clsx(
+                'duration-200',
+                isActive ? 'opacity-0 group-hover:opacity-25' : 'opacity-25 group-hover:opacity-75'
+              )}
+              size={64}
+            />
+          </button>
+          <ul className="m-4 inline-flex flex-col gap-2 grid-in-buttons h-min">
             {project.links.map(({ displayName, IconComponent, link }) => (
               <li key={displayName}>
                 <a
                   href={link}
-                  className="flex gap-2 px-4 py-2 bg-indigo-8 text-slate-12 rounded-xl
-                  duration-200 hover:brightness-150"
+                  className={clsx(
+                    'flex gap-2 px-4 py-2 bg-indigo-8 rounded-xl',
+                    'duration-200 hover:brightness-150',
+                    isActive && 'opacity-25 hover:opacity-100'
+                  )}
                 >
                   <IconComponent /> {displayName}
                 </a>
@@ -59,7 +93,7 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
           'from-indigo-11 to-indigo-11 lg:to-slate-12',
           'dark:from-indigo-4 dark:to-indigo-4 dark:lg:to-indigo-2',
           'duration-200 ease-in translate-x-0',
-          flipped ? 'lg:peer-hover:-translate-x-1/4' : 'lg:peer-hover:translate-x-1/4'
+          isActive && (flipped ? 'lg:-translate-x-1/3' : 'lg:translate-x-1/3')
         )}
       >
         <h4 className="flex lg:items-center mb-5 gap-4 flex-col lg:flex-row">
