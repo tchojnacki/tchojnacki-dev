@@ -1,10 +1,11 @@
 import { StaticImageData } from 'next/image'
 import { Api, BrandGithub, Download, ExternalLink, Icon } from 'tabler-icons-react'
 
-import coderscampfullstackImg from '../media/projects/coderscampfullstack.png'
-import placeholderImg from '../media/projects/placeholder.png'
-import scriptingtanksImg from '../media/projects/scriptingtanks.png'
-import tchojnackidevImg from '../media/projects/tchojnackidev.png'
+import coderscampfullstackImage from '../media/projects/coderscampfullstack.png'
+import fandommonacoImage from '../media/projects/fandommonaco.png'
+import scriptingtanksImage from '../media/projects/scriptingtanks.png'
+import spotifymosaicImage from '../media/projects/spotifymosaic.png'
+import tchojnackidevImage from '../media/projects/tchojnackidev.png'
 import { Technology } from './technologies'
 
 const T = Technology.LIST
@@ -58,7 +59,7 @@ export class Project {
   public static readonly LIST = {
     CODERSCAMPFULLSTACK: new Project(
       'JeszCoChcesz',
-      coderscampfullstackImg,
+      coderscampfullstackImage,
       [ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Project.Fullstack')],
       [
         ProjectLink.Deploy('https://coderscamp2021-hk-fullstack.herokuapp.com'),
@@ -67,7 +68,14 @@ export class Project {
       ],
       'Full-stack web application, online food delivery system connecting restaurants with health-conscious users.',
       [
-        new ProjectPart('Front End', [T.REACT, T.TYPESCRIPT, T.MUI, T.IMMER, T.LODASH, T.HTML]),
+        new ProjectPart('Front End', [
+          T.REACT,
+          T.TYPESCRIPT,
+          T.MUI,
+          T.IMMER,
+          T.REACTROUTER,
+          T.LODASH,
+        ]),
         new ProjectPart('Back End', [T.NEST, T.TYPESCRIPT, T.MONGO, T.EXPRESS, T.PASSPORT, T.NODE]),
         new ProjectPart('Tools', [
           T.JEST,
@@ -86,49 +94,66 @@ export class Project {
     ),
     FANDOMMONACO: new Project(
       'FANDOM-Monaco',
-      placeholderImg,
+      fandommonacoImage,
       [ProjectTag.Solo, ProjectTag.Deprecated],
       [
         ProjectLink.Download('https://github.com/tchojnacki/FANDOM-Monaco/releases/latest'),
         ProjectLink.GitHub('FANDOM-Monaco'),
       ],
       'Browser extension that integrates Monaco Editor with Fandom.',
-      [new ProjectPart('Extension', [T.JAVASCRIPT, T.CSS, T.HTML])]
+      [new ProjectPart('Extension', [T.JAVASCRIPT, T.CSS, T.HTML, T.ESLINT])]
     ),
     SCRIPTINGTANKS: new Project(
       'Tanks',
-      scriptingtanksImg,
+      scriptingtanksImage,
       [ProjectTag.Solo],
       [
         ProjectLink.Deploy('https://scripting-tanks.herokuapp.com'),
         ProjectLink.GitHub('scripting-tanks'),
       ],
-      'Online real-time multiplayer game. Final project for the Script Languages university course.',
+      'Online real-time multiplayer game powered by WebSockets. Final project for the Script Languages university course.',
       [
-        new ProjectPart('Front End', [T.THREE, T.REACT, T.IMMER, T.TYPESCRIPT, T.LODASH, T.HTML]),
-        new ProjectPart('Back End', [T.PYTHON, T.FASTAPI, T.GUNICORN]),
-        new ProjectPart('Tools', [T.DOCKER, T.VITE, T.HEROKU, T.NPM, T.GIT, T.PRETTIER, T.GITHUB]),
+        new ProjectPart('Front End', [
+          T.THREE,
+          T.REACT,
+          T.MANTINE,
+          T.IMMER,
+          T.TYPESCRIPT,
+          T.LODASH,
+        ]),
+        new ProjectPart('Back End', [T.PYTHON, T.FASTAPI, T.GUNICORN, T.ATTRS]),
+        new ProjectPart('Tools', [
+          T.DOCKER,
+          T.VITE,
+          T.HEROKU,
+          T.NPM,
+          T.GIT,
+          T.ESLINT,
+          T.PYLINT,
+          T.PRETTIER,
+          T.GITHUB,
+        ]),
       ]
     ),
     SPOTIFYMOSAIC: new Project(
       'Mosaics for Spotify',
-      placeholderImg,
+      spotifymosaicImage,
       [ProjectTag.Solo],
       [
         ProjectLink.Download('https://crates.io/crates/spotifymosaic'),
         ProjectLink.GitHub('spotifymosaic'),
       ],
       'A CLI tool for generating Spotify playlist covers using album artworks.',
-      [new ProjectPart('CLI', [T.RUST])]
+      [new ProjectPart('CLI', [T.RUST, T.CLAP, T.GIT, T.GITHUB])]
     ),
     TCHOJNACKIDEV: new Project(
       'tchojnacki.dev',
-      tchojnackidevImg,
+      tchojnackidevImage,
       [ProjectTag.Solo],
       [ProjectLink.Deploy('https://tchojnacki.dev/'), ProjectLink.GitHub('tchojnacki-dev')],
       'Website acting as my personal portfolio and blog.',
       [
-        new ProjectPart('Website', [T.NEXT, T.REACT, T.TAILWIND, T.TYPESCRIPT, T.LODASH, T.HTML]),
+        new ProjectPart('Website', [T.NEXT, T.REACT, T.TAILWIND, T.TYPESCRIPT, T.LODASH]),
         new ProjectPart('Tools', [
           T.JEST,
           T.GIT,

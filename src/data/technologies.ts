@@ -3,11 +3,13 @@ import * as ICONS from 'simple-icons/icons'
 
 export class Technology {
   private constructor(
-    public readonly icon: SimpleIcon,
-    public readonly name: string = icon.title
+    public readonly icon: SimpleIcon | string,
+    public readonly name: string = typeof icon === 'string' ? icon : icon.title
   ) {}
 
   public static readonly LIST = {
+    ATTRS: new Technology('attrs'),
+    CLAP: new Technology('Clap'),
     CSS: new Technology(ICONS.siCss3, 'CSS'),
     DOCKER: new Technology(ICONS.siDocker),
     ESLINT: new Technology(ICONS.siEslint),
@@ -24,6 +26,7 @@ export class Technology {
     JAVASCRIPT: new Technology(ICONS.siJavascript),
     JEST: new Technology(ICONS.siJest),
     LODASH: new Technology(ICONS.siLodash),
+    MANTINE: new Technology('Mantine'),
     MONGO: new Technology(ICONS.siMongodb),
     MUI: new Technology(ICONS.siMui),
     NEST: new Technology(ICONS.siNestjs),
@@ -32,8 +35,10 @@ export class Technology {
     NPM: new Technology(ICONS.siNpm),
     PASSPORT: new Technology(ICONS.siPassport),
     PRETTIER: new Technology(ICONS.siPrettier),
+    PYLINT: new Technology('Pylint'),
     PYTHON: new Technology(ICONS.siPython),
     REACT: new Technology(ICONS.siReact),
+    REACTROUTER: new Technology(ICONS.siReactrouter),
     RUST: new Technology(ICONS.siRust),
     SASS: new Technology(ICONS.siSass),
     SWAGGER: new Technology(ICONS.siSwagger),
@@ -42,7 +47,6 @@ export class Technology {
     TYPESCRIPT: new Technology(ICONS.siTypescript),
     VERCEL: new Technology(ICONS.siVercel),
     VITE: new Technology(ICONS.siVite),
-    VSCODE: new Technology(ICONS.siVisualstudiocode),
     YARN: new Technology(ICONS.siYarn),
   } as const
 }
