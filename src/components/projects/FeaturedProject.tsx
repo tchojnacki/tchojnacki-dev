@@ -135,6 +135,7 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
                 >
                   <SimpleIconSvg
                     icon={icon}
+                    title={name}
                     className="h-[1em] my-1"
                     pathClassName="fill-slate-3 dark:fill-slate-12"
                   />
