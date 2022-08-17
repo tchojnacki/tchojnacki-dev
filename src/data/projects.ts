@@ -32,10 +32,18 @@ class ProjectTag {
     public readonly link?: string
   ) {}
 
-  public static readonly Solo = new ProjectTag('Solo Project', '#067a6e')
-
   public static readonly Group = (project: string) =>
-    new ProjectTag('Group Project', '#9c2bac', `https://github.com/${project}/graphs/contributors`)
+    new ProjectTag('Group', '#9c2bac', `https://github.com/${project}/graphs/contributors`)
+
+  public static readonly CodersCamp = new ProjectTag(
+    'Bootcamp',
+    '#067a6e',
+    'https://github.com/CodersCamp2021-HK'
+  )
+
+  public static readonly University = new ProjectTag('University', '#067a6e')
+
+  public static readonly Personal = new ProjectTag('Personal', '#067a6e')
 
   public static readonly Deprecated = new ProjectTag('DEPRECATED', '#ca3214')
 }
@@ -81,15 +89,18 @@ export class Project {
     ADVENTOFCODE: new Project(
       'Advent of Code',
       adventofcodeImage,
-      [ProjectTag.Solo],
-      [ProjectLink.GitHub('advent-of-code'), ProjectLink.Information('https://adventofcode.com/')],
+      [ProjectTag.Personal],
+      [ProjectLink.GitHub('advent-of-code'), ProjectLink.Information('https://adventofcode.com')],
       'My solutions to Advent of Code.',
       [new ProjectPart('Puzzle Solutions', [T.KOTLIN]), new ProjectPart('Tools', [T.GIT, T.GITHUB])]
     ),
     CODERSCAMPFULLSTACK: new Project(
       'JeszCoChcesz',
       coderscampfullstackImage,
-      [ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Project.Fullstack')],
+      [
+        ProjectTag.CodersCamp,
+        ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Project.Fullstack'),
+      ],
       [
         ProjectLink.Deploy('https://coderscamp2021-hk-fullstack.herokuapp.com'),
         ProjectLink.Swagger('https://coderscamp2021-hk-fullstack.herokuapp.com/api'),
@@ -125,13 +136,13 @@ export class Project {
     CODERSCAMPHACKATHON: new Project(
       'Faktyczka',
       coderscamphackathonImage,
-      [ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Hackathon')],
+      [ProjectTag.CodersCamp, ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Hackathon')],
       [
-        ProjectLink.Deploy('https://faktyczka.vercel.app/'),
+        ProjectLink.Deploy('https://faktyczka.vercel.app'),
         ProjectLink.Download(
           'https://github.com/CodersCamp2021-HK/CodersCamp2021.Hackathon/releases/latest'
         ),
-        ProjectLink.Swagger('https://faktyczka.herokuapp.com/api/'),
+        ProjectLink.Swagger('https://faktyczka.herokuapp.com/api'),
         ProjectLink.GitHub('CodersCamp2021.Hackathon', 'CodersCamp2021-HK'),
       ],
       'Brower extension which notifies you about fake news. Created during the 24h Hack-a-Troll Hackathon in 2001.',
@@ -165,14 +176,15 @@ export class Project {
     CODERSCAMPJAVASCRIPT: new Project(
       'Rick and Morty Quiz',
       coderscampjavascriptImage,
-      [ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Project.JavaScript')],
       [
-        ProjectLink.Deploy(
-          'https://coderscamp2021-hk.github.io/CodersCamp2021.Project.JavaScript/'
-        ),
+        ProjectTag.CodersCamp,
+        ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Project.JavaScript'),
+      ],
+      [
+        ProjectLink.Deploy('https://coderscamp2021-hk.github.io/CodersCamp2021.Project.JavaScript'),
         ProjectLink.GitHub('CodersCamp2021.Project.JavaScript', 'CodersCamp2021-HK'),
       ],
-      'Online singleplayer quiz testing your knowledge about the "Rick and Morty" show. Built without using any front-end frameworks.',
+      'Online singleplayer quiz testing your knowledge about the Rick and Morty show. Built without using any front-end frameworks.',
       [
         new ProjectPart('Website', [T.JAVASCRIPT, T.CSS, T.HTML, T.LODASH]),
         new ProjectPart('Tools', [
@@ -190,9 +202,9 @@ export class Project {
     CODERSCAMPREACT: new Project(
       'King and Pigs',
       coderscampreactImage,
-      [ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Project.React')],
+      [ProjectTag.CodersCamp, ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Project.React')],
       [
-        ProjectLink.Deploy('https://coderscamp2021-hk.github.io/CodersCamp2021.Project.React/'),
+        ProjectLink.Deploy('https://coderscamp2021-hk.github.io/CodersCamp2021.Project.React'),
         ProjectLink.GitHub('CodersCamp2021.Project.React', 'CodersCamp2021-HK'),
       ],
       'Online platformer game with three stages. Built using public domain assets. The UI surrounding the game was created using React.',
@@ -214,7 +226,7 @@ export class Project {
     FANDOMMONACO: new Project(
       'FANDOM-Monaco',
       fandommonacoImage,
-      [ProjectTag.Solo, ProjectTag.Deprecated],
+      [ProjectTag.Personal, ProjectTag.Deprecated],
       [
         ProjectLink.Download('https://github.com/tchojnacki/FANDOM-Monaco/releases/latest'),
         ProjectLink.GitHub('FANDOM-Monaco'),
@@ -225,7 +237,7 @@ export class Project {
     LOGICCIRCUITBOARDS: new Project(
       'Logic Circuit Boards',
       logiccircuitboardsImage,
-      [ProjectTag.Solo],
+      [ProjectTag.Personal],
       [
         ProjectLink.Download('https://www.curseforge.com/minecraft/mc-mods/logic-circuit-boards'),
         ProjectLink.GitHub('LogicCircuitBoards'),
@@ -236,9 +248,9 @@ export class Project {
     NODEWIKIAAPI: new Project(
       'nodewikiaapi',
       nodewikiaapiImage,
-      [ProjectTag.Solo, ProjectTag.Deprecated],
+      [ProjectTag.Personal, ProjectTag.Deprecated],
       [
-        ProjectLink.Documentation('https://tchojnacki.github.io/nodewikiaapi/'),
+        ProjectLink.Documentation('https://tchojnacki.github.io/nodewikiaapi'),
         ProjectLink.Download('https://www.npmjs.com/package/nodewikiaapi'),
         ProjectLink.GitHub('nodewikiaapi'),
       ],
@@ -251,7 +263,7 @@ export class Project {
     OCAMLSCALARUN: new Project(
       'OCaml & Scala Run in REPL',
       ocamlscalarunImage,
-      [ProjectTag.Solo],
+      [ProjectTag.University],
       [
         ProjectLink.Download(
           'https://marketplace.visualstudio.com/items?itemName=tchojnacki.ocaml-scala-run'
@@ -264,7 +276,7 @@ export class Project {
     SCRIPTINGTANKS: new Project(
       'Tanks',
       scriptingtanksImage,
-      [ProjectTag.Solo],
+      [ProjectTag.University],
       [
         ProjectLink.Deploy('https://scripting-tanks.herokuapp.com'),
         ProjectLink.GitHub('scripting-tanks'),
@@ -296,20 +308,20 @@ export class Project {
     SPOTIFYMOSAIC: new Project(
       'Mosaics for Spotify',
       spotifymosaicImage,
-      [ProjectTag.Solo],
+      [ProjectTag.Personal],
       [
         ProjectLink.Download('https://crates.io/crates/spotifymosaic'),
         ProjectLink.GitHub('spotifymosaic'),
       ],
-      'A CLI tool for generating Spotify playlist covers using album artworks.',
+      'A CLI tool for generating Spotify playlist covers using album artwork.',
       [new ProjectPart('CLI', [T.RUST, T.CLAP, T.GIT, T.GITHUB])]
     ),
     TCHOJNACKIDEV: new Project(
       'tchojnacki.dev',
       tchojnackidevImage,
-      [ProjectTag.Solo],
-      [ProjectLink.Deploy('https://tchojnacki.dev/'), ProjectLink.GitHub('tchojnacki-dev')],
-      'Website acting as my personal portfolio and blog.',
+      [ProjectTag.Personal],
+      [ProjectLink.Deploy('https://tchojnacki.dev'), ProjectLink.GitHub('tchojnacki-dev')],
+      'Website acting as my portfolio and blog.',
       [
         new ProjectPart('Website', [T.NEXT, T.REACT, T.TAILWIND, T.TYPESCRIPT, T.LODASH]),
         new ProjectPart('Tools', [
@@ -326,16 +338,16 @@ export class Project {
     ),
   } as const
 
-  public static readonly FEATURED = [
+  public static readonly IMPORTANCE_ORDER = [
     Project.LIST.CODERSCAMPFULLSTACK,
     Project.LIST.SCRIPTINGTANKS,
-    Project.LIST.LOGICCIRCUITBOARDS,
     Project.LIST.TCHOJNACKIDEV,
     Project.LIST.CODERSCAMPHACKATHON,
     Project.LIST.CODERSCAMPREACT,
     Project.LIST.CODERSCAMPJAVASCRIPT,
-    Project.LIST.ADVENTOFCODE,
+    Project.LIST.LOGICCIRCUITBOARDS,
     Project.LIST.SPOTIFYMOSAIC,
+    Project.LIST.ADVENTOFCODE,
     Project.LIST.OCAMLSCALARUN,
     Project.LIST.NODEWIKIAAPI,
     Project.LIST.FANDOMMONACO,
