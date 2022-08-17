@@ -30,6 +30,8 @@ module.exports = {
     gridTemplateAreas: {
       'landing-desktop': ['. text sphere .', '. . sphere .', '. . . .'],
       'landing-mobile': ['text', 'sphere', '.'],
+      'featured-project-normal': ['buttons .'],
+      'featured-project-flipped': ['. buttons'],
     },
     keyframes: {
       errshake: {
