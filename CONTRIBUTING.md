@@ -23,9 +23,9 @@ The commit message should be structured as follows:
   - `docs` - changes to documentation (README, CONTRIBUTING, etc.)
   - `build` - changes to the build system (npm, etc.), or deployment (CI/CD)
 - The `scope` should be one of the following, and generally refers to [a milestone](https://github.com/tchojnacki/tchojnacki-dev/milestones):
-  - none (and parentheses ommited) if the commit refers to multiple scopes, to no particular scope or to the *General* milestone
-  - `about` - *About* milestone
+  - none (and parentheses omitted) if the commit refers to multiple scopes, to no particular scope, or to the *General* milestone
+  - `home` - *Home* milestone
   - `projects` - *Projects* milestone
   - `experience` - *Experience* milestone
   - `blog` - *Blog* milestone
-- The `subject` should use the imperative, present tense, and start with a verb when possible.
+- The `subject` should use the imperative present tense, and start with a verb when possible.

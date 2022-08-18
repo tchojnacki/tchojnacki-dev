@@ -21,7 +21,10 @@ module.exports = {
         11: '#9ba1a6',
         12: '#ecedee',
       },
-      'pure-black': '#000000',
+      pure: {
+        black: '#000000',
+        white: '#ffffff',
+      },
     },
     fontWeight: {
       normal: 400,
