@@ -30,6 +30,9 @@ export function AboutSection() {
                 <a
                   className="text-indigo-8 dark:text-pure-white hover:underline"
                   href="https://pwr.edu.pl/en/"
+                  target="_blank"
+                  rel="noreferrer"
+                  title="Wrocław University of Science and Technology"
                 >
                   WUST
                 </a>

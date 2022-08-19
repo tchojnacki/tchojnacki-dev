@@ -29,7 +29,15 @@ export function Landing() {
         <div className="flex items-center justify-center gap-8 lg:justify-start">
           <LinkButton href="/projects">View Projects</LinkButton>
           {SOCIAL_LINKS.map(({ label, href, icon }) => (
-            <a className="group inline-block h-8 w-8" href={href} aria-label={label} key={label}>
+            <a
+              className="group inline-block h-8 w-8"
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+              title={label}
+              aria-label={label}
+              key={label}
+            >
               <SimpleIconSvg
                 icon={icon}
                 pathClassName="fill-slate-8 group-hover:fill-slate-3 dark:fill-slate-11

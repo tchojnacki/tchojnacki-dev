@@ -28,7 +28,7 @@ export function LinkButton({
       <a className={styling}>{children}</a>
     </Link>
   ) : (
-    <a href={href} className={styling}>
+    <a href={href} className={styling} target="_blank" rel="noreferrer">
       {children}
     </a>
   )
