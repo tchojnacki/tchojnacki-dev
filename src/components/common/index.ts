@@ -1,5 +1,6 @@
-export * from './ErrorPage'
 export * from './nav'
+export * from './ErrorPage'
+export * from './LinkButton'
 export * from './SimpleIconSvg'
 export * from './Title'
 export * from './Emoji'
