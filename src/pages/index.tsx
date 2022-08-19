@@ -1,12 +1,13 @@
-import { Landing, ProjectsSection, SkillsSection, Title } from 'components'
+import { AboutSection, Landing, ProjectsSection, SkillsSection, Title } from 'components'
 
-export default function About() {
+export default function Home() {
   return (
     <>
       <Title>About</Title>
       <Landing />
-      <SkillsSection />
+      <AboutSection />
       <ProjectsSection />
+      <SkillsSection />
     </>
   )
 }

@@ -1,3 +1,3 @@
-export * from './about'
+export * from './home'
 export * from './common'
 export * from './projects'
