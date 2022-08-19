@@ -2,13 +2,14 @@ import clsx from 'clsx'
 
 interface WaveProps {
   inverted?: boolean
+  className?: string
 }
 
-export function Wave({ inverted }: WaveProps) {
+export function Wave({ inverted, className }: WaveProps) {
   return (
     <svg
       aria-hidden="true"
-      className={clsx('w-full max-h-64', inverted && 'rotate-180')}
+      className={clsx('w-full max-h-64', inverted && 'rotate-180', className)}
       viewBox="0 0 1280 180"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="none"
