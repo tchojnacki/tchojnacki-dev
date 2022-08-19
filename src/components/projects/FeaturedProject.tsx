@@ -108,7 +108,7 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
 
               return link ? (
                 <li key={displayName}>
-                  <a href={link} {...props}>
+                  <a href={link} target="_blank" rel="noreferrer" {...props}>
                     {displayName}
                   </a>
                 </li>
@@ -120,7 +120,7 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
             })}
           </ul>
         </h4>
-        <p>{project.description}</p>
+        <p className="text-slate-8 dark:text-slate-11">{project.description}</p>
         {project.parts.map(({ name, technologies }) => (
           <Fragment key={name}>
             <h5 className="text-xl mt-3 mb-1">{name}</h5>
