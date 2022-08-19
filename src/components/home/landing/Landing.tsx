@@ -46,7 +46,7 @@ export function Landing() {
         <TechSphere />
       </section>
       <div className="lg:absolute bottom-0 w-full h-full lg:h-[20vh] flex flex-col justify-end">
-        <Wave path="fill-indigo-11 dark:fill-indigo-4" />
+        <Wave />
       </div>
     </main>
   )

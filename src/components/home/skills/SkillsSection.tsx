@@ -7,8 +7,8 @@ import { SkillCardWrapper } from './SkillCardWrapper'
 export function SkillsSection() {
   return (
     <>
-      <Wave path="fill-indigo-11 dark:fill-indigo-4" />
-      <section className="pb-12 bg-indigo-11 dark:bg-indigo-4">
+      <Wave />
+      <section className="bg-indigo-11 dark:bg-indigo-4">
         <SectionHeader>Skills</SectionHeader>
         <div className="flex flex-wrap justify-center">
           {SECTION_SKILLS.map(({ label, width, height, largest, items }) => (
@@ -23,7 +23,7 @@ export function SkillsSection() {
           ))}
         </div>
       </section>
-      <Wave svg="bg-indigo-11 dark:bg-indigo-4" path="fill-slate-12 dark:fill-indigo-2" />
+      <Wave inverted />
     </>
   )
 }
