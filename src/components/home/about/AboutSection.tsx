@@ -22,7 +22,7 @@ export function AboutSection() {
               placeholder="blur"
             />
           </div>
-          <div className="text-slate-3 dark:text-slate-11">
+          <div className="text-slate-8 dark:text-slate-11">
             <ul className="list-disc ml-8 md:ml-16">
               <li>Software developer based in Wrocław, Poland.</li>
               <li>
@@ -30,6 +30,9 @@ export function AboutSection() {
                 <a
                   className="text-indigo-8 dark:text-pure-white hover:underline"
                   href="https://pwr.edu.pl/en/"
+                  target="_blank"
+                  rel="noreferrer"
+                  title="Wrocław University of Science and Technology"
                 >
                   WUST
                 </a>

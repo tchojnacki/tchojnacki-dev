@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Fragment, useState } from 'react'
 import { ZoomCancel, ZoomIn } from 'tabler-icons-react'
 
-import { SimpleIconSvg } from 'components'
+import { LinkButton, SimpleIconSvg } from 'components'
 import { Project } from 'data'
 
 interface FeaturedProjectProps {
@@ -68,16 +68,17 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
           <ul className="m-4 inline-flex flex-col gap-2 grid-in-buttons h-min">
             {project.links.map(({ displayName, IconComponent, link }) => (
               <li key={displayName}>
-                <a
+                <LinkButton
                   href={link}
+                  type="external"
+                  size="small"
                   className={clsx(
-                    'flex gap-2 px-4 py-2 bg-indigo-8 rounded-xl',
-                    'duration-200 hover:brightness-150',
+                    'flex gap-2 items-center',
                     isActive && 'opacity-25 hover:opacity-100'
                   )}
                 >
                   <IconComponent /> {displayName}
-                </a>
+                </LinkButton>
               </li>
             ))}
           </ul>
@@ -107,7 +108,7 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
 
               return link ? (
                 <li key={displayName}>
-                  <a href={link} {...props}>
+                  <a href={link} target="_blank" rel="noreferrer" {...props}>
                     {displayName}
                   </a>
                 </li>
@@ -119,7 +120,7 @@ export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
             })}
           </ul>
         </h4>
-        <p>{project.description}</p>
+        <p className="text-slate-8 dark:text-slate-11">{project.description}</p>
         {project.parts.map(({ name, technologies }) => (
           <Fragment key={name}>
             <h5 className="text-xl mt-3 mb-1">{name}</h5>

@@ -1,6 +1,6 @@
-import { FeaturedProjectList } from 'components'
+import { FeaturedProjectList, LinkButton } from 'components'
 
-import { LinkButton, SectionHeader, Wave } from '../common'
+import { SectionHeader } from '../common'
 
 export function ProjectsSection() {
   return (
