@@ -25,7 +25,7 @@ export function AboutSection() {
           <ul className="list-disc ml-8 md:ml-16">
             <li>Software developer based in Wrocław, Poland.</li>
             <li>
-              Student of Applied Computer Science at the{' '}
+              Student of Applied Computer Science at{' '}
               <a
                 className="text-indigo-8 dark:text-pure-white hover:underline"
                 href="https://pwr.edu.pl/en/"
@@ -34,7 +34,7 @@ export function AboutSection() {
               </a>
               .
             </li>
-            <li>Experienced at front-end development using React.js.</li>
+            <li>Experienced at front-end development using React.</li>
             <li>Learning .NET back-end development in my free time.</li>
           </ul>
         </div>
