@@ -8,9 +8,9 @@ export function AboutSection() {
     <>
       <section className="p-8 bg-indigo-11 dark:bg-indigo-4">
         <SectionHeader>About Me</SectionHeader>
-        <div className="mx-auto grid md:grid-cols-[1fr_2fr] gap-8 place-items-center py-8">
+        <div className="mx-auto flex flex-col md:flex-row gap-8 justify-center items-center py-8">
           <div
-            className="flex md:place-self-end overflow-hidden rounded-full
+            className="flex overflow-hidden rounded-full
           shadow-md shadow-indigo-2/25 dark:shadow-indigo-11/10"
           >
             <Image
@@ -22,7 +22,7 @@ export function AboutSection() {
               placeholder="blur"
             />
           </div>
-          <div className="text-slate-3 dark:text-slate-11 md:place-self-start">
+          <div className="text-slate-3 dark:text-slate-11">
             <ul className="list-disc ml-8 md:ml-16">
               <li>Software developer based in Wrocław, Poland.</li>
               <li>
