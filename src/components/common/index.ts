@@ -1,5 +1,6 @@
 export * from './nav'
 export * from './ErrorPage'
+export * from './Footer'
 export * from './LinkButton'
 export * from './SimpleIconSvg'
 export * from './Title'
