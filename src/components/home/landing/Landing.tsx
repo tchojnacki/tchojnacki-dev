@@ -1,7 +1,6 @@
-import { LinkButton, SimpleIconSvg } from 'components'
+import { LinkButton, SimpleIconSvg, Wave } from 'components'
 import { SOCIAL_LINKS } from 'data'
 
-import { Wave } from '../common'
 import { TechSphere } from './TechSphere'
 import { WavingEmoji } from './WavingEmoji'
 

@@ -1,6 +1,6 @@
+import { SectionHeader, Wave } from 'components'
 import { SECTION_SKILLS } from 'data'
 
-import { SectionHeader, Wave } from '../common'
 import { SkillCard } from './SkillCard'
 import { SkillCardWrapper } from './SkillCardWrapper'
 

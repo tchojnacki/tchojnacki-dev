@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
-import headshotImage from '../../../media/tchojnacki.png'
-import { SectionHeader, Wave } from '../common'
+import { SectionHeader, Wave } from 'components'
+import headshotImage from 'media/tchojnacki.png'
 
 export function AboutSection() {
   return (
