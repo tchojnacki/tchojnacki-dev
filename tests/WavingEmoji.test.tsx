@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 
-import { WavingEmoji } from 'components'
+import { WavingEmoji } from 'components/home/landing/WavingEmoji'
 
 describe('WavingEmoji', () => {
   it('renders the emoji', () => {

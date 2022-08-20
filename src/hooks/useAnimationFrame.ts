@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react'
 
 export function useAnimationFrame(callback: (deltaTimeSeconds: number) => void) {
   const requestIdRef = useRef<number | null>(null)
-  const lastTimeStampRef = useRef<number>(new Date().getTime())
+  const lastTimeStampRef = useRef<number>(0)
 
   const animationFrame = useCallback(
     (highResTimeStamp: number) => {
