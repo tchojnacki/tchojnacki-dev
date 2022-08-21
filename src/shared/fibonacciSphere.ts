@@ -1,13 +1,8 @@
-import { Pos3D, vadd, vcross, vdot, vlen, vscale, vsub } from './vector'
+import { Pos2D, Pos3D, v3add, v3scale, v3sub, vcross, vdot, vlen } from './vector'
 
 const { sin, asin, cos, acos, PI } = Math
 
 const GOLDEN_RATIO = (1 + Math.sqrt(5)) / 2
-
-interface Pos2D {
-  x: number
-  y: number
-}
 
 interface Projection {
   cameraZ: number
@@ -74,7 +69,7 @@ export function pointerToSpherePoint(
 ): Pos3D {
   const start = cameraToWorld(pointerPos, projection.cameraZ, projection)
   const end = cameraToWorld(pointerPos, projection.cameraZ + 1, projection)
-  const ray = vsub(end, start)
+  const ray = v3sub(end, start)
 
   const a = vdot(ray, ray)
   const c = vdot(start, start) - sphereRadius * sphereRadius
@@ -82,11 +77,11 @@ export function pointerToSpherePoint(
 
   const deltaSqrt = Math.sqrt(b * b - 4 * a * c)
   if (deltaSqrt >= 0) {
-    return vadd(start, vscale(ray, (-b - deltaSqrt) / (2 * a)))
+    return v3add(start, v3scale(ray, (-b - deltaSqrt) / (2 * a)))
   }
 
-  const point = vadd(start, vscale(ray, -vdot(start, ray) / a))
-  return vscale(point, sphereRadius / vlen(point))
+  const point = v3add(start, v3scale(ray, -vdot(start, ray) / a))
+  return v3scale(point, sphereRadius / vlen(point))
 }
 
 export function findRotation(from: Pos3D, to: Pos3D) {
@@ -98,8 +93,9 @@ export function findRotation(from: Pos3D, to: Pos3D) {
   }
 
   const theta = asin(len / (vlen(from) * vlen(to)))
-  const axis = vscale(cross, 1 / len)
+  const axis = v3scale(cross, 1 / len)
   return { axis, theta }
 }
 
 export const INITIAL_ROTATION_AXIS = { x: -Math.SQRT1_2, y: -Math.SQRT1_2, z: 0 }
+export const INITIAL_ROTATION_SPEED = 0.5

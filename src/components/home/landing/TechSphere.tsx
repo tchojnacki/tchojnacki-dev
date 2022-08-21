@@ -12,14 +12,20 @@ import {
 } from 'hooks'
 import {
   INITIAL_ROTATION_AXIS,
+  INITIAL_ROTATION_SPEED,
   Pos3D,
   findRotation,
   initialPositionsOf,
   pointerToSpherePoint,
   rotateAroundUnitVector,
-  vscale,
+  v2add,
+  v2scale,
+  v2sub,
+  v3scale,
   worldToCamera,
 } from 'shared'
+
+const FONT_SCALE = 0.05
 
 export function TechSphere() {
   const prefersReducedMotion = usePrefersReducedMotion()
@@ -33,14 +39,17 @@ export function TechSphere() {
   const ctx = canvasRef.current?.getContext('2d')
 
   const hoverPosRef = useRef({ x: 0, y: 0 })
+  const lastMoveTimeStampRef = useRef(Date.now())
   const dragStartPosRef = useRef<Pos3D | null>(null)
+  const dragPixelsPerMsRef = useRef({ x: 0, y: 0 })
+  const movementStateRef = useRef<'STABLE' | 'DAMPING'>('STABLE')
 
   const omegaRef = useRef(0)
   const thetaRef = useRef(0)
   const axisRef = useRef(INITIAL_ROTATION_AXIS)
 
   useEffect(() => {
-    omegaRef.current = prefersReducedMotion ? 0 : 0.5
+    omegaRef.current = prefersReducedMotion ? 0 : INITIAL_ROTATION_SPEED
   }, [prefersReducedMotion])
 
   usePointerStart(canvasRef, () => {
@@ -55,15 +64,39 @@ export function TechSphere() {
   })
 
   usePointerStop(canvasRef, () => {
-    dragStartPosRef.current = null
-    omegaRef.current = 1
+    if (dragStartPosRef.current !== null) {
+      dragStartPosRef.current = null
+
+      const before = pointerToSpherePoint(
+        v2sub(hoverPosRef.current, v2scale(dragPixelsPerMsRef.current, 0.5)),
+        sphereRadius,
+        projection
+      )
+      const after = pointerToSpherePoint(
+        v2add(hoverPosRef.current, v2scale(dragPixelsPerMsRef.current, 0.5)),
+        sphereRadius,
+        projection
+      )
+
+      const { theta } = findRotation(before, after)
+      omegaRef.current = theta * 1000
+      movementStateRef.current = 'DAMPING'
+    }
   })
 
   useEvent(
     'pointermove',
     (event: PointerEvent) => {
-      const rect = canvasRef.current!.getBoundingClientRect()
-      hoverPosRef.current = { x: event.clientX - rect.left, y: event.clientY - rect.top }
+      const now = Date.now()
+      const deltaTime = now - lastMoveTimeStampRef.current
+      lastMoveTimeStampRef.current = now
+
+      dragPixelsPerMsRef.current = {
+        x: (event.offsetX - hoverPosRef.current.x) / deltaTime,
+        y: (event.offsetY - hoverPosRef.current.y) / deltaTime,
+      }
+
+      hoverPosRef.current = { x: event.offsetX, y: event.offsetY }
 
       if (dragStartPosRef.current) {
         const end = pointerToSpherePoint(hoverPosRef.current, sphereRadius, projection)
@@ -76,6 +109,9 @@ export function TechSphere() {
   )
 
   useAnimationFrame(deltaTime => {
+    const epsilon = movementStateRef.current === 'STABLE' ? 0 : -omegaRef.current
+
+    omegaRef.current += epsilon * deltaTime
     thetaRef.current += omegaRef.current * deltaTime
 
     if (ctx) {
@@ -84,10 +120,10 @@ export function TechSphere() {
       ctx.fillStyle = 'currentColor'
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
-      ctx.font = `${Math.round(canvasSize * 0.05)}px Inter`
+      ctx.font = `${Math.round(canvasSize * FONT_SCALE)}px Inter`
 
       for (const { item, position } of pointsRef.current) {
-        const scaled = vscale(position, sphereRadius)
+        const scaled = v3scale(position, sphereRadius)
         const rotated = rotateAroundUnitVector(scaled, axisRef.current, thetaRef.current)
         const projected = worldToCamera(rotated, projection)
 
