@@ -10,6 +10,7 @@ import {
   initialPositionsOf,
   pointerToSpherePoint,
   rotateAroundUnitVector,
+  vscale,
   worldToCamera,
 } from 'shared'
 
@@ -20,7 +21,7 @@ export function TechSphere() {
   const cameraZ = 2 * canvasSize
   const projection = useMemo(() => ({ cameraZ, canvasSize }), [cameraZ, canvasSize])
   const sphereRadius = canvasSize * 0.35
-  const pointsRef = useRef(initialPositionsOf(TECH_SPHERE_SKILL_NAMES, sphereRadius))
+  const pointsRef = useRef(initialPositionsOf(TECH_SPHERE_SKILL_NAMES))
 
   const ctx = canvasRef.current?.getContext('2d')
 
@@ -34,10 +35,6 @@ export function TechSphere() {
   useEffect(() => {
     omegaRef.current = prefersReducedMotion ? 0 : 0.5
   }, [prefersReducedMotion])
-
-  useEffect(() => {
-    pointsRef.current = initialPositionsOf(TECH_SPHERE_SKILL_NAMES, sphereRadius)
-  }, [sphereRadius])
 
   useEffect(() => {
     function moveHandler(event: PointerEvent) {
@@ -102,7 +99,8 @@ export function TechSphere() {
       ctx.font = `${Math.round(canvasSize * 0.05)}px Inter`
 
       for (const { item, position } of pointsRef.current) {
-        const rotated = rotateAroundUnitVector(position, axisRef.current, thetaRef.current)
+        const scaled = vscale(position, sphereRadius)
+        const rotated = rotateAroundUnitVector(scaled, axisRef.current, thetaRef.current)
         const projected = worldToCamera(rotated, projection)
 
         ctx.save()
