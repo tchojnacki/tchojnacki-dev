@@ -1,3 +1,4 @@
+import useEvent from '@use-it/event-listener'
 import clsx from 'clsx'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
@@ -11,12 +12,7 @@ export function WavingEmoji() {
   const stopPlaying = useCallback(() => setIsPlaying(false), [])
 
   const ref = useRef<HTMLButtonElement>(null)
-  useEffect(() => {
-    const elem = ref.current
-    elem?.addEventListener('animationend', stopPlaying)
-
-    return () => elem?.removeEventListener('animationend', stopPlaying)
-  }, [stopPlaying])
+  useEvent('animationend', stopPlaying, ref.current)
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {

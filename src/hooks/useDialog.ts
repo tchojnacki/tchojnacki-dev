@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import useEvent from '@use-it/event-listener'
+import { useRef, useState } from 'react'
 
 export function useDialog() {
   const [isOpen, setIsOpen] = useState(false)
@@ -15,28 +16,24 @@ export function useDialog() {
     }
   }
 
-  useEffect(() => {
-    const dialog = dialogRef.current
-
-    const onCloseHandler = () => {
+  useEvent(
+    'close',
+    () => {
       setIsOpen(false)
       document.body.classList.remove('overflow-hidden')
-    }
+    },
+    dialogRef.current
+  )
 
-    const onClickHandler = (e: MouseEvent) => {
+  useEvent(
+    'click',
+    e => {
       if (e.target === e.currentTarget || e.target instanceof HTMLAnchorElement) {
-        dialog?.close()
+        dialogRef.current?.close()
       }
-    }
-
-    dialog?.addEventListener('close', onCloseHandler)
-    dialog?.addEventListener('click', onClickHandler)
-
-    return () => {
-      dialog?.removeEventListener('close', onCloseHandler)
-      dialog?.removeEventListener('click', onClickHandler)
-    }
-  }, [])
+    },
+    dialogRef.current
+  )
 
   return { isOpen, dialogRef, toggleDialog }
 }

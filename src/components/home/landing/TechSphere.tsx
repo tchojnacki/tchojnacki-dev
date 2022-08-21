@@ -1,8 +1,15 @@
+import useEvent from '@use-it/event-listener'
 import clamp from 'lodash/clamp'
 import { useEffect, useMemo, useRef } from 'react'
 
 import { TECH_SPHERE_SKILL_NAMES } from 'data'
-import { useAnimationFrame, useParentSize, usePrefersReducedMotion } from 'hooks'
+import {
+  useAnimationFrame,
+  useParentSize,
+  usePointerStart,
+  usePointerStop,
+  usePrefersReducedMotion,
+} from 'hooks'
 import {
   INITIAL_ROTATION_AXIS,
   Pos3D,
@@ -36,8 +43,25 @@ export function TechSphere() {
     omegaRef.current = prefersReducedMotion ? 0 : 0.5
   }, [prefersReducedMotion])
 
-  useEffect(() => {
-    function moveHandler(event: PointerEvent) {
+  usePointerStart(canvasRef, () => {
+    dragStartPosRef.current = pointerToSpherePoint(hoverPosRef.current, sphereRadius, projection)
+    pointsRef.current = pointsRef.current.map(({ item, position }) => ({
+      item,
+      position: rotateAroundUnitVector(position, axisRef.current, thetaRef.current),
+    }))
+
+    omegaRef.current = 0
+    thetaRef.current = 0
+  })
+
+  usePointerStop(canvasRef, () => {
+    dragStartPosRef.current = null
+    omegaRef.current = 1
+  })
+
+  useEvent(
+    'pointermove',
+    (event: PointerEvent) => {
       const rect = canvasRef.current!.getBoundingClientRect()
       hoverPosRef.current = { x: event.clientX - rect.left, y: event.clientY - rect.top }
 
@@ -47,45 +71,9 @@ export function TechSphere() {
         axisRef.current = axis
         thetaRef.current = theta
       }
-    }
-
-    function mouseDownHandler() {
-      dragStartPosRef.current = pointerToSpherePoint(hoverPosRef.current, sphereRadius, projection)
-      pointsRef.current = pointsRef.current.map(({ item, position }) => ({
-        item,
-        position: rotateAroundUnitVector(position, axisRef.current, thetaRef.current),
-      }))
-
-      omegaRef.current = 0
-      thetaRef.current = 0
-    }
-
-    function upHandler() {
-      dragStartPosRef.current = null
-      omegaRef.current = 1
-    }
-
-    function touchStartHandler(event: TouchEvent) {
-      event.preventDefault()
-      mouseDownHandler()
-    }
-
-    const target = canvasRef.current
-    if (target) {
-      target.addEventListener('pointermove', moveHandler)
-      target.addEventListener('mousedown', mouseDownHandler)
-      target.addEventListener('pointerup', upHandler)
-      target.addEventListener('pointerleave', upHandler)
-      target.addEventListener('touchstart', touchStartHandler)
-      return () => {
-        target.removeEventListener('pointermove', moveHandler)
-        target.removeEventListener('mousedown', mouseDownHandler)
-        target.removeEventListener('pointerup', upHandler)
-        target.removeEventListener('pointerleave', upHandler)
-        target.removeEventListener('touchstart', touchStartHandler)
-      }
-    }
-  }, [canvasRef, projection, sphereRadius])
+    },
+    canvasRef.current
+  )
 
   useAnimationFrame(deltaTime => {
     thetaRef.current += omegaRef.current * deltaTime
