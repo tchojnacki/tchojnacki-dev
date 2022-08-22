@@ -99,3 +99,4 @@ export function findRotation(from: Pos3D, to: Pos3D) {
 
 export const INITIAL_ROTATION_AXIS = { x: -Math.SQRT1_2, y: -Math.SQRT1_2, z: 0 }
 export const INITIAL_ROTATION_SPEED = 0.5
+export const DAMPING_FACTOR = 0.5

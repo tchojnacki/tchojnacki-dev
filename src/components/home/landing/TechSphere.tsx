@@ -11,6 +11,7 @@ import {
   usePrefersReducedMotion,
 } from 'hooks'
 import {
+  DAMPING_FACTOR,
   INITIAL_ROTATION_AXIS,
   INITIAL_ROTATION_SPEED,
   Pos3D,
@@ -109,7 +110,27 @@ export function TechSphere() {
   )
 
   useAnimationFrame(deltaTime => {
-    const epsilon = movementStateRef.current === 'STABLE' ? 0 : -omegaRef.current
+    let epsilon: number
+    if (movementStateRef.current === 'STABLE') {
+      epsilon = 0
+    } else if (movementStateRef.current === 'DAMPING') {
+      epsilon = -DAMPING_FACTOR * omegaRef.current
+
+      if (Math.abs(omegaRef.current) < 0.01) {
+        pointsRef.current = pointsRef.current.map(({ item, position }) => ({
+          item,
+          position: rotateAroundUnitVector(position, axisRef.current, thetaRef.current),
+        }))
+        thetaRef.current = 0
+        axisRef.current = INITIAL_ROTATION_AXIS
+        omegaRef.current = INITIAL_ROTATION_SPEED
+        epsilon = 0
+
+        movementStateRef.current = 'STABLE'
+      }
+    } else {
+      throw new Error('Unreachable state!')
+    }
 
     omegaRef.current += epsilon * deltaTime
     thetaRef.current += omegaRef.current * deltaTime
