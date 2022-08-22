@@ -8,7 +8,6 @@ describe('WavingEmoji', () => {
     render(<WavingEmoji />)
 
     const emoji = screen.getByAltText('👋')
-
     expect(emoji).toBeInTheDocument()
   })
 })

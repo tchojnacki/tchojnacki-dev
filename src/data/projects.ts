@@ -9,18 +9,19 @@ import {
   Notes,
 } from 'tabler-icons-react'
 
-import adventofcodeImage from '../media/projects/adventofcode.png'
-import coderscampfullstackImage from '../media/projects/coderscampfullstack.png'
-import coderscamphackathonImage from '../media/projects/coderscamphackathon.png'
-import coderscampjavascriptImage from '../media/projects/coderscampjavascript.png'
-import coderscampreactImage from '../media/projects/coderscampreact.png'
-import fandommonacoImage from '../media/projects/fandommonaco.png'
-import logiccircuitboardsImage from '../media/projects/logiccircuitboards.png'
-import nodewikiaapiImage from '../media/projects/nodewikiaapi.png'
-import ocamlscalarunImage from '../media/projects/ocamlscalarun.png'
-import scriptingtanksImage from '../media/projects/scriptingtanks.png'
-import spotifymosaicImage from '../media/projects/spotifymosaic.png'
-import tchojnackidevImage from '../media/projects/tchojnackidev.png'
+import adventofcodeImage from 'media/projects/adventofcode.png'
+import coderscampfullstackImage from 'media/projects/coderscampfullstack.png'
+import coderscamphackathonImage from 'media/projects/coderscamphackathon.png'
+import coderscampjavascriptImage from 'media/projects/coderscampjavascript.png'
+import coderscampreactImage from 'media/projects/coderscampreact.png'
+import fandommonacoImage from 'media/projects/fandommonaco.png'
+import logiccircuitboardsImage from 'media/projects/logiccircuitboards.png'
+import nodewikiaapiImage from 'media/projects/nodewikiaapi.png'
+import ocamlscalarunImage from 'media/projects/ocamlscalarun.png'
+import scriptingtanksImage from 'media/projects/scriptingtanks.png'
+import spotifymosaicImage from 'media/projects/spotifymosaic.png'
+import tchojnackidevImage from 'media/projects/tchojnackidev.png'
+
 import { Technology } from './technologies'
 
 const T = Technology.LIST

@@ -1,14 +1,13 @@
-import { LinkButton, SimpleIconSvg } from 'components'
+import { LinkButton, SimpleIconSvg, Wave } from 'components'
 import { SOCIAL_LINKS } from 'data'
 
-import { Wave } from '../common'
 import { TechSphere } from './TechSphere'
 import { WavingEmoji } from './WavingEmoji'
 
 export function Landing() {
   return (
     <main
-      className="relative grid min-h-[calc(min(100vh,96rem)-theme(spacing.nav-height))] grid-cols-1
+      className="relative grid min-h-[calc(min(100vh,64rem)-theme(spacing.nav-height))] grid-cols-1
       grid-rows-[repeat(3,auto)] place-items-center grid-areas-landing-mobile
       lg:grid-cols-[minmax(0,1fr)_repeat(2,minmax(0,48rem))_minmax(0,1fr)] lg:grid-rows-[1fr_repeat(2,10vh)]
       lg:grid-areas-landing-desktop"

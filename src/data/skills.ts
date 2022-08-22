@@ -4,20 +4,20 @@ const T = Technology.LIST
 
 type SectionItems = [Technology, number][]
 
-export const SPHERE_SKILL_ARRAY = [
-  T.TYPESCRIPT,
-  T.JAVASCRIPT,
+export const TECH_SPHERE_SKILL_NAMES: readonly string[] = [
   T.REACT,
-  T.NODE,
   T.NEXT,
   T.NEST,
-  T.CSS,
-  T.HTML,
+  T.TYPESCRIPT,
+  T.JAVASCRIPT,
+  T.EXPRESS,
+  T.NODE,
   T.JAVA,
   T.PYTHON,
-  T.RUST,
-  T.SASS,
-] as const
+  T.MONGO,
+  T.CSS,
+  T.HTML,
+].map(t => t.name)
 
 export const SECTION_SKILLS = [
   {

@@ -8,7 +8,6 @@ describe('ProjectsSection', () => {
     render(<ProjectsSection />)
 
     const projectTitle = screen.getByRole('heading', { name: /tchojnacki\.dev/ })
-
     expect(projectTitle).toBeInTheDocument()
   })
 })
