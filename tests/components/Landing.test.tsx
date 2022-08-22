@@ -8,7 +8,6 @@ describe('Landing', () => {
     render(<Landing />)
 
     const heading = screen.getByRole('heading', { name: 'Tomasz Chojnacki' })
-
     expect(heading).toBeInTheDocument()
   })
 })

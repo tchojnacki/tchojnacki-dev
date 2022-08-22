@@ -164,6 +164,7 @@ export function TechSphere() {
       ref={canvasRef}
       width={canvasSize}
       height={canvasSize}
+      data-testid="tech-sphere"
     />
   )
 }

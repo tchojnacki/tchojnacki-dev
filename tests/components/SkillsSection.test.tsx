@@ -8,7 +8,6 @@ describe('SkillsSection', () => {
     render(<SkillsSection />)
 
     const skill = screen.getByRole('heading', { name: 'React' })
-
     expect(skill).toBeInTheDocument()
   })
 })
