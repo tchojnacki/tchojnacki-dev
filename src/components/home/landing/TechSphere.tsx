@@ -14,7 +14,7 @@ import {
   DAMPING_FACTOR,
   INITIAL_ROTATION_AXIS,
   INITIAL_ROTATION_SPEED,
-  Pos3D,
+  Vec3D,
   findRotation,
   initialPositionsOf,
   pointerToSpherePoint,
@@ -24,7 +24,7 @@ import {
   v2sub,
   v3scale,
   worldToCamera,
-} from 'shared'
+} from 'logic'
 
 const FONT_SCALE = 0.05
 
@@ -41,7 +41,7 @@ export function TechSphere() {
 
   const hoverPosRef = useRef({ x: 0, y: 0 })
   const lastMoveTimeStampRef = useRef(Date.now())
-  const dragStartPosRef = useRef<Pos3D | null>(null)
+  const dragStartPosRef = useRef<Vec3D | null>(null)
   const dragPixelsPerMsRef = useRef({ x: 0, y: 0 })
   const movementStateRef = useRef<'STABLE' | 'DAMPING'>('STABLE')
 

@@ -9,7 +9,7 @@ module.exports = {
   semi: false,
   singleQuote: true,
   arrowParens: 'avoid',
-  importOrder: ['^(components|data|hooks|media|pages|shared|styles)', '^\\.{1,2}\\/'],
+  importOrder: ['^(components|data|hooks|logic|media|pages|styles)', '^\\.{1,2}\\/'],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
 }

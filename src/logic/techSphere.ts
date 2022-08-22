@@ -1,4 +1,4 @@
-import { Pos2D, Pos3D, v3add, v3scale, v3sub, vcross, vdot, vlen } from './vector'
+import { Vec2D, Vec3D, v3add, v3cross, v3dot, v3len, v3scale, v3sub } from './vector'
 
 const { sin, asin, cos, acos, PI } = Math
 
@@ -9,7 +9,7 @@ interface Projection {
   canvasSize: number
 }
 
-export function rotateAroundUnitVector(pos: Pos3D, axis: Pos3D, angle: number) {
+export function rotateAroundUnitVector(pos: Vec3D, axis: Vec3D, angle: number) {
   const { x, y, z } = axis
   const a = sin(angle)
   const b = cos(angle)
@@ -38,9 +38,9 @@ export const initialPositionsOf = <T>(items: readonly T[]) =>
   })
 
 export function worldToCamera(
-  { x, y, z }: Pos3D,
+  { x, y, z }: Vec3D,
   { cameraZ, canvasSize }: Projection
-): Pos2D & { scale: number } {
+): Vec2D & { scale: number } {
   const scale = cameraZ / (cameraZ + z)
   return {
     scale,
@@ -50,10 +50,10 @@ export function worldToCamera(
 }
 
 function cameraToWorld(
-  { x, y }: Pos2D,
+  { x, y }: Vec2D,
   targetZ: number,
   { cameraZ, canvasSize }: Projection
-): Pos3D {
+): Vec3D {
   const scale = cameraZ / (cameraZ + targetZ)
   return {
     x: (x - canvasSize / 2) / scale,
@@ -63,36 +63,36 @@ function cameraToWorld(
 }
 
 export function pointerToSpherePoint(
-  pointerPos: Pos2D,
+  pointerPos: Vec2D,
   sphereRadius: number,
   projection: Projection
-): Pos3D {
+): Vec3D {
   const start = cameraToWorld(pointerPos, projection.cameraZ, projection)
   const end = cameraToWorld(pointerPos, projection.cameraZ + 1, projection)
   const ray = v3sub(end, start)
 
-  const a = vdot(ray, ray)
-  const c = vdot(start, start) - sphereRadius * sphereRadius
-  const b = vdot(end, end) - a - c - sphereRadius * sphereRadius
+  const a = v3dot(ray, ray)
+  const c = v3dot(start, start) - sphereRadius * sphereRadius
+  const b = v3dot(end, end) - a - c - sphereRadius * sphereRadius
 
   const deltaSqrt = Math.sqrt(b * b - 4 * a * c)
   if (deltaSqrt >= 0) {
     return v3add(start, v3scale(ray, (-b - deltaSqrt) / (2 * a)))
   }
 
-  const point = v3add(start, v3scale(ray, -vdot(start, ray) / a))
-  return v3scale(point, sphereRadius / vlen(point))
+  const point = v3add(start, v3scale(ray, -v3dot(start, ray) / a))
+  return v3scale(point, sphereRadius / v3len(point))
 }
 
-export function findRotation(from: Pos3D, to: Pos3D) {
-  const cross = vcross(from, to)
-  const len = vlen(cross)
+export function findRotation(from: Vec3D, to: Vec3D) {
+  const cross = v3cross(from, to)
+  const len = v3len(cross)
 
   if (len < 0.0001) {
     return { axis: { x: 1, y: 0, z: 0 }, theta: 0 }
   }
 
-  const theta = asin(len / (vlen(from) * vlen(to)))
+  const theta = asin(len / (v3len(from) * v3len(to)))
   const axis = v3scale(cross, 1 / len)
   return { axis, theta }
 }
