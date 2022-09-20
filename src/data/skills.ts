@@ -46,7 +46,7 @@ export const SECTION_SKILLS = [
       [T.JAVASCRIPT, 3],
       [T.RUST, 2],
       [T.JAVA, 2],
-      [T.SASS, 2],
+      [T.CSHARP, 2],
     ] as SectionItems,
   },
   {

@@ -103,8 +103,8 @@ export class Project {
         ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Project.Fullstack'),
       ],
       [
-        ProjectLink.Deploy('https://coderscamp2021-hk-fullstack.herokuapp.com'),
-        ProjectLink.Swagger('https://coderscamp2021-hk-fullstack.herokuapp.com/api'),
+        ProjectLink.Deploy('https://coderscamp2021-hk-fullstack.onrender.com'),
+        ProjectLink.Swagger('https://coderscamp2021-hk-fullstack.onrender.com/api'),
         ProjectLink.GitHub('CodersCamp2021.Project.Fullstack', 'CodersCamp2021-HK'),
       ],
       'Full-stack web application, online food delivery system connecting restaurants with health-conscious users.',
@@ -143,7 +143,6 @@ export class Project {
         ProjectLink.Download(
           'https://github.com/CodersCamp2021-HK/CodersCamp2021.Hackathon/releases/latest'
         ),
-        ProjectLink.Swagger('https://faktyczka.herokuapp.com/api'),
         ProjectLink.GitHub('CodersCamp2021.Hackathon', 'CodersCamp2021-HK'),
       ],
       'Brower extension which notifies you about fake news. Created during the 24h Hack-a-Troll Hackathon in 2001.',
@@ -279,7 +278,7 @@ export class Project {
       scriptingtanksImage,
       [ProjectTag.University],
       [
-        ProjectLink.Deploy('https://scripting-tanks.herokuapp.com'),
+        ProjectLink.Deploy('https://scripting-tanks.fly.dev'),
         ProjectLink.GitHub('scripting-tanks'),
       ],
       'Online real-time multiplayer game powered by WebSockets. Final project for the Script Languages university course.',
@@ -292,15 +291,15 @@ export class Project {
           T.TYPESCRIPT,
           T.LODASH,
         ]),
-        new ProjectPart('Back End', [T.PYTHON, T.FASTAPI, T.GUNICORN, T.ATTRS]),
+        new ProjectPart('Back End', [T.CSHARP, T.DOTNET, T.ASPNET, T.MEDIATR, T.FLUENTVALIDATION]),
         new ProjectPart('Tools', [
           T.DOCKER,
           T.VITE,
           T.HEROKU,
+          T.FLYIO,
           T.NPM,
           T.GIT,
           T.ESLINT,
-          T.PYLINT,
           T.PRETTIER,
           T.GITHUB,
         ]),
