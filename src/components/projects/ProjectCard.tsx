@@ -126,12 +126,12 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
             <h5 className="text-xl mt-3 mb-1">{name}</h5>
             <ul
               className="flex gap-2 overflow-hidden flex-wrap lg:flex-nowrap
-              lg:[mask-image:linear-gradient(90deg,#000_75%,transparent)]"
+              lg:[mask-image:linear-gradient(90deg,#000_75%,transparent)] after:flex-grow-[100]"
             >
               {technologies.map(({ name, icon }, i) => (
                 <li
                   key={name}
-                  className="rounded-full flex items-center gap-1 px-3
+                  className="flex-1 rounded-full flex justify-center items-center gap-1 px-3
                   bg-slate-3/10 dark:bg-slate-12/10 whitespace-nowrap"
                 >
                   <SimpleIconSvg
