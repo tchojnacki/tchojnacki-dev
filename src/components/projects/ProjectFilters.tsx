@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import sortBy from 'lodash/sortBy'
 import { useState } from 'react'
+import { ChevronDown, ChevronUp } from 'tabler-icons-react'
 
 import { SimpleIconSvg } from 'components'
 import { Project, Technology } from 'data'
@@ -17,12 +18,21 @@ const TAGS = sortBy(
 )
 
 export function ProjectFilters() {
+  const [expanded, setExpanded] = useState(false)
+  const toggleExpanded = () => setExpanded(prev => !prev)
+
   const [filter, setFilter] = useState<Technology | null>(null)
 
   return (
-    <fieldset className="px-16">
+    <fieldset className="px-16 flex flex-col">
       <legend className="text-2xl my-4">Filters</legend>
-      <ul className="flex gap-2 flex-wrap after:flex-grow-[100]">
+      <ul
+        className={clsx(
+          'flex gap-2 flex-wrap after:flex-grow-[100]',
+          !expanded &&
+            'max-h-16 overflow-hidden [mask-image:linear-gradient(180deg,#000_50%,transparent)]'
+        )}
+      >
         {TAGS.map(t => (
           <li key={t.name} className="flex-1">
             <input
@@ -52,6 +62,9 @@ export function ProjectFilters() {
           </li>
         ))}
       </ul>
+      <button onClick={toggleExpanded} className="mx-auto">
+        {expanded ? <ChevronUp /> : <ChevronDown />}
+      </button>
     </fieldset>
   )
 }
