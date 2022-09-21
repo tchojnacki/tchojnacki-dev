@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import sortBy from 'lodash/sortBy'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useCallback, useState } from 'react'
 import { ChevronDown, ChevronUp } from 'tabler-icons-react'
 
 import { SimpleIconSvg } from 'components'
@@ -8,20 +8,20 @@ import { Project, Technology } from 'data'
 
 const TAGS = sortBy(
   Object.values(Technology.LIST)
-    .map(t => ({
-      ...t,
-      count: Object.values(Project.LIST).filter(p => p.usesTechnology(t)).length,
-    }))
-    .filter(({ count }) => count > 0),
-  t => -t.count,
-  t => t.name
+    .map(t => [t, Object.values(Project.LIST).filter(p => p.usesTechnology(t)).length] as const)
+    .filter(([, count]) => count > 0),
+  ([, count]) => -count,
+  ([t]) => t.name
 )
 
-export function ProjectFilters() {
-  const [expanded, setExpanded] = useState(false)
-  const toggleExpanded = () => setExpanded(prev => !prev)
+interface ProjectFiltersProps {
+  filter: Technology | null
+  setFilter: Dispatch<SetStateAction<Technology | null>>
+}
 
-  const [filter, setFilter] = useState<Technology | null>(null)
+export function ProjectFilters({ filter, setFilter }: ProjectFiltersProps) {
+  const [expanded, setExpanded] = useState(false)
+  const toggleExpanded = useCallback(() => setExpanded(prev => !prev), [])
 
   return (
     <fieldset className="px-16 flex flex-col">
@@ -33,7 +33,7 @@ export function ProjectFilters() {
             'max-h-16 overflow-hidden [mask-image:linear-gradient(180deg,#000_50%,transparent)]'
         )}
       >
-        {TAGS.map(t => (
+        {TAGS.map(([t, count]) => (
           <li key={t.name} className="flex-1">
             <input
               type="checkbox"
@@ -57,12 +57,12 @@ export function ProjectFilters() {
                 pathClassName="fill-slate-3 dark:fill-slate-12"
               />
               <span>{t.name}</span>
-              <strong className="ml-auto pl-1 font-bold">{t.count}</strong>
+              <strong className="ml-auto pl-1 font-bold">{count}</strong>
             </label>
           </li>
         ))}
       </ul>
-      <button onClick={toggleExpanded} className="mx-auto">
+      <button onClick={toggleExpanded} className="mx-auto mt-1">
         {expanded ? <ChevronUp /> : <ChevronDown />}
       </button>
     </fieldset>
