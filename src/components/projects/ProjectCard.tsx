@@ -6,12 +6,12 @@ import { ZoomCancel, ZoomIn } from 'tabler-icons-react'
 import { LinkButton, SimpleIconSvg } from 'components'
 import { Project } from 'data'
 
-interface FeaturedProjectProps {
+interface ProjectCardProps {
   project: Project
   flipped?: boolean
 }
 
-export function FeaturedProject({ project, flipped }: FeaturedProjectProps) {
+export function ProjectCard({ project, flipped }: ProjectCardProps) {
   const [isActive, setIsActive] = useState(false)
   const toggleActive = () => setIsActive(prev => !prev)
 

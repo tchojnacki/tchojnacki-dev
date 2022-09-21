@@ -1,10 +1,10 @@
-import { FeaturedProjectList, Title } from 'components'
+import { ProjectList, Title } from 'components'
 
 export default function Projects() {
   return (
     <>
       <Title>Projects</Title>
-      <FeaturedProjectList length={Infinity} />
+      <ProjectList />
     </>
   )
 }

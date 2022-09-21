@@ -86,6 +86,10 @@ export class Project {
     public readonly parts: readonly ProjectPart[]
   ) {}
 
+  public usesTechnology(technology: Technology) {
+    return this.parts.some(({ technologies }) => technologies.includes(technology))
+  }
+
   public static readonly LIST = {
     ADVENTOFCODE: new Project(
       'Advent of Code',
@@ -339,9 +343,9 @@ export class Project {
   } as const
 
   public static readonly IMPORTANCE_ORDER = [
+    Project.LIST.TCHOJNACKIDEV,
     Project.LIST.CODERSCAMPFULLSTACK,
     Project.LIST.SCRIPTINGTANKS,
-    Project.LIST.TCHOJNACKIDEV,
     Project.LIST.CODERSCAMPHACKATHON,
     Project.LIST.CODERSCAMPREACT,
     Project.LIST.CODERSCAMPJAVASCRIPT,
