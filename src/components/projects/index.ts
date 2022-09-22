@@ -1,1 +1,2 @@
-export * from './FeaturedProjectList'
+export * from './ProjectFilters'
+export * from './ProjectList'

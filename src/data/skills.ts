@@ -21,7 +21,7 @@ export const TECH_SPHERE_SKILL_NAMES: readonly string[] = [
 
 export const SECTION_SKILLS = [
   {
-    label: 'Frameworks & libraries',
+    label: 'Frameworks & Libraries',
     width: 6,
     height: 5,
     largest: 3,
@@ -50,11 +50,11 @@ export const SECTION_SKILLS = [
     ] as SectionItems,
   },
   {
-    label: 'Tools & devops',
-    width: 4,
-    height: 2,
-    largest: 1.33,
-    items: [T.GIT, T.GITHUB, T.MONGO, T.NPM, T.YARN, T.DOCKER, T.HEROKU, T.FIGMA].map(i => [
+    label: 'Tools & Devops',
+    width: 3,
+    height: 3,
+    largest: 1.37,
+    items: [T.GIT, T.GITHUB, T.MONGO, T.NPM, T.YARN, T.VITE, T.DOCKER, T.HEROKU, T.FIGMA].map(i => [
       i,
       1,
     ]) as SectionItems,
