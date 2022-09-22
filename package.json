@@ -29,6 +29,9 @@
     "use-local-storage-state": "^18.1.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@commitlint/types": "^17.0.0",
     "@next/bundle-analyzer": "^12.3.1",
     "@savvywombat/tailwindcss-grid-areas": "^2.1.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -43,6 +46,7 @@
     "eslint-config-next": "^12.3.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
     "jest": "^29.0.3",
     "jest-environment-jsdom": "^29.0.3",
     "postcss": "^8.4.16",
