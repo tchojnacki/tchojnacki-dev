@@ -12,7 +12,7 @@ export function SkillsSection() {
         <SectionHeader>Skills</SectionHeader>
         <div className="flex flex-wrap justify-center">
           {SECTION_SKILLS.map(({ label, width, height, largest, items }) => (
-            <section key={label} className="p-8 flex flex-col items-center">
+            <section key={label} className="p-8 flex flex-col items-center w-full sm:w-auto">
               <h4 className="my-6 text-2xl">{label}</h4>
               <SkillCardWrapper width={width} height={height} largest={largest}>
                 {items.map(([skill, size]) => (
