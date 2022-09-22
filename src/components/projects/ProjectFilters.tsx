@@ -10,6 +10,7 @@ const TAGS = sortBy(
   Object.values(Technology.LIST)
     .map(t => [t, Object.values(Project.LIST).filter(p => p.usesTechnology(t)).length] as const)
     .filter(([, count]) => count > 0),
+  ([t]) => ['lang', 'lib', 'tool'].indexOf(t.type),
   ([, count]) => -count,
   ([t]) => t.name
 )
