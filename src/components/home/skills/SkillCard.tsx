@@ -12,7 +12,7 @@ export function SkillCard({ skill, size = 1 }: SkillCardProps) {
   return (
     <li
       className="col-[span_var(--skill-size)] row-[span_var(--skill-size)] flex flex-col items-center gap-2 rounded-xl
-      bg-slate-12 dark:bg-indigo-2 p-3 pt-5 shadow-md shadow-indigo-2/25 dark:shadow-indigo-11/10"
+      bg-slate-12 dark:bg-indigo-2 p-3 pt-5 shadow-md shadow-indigo-2/25 dark:shadow-indigo-11/10 min-w-[4rem]"
       style={{ '--skill-size': size } as CSSProperties}
     >
       <SimpleIconSvg
