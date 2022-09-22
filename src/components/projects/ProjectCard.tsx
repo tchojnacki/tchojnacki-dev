@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import Image from 'next/image'
-import { Fragment, useState } from 'react'
-import { ZoomCancel, ZoomIn } from 'tabler-icons-react'
+import { CSSProperties, Fragment, useCallback, useState } from 'react'
+import { PlayerPause, PlayerPlay, ZoomCancel, ZoomIn } from 'tabler-icons-react'
 
 import { LinkButton, SimpleIconSvg } from 'components'
 import { Project } from 'data'
@@ -13,9 +13,14 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, flipped }: ProjectCardProps) {
   const [isActive, setIsActive] = useState(false)
-  const toggleActive = () => setIsActive(prev => !prev)
+  const toggleActive = useCallback(() => setIsActive(prev => !prev), [])
 
-  const ZoomIcon = isActive ? ZoomCancel : ZoomIn
+  const { width, height } = project.image
+  const maxImageScroll = Math.floor(((height - (width * 3) / 4) / width) * 100)
+
+  const activeIcon = maxImageScroll !== 0 ? PlayerPause : ZoomCancel
+  const inactiveIcon = maxImageScroll !== 0 ? PlayerPlay : ZoomIn
+  const ZoomIcon = isActive ? activeIcon : inactiveIcon
 
   return (
     <li
@@ -39,6 +44,12 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
           src={project.image}
           sizes="(max-width: 1024px) 100vw, 1024px"
           placeholder="blur"
+          className={clsx(isActive && 'animate-scrollprojectimage')}
+          style={
+            {
+              '--max-image-scroll': `-${maxImageScroll}%`,
+            } as CSSProperties
+          }
         />
         <div
           className={clsx(

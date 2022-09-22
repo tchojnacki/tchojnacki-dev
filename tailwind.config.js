@@ -57,12 +57,21 @@ module.exports = {
           transform: 'none',
         },
       },
+      scrollprojectimage: {
+        from: {
+          marginTop: 0,
+        },
+        to: {
+          marginTop: 'var(--max-image-scroll, 0)',
+        },
+      },
     },
     animation: {
       none: 'none',
       errshake: 'errshake 200ms 600ms',
       emojiwave: 'emojiwave 1s ease-in-out',
       enteronload: 'enteronload 500ms ease-out',
+      scrollprojectimage: 'scrollprojectimage 5s ease-in-out alternate infinite',
     },
     extend: {
       spacing: {
