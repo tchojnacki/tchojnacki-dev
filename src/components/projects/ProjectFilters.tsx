@@ -25,7 +25,7 @@ export function ProjectFilters({ filter, setFilter }: ProjectFiltersProps) {
   const toggleExpanded = useCallback(() => setExpanded(prev => !prev), [])
 
   return (
-    <fieldset className="px-16 flex flex-col">
+    <fieldset className="px-16 flex flex-col max-w-[96rem] mx-auto">
       <legend className="text-2xl my-4">Filters</legend>
       <ul
         className={clsx(
