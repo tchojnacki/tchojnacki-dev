@@ -51,7 +51,7 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
           <button
             aria-label="Zoom"
             className={clsx(
-              'col-start-1 col-end-[-1] row-start-1 row-end-[-1]',
+              'col-start-1 col-end-[-1] row-start-1 row-end-[-1] z-[1]',
               'flex justify-center items-center group duration-200',
               !isActive && 'bg-pure-black/25'
             )}
@@ -65,7 +65,7 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
               size={64}
             />
           </button>
-          <ul className="m-4 inline-flex flex-col gap-2 grid-in-buttons h-min">
+          <ul className="m-4 inline-flex flex-col gap-2 grid-in-buttons h-min z-[2]">
             {project.links.map(({ displayName, IconComponent, link }) => (
               <li key={displayName}>
                 <LinkButton
