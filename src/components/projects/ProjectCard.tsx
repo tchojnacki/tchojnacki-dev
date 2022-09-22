@@ -25,7 +25,7 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
     >
       <div
         className={clsx(
-          'lg:animate-enteronload lg:motion-reduce:animate-none lg:onenter-scaling relative',
+          'lg:animate-enteronload lg:motion-reduce:animate-none lg:onenter-scaling relative aspect-[4/3]',
           flipped ? 'lg:col-start-4' : 'lg:col-start-1',
           'lg:col-span-5 lg:row-span-full rounded-t-3xl lg:rounded-b-3xl overflow-hidden',
           'shadow-none lg:shadow-md lg:shadow-indigo-2/25 dark:lg:shadow-indigo-11/10',
