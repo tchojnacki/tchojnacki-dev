@@ -50,7 +50,7 @@ export function Footer() {
         </section>
         <section>
           <p className="text-center text-slate-8 dark:text-slate-11 py-8">
-            Designed and developed by <strong>Tomasz Chojnacki</strong>
+            Designed and developed by <strong>Tomasz&nbsp;Chojnacki</strong>
           </p>
         </section>
       </footer>
