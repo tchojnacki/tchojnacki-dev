@@ -138,7 +138,7 @@ export function TechSphere() {
     if (ctx) {
       ctx.clearRect(0, 0, canvasSize, canvasSize)
 
-      ctx.fillStyle = 'currentColor'
+      ctx.fillStyle = getComputedStyle(canvasRef.current!).color
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
       ctx.font = `${Math.round(canvasSize * FONT_SCALE)}px Inter`

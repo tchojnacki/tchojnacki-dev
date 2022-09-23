@@ -9,7 +9,12 @@ export function Wave({ inverted, className }: WaveProps) {
   return (
     <svg
       aria-hidden="true"
-      className={clsx('w-full max-h-64', inverted && 'rotate-180', className)}
+      className={clsx(
+        'w-full max-h-64',
+        'bg-gradient-to-t from-indigo-11 dark:from-indigo-4 !to-[transparent_5%]',
+        inverted && 'rotate-180',
+        className
+      )}
       viewBox="0 0 1280 180"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="none"
