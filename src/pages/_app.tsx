@@ -1,12 +1,14 @@
 import clsx from 'clsx'
 import type { AppProps } from 'next/app'
+import useLocalStorageState from 'use-local-storage-state'
 
 import { Footer, Nav } from 'components'
-import { useLocalStorage } from 'hooks'
 import 'styles/global.css'
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [theme, setTheme] = useLocalStorage<'dark' | 'light'>('theme', 'dark')
+  const [theme, setTheme] = useLocalStorageState<'dark' | 'light'>('theme', {
+    defaultValue: 'dark',
+  })
   const toggleTheme = () => setTheme(prev => (prev === 'dark' ? 'light' : 'dark'))
 
   return (
