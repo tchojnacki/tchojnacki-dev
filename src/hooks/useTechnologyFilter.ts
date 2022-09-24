@@ -5,7 +5,7 @@ import { Technology } from 'data'
 
 const { LIST } = Technology
 
-function serializeTechnology(technology: Technology | null): string | null {
+export function serializeTechnology(technology: Technology | null): string | null {
   return (
     Object.keys(LIST)
       .find(k => LIST[k as keyof typeof LIST] === technology)
