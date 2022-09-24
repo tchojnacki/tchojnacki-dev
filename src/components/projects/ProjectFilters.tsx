@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import sortBy from 'lodash/sortBy'
-import { Dispatch, SetStateAction, useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { ChevronDown, ChevronUp } from 'tabler-icons-react'
 
 import { SimpleIconSvg } from 'components'
