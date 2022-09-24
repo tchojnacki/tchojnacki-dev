@@ -41,12 +41,12 @@ export const SECTION_SKILLS = [
     items: [
       [T.HTML, 2],
       [T.TYPESCRIPT, 3],
-      [T.PYTHON, 2],
+      [T.JAVA, 2],
       [T.CSS, 2],
       [T.JAVASCRIPT, 3],
       [T.RUST, 2],
-      [T.JAVA, 2],
       [T.CSHARP, 2],
+      [T.KOTLIN, 2],
     ] as SectionItems,
   },
   {
@@ -54,7 +54,7 @@ export const SECTION_SKILLS = [
     width: 3,
     height: 3,
     largest: 1.37,
-    items: [T.GIT, T.GITHUB, T.MONGODB, T.NPM, T.YARN, T.VITE, T.DOCKER, T.HEROKU, T.FIGMA].map(
+    items: [T.GIT, T.GITHUB, T.MONGODB, T.NPM, T.YARN, T.VITE, T.DOCKER, T.SWAGGER, T.FIGMA].map(
       i => [i, 1]
     ) as SectionItems,
   },

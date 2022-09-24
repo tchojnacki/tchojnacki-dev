@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import sortBy from 'lodash/sortBy'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { ChevronDown, ChevronUp } from 'tabler-icons-react'
 
 import { SimpleIconSvg } from 'components'
@@ -24,14 +24,19 @@ export function ProjectFilters({ filter, toggleFilter }: ProjectFiltersProps) {
   const [expanded, setExpanded] = useState(false)
   const toggleExpanded = useCallback(() => setExpanded(prev => !prev), [])
 
+  useEffect(() => {
+    if (filter !== null) {
+      setExpanded(true)
+    }
+  }, [filter])
+
   return (
     <fieldset className="px-16 flex flex-col max-w-[96rem] mx-auto">
       <legend className="text-2xl my-4">Filters</legend>
       <ul
         className={clsx(
-          'flex gap-2 flex-wrap after:flex-grow-[100]',
-          !expanded &&
-            'max-h-16 overflow-hidden [mask-image:linear-gradient(180deg,#000_50%,transparent)]'
+          'flex gap-2 flex-wrap after:flex-grow-[100] overflow-hidden',
+          !expanded && 'max-h-12 [mask-image:linear-gradient(180deg,#000_50%,transparent)]'
         )}
       >
         {TAGS.map(([t, count]) => (
