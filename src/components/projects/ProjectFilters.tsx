@@ -17,10 +17,10 @@ const TAGS = sortBy(
 
 interface ProjectFiltersProps {
   filter: Technology | null
-  setFilter: Dispatch<SetStateAction<Technology | null>>
+  toggleFilter: (technology: Technology | null) => void
 }
 
-export function ProjectFilters({ filter, setFilter }: ProjectFiltersProps) {
+export function ProjectFilters({ filter, toggleFilter }: ProjectFiltersProps) {
   const [expanded, setExpanded] = useState(false)
   const toggleExpanded = useCallback(() => setExpanded(prev => !prev), [])
 
@@ -41,7 +41,7 @@ export function ProjectFilters({ filter, setFilter }: ProjectFiltersProps) {
               id={t.name}
               name={t.name}
               checked={t === filter}
-              onChange={() => setFilter(prev => (prev === t ? null : t))}
+              onChange={() => toggleFilter(t)}
               hidden
             />
             <label

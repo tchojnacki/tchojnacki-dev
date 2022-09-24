@@ -1,6 +1,8 @@
 import clsx from 'clsx'
+import { NextAdapter } from 'next-query-params'
 import type { AppProps } from 'next/app'
 import useLocalStorageState from 'use-local-storage-state'
+import { QueryParamProvider } from 'use-query-params'
 
 import { Footer, Nav } from 'components'
 import 'styles/global.css'
@@ -19,7 +21,9 @@ export default function App({ Component, pageProps }: AppProps) {
       )}
     >
       <Nav currentTheme={theme} toggleTheme={toggleTheme} />
-      <Component {...pageProps} />
+      <QueryParamProvider adapter={NextAdapter}>
+        <Component {...pageProps} />
+      </QueryParamProvider>
       <Footer />
     </div>
   )

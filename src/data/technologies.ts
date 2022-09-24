@@ -8,7 +8,7 @@ export class Technology {
     public readonly name: string = typeof icon === 'string' ? icon : icon.title
   ) {}
 
-  public static readonly LIST = {
+  public static readonly LIST: Record<string, Technology> = {
     ASPNET: new Technology('lib', ICONS.siDotnet, 'ASP.NET'),
     CLAP: new Technology('lib', 'Clap'),
     CONTEXTAPI: new Technology('lib', ICONS.siReact, 'React Context API'),
@@ -60,5 +60,5 @@ export class Technology {
     VERCEL: new Technology('tool', ICONS.siVercel),
     VITE: new Technology('tool', ICONS.siVite),
     YARN: new Technology('tool', ICONS.siYarn),
-  } as const
+  }
 }
