@@ -104,7 +104,7 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
           'lg:col-span-5 lg:row-span-full rounded-b-3xl p-8 flex flex-col z-[1]',
           'from-indigo-11 to-indigo-11 lg:to-slate-12',
           'dark:from-indigo-4 dark:to-indigo-4 dark:lg:to-indigo-2',
-          'duration-200 ease-in translate-x-0',
+          'duration-200 ease-in translate-x-0 transition-[transform]',
           isActive && (flipped ? 'lg:-translate-x-1/3' : 'lg:translate-x-1/3')
         )}
       >
