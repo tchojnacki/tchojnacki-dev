@@ -36,11 +36,7 @@ class ProjectTag {
   public static readonly Group = (project: string) =>
     new ProjectTag('Group', '#9c2bac', `https://github.com/${project}/graphs/contributors`)
 
-  public static readonly CodersCamp = new ProjectTag(
-    'Bootcamp',
-    '#067a6e',
-    'https://github.com/CodersCamp2021-HK'
-  )
+  public static readonly CodersCamp = new ProjectTag('Bootcamp', '#067a6e')
 
   public static readonly University = new ProjectTag('University', '#067a6e')
 
@@ -77,7 +73,7 @@ class ProjectLink {
 }
 
 export class Project {
-  public constructor(
+  private constructor(
     public readonly name: string,
     public readonly image: StaticImageData,
     public readonly tags: readonly ProjectTag[],
@@ -117,12 +113,14 @@ export class Project {
           T.REACT,
           T.TYPESCRIPT,
           T.MUI,
-          T.IMMER,
           T.REACTROUTER,
+          T.CONTEXTAPI,
+          T.IMMER,
           T.LODASH,
         ]),
         new ProjectPart('Back End', [T.NEST, T.TYPESCRIPT, T.MONGO, T.EXPRESS, T.PASSPORT, T.NODE]),
         new ProjectPart('Tools', [
+          T.TESTINGLIBRARY,
           T.JEST,
           T.SWAGGER,
           T.DOCKER,
@@ -163,12 +161,11 @@ export class Project {
           T.LODASH,
         ]),
         new ProjectPart('Tools', [
-          T.DOCKER,
           T.SWAGGER,
-          T.JEST,
-          T.HEROKU,
-          T.VERCEL,
+          T.DOCKER,
           T.VITE,
+          T.VERCEL,
+          T.HEROKU,
           T.ESLINT,
           T.PRETTIER,
           T.GIT,
@@ -192,6 +189,7 @@ export class Project {
       [
         new ProjectPart('Website', [T.JAVASCRIPT, T.CSS, T.HTML, T.LODASH]),
         new ProjectPart('Tools', [
+          T.TESTINGLIBRARY,
           T.JEST,
           T.VITE,
           T.YARN,
@@ -213,8 +211,9 @@ export class Project {
       ],
       'Online platformer game with three stages. Built using public domain assets. The UI surrounding the game was created using React.',
       [
-        new ProjectPart('Website', [T.REACT, T.JAVASCRIPT, T.EMOTION, T.CSS]),
+        new ProjectPart('Website', [T.REACT, T.JAVASCRIPT, T.EMOTION, T.CONTEXTAPI, T.CSS]),
         new ProjectPart('Tools', [
+          T.TESTINGLIBRARY,
           T.JEST,
           T.STORYBOOK,
           T.VITE,
@@ -329,6 +328,7 @@ export class Project {
       [
         new ProjectPart('Website', [T.NEXT, T.REACT, T.TAILWIND, T.TYPESCRIPT, T.LODASH]),
         new ProjectPart('Tools', [
+          T.TESTINGLIBRARY,
           T.JEST,
           T.GIT,
           T.VERCEL,

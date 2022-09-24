@@ -11,6 +11,7 @@ export class Technology {
   public static readonly LIST = {
     ASPNET: new Technology('lib', ICONS.siDotnet, 'ASP.NET'),
     CLAP: new Technology('lib', 'Clap'),
+    CONTEXTAPI: new Technology('lib', ICONS.siReact, 'React Context API'),
     CSHARP: new Technology('lang', ICONS.siCsharp, 'C#'),
     CSS: new Technology('lang', ICONS.siCss3, 'CSS'),
     DOCKER: new Technology('tool', ICONS.siDocker),
@@ -52,6 +53,7 @@ export class Technology {
     STORYBOOK: new Technology('tool', ICONS.siStorybook),
     SWAGGER: new Technology('tool', ICONS.siSwagger),
     TAILWIND: new Technology('lib', ICONS.siTailwindcss),
+    TESTINGLIBRARY: new Technology('lib', ICONS.siTestinglibrary),
     THREE: new Technology('lib', ICONS.siThreedotjs),
     TYPESCRIPT: new Technology('lang', ICONS.siTypescript),
     VERCEL: new Technology('tool', ICONS.siVercel),
