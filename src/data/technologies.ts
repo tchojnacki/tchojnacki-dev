@@ -24,6 +24,7 @@ export class Technology {
     FLYIO: new Technology('tool', 'Fly.io'),
     GIT: new Technology('tool', ICONS.siGit),
     GITHUB: new Technology('tool', ICONS.siGithub),
+    GITHUBACTIONS: new Technology('tool', ICONS.siGithubactions),
     HEROKU: new Technology('tool', ICONS.siHeroku),
     HTML: new Technology('lang', ICONS.siHtml5, 'HTML'),
     IMMER: new Technology('lib', ICONS.siImmer),
