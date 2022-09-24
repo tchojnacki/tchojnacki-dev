@@ -13,7 +13,7 @@ export function ProjectList({ filter = null, length = Infinity }: ProjectListPro
       {Project.IMPORTANCE_ORDER.filter(p => filter === null || p.usesTechnology(filter))
         .slice(0, length)
         .map((p, i) => (
-          <ProjectCard key={i} project={p} flipped={i % 2 === 1} />
+          <ProjectCard key={p.name} project={p} flipped={i % 2 === 1} />
         ))}
     </ul>
   )

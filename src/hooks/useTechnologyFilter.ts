@@ -8,13 +8,15 @@ const { LIST } = Technology
 function serializeTechnology(technology: Technology | null): string | null {
   return (
     Object.keys(LIST)
-      .find(k => LIST[k] === technology)
+      .find(k => LIST[k as keyof typeof LIST] === technology)
       ?.toLowerCase() ?? null
   )
 }
 
 function deserializeTechnology(value: string | null): Technology | null {
-  return value && value.toUpperCase() in LIST ? LIST[value.toUpperCase()] : null
+  return value && value.toUpperCase() in LIST
+    ? LIST[value.toUpperCase() as keyof typeof LIST]
+    : null
 }
 
 export function useTechnologyFilter() {

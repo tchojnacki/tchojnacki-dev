@@ -8,7 +8,7 @@ export class Technology {
     public readonly name: string = typeof icon === 'string' ? icon : icon.title
   ) {}
 
-  public static readonly LIST: Record<string, Technology> = {
+  public static readonly LIST = {
     ASPNET: new Technology('lib', ICONS.siDotnet, 'ASP.NET'),
     CLAP: new Technology('lib', 'Clap'),
     CONTEXTAPI: new Technology('lib', ICONS.siReact, 'React Context API'),
@@ -38,11 +38,11 @@ export class Technology {
     MANTINE: new Technology('lib', 'Mantine'),
     MEDIATR: new Technology('lib', 'MediatR'),
     MINECRAFTFORGE: new Technology('lib', 'Minecraft Forge'),
-    MONGO: new Technology('tool', ICONS.siMongodb),
+    MONGODB: new Technology('tool', ICONS.siMongodb),
     MUI: new Technology('lib', ICONS.siMui),
-    NEST: new Technology('lib', ICONS.siNestjs),
-    NEXT: new Technology('lib', ICONS.siNextdotjs),
-    NODE: new Technology('lib', ICONS.siNodedotjs),
+    NESTJS: new Technology('lib', ICONS.siNestjs),
+    NEXTJS: new Technology('lib', ICONS.siNextdotjs),
+    NODEJS: new Technology('lib', ICONS.siNodedotjs),
     NPM: new Technology('tool', ICONS.siNpm),
     PASSPORT: new Technology('lib', ICONS.siPassport),
     PRETTIER: new Technology('tool', ICONS.siPrettier),
@@ -53,12 +53,12 @@ export class Technology {
     RUST: new Technology('lang', ICONS.siRust),
     STORYBOOK: new Technology('tool', ICONS.siStorybook),
     SWAGGER: new Technology('tool', ICONS.siSwagger),
-    TAILWIND: new Technology('lib', ICONS.siTailwindcss),
+    TAILWINDCSS: new Technology('lib', ICONS.siTailwindcss),
     TESTINGLIBRARY: new Technology('lib', ICONS.siTestinglibrary),
-    THREE: new Technology('lib', ICONS.siThreedotjs),
+    THREEJS: new Technology('lib', ICONS.siThreedotjs),
     TYPESCRIPT: new Technology('lang', ICONS.siTypescript),
     VERCEL: new Technology('tool', ICONS.siVercel),
     VITE: new Technology('tool', ICONS.siVite),
     YARN: new Technology('tool', ICONS.siYarn),
-  }
+  } as const
 }

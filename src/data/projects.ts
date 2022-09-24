@@ -118,7 +118,14 @@ export class Project {
           T.IMMER,
           T.LODASH,
         ]),
-        new ProjectPart('Back End', [T.NEST, T.TYPESCRIPT, T.MONGO, T.EXPRESS, T.PASSPORT, T.NODE]),
+        new ProjectPart('Back End', [
+          T.NESTJS,
+          T.TYPESCRIPT,
+          T.MONGODB,
+          T.EXPRESS,
+          T.PASSPORT,
+          T.NODEJS,
+        ]),
         new ProjectPart('Tools', [
           T.TESTINGLIBRARY,
           T.JEST,
@@ -151,14 +158,14 @@ export class Project {
       'Brower extension which notifies you about fake news. Created during the 24h Hack-a-Troll Hackathon in 2001.',
       [
         new ProjectPart('Extension', [T.REACT, T.TYPESCRIPT, T.EMOTION]),
-        new ProjectPart('Website', [T.NEXT, T.REACT, T.TYPESCRIPT, T.CSS]),
+        new ProjectPart('Website', [T.NEXTJS, T.REACT, T.TYPESCRIPT, T.CSS]),
         new ProjectPart('Server', [
-          T.NEST,
+          T.NESTJS,
           T.TYPESCRIPT,
-          T.MONGO,
+          T.MONGODB,
           T.RXJS,
           T.EXPRESS,
-          T.NODE,
+          T.NODEJS,
           T.LODASH,
         ]),
         new ProjectPart('Tools', [
@@ -299,7 +306,7 @@ export class Project {
       'Online real-time multiplayer game powered by WebSockets. Final project for the Script Languages university course.',
       [
         new ProjectPart('Front End', [
-          T.THREE,
+          T.THREEJS,
           T.REACT,
           T.MANTINE,
           T.IMMER,
@@ -339,7 +346,7 @@ export class Project {
       [ProjectLink.Deploy('https://tchojnacki.dev'), ProjectLink.GitHub('tchojnacki-dev')],
       'Website acting as my portfolio and blog.',
       [
-        new ProjectPart('Website', [T.NEXT, T.REACT, T.TAILWIND, T.TYPESCRIPT, T.LODASH]),
+        new ProjectPart('Website', [T.NEXTJS, T.REACT, T.TAILWINDCSS, T.TYPESCRIPT, T.LODASH]),
         new ProjectPart('Tools', [
           T.TESTINGLIBRARY,
           T.JEST,
