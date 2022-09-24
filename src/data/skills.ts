@@ -6,15 +6,15 @@ type SectionItems = [Technology, number][]
 
 export const TECH_SPHERE_SKILL_NAMES: readonly string[] = [
   T.REACT,
-  T.NEXT,
-  T.NEST,
+  T.NEXTJS,
+  T.NESTJS,
   T.TYPESCRIPT,
   T.JAVASCRIPT,
   T.EXPRESS,
-  T.NODE,
+  T.NODEJS,
   T.JAVA,
   T.PYTHON,
-  T.MONGO,
+  T.MONGODB,
   T.CSS,
   T.HTML,
 ].map(t => t.name)
@@ -27,9 +27,9 @@ export const SECTION_SKILLS = [
     largest: 3,
     items: [
       [T.REACT, 3],
-      [T.NODE, 3],
-      [T.NEXT, 2],
-      [T.NEST, 2],
+      [T.NODEJS, 3],
+      [T.NEXTJS, 2],
+      [T.NESTJS, 2],
       [T.JEST, 2],
     ] as SectionItems,
   },
@@ -41,12 +41,12 @@ export const SECTION_SKILLS = [
     items: [
       [T.HTML, 2],
       [T.TYPESCRIPT, 3],
-      [T.PYTHON, 2],
+      [T.JAVA, 2],
       [T.CSS, 2],
       [T.JAVASCRIPT, 3],
       [T.RUST, 2],
-      [T.JAVA, 2],
       [T.CSHARP, 2],
+      [T.KOTLIN, 2],
     ] as SectionItems,
   },
   {
@@ -54,9 +54,8 @@ export const SECTION_SKILLS = [
     width: 3,
     height: 3,
     largest: 1.37,
-    items: [T.GIT, T.GITHUB, T.MONGO, T.NPM, T.YARN, T.VITE, T.DOCKER, T.HEROKU, T.FIGMA].map(i => [
-      i,
-      1,
-    ]) as SectionItems,
+    items: [T.GIT, T.GITHUB, T.MONGODB, T.NPM, T.YARN, T.VITE, T.DOCKER, T.SWAGGER, T.FIGMA].map(
+      i => [i, 1]
+    ) as SectionItems,
   },
 ] as const

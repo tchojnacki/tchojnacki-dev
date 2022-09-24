@@ -1,16 +1,14 @@
-import { useState } from 'react'
-
 import { ProjectFilters, ProjectList, Title } from 'components'
-import { Technology } from 'data'
+import { useTechnologyFilter } from 'hooks'
 
 export default function Projects() {
-  const [filter, setFilter] = useState<Technology | null>(null)
+  const { filter, toggleFilter } = useTechnologyFilter()
 
   return (
     <>
       <Title>Projects</Title>
-      <ProjectFilters {...{ filter, setFilter }} />
-      <ProjectList filter={filter} />
+      <ProjectFilters {...{ filter, toggleFilter }} />
+      <ProjectList {...{ filter }} />
     </>
   )
 }

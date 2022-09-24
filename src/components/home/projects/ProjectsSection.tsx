@@ -8,7 +8,7 @@ export function ProjectsSection() {
       <SectionHeader>Featured projects</SectionHeader>
       <ProjectList length={3} />
       <div className="flex justify-center">
-        <LinkButton href="/projects">View Other Projects</LinkButton>
+        <LinkButton href="/projects">View All Projects</LinkButton>
       </div>
     </section>
   )
