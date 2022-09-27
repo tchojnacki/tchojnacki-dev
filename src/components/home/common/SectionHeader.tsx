@@ -11,14 +11,17 @@ export function SectionHeader({ children, slug }: SectionHeaderProps) {
   const id = slug ?? textToSlug(children)
 
   return (
-    <h3
+    <h2
       id={id}
-      className="text-center text-4xl font-bold capitalize pt-4 flex justify-center items-center"
+      className="group text-center text-4xl font-bold capitalize pt-4 flex justify-center items-center"
     >
-      <a className="px-10 peer" href={`#${id}`}>
+      <a className="px-10" href={`#${id}`}>
         {children}
       </a>
-      <Link className="-order-1 -mr-8 opacity-0 peer-hover:opacity-50 duration-200" />
-    </h3>
+      <Link
+        aria-label="Section link"
+        className="-order-1 -mr-8 opacity-0 group-hover:opacity-50 duration-200"
+      />
+    </h2>
   )
 }

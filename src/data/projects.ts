@@ -37,11 +37,11 @@ class ProjectTag {
   public static readonly Group = (project: string) =>
     new ProjectTag('Group', '#9c2bac', `https://github.com/${project}/graphs/contributors`)
 
-  public static readonly CodersCamp = new ProjectTag('Bootcamp', '#067a6e')
+  public static readonly CodersCamp = new ProjectTag('Bootcamp', '#075b52')
 
-  public static readonly University = new ProjectTag('University', '#067a6e')
+  public static readonly University = new ProjectTag('University', '#075b52')
 
-  public static readonly Personal = new ProjectTag('Personal', '#067a6e')
+  public static readonly Personal = new ProjectTag('Personal', '#075b52')
 
   public static readonly Deprecated = new ProjectTag('DEPRECATED', '#ca3214')
 }
