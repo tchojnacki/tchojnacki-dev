@@ -1,4 +1,4 @@
-import { ProjectFilters, ProjectList, Title } from 'components'
+import { ProjectFilters, ProjectList, SEO } from 'components'
 import { useTechnologyFilter } from 'hooks'
 
 export default function Projects() {
@@ -6,7 +6,7 @@ export default function Projects() {
 
   return (
     <>
-      <Title>Projects</Title>
+      <SEO name="Projects" desc="List of Tomasz Chojnacki's software projects." path="/projects" />
       <ProjectFilters {...{ filter, toggleFilter }} />
       <ProjectList {...{ filter }} />
     </>

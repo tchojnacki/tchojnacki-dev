@@ -96,6 +96,8 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
         </div>
       </div>
       <div
+        itemScope
+        itemType="https://schema.org/SoftwareApplication"
         className={clsx(
           'lg:animate-enteronload lg:motion-reduce:animate-none',
           flipped
@@ -109,8 +111,10 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
         )}
       >
         <h4 className="flex lg:items-center mb-5 gap-4 flex-col lg:flex-row">
-          <span className="text-3xl font-bold mr-auto">{project.name}</span>
-          <ul className="flex gap-2">
+          <span itemProp="name" className="text-3xl font-bold mr-auto">
+            {project.name}
+          </span>
+          <ul itemProp="keywords" className="flex gap-2">
             {project.tags.map(({ displayName, backgroundColor, link }) => {
               const props = {
                 style: { backgroundColor },
@@ -131,7 +135,9 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
             })}
           </ul>
         </h4>
-        <p className="text-slate-8 dark:text-slate-11">{project.description}</p>
+        <p itemProp="description" className="text-slate-8 dark:text-slate-11">
+          {project.description}
+        </p>
         {project.parts.map(({ name, technologies }) => (
           <Fragment key={name}>
             <h5 className="text-xl mt-3 mb-1">{name}</h5>

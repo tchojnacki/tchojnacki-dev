@@ -6,7 +6,7 @@ import headshotImage from 'media/tchojnacki.png'
 export function AboutSection() {
   return (
     <>
-      <section className="p-8 bg-indigo-11 dark:bg-indigo-4">
+      <main className="p-8 bg-indigo-11 dark:bg-indigo-4">
         <SectionHeader>About Me</SectionHeader>
         <div className="mx-auto flex flex-col md:flex-row gap-8 justify-center items-center py-8">
           <div
@@ -43,7 +43,7 @@ export function AboutSection() {
             </ul>
           </div>
         </div>
-      </section>
+      </main>
       <Wave inverted />
     </>
   )

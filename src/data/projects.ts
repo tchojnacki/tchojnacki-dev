@@ -22,6 +22,7 @@ import scriptingtanksImage from 'media/projects/scriptingtanks.png'
 import spotifymosaicImage from 'media/projects/spotifymosaic.png'
 import tchojnackidevImage from 'media/projects/tchojnackidev.png'
 
+import { WEBSITE_ROOT } from './sitemap'
 import { Technology } from './technologies'
 
 const T = Technology.LIST
@@ -36,11 +37,11 @@ class ProjectTag {
   public static readonly Group = (project: string) =>
     new ProjectTag('Group', '#9c2bac', `https://github.com/${project}/graphs/contributors`)
 
-  public static readonly CodersCamp = new ProjectTag('Bootcamp', '#067a6e')
+  public static readonly CodersCamp = new ProjectTag('Bootcamp', '#075b52')
 
-  public static readonly University = new ProjectTag('University', '#067a6e')
+  public static readonly University = new ProjectTag('University', '#075b52')
 
-  public static readonly Personal = new ProjectTag('Personal', '#067a6e')
+  public static readonly Personal = new ProjectTag('Personal', '#075b52')
 
   public static readonly Deprecated = new ProjectTag('DEPRECATED', '#ca3214')
 }
@@ -343,7 +344,7 @@ export class Project {
       'tchojnacki.dev',
       tchojnackidevImage,
       [ProjectTag.Personal],
-      [ProjectLink.Deploy('https://tchojnacki.dev'), ProjectLink.GitHub('tchojnacki-dev')],
+      [ProjectLink.Deploy(WEBSITE_ROOT), ProjectLink.GitHub('tchojnacki-dev')],
       'Website acting as my portfolio and blog.',
       [
         new ProjectPart('Website', [T.NEXTJS, T.REACT, T.TAILWINDCSS, T.TYPESCRIPT, T.LODASH]),

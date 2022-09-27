@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { NextAdapter } from 'next-query-params'
 import type { AppProps } from 'next/app'
+import Head from 'next/head'
 import useLocalStorageState from 'use-local-storage-state'
 import { QueryParamProvider } from 'use-query-params'
 
@@ -20,6 +21,9 @@ export default function App({ Component, pageProps }: AppProps) {
         'overflow-x-hidden'
       )}
     >
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
       <Nav currentTheme={theme} toggleTheme={toggleTheme} />
       <QueryParamProvider adapter={NextAdapter}>
         <Component {...pageProps} />

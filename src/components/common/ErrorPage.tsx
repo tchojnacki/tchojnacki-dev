@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { Title } from './Title'
+import { SEO } from './SEO'
 
 interface ErrorPageProps {
   code: number
@@ -10,7 +10,7 @@ interface ErrorPageProps {
 export function ErrorPage({ code, children }: ErrorPageProps) {
   return (
     <>
-      <Title>{code.toString()}</Title>
+      <SEO name={code.toString()} />
       <main className="mt-[calc(-1*theme(spacing.nav-height))] grid min-h-[100vh] place-items-center p-4">
         <header className="animate-enteronload text-center onenter-scaling motion-reduce:animate-none">
           <h1 className="mb-4 animate-errshake text-6xl font-bold text-indigo-8 dark:text-indigo-11 motion-reduce:animate-none">
