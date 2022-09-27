@@ -1,13 +1,7 @@
 import Link from 'next/link'
 
 import { Wave } from 'components'
-import { SOCIAL_LINKS } from 'data'
-
-const internalLinks = [
-  { href: '', label: 'About' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/blog', label: 'Blog' },
-]
+import { SITEMAP, SOCIAL_LINKS } from 'data'
 
 const projectLinks = [
   { href: 'https://github.com/tchojnacki/tchojnacki-dev', label: 'Source' },
@@ -21,9 +15,9 @@ export function Footer() {
       <footer className="bg-indigo-11 dark:bg-indigo-4 text-slate-8 dark:text-slate-11 px-8 text-sm">
         <section className="flex flex-col sm:flex-row justify-center sm:gap-32 text-center sm:text-left">
           <ul>
-            {internalLinks.map(({ href, label }) => (
-              <li key={href}>
-                <Link href={href}>
+            {SITEMAP.filter(({ url }) => url !== '/sitemap').map(({ url, label }) => (
+              <li key={url}>
+                <Link href={url}>
                   <a className="hover:underline">{label}</a>
                 </Link>
               </li>

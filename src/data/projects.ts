@@ -22,6 +22,7 @@ import scriptingtanksImage from 'media/projects/scriptingtanks.png'
 import spotifymosaicImage from 'media/projects/spotifymosaic.png'
 import tchojnackidevImage from 'media/projects/tchojnackidev.png'
 
+import { WEBSITE_ROOT } from './sitemap'
 import { Technology } from './technologies'
 
 const T = Technology.LIST
@@ -343,7 +344,7 @@ export class Project {
       'tchojnacki.dev',
       tchojnackidevImage,
       [ProjectTag.Personal],
-      [ProjectLink.Deploy('https://tchojnacki.dev'), ProjectLink.GitHub('tchojnacki-dev')],
+      [ProjectLink.Deploy(WEBSITE_ROOT), ProjectLink.GitHub('tchojnacki-dev')],
       'Website acting as my portfolio and blog.',
       [
         new ProjectPart('Website', [T.NEXTJS, T.REACT, T.TAILWINDCSS, T.TYPESCRIPT, T.LODASH]),

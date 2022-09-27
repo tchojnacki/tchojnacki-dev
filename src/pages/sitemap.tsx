@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import { SEO } from 'components'
+import { SITEMAP } from 'data'
 
 export default function Projects() {
   return (
@@ -14,21 +15,13 @@ export default function Projects() {
         <h1 className="pb-8 text-4xl font-bold capitalize">Sitemap</h1>
         <nav>
           <ul>
-            <li>
-              <Link href="">
-                <a className="hover:underline">About</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/projects">
-                <a className="hover:underline">Projects</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/blog">
-                <a className="hover:underline">Blog</a>
-              </Link>
-            </li>
+            {SITEMAP.filter(({ url }) => url !== '/sitemap').map(({ url, label }) => (
+              <li key={url}>
+                <Link href={url}>
+                  <a className="hover:underline">{label}</a>
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       </main>

@@ -2,11 +2,12 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { SitemapStream } from 'sitemap'
 import { createGzip } from 'zlib'
 
+import { SITEMAP, WEBSITE_ROOT } from 'data'
+
 function writeSitemap(stream: SitemapStream) {
-  stream.write({ url: '', changefreq: 'monthly', priority: 1.0 })
-  stream.write({ url: '/projects', changefreq: 'monthly', priority: 0.5 })
-  stream.write({ url: '/blog', changefreq: 'monthly', priority: 0.5 })
-  stream.write({ url: '/sitemap', changefreq: 'monthly', priority: 0.2 })
+  SITEMAP.forEach(({ url, changefreq, priority }) => {
+    stream.write({ url, changefreq, priority })
+  })
 }
 
 export default function handler(_req: NextApiRequest, res: NextApiResponse) {
@@ -14,7 +15,7 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse) {
     res.setHeader('Content-Type', 'application/xml')
     res.setHeader('Content-Encoding', 'gzip')
 
-    const stream = new SitemapStream({ hostname: 'https://tchojnacki.dev' })
+    const stream = new SitemapStream({ hostname: WEBSITE_ROOT })
     const pipeline = stream.pipe(createGzip())
 
     writeSitemap(stream)

@@ -1,3 +1,5 @@
+import { SITEMAP } from 'data'
+
 import { NavLink } from './NavLink'
 
 interface NavLinkListProps {
@@ -8,21 +10,13 @@ interface NavLinkListProps {
 export function NavLinkList({ listClassName, itemClassName }: NavLinkListProps) {
   return (
     <ul className={listClassName}>
-      <li>
-        <NavLink className={itemClassName} href="/">
-          About
-        </NavLink>
-      </li>
-      <li>
-        <NavLink className={itemClassName} href="/projects">
-          Projects
-        </NavLink>
-      </li>
-      <li>
-        <NavLink className={itemClassName} href="/blog">
-          Blog
-        </NavLink>
-      </li>
+      {SITEMAP.filter(({ url }) => url !== '/sitemap').map(({ url, label }) => (
+        <li key={url}>
+          <NavLink className={itemClassName} href={url}>
+            {label}
+          </NavLink>
+        </li>
+      ))}
     </ul>
   )
 }
