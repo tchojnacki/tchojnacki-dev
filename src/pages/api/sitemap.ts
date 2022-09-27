@@ -6,6 +6,7 @@ function writeSitemap(stream: SitemapStream) {
   stream.write({ url: '', changefreq: 'monthly', priority: 1.0 })
   stream.write({ url: '/projects', changefreq: 'monthly', priority: 0.5 })
   stream.write({ url: '/blog', changefreq: 'monthly', priority: 0.5 })
+  stream.write({ url: '/sitemap', changefreq: 'monthly', priority: 0.2 })
 }
 
 export default function handler(_req: NextApiRequest, res: NextApiResponse) {

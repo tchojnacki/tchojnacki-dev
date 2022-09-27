@@ -4,7 +4,7 @@ import { Wave } from 'components'
 import { SOCIAL_LINKS } from 'data'
 
 const internalLinks = [
-  { href: '/', label: 'About' },
+  { href: '', label: 'About' },
   { href: '/projects', label: 'Projects' },
   { href: '/blog', label: 'Blog' },
 ]
@@ -39,6 +39,9 @@ export function Footer() {
             ))}
           </ul>
           <ul>
+            <Link href="/sitemap">
+              <a className="hover:underline">Sitemap</a>
+            </Link>
             {projectLinks.map(({ href, label }) => (
               <li key={href}>
                 <a className="hover:underline" href={href} target="_blank" rel="noreferrer">
