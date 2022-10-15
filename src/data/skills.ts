@@ -6,11 +6,12 @@ type SectionItems = [Technology, number][]
 
 export const TECH_SPHERE_SKILL_NAMES: readonly string[] = [
   T.REACT,
-  T.NEXTJS,
+  T.DOTNET,
   T.NESTJS,
+  T.NEXTJS,
   T.TYPESCRIPT,
+  T.CSHARP,
   T.JAVASCRIPT,
-  T.EXPRESS,
   T.NODEJS,
   T.JAVA,
   T.PYTHON,
@@ -27,10 +28,10 @@ export const SECTION_SKILLS = [
     largest: 3,
     items: [
       [T.REACT, 3],
-      [T.NODEJS, 3],
-      [T.NEXTJS, 2],
+      [T.DOTNET, 3],
+      [T.NODEJS, 2],
       [T.NESTJS, 2],
-      [T.JEST, 2],
+      [T.NEXTJS, 2],
     ] as SectionItems,
   },
   {
@@ -43,10 +44,10 @@ export const SECTION_SKILLS = [
       [T.TYPESCRIPT, 3],
       [T.JAVA, 2],
       [T.CSS, 2],
-      [T.JAVASCRIPT, 3],
+      [T.CSHARP, 3],
+      [T.PYTHON, 2],
+      [T.JAVASCRIPT, 2],
       [T.RUST, 2],
-      [T.CSHARP, 2],
-      [T.KOTLIN, 2],
     ] as SectionItems,
   },
   {
