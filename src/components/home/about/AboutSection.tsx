@@ -39,7 +39,7 @@ export function AboutSection() {
                 .
               </li>
               <li>Experienced at front-end development using React.</li>
-              <li>Learning .NET back-end development in my free time.</li>
+              <li>Actively learning .NET back-end development.</li>
             </ul>
           </div>
         </div>

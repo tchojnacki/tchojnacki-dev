@@ -20,6 +20,7 @@ export class Technology {
     ESLINT: new Technology('tool', ICONS.siEslint),
     EXPRESS: new Technology('lib', ICONS.siExpress),
     FIGMA: new Technology('tool', ICONS.siFigma),
+    FLUENTASSERTIONS: new Technology('lib', 'FluentAssertions'),
     FLUENTVALIDATION: new Technology('lib', 'FluentValidation'),
     FLYIO: new Technology('tool', 'Fly.io'),
     GIT: new Technology('tool', ICONS.siGit),
@@ -44,6 +45,7 @@ export class Technology {
     NEXTJS: new Technology('lib', ICONS.siNextdotjs),
     NODEJS: new Technology('lib', ICONS.siNodedotjs),
     NPM: new Technology('tool', ICONS.siNpm),
+    NSUBSTITUTE: new Technology('lib', 'NSubstitute'),
     PASSPORT: new Technology('lib', ICONS.siPassport),
     PRETTIER: new Technology('tool', ICONS.siPrettier),
     PYTHON: new Technology('lang', ICONS.siPython),
@@ -59,6 +61,7 @@ export class Technology {
     TYPESCRIPT: new Technology('lang', ICONS.siTypescript),
     VERCEL: new Technology('tool', ICONS.siVercel),
     VITE: new Technology('tool', ICONS.siVite),
+    XUNIT: new Technology('lib', 'xUnit'),
     YARN: new Technology('tool', ICONS.siYarn),
   } as const
 }
