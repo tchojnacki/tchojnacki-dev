@@ -94,7 +94,10 @@ export class Project {
       [ProjectTag.Personal],
       [ProjectLink.GitHub('advent-of-code'), ProjectLink.Information('https://adventofcode.com')],
       'My solutions to Advent of Code.',
-      [new ProjectPart('Puzzle Solutions', [T.KOTLIN]), new ProjectPart('Tools', [T.GIT, T.GITHUB])]
+      [
+        new ProjectPart('Puzzle Solutions', [T.KOTLIN, T.FSHARP]),
+        new ProjectPart('Tools', [T.GIT, T.GITHUB]),
+      ]
     ),
     CODERSCAMPFULLSTACK: new Project(
       'JeszCoChcesz',
@@ -156,7 +159,7 @@ export class Project {
         ),
         ProjectLink.GitHub('CodersCamp2021.Hackathon', 'CodersCamp2021-HK'),
       ],
-      'Brower extension which notifies you about fake news. Created during the 24h Hack-a-Troll Hackathon in 2001.',
+      'Brower extension which notifies you about fake news. Created during the 24h Hack-a-Troll Hackathon in 2022.',
       [
         new ProjectPart('Extension', [T.REACT, T.TYPESCRIPT, T.EMOTION]),
         new ProjectPart('Website', [T.NEXTJS, T.REACT, T.TYPESCRIPT, T.CSS]),

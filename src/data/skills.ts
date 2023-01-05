@@ -28,7 +28,7 @@ export const SECTION_SKILLS = [
     largest: 3,
     items: [
       [T.REACT, 3],
-      [T.DOTNET, 3],
+      [T.ASPNET, 3],
       [T.NODEJS, 2],
       [T.NESTJS, 2],
       [T.NEXTJS, 2],
@@ -55,8 +55,16 @@ export const SECTION_SKILLS = [
     width: 3,
     height: 3,
     largest: 1.37,
-    items: [T.GIT, T.GITHUB, T.MONGODB, T.NPM, T.YARN, T.VITE, T.DOCKER, T.SWAGGER, T.FIGMA].map(
-      i => [i, 1]
-    ) as SectionItems,
+    items: [
+      T.GIT,
+      T.POSTGRESQL,
+      T.MONGODB,
+      T.DOCKER,
+      T.SWAGGER,
+      T.VITE,
+      T.NPM,
+      T.YARN,
+      T.FIGMA,
+    ].map(i => [i, 1]) as SectionItems,
   },
 ] as const

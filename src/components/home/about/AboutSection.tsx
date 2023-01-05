@@ -38,8 +38,7 @@ export function AboutSection() {
                 </a>
                 .
               </li>
-              <li>Experienced at front-end development using React.</li>
-              <li>Actively learning .NET back-end development.</li>
+              <li>Experienced at full stack web development (React/.NET).</li>
             </ul>
           </div>
         </div>
