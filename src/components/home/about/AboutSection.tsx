@@ -9,16 +9,12 @@ export function AboutSection() {
       <main className="p-8 bg-indigo-11 dark:bg-indigo-4">
         <SectionHeader>About Me</SectionHeader>
         <div className="mx-auto flex flex-col md:flex-row gap-8 justify-center items-center py-8">
-          <div
-            className="flex overflow-hidden rounded-full
-          shadow-md shadow-indigo-2/25 dark:shadow-indigo-11/10"
-          >
+          <div className="flex overflow-hidden rounded-full shadow-md shadow-indigo-2/25 dark:shadow-indigo-11/10">
             <Image
               alt="Photo of Tomasz Chojnacki."
               src={headshotImage}
               width={96}
               height={96}
-              layout="fixed"
               placeholder="blur"
             />
           </div>
