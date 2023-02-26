@@ -17,8 +17,8 @@ export default function Projects() {
           <ul>
             {SITEMAP.filter(({ url }) => url !== '/sitemap').map(({ url, label }) => (
               <li key={url}>
-                <Link href={url}>
-                  <a className="hover:underline">{label}</a>
+                <Link href={url} className="hover:underline">
+                  {label}
                 </Link>
               </li>
             ))}

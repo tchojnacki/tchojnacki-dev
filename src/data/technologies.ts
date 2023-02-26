@@ -1,10 +1,9 @@
-import { SimpleIcon } from 'simple-icons'
-import * as ICONS from 'simple-icons/icons'
+import * as ICONS from 'simple-icons'
 
 export class Technology {
   private constructor(
     public readonly type: 'lang' | 'lib' | 'tool',
-    public readonly icon: SimpleIcon | string,
+    public readonly icon: ICONS.SimpleIcon | string,
     public readonly name: string = typeof icon === 'string' ? icon : icon.title
   ) {}
 

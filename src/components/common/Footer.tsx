@@ -17,8 +17,8 @@ export function Footer() {
           <ul>
             {SITEMAP.filter(({ url }) => url !== '/sitemap').map(({ url, label }) => (
               <li key={url}>
-                <Link href={url}>
-                  <a className="hover:underline">{label}</a>
+                <Link href={url} className="hover:underline">
+                  {label}
                 </Link>
               </li>
             ))}
@@ -33,8 +33,8 @@ export function Footer() {
             ))}
           </ul>
           <ul>
-            <Link href="/sitemap">
-              <a className="hover:underline">Sitemap</a>
+            <Link href="/sitemap" className="hover:underline">
+              Sitemap
             </Link>
             {projectLinks.map(({ href, label }) => (
               <li key={href}>
