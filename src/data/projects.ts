@@ -106,11 +106,7 @@ export class Project {
         ProjectTag.CodersCamp,
         ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Project.Fullstack'),
       ],
-      [
-        ProjectLink.Deploy('https://coderscamp2021-hk-fullstack.onrender.com'),
-        ProjectLink.Swagger('https://coderscamp2021-hk-fullstack.onrender.com/api'),
-        ProjectLink.GitHub('CodersCamp2021.Project.Fullstack', 'CodersCamp2021-HK'),
-      ],
+      [ProjectLink.GitHub('CodersCamp2021.Project.Fullstack', 'CodersCamp2021-HK')],
       'Full-stack web application, online food delivery system connecting restaurants with health-conscious users.',
       [
         new ProjectPart('Front End', [
