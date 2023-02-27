@@ -19,8 +19,11 @@ function deserializeTechnology(value: string | null): Technology | null {
     : null
 }
 
-export function useTechnologyFilter() {
-  const [filterQuery, setFilterQuery] = useQueryParam('filter', withDefault(StringParam, null))
+export function useTechnologyFilter(initialFilter: string | null) {
+  const [filterQuery, setFilterQuery] = useQueryParam(
+    'filter',
+    withDefault(StringParam, initialFilter)
+  )
 
   const filter = useMemo(() => deserializeTechnology(filterQuery), [filterQuery])
 
