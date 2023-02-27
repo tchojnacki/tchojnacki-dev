@@ -1,4 +1,4 @@
-import { siGithub, siLinkedin } from 'simple-icons/icons'
+import { siGithub, siLinkedin } from 'simple-icons'
 
 export const SOCIAL_LINKS = [
   { label: 'GitHub', href: 'https://github.com/tchojnacki', icon: siGithub },

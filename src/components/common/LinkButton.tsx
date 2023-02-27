@@ -24,8 +24,8 @@ export function LinkButton({
   )
 
   return type === 'internal' ? (
-    <Link href={href}>
-      <a className={styling}>{children}</a>
+    <Link href={href} className={styling}>
+      {children}
     </Link>
   ) : (
     <a href={href} className={styling} target="_blank" rel="noreferrer">

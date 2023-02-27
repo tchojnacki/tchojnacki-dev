@@ -40,11 +40,10 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
       >
         <Image
           alt={project.name}
-          layout="responsive"
           src={project.image}
-          sizes="(max-width: 1024px) 100vw, 1024px"
           placeholder="blur"
-          className={clsx(isActive && 'animate-scrollprojectimage')}
+          className={clsx('w-full h-auto', isActive && 'animate-scrollprojectimage')}
+          sizes="(max-width: 1024px) 100vw, 1024px"
           style={
             {
               '--max-image-scroll': `-${maxImageScroll}%`,
