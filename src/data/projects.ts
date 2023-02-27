@@ -289,7 +289,7 @@ export class Project {
     OCAMLSCALARUN: new Project(
       'OCaml & Scala Run in REPL',
       ocamlscalarunImage,
-      [ProjectTag.University],
+      [ProjectTag.Personal],
       [
         ProjectLink.Download(
           'https://marketplace.visualstudio.com/items?itemName=tchojnacki.ocaml-scala-run'
