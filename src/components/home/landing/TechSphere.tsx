@@ -141,7 +141,7 @@ export function TechSphere() {
       ctx.fillStyle = getComputedStyle(canvasRef.current).color
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
-      ctx.font = `${Math.round(canvasSize * FONT_SCALE)}px Inter`
+      ctx.font = `${Math.round(canvasSize * FONT_SCALE)}px var(--inter-font, sans-serif)`
 
       for (const { item, position } of pointsRef.current) {
         const scaled = v3scale(position, sphereRadius)
