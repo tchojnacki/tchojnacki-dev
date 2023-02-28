@@ -2,6 +2,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 
 import { ProjectFilters, ProjectList, SEO } from 'components'
 import { useTechnologyFilter } from 'hooks'
+import { isClientSide } from 'logic'
 
 export const getServerSideProps: GetServerSideProps<{ query: string | null }> = async context => {
   const { filter } = context.query
@@ -21,7 +22,7 @@ export const getServerSideProps: GetServerSideProps<{ query: string | null }> = 
 export default function Projects({
   query,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const { filter, toggleFilter } = useTechnologyFilter(query)
+  const { filter, toggleFilter } = useTechnologyFilter(isClientSide() ? null : query)
 
   return (
     <>
