@@ -258,7 +258,7 @@ export class Project {
         ProjectLink.GitHub('LogicCircuitBoards'),
       ],
       'A Minecraft mod that allows you to compress complex redstone logic gates into a single circuit block.',
-      [new ProjectPart('Mod', [T.JAVA, T.MINECRAFTFORGE, T.JUNIT, T.GIT, T.GITHUB])]
+      [new ProjectPart('Mod', [T.JAVA, T.JUNIT, T.GIT, T.GITHUB])]
     ),
     NODEWIKIAAPI: new Project(
       'nodewikiaapi',
@@ -322,7 +322,6 @@ export class Project {
           T.FLYIO,
           T.FLUENTASSERTIONS,
           T.NSUBSTITUTE,
-          T.HEROKU,
           T.GITHUBACTIONS,
           T.NPM,
           T.GIT,
@@ -341,7 +340,7 @@ export class Project {
         ProjectLink.GitHub('spotifymosaic'),
       ],
       'A CLI tool for generating Spotify playlist covers using album artwork.',
-      [new ProjectPart('CLI', [T.RUST, T.CLAP, T.GIT, T.GITHUB])]
+      [new ProjectPart('CLI', [T.RUST, T.GIT, T.GITHUB])]
     ),
     TCHOJNACKIDEV: new Project(
       'tchojnacki.dev',
