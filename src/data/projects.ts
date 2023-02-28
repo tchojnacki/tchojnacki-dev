@@ -31,24 +31,26 @@ const T = Technology.LIST
 class ProjectTag {
   private constructor(
     public readonly displayName: string,
-    public readonly backgroundColor: string,
-    public readonly link?: string
+    public readonly backgroundColor: string
   ) {}
 
-  public static readonly Group = (project: string) =>
-    new ProjectTag('Group', '#9c2bac', `https://github.com/${project}/graphs/contributors`)
+  public static readonly Group = new ProjectTag('Group', '#9c2bac')
 
-  public static readonly CodersCamp = new ProjectTag('Bootcamp', '#075b52')
+  public static readonly Bootcamp = new ProjectTag('Bootcamp', '#075b52')
 
   public static readonly University = new ProjectTag('University', '#075b52')
 
   public static readonly Personal = new ProjectTag('Personal', '#075b52')
 
-  public static readonly Deprecated = new ProjectTag('DEPRECATED', '#ca3214')
+  public static readonly Deprecated = new ProjectTag('Deprecated', '#ca3214')
 }
 
 class ProjectPart {
-  public constructor(public readonly name: string, public readonly technologies: Technology[]) {}
+  public constructor(
+    public readonly name: string,
+    public readonly technologies: Technology[],
+    public readonly tags: ProjectTag[] = []
+  ) {}
 }
 
 class ProjectLink {
@@ -103,10 +105,7 @@ export class Project {
     CODERSCAMPFULLSTACK: new Project(
       'JeszCoChcesz',
       coderscampfullstackImage,
-      [
-        ProjectTag.CodersCamp,
-        ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Project.Fullstack'),
-      ],
+      [ProjectTag.Bootcamp, ProjectTag.Group],
       [ProjectLink.GitHub('CodersCamp2021.Project.Fullstack', 'CodersCamp2021-HK')],
       'Full-stack web application, online food delivery system connecting restaurants with health-conscious users.',
       [
@@ -148,7 +147,7 @@ export class Project {
     CODERSCAMPHACKATHON: new Project(
       'Faktyczka',
       coderscamphackathonImage,
-      [ProjectTag.CodersCamp, ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Hackathon')],
+      [ProjectTag.Bootcamp, ProjectTag.Group],
       [
         ProjectLink.Deploy('https://faktyczka.vercel.app'),
         ProjectLink.Download(
@@ -187,10 +186,7 @@ export class Project {
     CODERSCAMPJAVASCRIPT: new Project(
       'Rick and Morty Quiz',
       coderscampjavascriptImage,
-      [
-        ProjectTag.CodersCamp,
-        ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Project.JavaScript'),
-      ],
+      [ProjectTag.Bootcamp, ProjectTag.Group],
       [
         ProjectLink.Deploy('https://coderscamp2021-hk.github.io/CodersCamp2021.Project.JavaScript'),
         ProjectLink.GitHub('CodersCamp2021.Project.JavaScript', 'CodersCamp2021-HK'),
@@ -215,7 +211,7 @@ export class Project {
     CODERSCAMPREACT: new Project(
       'King and Pigs',
       coderscampreactImage,
-      [ProjectTag.CodersCamp, ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Project.React')],
+      [ProjectTag.Bootcamp, ProjectTag.Group],
       [
         ProjectLink.Deploy('https://coderscamp2021-hk.github.io/CodersCamp2021.Project.React'),
         ProjectLink.GitHub('CodersCamp2021.Project.React', 'CodersCamp2021-HK'),
@@ -329,6 +325,7 @@ export class Project {
           T.PRETTIER,
           T.GITHUB,
         ]),
+        new ProjectPart('Legacy Back End', [T.PYTHON, T.FASTAPI], [ProjectTag.Deprecated]),
       ]
     ),
     SPOTIFYMOSAIC: new Project(
@@ -375,7 +372,7 @@ export class Project {
         new ProjectPart('Data Structures and Algorithms', [T.JAVA]),
         new ProjectPart('Operating Systems', [T.JAVA, T.BASH]),
         new ProjectPart('Effective Programming Techniques', [T.CPP]),
-        new ProjectPart('Programming Paradigms', [T.SCALA, T.OCAML]),
+        new ProjectPart('Programming Paradigms', [T.SCALA, T.OCAML, T.JAVA]),
         new ProjectPart('Systems Analysis and Decision Support Methods', [T.PYTHON]),
         new ProjectPart('Script Languages', [
           T.PYTHON,
@@ -386,19 +383,23 @@ export class Project {
           T.DOCKER,
         ]),
         new ProjectPart('Introduction to IoT', [T.CPP, T.PYTHON]),
-        new ProjectPart('Software Engineering', [
-          T.CSHARP,
-          T.ASPNET,
-          T.POSTGRESQL,
-          T.ENTITYFRAMEWORK,
-          T.SELENIUM,
-          T.XUNIT,
-          T.AUTOMAPPER,
-          T.DOTNET,
-          T.FLUENTASSERTIONS,
-          T.HTML,
-          T.CSS,
-        ]),
+        new ProjectPart(
+          'Software Engineering',
+          [
+            T.CSHARP,
+            T.ASPNET,
+            T.POSTGRESQL,
+            T.ENTITYFRAMEWORK,
+            T.SELENIUM,
+            T.XUNIT,
+            T.AUTOMAPPER,
+            T.DOTNET,
+            T.FLUENTASSERTIONS,
+            T.HTML,
+            T.CSS,
+          ],
+          [ProjectTag.Group]
+        ),
         new ProjectPart('Developing Web Applications with .NET', [
           T.CSHARP,
           T.DOTNET,
@@ -411,13 +412,11 @@ export class Project {
           T.CSS,
           T.MAPSTER,
         ]),
-        new ProjectPart('Database System Design', [
-          T.POSTGRESQL,
-          T.NEO4J,
-          T.PRISMA,
-          T.TYPESCRIPT,
-          T.PYTHON,
-        ]),
+        new ProjectPart(
+          'Database System Design',
+          [T.POSTGRESQL, T.NEO4J, T.PRISMA, T.TYPESCRIPT, T.PYTHON],
+          [ProjectTag.Group]
+        ),
         new ProjectPart('Mobile Applications for iOS', [T.SWIFT]),
       ]
     ),

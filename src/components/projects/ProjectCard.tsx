@@ -109,37 +109,41 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
           isActive && (flipped ? 'lg:-translate-x-1/3' : 'lg:translate-x-1/3')
         )}
       >
-        <h4 className="flex lg:items-center mb-5 gap-4 flex-col lg:flex-row">
+        <h4 className="flex lg:items-center mb-2 gap-4 flex-col lg:flex-row">
           <span itemProp="name" className="text-3xl font-bold mr-auto">
             {project.name}
           </span>
           <ul itemProp="keywords" className="flex gap-2">
-            {project.tags.map(({ displayName, backgroundColor, link }) => {
-              const props = {
-                style: { backgroundColor },
-                className: 'rounded-full px-3 text-slate-12 whitespace-nowrap block',
-              }
-
-              return link ? (
-                <li key={displayName}>
-                  <a href={link} target="_blank" rel="noreferrer" {...props}>
-                    {displayName}
-                  </a>
-                </li>
-              ) : (
-                <li key={displayName} {...props}>
-                  {displayName}
-                </li>
-              )
-            })}
+            {project.tags.map(({ displayName, backgroundColor }) => (
+              <li
+                key={displayName}
+                style={{ backgroundColor }}
+                className="rounded-full px-3 text-slate-12 whitespace-nowrap block"
+              >
+                {displayName}
+              </li>
+            ))}
           </ul>
         </h4>
         <p itemProp="description" className="text-slate-8 dark:text-slate-11">
           {project.description}
         </p>
-        {project.parts.map(({ name, technologies }) => (
+        {project.parts.map(({ name, technologies, tags }) => (
           <Fragment key={name}>
-            <h5 className="text-xl mt-3 mb-1">{name}</h5>
+            <h5 className="mt-4 mb-2 flex lg:items-center gap-2 flex-col lg:flex-row">
+              <span className="text-xl mr-auto">{name}</span>
+              <ul className="flex gap-2">
+                {tags.map(({ displayName, backgroundColor }) => (
+                  <li
+                    key={displayName}
+                    style={{ backgroundColor }}
+                    className="text-sm rounded-full px-2 text-slate-12 whitespace-nowrap block"
+                  >
+                    {displayName}
+                  </li>
+                ))}
+              </ul>
+            </h5>
             <ul
               className="flex gap-2 overflow-hidden flex-wrap lg:flex-nowrap
               lg:[mask-image:linear-gradient(90deg,#000_75%,transparent)] after:flex-grow-[100]"
