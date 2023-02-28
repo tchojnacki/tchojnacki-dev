@@ -21,6 +21,7 @@ import ocamlscalarunImage from 'media/projects/ocamlscalarun.png'
 import scriptingtanksImage from 'media/projects/scriptingtanks.png'
 import spotifymosaicImage from 'media/projects/spotifymosaic.png'
 import tchojnackidevImage from 'media/projects/tchojnackidev.png'
+import universitycourseworkImage from 'media/projects/universitycoursework.png'
 
 import { WEBSITE_ROOT } from './sitemap'
 import { Technology } from './technologies'
@@ -364,6 +365,63 @@ export class Project {
         ]),
       ]
     ),
+    UNIVERSITYCOURSEWORK: new Project(
+      'University Coursework',
+      universitycourseworkImage,
+      [ProjectTag.University],
+      [],
+      'Solutions to the tasks given out during my studies. Held in private repositories to limit cheating.',
+      [
+        new ProjectPart('Structured and Object Oriented Programming', [T.JAVA]),
+        new ProjectPart('Data Structures and Algorithms', [T.JAVA]),
+        new ProjectPart('Operating Systems', [T.JAVA, T.BASH]),
+        new ProjectPart('Effective Programming Techniques', [T.CPP]),
+        new ProjectPart('Programming Paradigms', [T.SCALA, T.OCAML]),
+        new ProjectPart('Systems Analysis and Decision Support Methods', [T.PYTHON]),
+        new ProjectPart('Script Languages', [
+          T.PYTHON,
+          T.TYPESCRIPT,
+          T.RUST,
+          T.BASH,
+          T.FASTAPI,
+          T.DOCKER,
+        ]),
+        new ProjectPart('Introduction to IoT', [T.CPP, T.PYTHON]),
+        new ProjectPart('Software Engineering', [
+          T.CSHARP,
+          T.ASPNET,
+          T.POSTGRESQL,
+          T.ENTITYFRAMEWORK,
+          T.SELENIUM,
+          T.XUNIT,
+          T.AUTOMAPPER,
+          T.DOTNET,
+          T.FLUENTASSERTIONS,
+          T.HTML,
+          T.CSS,
+        ]),
+        new ProjectPart('Developing Web Applications with .NET', [
+          T.CSHARP,
+          T.DOTNET,
+          T.ASPNET,
+          T.MICROSOFTSQLSERVER,
+          T.ENTITYFRAMEWORK,
+          T.SWAGGER,
+          T.JAVASCRIPT,
+          T.HTML,
+          T.CSS,
+          T.MAPSTER,
+        ]),
+        new ProjectPart('Database System Design', [
+          T.POSTGRESQL,
+          T.NEO4J,
+          T.PRISMA,
+          T.TYPESCRIPT,
+          T.PYTHON,
+        ]),
+        new ProjectPart('Mobile Applications for iOS', [T.SWIFT]),
+      ]
+    ),
   } as const
 
   public static readonly IMPORTANCE_ORDER = [
@@ -376,6 +434,7 @@ export class Project {
     Project.LIST.LOGICCIRCUITBOARDS,
     Project.LIST.SPOTIFYMOSAIC,
     Project.LIST.ADVENTOFCODE,
+    Project.LIST.UNIVERSITYCOURSEWORK,
     Project.LIST.OCAMLSCALARUN,
     Project.LIST.NODEWIKIAAPI,
     Project.LIST.FANDOMMONACO,
