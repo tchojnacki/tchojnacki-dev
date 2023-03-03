@@ -10,6 +10,7 @@ import {
 } from 'tabler-icons-react'
 
 import adventofcodeImage from 'media/projects/adventofcode.png'
+import amadeusImage from 'media/projects/amadeus.png'
 import coderscampfullstackImage from 'media/projects/coderscampfullstack.png'
 import coderscamphackathonImage from 'media/projects/coderscamphackathon.png'
 import coderscampjavascriptImage from 'media/projects/coderscampjavascript.png'
@@ -104,6 +105,17 @@ export class Project {
         new ProjectPart('2020', [T.GLEAM], [ProjectTag.Wip]),
         new ProjectPart('2021', [T.KOTLIN]),
         new ProjectPart('2022', [T.FSHARP, T.DOTNET]),
+        new ProjectPart('Tools', [T.GIT, T.GITHUB]),
+      ]
+    ),
+    AMADEUS: new Project(
+      'Amadeus',
+      amadeusImage,
+      [ProjectTag.Personal, ProjectTag.Wip],
+      [ProjectLink.GitHub('Amadeus')],
+      'General purpose Discord bot based on CQRS and built with Discord.Net.',
+      [
+        new ProjectPart('Bot', [T.CSHARP, T.DOTNET, T.MEDIATR]),
         new ProjectPart('Tools', [T.GIT, T.GITHUB]),
       ]
     ),
@@ -437,6 +449,7 @@ export class Project {
     Project.LIST.LOGICCIRCUITBOARDS,
     Project.LIST.SPOTIFYMOSAIC,
     Project.LIST.ADVENTOFCODE,
+    Project.LIST.AMADEUS,
     Project.LIST.UNIVERSITYCOURSEWORK,
     Project.LIST.OCAMLSCALARUN,
     Project.LIST.NODEWIKIAAPI,
