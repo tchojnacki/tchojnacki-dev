@@ -43,6 +43,8 @@ class ProjectTag {
   public static readonly Personal = new ProjectTag('Personal', '#075b52')
 
   public static readonly Deprecated = new ProjectTag('Deprecated', '#ca3214')
+
+  public static readonly Wip = new ProjectTag('Work In Progress', '#d97706')
 }
 
 class ProjectPart {
@@ -98,7 +100,10 @@ export class Project {
       [ProjectLink.GitHub('advent-of-code'), ProjectLink.Information('https://adventofcode.com')],
       'My solutions to Advent of Code.',
       [
-        new ProjectPart('Puzzle Solutions', [T.KOTLIN, T.FSHARP]),
+        new ProjectPart('2019', [T.ELIXIR], [ProjectTag.Wip]),
+        new ProjectPart('2020', [T.GLEAM], [ProjectTag.Wip]),
+        new ProjectPart('2021', [T.KOTLIN]),
+        new ProjectPart('2022', [T.FSHARP, T.DOTNET]),
         new ProjectPart('Tools', [T.GIT, T.GITHUB]),
       ]
     ),
