@@ -10,6 +10,7 @@ import {
 } from 'tabler-icons-react'
 
 import adventofcodeImage from 'media/projects/adventofcode.png'
+import amadeusImage from 'media/projects/amadeus.png'
 import coderscampfullstackImage from 'media/projects/coderscampfullstack.png'
 import coderscamphackathonImage from 'media/projects/coderscamphackathon.png'
 import coderscampjavascriptImage from 'media/projects/coderscampjavascript.png'
@@ -21,6 +22,7 @@ import ocamlscalarunImage from 'media/projects/ocamlscalarun.png'
 import scriptingtanksImage from 'media/projects/scriptingtanks.png'
 import spotifymosaicImage from 'media/projects/spotifymosaic.png'
 import tchojnackidevImage from 'media/projects/tchojnackidev.png'
+import universitycourseworkImage from 'media/projects/universitycoursework.png'
 
 import { WEBSITE_ROOT } from './sitemap'
 import { Technology } from './technologies'
@@ -30,24 +32,28 @@ const T = Technology.LIST
 class ProjectTag {
   private constructor(
     public readonly displayName: string,
-    public readonly backgroundColor: string,
-    public readonly link?: string
+    public readonly backgroundColor: string
   ) {}
 
-  public static readonly Group = (project: string) =>
-    new ProjectTag('Group', '#9c2bac', `https://github.com/${project}/graphs/contributors`)
+  public static readonly Group = new ProjectTag('Group', '#9c2bac')
 
-  public static readonly CodersCamp = new ProjectTag('Bootcamp', '#075b52')
+  public static readonly Bootcamp = new ProjectTag('Bootcamp', '#075b52')
 
   public static readonly University = new ProjectTag('University', '#075b52')
 
   public static readonly Personal = new ProjectTag('Personal', '#075b52')
 
-  public static readonly Deprecated = new ProjectTag('DEPRECATED', '#ca3214')
+  public static readonly Deprecated = new ProjectTag('Deprecated', '#ca3214')
+
+  public static readonly Wip = new ProjectTag('Work In Progress', '#d97706')
 }
 
 class ProjectPart {
-  public constructor(public readonly name: string, public readonly technologies: Technology[]) {}
+  public constructor(
+    public readonly name: string,
+    public readonly technologies: Technology[],
+    public readonly tags: ProjectTag[] = []
+  ) {}
 }
 
 class ProjectLink {
@@ -95,22 +101,29 @@ export class Project {
       [ProjectLink.GitHub('advent-of-code'), ProjectLink.Information('https://adventofcode.com')],
       'My solutions to Advent of Code.',
       [
-        new ProjectPart('Puzzle Solutions', [T.KOTLIN, T.FSHARP]),
+        new ProjectPart('2019', [T.ELIXIR], [ProjectTag.Wip]),
+        new ProjectPart('2020', [T.GLEAM], [ProjectTag.Wip]),
+        new ProjectPart('2021', [T.KOTLIN]),
+        new ProjectPart('2022', [T.FSHARP, T.DOTNET]),
+        new ProjectPart('Tools', [T.GIT, T.GITHUB]),
+      ]
+    ),
+    AMADEUS: new Project(
+      'Amadeus',
+      amadeusImage,
+      [ProjectTag.Personal, ProjectTag.Wip],
+      [ProjectLink.GitHub('Amadeus')],
+      'General purpose Discord bot based on CQRS and built with Discord.Net.',
+      [
+        new ProjectPart('Bot', [T.CSHARP, T.DOTNET, T.MEDIATR]),
         new ProjectPart('Tools', [T.GIT, T.GITHUB]),
       ]
     ),
     CODERSCAMPFULLSTACK: new Project(
       'JeszCoChcesz',
       coderscampfullstackImage,
-      [
-        ProjectTag.CodersCamp,
-        ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Project.Fullstack'),
-      ],
-      [
-        ProjectLink.Deploy('https://coderscamp2021-hk-fullstack.onrender.com'),
-        ProjectLink.Swagger('https://coderscamp2021-hk-fullstack.onrender.com/api'),
-        ProjectLink.GitHub('CodersCamp2021.Project.Fullstack', 'CodersCamp2021-HK'),
-      ],
+      [ProjectTag.Bootcamp, ProjectTag.Group],
+      [ProjectLink.GitHub('CodersCamp2021.Project.Fullstack', 'CodersCamp2021-HK')],
       'Full-stack web application, online food delivery system connecting restaurants with health-conscious users.',
       [
         new ProjectPart('Front End', [
@@ -151,7 +164,7 @@ export class Project {
     CODERSCAMPHACKATHON: new Project(
       'Faktyczka',
       coderscamphackathonImage,
-      [ProjectTag.CodersCamp, ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Hackathon')],
+      [ProjectTag.Bootcamp, ProjectTag.Group],
       [
         ProjectLink.Deploy('https://faktyczka.vercel.app'),
         ProjectLink.Download(
@@ -190,10 +203,7 @@ export class Project {
     CODERSCAMPJAVASCRIPT: new Project(
       'Rick and Morty Quiz',
       coderscampjavascriptImage,
-      [
-        ProjectTag.CodersCamp,
-        ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Project.JavaScript'),
-      ],
+      [ProjectTag.Bootcamp, ProjectTag.Group],
       [
         ProjectLink.Deploy('https://coderscamp2021-hk.github.io/CodersCamp2021.Project.JavaScript'),
         ProjectLink.GitHub('CodersCamp2021.Project.JavaScript', 'CodersCamp2021-HK'),
@@ -218,7 +228,7 @@ export class Project {
     CODERSCAMPREACT: new Project(
       'King and Pigs',
       coderscampreactImage,
-      [ProjectTag.CodersCamp, ProjectTag.Group('CodersCamp2021-HK/CodersCamp2021.Project.React')],
+      [ProjectTag.Bootcamp, ProjectTag.Group],
       [
         ProjectLink.Deploy('https://coderscamp2021-hk.github.io/CodersCamp2021.Project.React'),
         ProjectLink.GitHub('CodersCamp2021.Project.React', 'CodersCamp2021-HK'),
@@ -261,7 +271,7 @@ export class Project {
         ProjectLink.GitHub('LogicCircuitBoards'),
       ],
       'A Minecraft mod that allows you to compress complex redstone logic gates into a single circuit block.',
-      [new ProjectPart('Mod', [T.JAVA, T.MINECRAFTFORGE, T.JUNIT, T.GIT, T.GITHUB])]
+      [new ProjectPart('Mod', [T.JAVA, T.JUNIT, T.GIT, T.GITHUB])]
     ),
     NODEWIKIAAPI: new Project(
       'nodewikiaapi',
@@ -289,7 +299,7 @@ export class Project {
     OCAMLSCALARUN: new Project(
       'OCaml & Scala Run in REPL',
       ocamlscalarunImage,
-      [ProjectTag.University],
+      [ProjectTag.Personal],
       [
         ProjectLink.Download(
           'https://marketplace.visualstudio.com/items?itemName=tchojnacki.ocaml-scala-run'
@@ -325,7 +335,6 @@ export class Project {
           T.FLYIO,
           T.FLUENTASSERTIONS,
           T.NSUBSTITUTE,
-          T.HEROKU,
           T.GITHUBACTIONS,
           T.NPM,
           T.GIT,
@@ -333,6 +342,7 @@ export class Project {
           T.PRETTIER,
           T.GITHUB,
         ]),
+        new ProjectPart('Legacy Back End', [T.PYTHON, T.FASTAPI], [ProjectTag.Deprecated]),
       ]
     ),
     SPOTIFYMOSAIC: new Project(
@@ -344,7 +354,7 @@ export class Project {
         ProjectLink.GitHub('spotifymosaic'),
       ],
       'A CLI tool for generating Spotify playlist covers using album artwork.',
-      [new ProjectPart('CLI', [T.RUST, T.CLAP, T.GIT, T.GITHUB])]
+      [new ProjectPart('CLI', [T.RUST, T.GIT, T.GITHUB])]
     ),
     TCHOJNACKIDEV: new Project(
       'tchojnacki.dev',
@@ -368,6 +378,65 @@ export class Project {
         ]),
       ]
     ),
+    UNIVERSITYCOURSEWORK: new Project(
+      'University Coursework',
+      universitycourseworkImage,
+      [ProjectTag.University],
+      [],
+      'Solutions to the tasks given out during my studies. Held in private repositories to limit cheating.',
+      [
+        new ProjectPart('Structured and Object Oriented Programming', [T.JAVA]),
+        new ProjectPart('Data Structures and Algorithms', [T.JAVA]),
+        new ProjectPart('Operating Systems', [T.JAVA, T.BASH]),
+        new ProjectPart('Effective Programming Techniques', [T.CPP]),
+        new ProjectPart('Programming Paradigms', [T.SCALA, T.OCAML, T.JAVA]),
+        new ProjectPart('Systems Analysis and Decision Support Methods', [T.PYTHON]),
+        new ProjectPart('Script Languages', [
+          T.PYTHON,
+          T.TYPESCRIPT,
+          T.RUST,
+          T.BASH,
+          T.FASTAPI,
+          T.DOCKER,
+        ]),
+        new ProjectPart('Introduction to IoT', [T.CPP, T.PYTHON]),
+        new ProjectPart(
+          'Software Engineering',
+          [
+            T.CSHARP,
+            T.ASPNET,
+            T.POSTGRESQL,
+            T.ENTITYFRAMEWORK,
+            T.SELENIUM,
+            T.XUNIT,
+            T.AUTOMAPPER,
+            T.DOTNET,
+            T.FLUENTASSERTIONS,
+            T.HTML,
+            T.CSS,
+          ],
+          [ProjectTag.Group]
+        ),
+        new ProjectPart('Developing Web Applications with .NET', [
+          T.CSHARP,
+          T.DOTNET,
+          T.ASPNET,
+          T.MICROSOFTSQLSERVER,
+          T.ENTITYFRAMEWORK,
+          T.SWAGGER,
+          T.JAVASCRIPT,
+          T.HTML,
+          T.CSS,
+          T.MAPSTER,
+        ]),
+        new ProjectPart(
+          'Database System Design',
+          [T.POSTGRESQL, T.NEO4J, T.PRISMA, T.TYPESCRIPT, T.PYTHON],
+          [ProjectTag.Group]
+        ),
+        new ProjectPart('Mobile Applications for iOS', [T.SWIFT]),
+      ]
+    ),
   } as const
 
   public static readonly IMPORTANCE_ORDER = [
@@ -380,6 +449,8 @@ export class Project {
     Project.LIST.LOGICCIRCUITBOARDS,
     Project.LIST.SPOTIFYMOSAIC,
     Project.LIST.ADVENTOFCODE,
+    Project.LIST.AMADEUS,
+    Project.LIST.UNIVERSITYCOURSEWORK,
     Project.LIST.OCAMLSCALARUN,
     Project.LIST.NODEWIKIAAPI,
     Project.LIST.FANDOMMONACO,
