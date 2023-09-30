@@ -1,15 +1,16 @@
 // @ts-check
 
-module.exports = {
+/** @type {import("prettier").Config} */
+export default {
   plugins: [
-    require('prettier-plugin-tailwindcss'),
-    require('@trivago/prettier-plugin-sort-imports'),
+    // require("prettier-plugin-tailwindcss"),
+    // require("@trivago/prettier-plugin-sort-imports"),
   ],
   printWidth: 100,
   semi: false,
   singleQuote: true,
   arrowParens: 'avoid',
-  importOrder: ['^(components|data|hooks|logic|media|pages|styles)', '^\\.{1,2}\\/'],
-  importOrderSeparation: true,
-  importOrderSortSpecifiers: true,
+  //   importOrder: ['^(components|data|hooks|logic|media|pages|styles)', '^\\.{1,2}\\/'],
+  //   importOrderSeparation: true,
+  //   importOrderSortSpecifiers: true,
 }

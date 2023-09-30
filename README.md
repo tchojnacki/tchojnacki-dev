@@ -10,15 +10,6 @@
 
 ![The landing page of the website.](./.github/docs/landing.png)
 
-## Technology 🔧
-- Next.js + React
-- Tailwind CSS
-- TypeScript
-- Jest
-- Lodash
-- Git
-- ESLint + Prettier
-
 ## Deployment 🚀
 ### Production 🌐
 The website is available online at [tchojnacki.dev](https://tchojnacki.dev), deployed through [Vercel](https://vercel.com/home).
@@ -28,4 +19,4 @@ Run the development server:
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:4321](http://localhost:4321) with your browser to see the result.

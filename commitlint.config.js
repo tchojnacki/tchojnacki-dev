@@ -1,7 +1,7 @@
 // @ts-check
 
 /** @type {import("@commitlint/types").UserConfig} */
-module.exports = {
+export default {
   extends: ['@commitlint/config-conventional'],
   rules: {
     'type-enum': [2, 'always', ['feat', 'refactor', 'fix', 'test', 'docs', 'build']],
