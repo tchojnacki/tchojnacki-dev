@@ -1,0 +1,56 @@
+---
+import { SITEMAP } from '~/data/sitemap'
+import { SOCIAL_LINKS } from '~/data/socials'
+
+import Wave from './Wave.astro'
+
+const projectLinks = [
+  { href: 'https://github.com/tchojnacki/tchojnacki-dev', label: 'Source' },
+  { href: 'https://github.com/tchojnacki/tchojnacki-dev/issues', label: 'Issues' },
+]
+---
+
+<Wave className="!max-h-24" />
+<footer class="bg-indigo-11 px-8 text-sm text-slate-8 dark:bg-indigo-4 dark:text-slate-11">
+  <section class="flex flex-col justify-center text-center sm:flex-row sm:gap-32 sm:text-left">
+    <ul>
+      {
+        SITEMAP.filter(({ url }) => url !== '/sitemap').map(({ url, label }) => (
+          <li>
+            <a href={url} class="hover:underline">
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <ul>
+      {
+        SOCIAL_LINKS.map(({ href, label }) => (
+          <li>
+            <a class="hover:underline" href={href} target="_blank" rel="noreferrer">
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <ul>
+      <a href="/sitemap" class="hover:underline">Sitemap</a>
+      {
+        projectLinks.map(({ href, label }) => (
+          <li>
+            <a class="hover:underline" href={href} target="_blank" rel="noreferrer">
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+  <section>
+    <p class="py-8 text-center text-slate-8 dark:text-slate-11">
+      Designed and developed by <strong>Tomasz&nbsp;Chojnacki</strong>
+    </p>
+  </section>
+</footer>

@@ -1,0 +1,22 @@
+---
+interface Props {
+  href: string
+  className?: string
+  type?: 'internal' | 'external'
+  size?: 'small' | 'normal'
+}
+
+const { href, className, type = 'internal', size = 'normal' } = Astro.props
+---
+
+<a
+  {href}
+  class:list={[
+    'inline-block rounded-xl bg-indigo-8 leading-none text-slate-12 duration-200 hover:brightness-150',
+    size === 'normal' ? 'px-6 py-3' : 'px-4 py-2',
+    className,
+  ]}
+  {...type === 'external' ? { target: '_blank', rel: 'noreferrer' } : {}}
+>
+  <slot />
+</a>

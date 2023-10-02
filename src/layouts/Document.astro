@@ -1,0 +1,52 @@
+---
+import '@fontsource-variable/inter'
+import { SEO } from 'astro-seo'
+
+const DEFAULT_TITLE = 'Tomasz Chojnacki'
+const DEFAULT_DESCRIPTION =
+  'Personal website of Tomasz Chojnacki, a software developer based in Wrocław.'
+
+interface Props {
+  name?: string
+  description?: string
+}
+
+const { name, description = DEFAULT_DESCRIPTION } = Astro.props
+const title = name ? `${name} | ${DEFAULT_TITLE}` : DEFAULT_TITLE
+const image = new URL('/static/img/open-graph.png', Astro.site).toString()
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <SEO
+      {title}
+      {description}
+      charset="UTF-8"
+      openGraph={{
+        basic: {
+          title,
+          type: 'website',
+          image,
+        },
+        optional: {
+          description,
+          siteName: DEFAULT_TITLE,
+          locale: 'en_US',
+        },
+        image: {
+          url: image,
+          width: 1280,
+          height: 720,
+          alt: 'Image of the website.',
+        },
+      }}
+      twitter={{ card: 'summary' }}
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body class="overflow-x-hidden bg-slate-12 text-slate-3 dark:bg-indigo-2 dark:text-slate-12">
+    <slot />
+  </body>
+</html>
