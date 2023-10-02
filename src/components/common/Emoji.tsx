@@ -1,15 +1,15 @@
 import twemoji from 'twemoji'
 
 interface EmojiProps {
-  children: string
+  text: string
   size?: number
 }
 
-export function Emoji({ children, size }: EmojiProps) {
+export function Emoji({ text, size }: EmojiProps) {
   return (
     <span
       dangerouslySetInnerHTML={{
-        __html: twemoji.parse(children, {
+        __html: twemoji.parse(text, {
           folder: 'svg',
           ext: '.svg',
           className: 'inline-block h-[1em] align-[-0.125em]',

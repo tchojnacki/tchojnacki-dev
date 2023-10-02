@@ -31,7 +31,7 @@ export function WavingEmoji() {
         isPlaying && 'animate-emojiwave motion-reduce:animate-none',
       )}
     >
-      <Emoji size={24}>👋</Emoji>
+      <Emoji size={24} text="👋" />
     </button>
   )
 }

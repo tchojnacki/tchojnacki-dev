@@ -1,0 +1,22 @@
+---
+import Layout from './Layout.astro'
+
+interface Props {
+  code: number
+}
+
+const { code } = Astro.props
+---
+
+<Layout name={code.toString()}>
+  <main class="mt-[calc(-1*theme(spacing.nav-height))] grid min-h-[100vh] place-items-center p-4">
+    <header class="animate-enteronload text-center onenter-scaling motion-reduce:animate-none">
+      <h1
+        class="mb-4 animate-errshake text-6xl font-bold text-indigo-8 motion-reduce:animate-none dark:text-indigo-11"
+      >
+        {code}
+      </h1>
+      <h2 class="text-3xl"><slot /></h2>
+    </header>
+  </main>
+</Layout>
