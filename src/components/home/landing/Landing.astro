@@ -2,9 +2,10 @@
 import LinkButton from '~/components/common/LinkButton.astro'
 import Wave from '~/components/common/Wave.astro'
 import SimpleIconSvg from '~/components/common/SimpleIconSvg.astro'
-import { SOCIAL_LINKS } from '~/data/socials'
+import { SOCIAL_LINKS } from '~/data'
 
 import { WavingEmoji } from './WavingEmoji'
+import { TechSphere } from './TechSphere'
 ---
 
 <header
@@ -51,7 +52,7 @@ import { WavingEmoji } from './WavingEmoji'
     class="grid h-full min-h-[75vw] w-full animate-enteronload items-center justify-items-center
       overflow-hidden p-8 grid-in-sphere onenter-fromright motion-reduce:animate-none lg:min-h-full lg:items-end"
   >
-    <!-- <TechSphere /> -->
+    <TechSphere client:idle />
   </section>
   <div class="bottom-0 flex h-full w-full flex-col justify-end lg:absolute lg:h-[20vh]">
     <Wave />
