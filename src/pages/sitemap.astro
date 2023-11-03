@@ -1,0 +1,23 @@
+---
+import { SITEMAP } from '~/data'
+import Layout from '~/layouts/Layout.astro'
+---
+
+<Layout name="Sitemap" description="List of all pages in the Tomasz Chojnacki's website.">
+  <main class="p-16 text-center">
+    <h1 class="pb-8 text-4xl font-bold capitalize">Sitemap</h1>
+    <nav>
+      <ul>
+        {
+          SITEMAP.filter(({ url }) => url !== '/sitemap').map(({ url, label }) => (
+            <li>
+              <a href={url} class="hover:underline">
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </main>
+</Layout>
