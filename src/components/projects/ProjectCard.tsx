@@ -123,7 +123,7 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
             ))}
           </ul>
         </h4>
-        <p itemProp="description" className="text-slate-8 dark:text-slate-11">
+        <p itemProp="description" className="text-justify text-slate-8 dark:text-slate-11">
           {project.description}
         </p>
         {project.parts.map(({ name, technologies, tags }) => (
