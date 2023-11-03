@@ -1,39 +1,33 @@
 ---
-import { Image } from 'astro:assets'
-
-import headshotImage from '~/assets/tchojnacki.png'
 import Wave from '~/components/common/Wave.astro'
 
 import SectionHeader from './SectionHeader.astro'
 ---
 
-<main class="bg-indigo-11 p-8 dark:bg-indigo-4">
+<main class="bg-indigo-11 px-8 dark:bg-indigo-4">
   <SectionHeader text="About Me" />
-  <div class="mx-auto flex flex-col items-center justify-center gap-8 py-8 md:flex-row">
-    <div
-      class="flex overflow-hidden rounded-full shadow-md shadow-indigo-2/25 dark:shadow-indigo-11/10"
-    >
-      <Image alt="Photo of Tomasz Chojnacki." src={headshotImage} width={96} height={96} />
-    </div>
-    <div class="text-slate-8 dark:text-slate-11">
-      <ul class="ml-8 list-disc md:ml-16">
-        <li>Software developer based in Wrocław, Poland.</li>
-        <li>
-          Student of Applied Computer Science at{' '}
-          <a
-            class="text-indigo-8 hover:underline dark:text-pure-white"
-            href="https://pwr.edu.pl/en/"
-            target="_blank"
-            rel="noreferrer"
-            title="Wrocław University of Science and Technology"
-          >
-            WUST
-          </a>
-           .
-        </li>
-        <li>Experienced at full stack web development (React/.NET).</li>
-      </ul>
-    </div>
+  <div class="flex justify-center py-8 text-slate-8 dark:text-slate-11">
+    <ul class="ml-8 list-disc">
+      <li>Software developer based in Wrocław, Poland.</li>
+      <li>
+        Student of Applied Computer Science at{' '}
+        <a
+          class="text-indigo-8 hover:underline dark:text-pure-white"
+          href="https://pwr.edu.pl/en/"
+          target="_blank"
+          rel="noreferrer"
+          title="Wrocław University of Science and Technology">WUST</a
+        >.
+      </li>
+      <li>
+        Interested in:
+        <ul class="ml-8 list-disc">
+          <li>full stack web development</li>
+          <li>developer tooling / DX</li>
+          <li>language and compiler design</li>
+        </ul>
+      </li>
+    </ul>
   </div>
 </main>
 <Wave inverted />
