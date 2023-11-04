@@ -13,8 +13,8 @@ import {
   ZoomIn,
 } from 'tabler-icons-react'
 
-import { LinkButton } from '~/components/common/LinkButton'
-import { SimpleIconSvg } from '~/components/common/SimpleIconSvg.tsx'
+import LinkButton from '~/components/common/LinkButton'
+import SimpleIconSvg from '~/components/common/SimpleIconSvg.tsx'
 import type { Project, ProjectLink, ProjectTag } from '~/utils/content'
 
 interface TagProps {

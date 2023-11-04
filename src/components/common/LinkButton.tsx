@@ -9,7 +9,7 @@ interface LinkButtonProps {
   size?: 'small' | 'normal'
 }
 
-export function LinkButton({
+export default function LinkButton({
   children,
   href,
   className,

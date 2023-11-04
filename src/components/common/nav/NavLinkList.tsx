@@ -1,5 +1,6 @@
 import { routes } from '~/utils/routes'
-import { NavLink } from './NavLink'
+
+import NavLink from './NavLink'
 
 const entries = [routes.about, routes.projects, routes.blog]
 
@@ -9,7 +10,7 @@ interface NavLinkListProps {
   pathname: string
 }
 
-export function NavLinkList({ listClassName, itemClassName, pathname }: NavLinkListProps) {
+export default function NavLinkList({ listClassName, itemClassName, pathname }: NavLinkListProps) {
   return (
     <ul className={listClassName}>
       {entries.map(({ href, label }) => (

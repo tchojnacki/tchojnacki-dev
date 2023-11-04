@@ -1,10 +1,9 @@
 import { Moon, Sun } from 'tabler-icons-react'
 
-import { useDialog } from '~/hooks/useDialog'
-import { useTheme } from '~/hooks/useTheme'
+import { useDialog, useTheme } from '~/hooks'
 
-import { NavHamburger } from './NavHamburger'
-import { NavLinkList } from './NavLinkList'
+import NavHamburger from './NavHamburger'
+import NavLinkList from './NavLinkList'
 
 interface NavProps {
   pathname: string

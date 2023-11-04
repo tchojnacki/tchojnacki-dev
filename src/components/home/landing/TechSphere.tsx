@@ -31,7 +31,7 @@ interface TechSphereProps {
   skillNames: string[]
 }
 
-export function TechSphere({ skillNames }: TechSphereProps) {
+export default function TechSphere({ skillNames }: TechSphereProps) {
   const prefersReducedMotion = usePrefersReducedMotion()
   const { width, height, childRef: canvasRef } = useParentSize<HTMLCanvasElement>()
   const canvasSize = clamp(Math.min(width, height) - 50, 200, 450)

@@ -7,7 +7,7 @@ interface NavLinkProps {
   className?: string
 }
 
-export function NavLink({ href, children, pathname, className }: NavLinkProps) {
+export default function NavLink({ href, children, pathname, className }: NavLinkProps) {
   return (
     <a
       href={href}

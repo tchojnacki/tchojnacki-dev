@@ -2,11 +2,11 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useEventListener } from 'ahooks'
 import clsx from 'clsx'
 
-import { Emoji } from '~/components/common/Emoji'
+import Emoji from '~/components/common/Emoji'
 
 const WAVING_DELAY = 1000
 
-export function WavingEmoji() {
+export default function WavingEmoji() {
   const [isPlaying, setIsPlaying] = useState(false)
   const startPlaying = useCallback(() => setIsPlaying(true), [])
   const stopPlaying = useCallback(() => setIsPlaying(false), [])

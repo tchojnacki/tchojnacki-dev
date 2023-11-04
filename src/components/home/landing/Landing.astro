@@ -1,12 +1,13 @@
 ---
 import * as ICONS from 'simple-icons'
-import { LinkButton } from '~/components/common/LinkButton'
+
+import LinkButton from '~/components/common/LinkButton'
 import Wave from '~/components/common/Wave.astro'
-import { SimpleIconSvg } from '~/components/common/SimpleIconSvg'
+import SimpleIconSvg from '~/components/common/SimpleIconSvg'
 import { getSkills, techSphereSkillIds, getSocials } from '~/utils/content'
 
-import { WavingEmoji } from './WavingEmoji'
-import { TechSphere } from './TechSphere'
+import WavingEmoji from './WavingEmoji'
+import TechSphere from './TechSphere'
 
 const skills = await getSkills()
 const skillNames = techSphereSkillIds.map(id => skills[id].name)

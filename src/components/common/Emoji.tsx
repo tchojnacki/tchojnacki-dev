@@ -5,7 +5,7 @@ interface EmojiProps {
   size?: number
 }
 
-export function Emoji({ text, size }: EmojiProps) {
+export default function Emoji({ text, size }: EmojiProps) {
   return (
     <span
       dangerouslySetInnerHTML={{
