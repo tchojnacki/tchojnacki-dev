@@ -10,7 +10,7 @@ export function useAnimationFrame(callback: (deltaTimeSeconds: number) => void) 
       lastTimeStampRef.current = highResTimeStamp
       requestIdRef.current = requestAnimationFrame(animationFrame)
     },
-    [callback]
+    [callback],
   )
 
   useEffect(() => {

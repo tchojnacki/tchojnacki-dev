@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { SimpleIcon } from 'simple-icons'
+import type { SimpleIcon } from 'simple-icons'
 
 interface SimpleIconProps {
   icon: SimpleIcon | string
@@ -8,7 +8,7 @@ interface SimpleIconProps {
   pathClassName?: string
 }
 
-export function SimpleIconSvg({ icon, title, pathClassName, className }: SimpleIconProps) {
+export default function SimpleIconSvg({ icon, title, pathClassName, className }: SimpleIconProps) {
   return (
     <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <title>{title ? title : typeof icon === 'string' ? icon : icon.title}</title>

@@ -11,13 +11,14 @@
 ![The landing page of the website.](./.github/docs/landing.png)
 
 ## Technology 🔧
-- Next.js + React
+- Astro
+- React
 - Tailwind CSS
 - TypeScript
-- Jest
 - Lodash
+- Vitest
+- Prettier
 - Git
-- ESLint + Prettier
 
 ## Deployment 🚀
 ### Production 🌐
@@ -28,4 +29,4 @@ Run the development server:
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:4321](http://localhost:4321) with your browser to see the result.

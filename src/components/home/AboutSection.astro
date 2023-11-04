@@ -1,0 +1,33 @@
+---
+import Wave from '~/components/common/Wave.astro'
+
+import SectionHeader from './SectionHeader.astro'
+---
+
+<main class="bg-indigo-11 px-8 dark:bg-indigo-4">
+  <SectionHeader text="About Me" />
+  <div class="flex justify-center py-8 text-slate-8 dark:text-slate-11">
+    <ul class="ml-8 list-disc">
+      <li>Software developer based in Wrocław, Poland.</li>
+      <li>
+        Student of Applied Computer Science at{' '}
+        <a
+          class="text-indigo-8 hover:underline dark:text-pure-white"
+          href="https://pwr.edu.pl/en/"
+          target="_blank"
+          rel="noreferrer"
+          title="Wrocław University of Science and Technology">WUST</a
+        >.
+      </li>
+      <li>
+        Interested in:
+        <ul class="ml-8 list-disc">
+          <li>full stack web development</li>
+          <li>developer tooling / DX</li>
+          <li>language and compiler design</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</main>
+<Wave inverted />

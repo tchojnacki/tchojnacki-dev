@@ -1,4 +1,4 @@
-import useEvent from '@use-it/event-listener'
+import { useEventListener } from 'ahooks'
 import { useRef, useState } from 'react'
 
 export function useDialog() {
@@ -16,23 +16,23 @@ export function useDialog() {
     }
   }
 
-  useEvent(
+  useEventListener(
     'close',
     () => {
       setIsOpen(false)
       document.body.classList.remove('overflow-hidden')
     },
-    dialogRef.current
+    { target: dialogRef },
   )
 
-  useEvent(
+  useEventListener(
     'click',
     e => {
       if (e.target === e.currentTarget || e.target instanceof HTMLAnchorElement) {
         dialogRef.current?.close()
       }
     },
-    dialogRef.current
+    { target: dialogRef },
   )
 
   return { isOpen, dialogRef, toggleDialog }

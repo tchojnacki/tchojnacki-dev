@@ -1,0 +1,60 @@
+---
+import { getSocials } from '~/utils/content'
+import { routes } from '~/utils/routes'
+
+import Wave from './Wave.astro'
+
+const entries = [routes.about, routes.blog, routes.projects]
+
+const projectLinks = [
+  { href: 'https://github.com/tchojnacki/tchojnacki-dev', label: 'Source' },
+  { href: 'https://github.com/tchojnacki/tchojnacki-dev/issues', label: 'Issues' },
+]
+
+const socials = await getSocials()
+---
+
+<Wave className="!max-h-24" />
+<footer class="bg-indigo-11 px-8 text-sm text-slate-8 dark:bg-indigo-4 dark:text-slate-11">
+  <section class="flex flex-col justify-center text-center sm:flex-row sm:gap-32 sm:text-left">
+    <ul>
+      {
+        entries.map(({ href, label }) => (
+          <li>
+            <a {href} class="hover:underline">
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <ul>
+      {
+        socials.map(({ href, label }) => (
+          <li>
+            <a {href} class="hover:underline" target="_blank" rel="noreferrer">
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <ul>
+      <a href="/sitemap" class="hover:underline">Sitemap</a>
+      {
+        projectLinks.map(({ href, label }) => (
+          <li>
+            <a {href} target="_blank" rel="noreferrer" class="hover:underline">
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+  <section>
+    <p class="py-8 text-center text-slate-8 dark:text-slate-11">
+      Designed and developed by <strong>Tomasz&nbsp;Chojnacki</strong>
+    </p>
+  </section>
+</footer>

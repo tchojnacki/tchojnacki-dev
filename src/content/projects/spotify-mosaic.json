@@ -1,0 +1,22 @@
+{
+  "name": "Mosaics for Spotify",
+  "description": "A CLI tool for generating Spotify playlist covers using album artwork.",
+  "image": "~/assets/projects/spotify-mosaic.png",
+  "tags": ["personal"],
+  "links": [
+    {
+      "type": "download",
+      "href": "https://crates.io/crates/spotifymosaic"
+    },
+    {
+      "type": "github",
+      "repo": "spotifymosaic"
+    }
+  ],
+  "parts": [
+    {
+      "name": "CLI",
+      "skillIds": ["rust"]
+    }
+  ]
+}

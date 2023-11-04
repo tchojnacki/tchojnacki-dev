@@ -1,4 +1,4 @@
-import { Vec2D, Vec3D, v3add, v3cross, v3dot, v3len, v3scale, v3sub } from './vector'
+import { type Vec2D, type Vec3D, v3add, v3cross, v3dot, v3len, v3scale, v3sub } from './vector'
 
 const { sin, asin, cos, acos, PI } = Math
 
@@ -39,7 +39,7 @@ export const initialPositionsOf = <T>(items: readonly T[]) =>
 
 export function worldToCamera(
   { x, y, z }: Vec3D,
-  { cameraZ, canvasSize }: Projection
+  { cameraZ, canvasSize }: Projection,
 ): Vec2D & { scale: number } {
   const scale = cameraZ / (cameraZ + z)
   return {
@@ -52,7 +52,7 @@ export function worldToCamera(
 function cameraToWorld(
   { x, y }: Vec2D,
   targetZ: number,
-  { cameraZ, canvasSize }: Projection
+  { cameraZ, canvasSize }: Projection,
 ): Vec3D {
   const scale = cameraZ / (cameraZ + targetZ)
   return {
@@ -65,7 +65,7 @@ function cameraToWorld(
 export function pointerToSpherePoint(
   pointerPos: Vec2D,
   sphereRadius: number,
-  projection: Projection
+  projection: Projection,
 ): Vec3D {
   const start = cameraToWorld(pointerPos, projection.cameraZ, projection)
   const end = cameraToWorld(pointerPos, projection.cameraZ + 1, projection)

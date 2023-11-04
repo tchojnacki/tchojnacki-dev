@@ -1,20 +1,19 @@
-import useEvent from '@use-it/event-listener'
+import { useEventListener } from 'ahooks'
 import clamp from 'lodash/clamp'
 import { useEffect, useMemo, useRef } from 'react'
 
-import { TECH_SPHERE_SKILL_NAMES } from 'data'
 import {
   useAnimationFrame,
   useParentSize,
   usePointerStart,
   usePointerStop,
   usePrefersReducedMotion,
-} from 'hooks'
+} from '~/hooks'
 import {
   DAMPING_FACTOR,
   INITIAL_ROTATION_AXIS,
   INITIAL_ROTATION_SPEED,
-  Vec3D,
+  type Vec3D,
   findRotation,
   initialPositionsOf,
   pointerToSpherePoint,
@@ -24,18 +23,22 @@ import {
   v2sub,
   v3scale,
   worldToCamera,
-} from 'logic'
+} from '~/logic'
 
 const FONT_SCALE = 0.05
 
-export function TechSphere() {
+interface TechSphereProps {
+  skillNames: string[]
+}
+
+export default function TechSphere({ skillNames }: TechSphereProps) {
   const prefersReducedMotion = usePrefersReducedMotion()
   const { width, height, childRef: canvasRef } = useParentSize<HTMLCanvasElement>()
   const canvasSize = clamp(Math.min(width, height) - 50, 200, 450)
   const cameraZ = 2 * canvasSize
   const projection = useMemo(() => ({ cameraZ, canvasSize }), [cameraZ, canvasSize])
   const sphereRadius = canvasSize * 0.35
-  const pointsRef = useRef(initialPositionsOf(TECH_SPHERE_SKILL_NAMES))
+  const pointsRef = useRef(initialPositionsOf(skillNames))
 
   const ctx = canvasRef.current?.getContext('2d')
 
@@ -71,12 +74,12 @@ export function TechSphere() {
       const before = pointerToSpherePoint(
         v2sub(hoverPosRef.current, v2scale(dragPixelsPerMsRef.current, 0.5)),
         sphereRadius,
-        projection
+        projection,
       )
       const after = pointerToSpherePoint(
         v2add(hoverPosRef.current, v2scale(dragPixelsPerMsRef.current, 0.5)),
         sphereRadius,
-        projection
+        projection,
       )
 
       const { theta } = findRotation(before, after)
@@ -85,7 +88,7 @@ export function TechSphere() {
     }
   })
 
-  useEvent(
+  useEventListener(
     'pointermove',
     (event: PointerEvent) => {
       const now = Date.now()
@@ -106,7 +109,7 @@ export function TechSphere() {
         thetaRef.current = theta
       }
     },
-    canvasRef.current
+    { target: canvasRef },
   )
 
   useAnimationFrame(deltaTime => {
@@ -141,7 +144,7 @@ export function TechSphere() {
       ctx.fillStyle = getComputedStyle(canvasRef.current).color
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
-      ctx.font = `${Math.round(canvasSize * FONT_SCALE)}px var(--inter-font, sans-serif)`
+      ctx.font = `${Math.ceil(canvasSize * FONT_SCALE)}px sans-serif`
 
       for (const { item, position } of pointsRef.current) {
         const scaled = v3scale(position, sphereRadius)
@@ -160,7 +163,7 @@ export function TechSphere() {
 
   return (
     <canvas
-      className="touch-none cursor-grab active:cursor-grabbing select-none"
+      className="cursor-grab touch-none select-none active:cursor-grabbing"
       ref={canvasRef}
       width={canvasSize}
       height={canvasSize}

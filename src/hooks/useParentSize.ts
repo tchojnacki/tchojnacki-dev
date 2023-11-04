@@ -6,17 +6,20 @@ export function useParentSize<ChildElem extends HTMLElement>() {
   const childRef = useRef<ChildElem>(null)
 
   useEffect(() => {
-    const parent = childRef.current?.parentElement
+    let parent = childRef.current?.parentElement
+    while (parent && getComputedStyle(parent).display === 'contents') {
+      parent = parent.parentElement
+    }
 
     if (!parent) {
       return
     }
 
-    const resizeObserver = new ResizeObserver(event => setSize(event[0].contentBoxSize[0]))
+    const resizeObserver = new ResizeObserver(event => setSize(event[0]!.contentBoxSize[0]!))
 
     resizeObserver.observe(parent)
 
-    return () => resizeObserver.unobserve(parent)
+    return () => resizeObserver.unobserve(parent as HTMLElement)
   }, [])
 
   useDebugValue(`${size.inlineSize} x ${size.blockSize}`)

@@ -1,28 +1,31 @@
 import clsx from 'clsx'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 
 interface NavLinkProps {
   href: string
   children: string
+  pathname: string
   className?: string
 }
 
-export function NavLink({ href, children, className }: NavLinkProps) {
-  const router = useRouter()
-
+export default function NavLink({ href, children, pathname, className }: NavLinkProps) {
   return (
-    <Link
+    <a
       href={href}
       className={clsx(
         className,
         'block duration-200',
-        router.pathname === href
+        pathsEqual(href, pathname)
           ? 'font-bold text-slate-3 dark:text-slate-12'
-          : 'text-slate-8 dark:text-slate-11'
+          : 'text-slate-8 dark:text-slate-11',
       )}
     >
       {children}
-    </Link>
+    </a>
   )
+}
+
+function pathsEqual(a: string, b: string): boolean {
+  const canonize = (path: string) => path.replace(/(^[/\\]+|[/\\]+$)/g, '').replace(/[/\\]+/g, '/')
+
+  return canonize(a) === canonize(b)
 }

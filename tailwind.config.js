@@ -1,10 +1,12 @@
 // @ts-check
 
-const plugin = require('tailwindcss/plugin')
+import defaultTheme from 'tailwindcss/defaultTheme'
+import plugin from 'tailwindcss/plugin'
+import gridAreas from '@savvywombat/tailwindcss-grid-areas'
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ['./src/{components,pages}/**/*.{js,ts,jsx,tsx}'],
+export default {
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   darkMode: 'class',
   theme: {
     // https://www.radix-ui.com/docs/colors/palette-composition/the-scales
@@ -26,9 +28,12 @@ module.exports = {
         white: '#ffffff',
       },
     },
+    fontFamily: {
+      sans: ['"Inter Variable"', 'Inter', ...defaultTheme.fontFamily.sans],
+    },
     fontWeight: {
-      normal: 400,
-      bold: 600,
+      normal: '400',
+      bold: '600',
     },
     gridTemplateAreas: {
       'landing-desktop': ['. text sphere .', '. . sphere .', '. . . .'],
@@ -49,17 +54,17 @@ module.exports = {
       },
       enteronload: {
         from: {
-          opacity: 0,
+          opacity: '0',
           transform: 'var(--enter-transform, none)',
         },
         to: {
-          opacity: 1,
+          opacity: '1',
           transform: 'none',
         },
       },
       scrollprojectimage: {
         from: {
-          marginTop: 0,
+          marginTop: '0',
         },
         to: {
           marginTop: 'var(--max-image-scroll, 0)',
@@ -80,7 +85,7 @@ module.exports = {
     },
   },
   plugins: [
-    require('@savvywombat/tailwindcss-grid-areas'),
+    /** @type {any} */ (gridAreas),
     plugin(({ addVariant }) => {
       addVariant('pseudo', ['&::before', '&::after'])
     }),

@@ -1,25 +1,26 @@
+import { describe, it, expect } from 'vitest'
+
 import {
   findRotation,
   pointerToSpherePoint,
   rotateAroundUnitVector,
   worldToCamera,
-} from 'logic/techSphere'
+} from '~/logic/techSphere'
 
-describe('rotateAroundUnitVector', () => {
+describe(rotateAroundUnitVector, () => {
   it.each([
     [{ x: 1, y: 2, z: 3 }, { x: 1, y: 0, z: 0 }, 0, { x: 1, y: 2, z: 3 }],
     [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: -1 }, 123, { x: 0, y: 0, z: 0 }],
     [{ x: 4, y: 5, z: 6 }, { x: 0, y: 1, z: 0 }, Math.PI, { x: -4, y: 5, z: -6 }],
-  ])('rotates %i around %i by %i', (pos, axis, angle, result) => {
-    expect(rotateAroundUnitVector(pos, axis, angle)).toEqual({
-      x: expect.closeTo(result.x, 3),
-      y: expect.closeTo(result.y, 3),
-      z: expect.closeTo(result.z, 3),
-    })
+  ])('rotates %o around %o by %d', (pos, axis, angle, expected) => {
+    const result = rotateAroundUnitVector(pos, axis, angle)
+    expect(result.x).toBeCloseTo(expected.x)
+    expect(result.y).toBeCloseTo(expected.y)
+    expect(result.z).toBeCloseTo(expected.z)
   })
 })
 
-describe('worldToCamera', () => {
+describe(worldToCamera, () => {
   it.each([
     [
       { x: 0, y: 0, z: 0 },
@@ -31,39 +32,36 @@ describe('worldToCamera', () => {
       { cameraZ: 200, canvasSize: 200 },
       { x: 100, y: 100, scale: 0.6666 },
     ],
-  ])('translates coordinates %i to camera space using %i', (pos, projection, result) => {
-    expect(worldToCamera(pos, projection)).toEqual({
-      scale: expect.closeTo(result.scale, 3),
-      x: expect.closeTo(result.x, 3),
-      y: expect.closeTo(result.y, 3),
-    })
+  ])('translates coordinates %o to camera space using %o', (pos, projection, expected) => {
+    const result = worldToCamera(pos, projection)
+    expect(result.scale).toBeCloseTo(expected.scale)
+    expect(result.x).toBeCloseTo(expected.x)
+    expect(result.y).toBeCloseTo(expected.y)
   })
 })
 
-describe('pointerToSpherePoint', () => {
+describe(pointerToSpherePoint, () => {
   it.each([
     [{ x: 64, y: 64 }, 50, { cameraZ: 100, canvasSize: 128 }, { x: 0, y: 0, z: -50 }],
     [{ x: 250, y: 250 }, 0.0001, { cameraZ: 5000, canvasSize: 250 }, { x: 0, y: 0, z: 0 }],
   ])(
-    'translates pointer pos %i with sphere of radius %i and projection %i to a sphere point',
-    (pointerPos, sphereRadius, projection, result) => {
-      expect(pointerToSpherePoint(pointerPos, sphereRadius, projection)).toEqual({
-        x: expect.closeTo(result.x, 3),
-        y: expect.closeTo(result.y, 3),
-        z: expect.closeTo(result.z, 3),
-      })
-    }
+    'translates pointer pos %o with sphere of radius %d and projection %o to a sphere point',
+    (pointerPos, sphereRadius, projection, expected) => {
+      const result = pointerToSpherePoint(pointerPos, sphereRadius, projection)
+      expect(result.x).toBeCloseTo(expected.x)
+      expect(result.y).toBeCloseTo(expected.y)
+      expect(result.z).toBeCloseTo(expected.z)
+    },
   )
 })
 
-describe('findRotation', () => {
+describe(findRotation, () => {
   it.each([
     [{ x: 1, y: 2, z: 3 }, { x: 1, y: 2, z: 3 }, 0],
     [{ x: 0, y: 13, z: 0 }, { x: 13, y: 0, z: 0 }, Math.PI / 2],
-  ])('finds rotation from %i to %i', (from, to, theta) => {
-    expect(findRotation(from, to)).toEqual({
-      theta: expect.closeTo(theta, 3),
-      axis: expect.any(Object),
-    })
+  ])('finds rotation from %o to %o', (from, to, theta) => {
+    const found = findRotation(from, to)
+    expect(found.theta).toBeCloseTo(theta)
+    expect(found.axis).toBeInstanceOf(Object)
   })
 })

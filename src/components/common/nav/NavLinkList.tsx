@@ -1,18 +1,21 @@
-import { SITEMAP } from 'data'
+import { routes } from '~/utils/routes'
 
-import { NavLink } from './NavLink'
+import NavLink from './NavLink'
+
+const entries = [routes.about, routes.projects, routes.blog]
 
 interface NavLinkListProps {
   listClassName?: string
   itemClassName?: string
+  pathname: string
 }
 
-export function NavLinkList({ listClassName, itemClassName }: NavLinkListProps) {
+export default function NavLinkList({ listClassName, itemClassName, pathname }: NavLinkListProps) {
   return (
     <ul className={listClassName}>
-      {SITEMAP.filter(({ url }) => url !== '/sitemap').map(({ url, label }) => (
-        <li key={url}>
-          <NavLink className={itemClassName} href={url}>
+      {entries.map(({ href, label }) => (
+        <li key={href}>
+          <NavLink className={itemClassName} href={href} pathname={pathname}>
             {label}
           </NavLink>
         </li>
