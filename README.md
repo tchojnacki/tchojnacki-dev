@@ -10,6 +10,16 @@
 
 ![The landing page of the website.](./.github/docs/landing.png)
 
+## Technology 🔧
+- Astro
+- React
+- Tailwind CSS
+- TypeScript
+- Lodash
+- Vitest
+- Prettier
+- Git
+
 ## Deployment 🚀
 ### Production 🌐
 The website is available online at [tchojnacki.dev](https://tchojnacki.dev), deployed through [Vercel](https://vercel.com/home).

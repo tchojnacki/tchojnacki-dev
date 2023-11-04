@@ -20,7 +20,7 @@
     },
     {
       "name": "Tools",
-      "skillIds": ["testing-library", "github-actions", "figma", "jest"]
+      "skillIds": ["vitest", "github-actions", "figma", "jest"]
     }
   ]
 }

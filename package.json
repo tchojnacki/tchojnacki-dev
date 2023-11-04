@@ -1,12 +1,12 @@
 {
   "name": "tchojnacki-dev",
+  "private": true,
   "type": "module",
-  "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
+    "test": "vitest run --coverage",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -34,6 +34,7 @@
     "@types/lodash": "^4.14.199",
     "@types/react": "^18.2.24",
     "@types/react-dom": "^18.2.8",
+    "@vitest/coverage-v8": "^0.34.6",
     "astro-compress": "^2.0.15",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^0.8.0",
@@ -42,6 +43,7 @@
     "prettier-plugin-astro": "^0.12.0",
     "prettier-plugin-tailwindcss": "^0.5.4",
     "tailwindcss": "^3.3.3",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6"
   }
 }

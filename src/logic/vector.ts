@@ -3,7 +3,7 @@ export interface Vec2D {
   y: number
 }
 
-export const v2scale = (v: Vec2D, n: number): Vec2D => ({ x: v.x * n, y: v.x * n })
+export const v2scale = (v: Vec2D, n: number): Vec2D => ({ x: v.x * n, y: v.y * n })
 
 export const v2sub = (v: Vec2D, w: Vec2D): Vec2D => ({ x: v.x - w.x, y: v.y - w.y })
 
