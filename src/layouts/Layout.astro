@@ -16,5 +16,5 @@ const { pathname } = Astro.url
   <Nav {pathname} client:load />
   <slot />
   <Footer />
-  <OverscrollFixer />
+  <OverscrollFixer client:idle />
 </Document>
