@@ -19,10 +19,10 @@ export default function Nav({ pathname }: NavProps) {
   return (
     <>
       <dialog
-        className='max-w-16 invisible mb-auto ml-auto mr-0 mt-0
-          flex h-[min(100vmin,30rem)] max-h-16 w-[min(100vmin,30rem)] flex-col items-end
-          justify-start overflow-hidden rounded-bl-[50%] bg-pure-black/0 bg-[url("/static/img/light-menu-blob.svg")]
-          bg-contain bg-right-top
+        className='max-w-16 invisible z-10 mb-auto ml-auto mr-0
+          mt-0 flex h-[min(100vmin,30rem)] max-h-16 w-[min(100vmin,30rem)] flex-col
+          items-end justify-start overflow-hidden rounded-bl-[50%] bg-pure-black/0
+          bg-[url("/static/img/light-menu-blob.svg")] bg-contain bg-right-top
           bg-no-repeat p-0 opacity-0 duration-500 backdrop:bg-pure-black/50 open:visible
           open:max-h-full open:max-w-full open:rounded-none open:opacity-100 dark:bg-[url("/static/img/dark-menu-blob.svg")]'
         ref={dialogRef}

@@ -1,19 +1,98 @@
 import clsx from 'clsx'
-import { Fragment, useCallback, useState, type CSSProperties } from 'react'
-import { PlayerPause, PlayerPlay, ZoomCancel, ZoomIn } from 'tabler-icons-react'
+import { Fragment, type CSSProperties, useReducer } from 'react'
+import {
+  Api,
+  BrandGithub,
+  Download,
+  ExternalLink,
+  InfoCircle,
+  Notes,
+  PlayerPause,
+  PlayerPlay,
+  ZoomCancel,
+  ZoomIn,
+} from 'tabler-icons-react'
 
 import { LinkButton } from '~/components/common/LinkButton'
 import { SimpleIconSvg } from '~/components/common/SimpleIconSvg.tsx'
-import { Project } from '~/data'
+import type { Project, ProjectLink, ProjectTag } from '~/utils/content'
+
+interface TagProps {
+  tag: ProjectTag
+  small?: boolean
+}
+
+interface LinkProps {
+  link: ProjectLink
+  isActive: boolean
+}
 
 interface ProjectCardProps {
   project: Project
   flipped?: boolean
 }
 
+function Tag({ tag, small }: TagProps) {
+  const { label, backgroundColor } = {
+    personal: { label: 'Personal', backgroundColor: '#075b52' },
+    university: { label: 'University', backgroundColor: '#075b52' },
+    group: { label: 'Group', backgroundColor: '#075b52' },
+    freelance: { label: 'Freelance', backgroundColor: '#075b52' },
+    deprecated: { label: 'DEPRECATED', backgroundColor: '#ca3214' },
+    wip: { label: 'WORK IN PROGRESS', backgroundColor: '#d97706' },
+  }[tag]
+
+  return (
+    <li
+      style={{ backgroundColor }}
+      className={clsx(
+        'block whitespace-nowrap rounded-full text-slate-12',
+        small ? 'px-2 text-sm' : 'px-3',
+      )}
+    >
+      {label}
+    </li>
+  )
+}
+
+function Link({ link, isActive }: LinkProps) {
+  const { label, href, Icon } = (() => {
+    switch (link.type) {
+      case 'github':
+        return {
+          label: 'Source',
+          href: `https://github.com/${link.owner ?? 'tchojnacki'}/${link.repo}`,
+          Icon: BrandGithub,
+        }
+      case 'deploy':
+        return { label: 'Visit', href: link.href, Icon: ExternalLink }
+      case 'documentation':
+        return { label: 'Documentation', href: link.href, Icon: Notes }
+      case 'information':
+        return { label: 'More Info', href: link.href, Icon: InfoCircle }
+      case 'download':
+        return { label: 'Download', href: link.href, Icon: Download }
+      case 'swagger':
+        return { label: 'Swagger', href: link.href, Icon: Api }
+    }
+  })()
+
+  return (
+    <li>
+      <LinkButton
+        href={href}
+        type="external"
+        size="small"
+        className={clsx('flex items-center gap-2', isActive && 'opacity-25 hover:opacity-100')}
+      >
+        <Icon /> {label}
+      </LinkButton>
+    </li>
+  )
+}
+
 export function ProjectCard({ project, flipped }: ProjectCardProps) {
-  const [isActive, setIsActive] = useState(false)
-  const toggleActive = useCallback(() => setIsActive(prev => !prev), [])
+  const [isActive, toggleActive] = useReducer(prev => !prev, false)
 
   const { width, height } = project.image
   const maxImageScroll = Math.floor(((height - (width * 3) / 4) / width) * 100)
@@ -24,13 +103,13 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
 
   return (
     <li
-      className="grid w-full max-w-[64rem] animate-enteronload items-center rounded-3xl shadow-md
-      shadow-indigo-2/25 onenter-scaling motion-reduce:animate-none dark:shadow-indigo-11/10
-      lg:animate-none lg:grid-cols-8 lg:grid-rows-1 lg:shadow-none"
+      className="grid w-full max-w-[64rem] items-center rounded-3xl shadow-md
+      shadow-indigo-2/25 dark:shadow-indigo-11/10
+      lg:grid-cols-8 lg:grid-rows-1 lg:shadow-none"
     >
       <div
         className={clsx(
-          'relative aspect-[4/3] lg:animate-enteronload lg:onenter-scaling lg:motion-reduce:animate-none',
+          'relative aspect-[4/3]',
           flipped ? 'lg:col-start-4' : 'lg:col-start-1',
           'overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl',
           'shadow-none lg:shadow-md lg:shadow-indigo-2/25 dark:lg:shadow-indigo-11/10',
@@ -74,20 +153,8 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
             />
           </button>
           <ul className="z-[2] m-4 inline-flex h-min flex-col gap-2 grid-in-buttons">
-            {project.links.map(({ displayName, IconComponent, link }) => (
-              <li key={displayName}>
-                <LinkButton
-                  href={link}
-                  type="external"
-                  size="small"
-                  className={clsx(
-                    'flex items-center gap-2',
-                    isActive && 'opacity-25 hover:opacity-100',
-                  )}
-                >
-                  <IconComponent /> {displayName}
-                </LinkButton>
-              </li>
+            {project.links.map(link => (
+              <Link key={link.type} link={link} isActive={isActive} />
             ))}
           </ul>
         </div>
@@ -96,10 +163,9 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
         itemScope
         itemType="https://schema.org/SoftwareApplication"
         className={clsx(
-          'lg:animate-enteronload lg:motion-reduce:animate-none',
           flipped
-            ? 'bg-gradient-to-l lg:col-start-1 lg:rounded-bl-none lg:rounded-tr-3xl lg:onenter-fromleft'
-            : 'bg-gradient-to-r lg:col-start-4 lg:rounded-br-none lg:rounded-tl-3xl lg:onenter-fromright',
+            ? 'bg-gradient-to-l lg:col-start-1 lg:rounded-bl-none lg:rounded-tr-3xl'
+            : 'bg-gradient-to-r lg:col-start-4 lg:rounded-br-none lg:rounded-tl-3xl',
           'z-[1] flex flex-col rounded-b-3xl p-8 lg:col-span-5 lg:row-span-full',
           'from-indigo-11 to-indigo-11 lg:to-slate-12',
           'dark:from-indigo-4 dark:to-indigo-4 dark:lg:to-indigo-2',
@@ -112,33 +178,21 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
             {project.name}
           </span>
           <ul itemProp="keywords" className="flex gap-2">
-            {project.tags.map(({ displayName, backgroundColor }) => (
-              <li
-                key={displayName}
-                style={{ backgroundColor }}
-                className="block whitespace-nowrap rounded-full px-3 text-slate-12"
-              >
-                {displayName}
-              </li>
+            {project.tags.map(tag => (
+              <Tag key={tag} tag={tag} />
             ))}
           </ul>
         </h4>
         <p itemProp="description" className="text-justify text-slate-8 dark:text-slate-11">
           {project.description}
         </p>
-        {project.parts.map(({ name, technologies, tags }) => (
+        {project.parts.map(({ name, skills: technologies, tags }) => (
           <Fragment key={name}>
             <h5 className="mb-2 mt-4 flex flex-col gap-2 lg:flex-row lg:items-center">
               <span className="mr-auto text-xl">{name}</span>
               <ul className="flex gap-2">
-                {tags.map(({ displayName, backgroundColor }) => (
-                  <li
-                    key={displayName}
-                    style={{ backgroundColor }}
-                    className="block whitespace-nowrap rounded-full px-2 text-sm text-slate-12"
-                  >
-                    {displayName}
-                  </li>
+                {tags.map(tag => (
+                  <Tag key={tag} tag={tag} small />
                 ))}
               </ul>
             </h5>
@@ -153,7 +207,7 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
                   bg-slate-3/10 px-3 dark:bg-slate-12/10"
                 >
                   <SimpleIconSvg
-                    icon={icon}
+                    icon={icon ?? name}
                     title={name}
                     className="my-1 h-[1em]"
                     pathClassName="fill-slate-3 dark:fill-slate-12"

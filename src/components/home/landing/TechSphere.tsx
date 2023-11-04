@@ -2,7 +2,6 @@ import { useEventListener } from 'ahooks'
 import clamp from 'lodash/clamp'
 import { useEffect, useMemo, useRef } from 'react'
 
-import { TECH_SPHERE_SKILL_NAMES } from '~/data'
 import {
   useAnimationFrame,
   useParentSize,
@@ -28,14 +27,18 @@ import {
 
 const FONT_SCALE = 0.05
 
-export function TechSphere() {
+interface TechSphereProps {
+  skillNames: string[]
+}
+
+export function TechSphere({ skillNames }: TechSphereProps) {
   const prefersReducedMotion = usePrefersReducedMotion()
   const { width, height, childRef: canvasRef } = useParentSize<HTMLCanvasElement>()
   const canvasSize = clamp(Math.min(width, height) - 50, 200, 450)
   const cameraZ = 2 * canvasSize
   const projection = useMemo(() => ({ cameraZ, canvasSize }), [cameraZ, canvasSize])
   const sphereRadius = canvasSize * 0.35
-  const pointsRef = useRef(initialPositionsOf(TECH_SPHERE_SKILL_NAMES))
+  const pointsRef = useRef(initialPositionsOf(skillNames))
 
   const ctx = canvasRef.current?.getContext('2d')
 

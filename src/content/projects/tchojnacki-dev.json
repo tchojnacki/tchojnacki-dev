@@ -1,0 +1,26 @@
+{
+  "name": "tchojnacki.dev",
+  "description": "Website acting as my portfolio and blog.",
+  "image": "~/assets/projects/tchojnacki-dev.png",
+  "tags": ["personal"],
+  "links": [
+    {
+      "type": "deploy",
+      "href": "https://tchojnacki.dev"
+    },
+    {
+      "type": "github",
+      "repo": "tchojnacki-dev"
+    }
+  ],
+  "parts": [
+    {
+      "name": "Website",
+      "skillIds": ["astro", "react", "tailwind-css", "typescript", "lodash"]
+    },
+    {
+      "name": "Tools",
+      "skillIds": ["testing-library", "github-actions", "figma", "jest"]
+    }
+  ]
+}

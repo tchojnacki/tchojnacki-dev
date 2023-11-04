@@ -1,0 +1,22 @@
+{
+  "name": "Logic Circuit Boards",
+  "description": "A Minecraft mod which allows you to compress complex redstone logic gates into circuit blocks occupying a single block.",
+  "image": "~/assets/projects/logic-circuit-boards.png",
+  "tags": ["personal"],
+  "links": [
+    {
+      "type": "download",
+      "href": "https://www.curseforge.com/minecraft/mc-mods/logic-circuit-boards"
+    },
+    {
+      "type": "github",
+      "repo": "LogicCircuitBoards"
+    }
+  ],
+  "parts": [
+    {
+      "name": "Mod",
+      "skillIds": ["java", "junit"]
+    }
+  ]
+}

@@ -1,6 +1,7 @@
-import { SITEMAP } from '~/data/sitemap'
-
+import { routes } from '~/utils/routes'
 import { NavLink } from './NavLink'
+
+const entries = [routes.about, routes.projects, routes.blog]
 
 interface NavLinkListProps {
   listClassName?: string
@@ -11,9 +12,9 @@ interface NavLinkListProps {
 export function NavLinkList({ listClassName, itemClassName, pathname }: NavLinkListProps) {
   return (
     <ul className={listClassName}>
-      {SITEMAP.filter(({ url }) => url !== '/sitemap').map(({ url, label }) => (
-        <li key={url}>
-          <NavLink className={itemClassName} href={url} pathname={pathname}>
+      {entries.map(({ href, label }) => (
+        <li key={href}>
+          <NavLink className={itemClassName} href={href} pathname={pathname}>
             {label}
           </NavLink>
         </li>

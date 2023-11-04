@@ -1,0 +1,39 @@
+{
+  "name": "Faktyczka",
+  "description": "Brower extension which notifies you about fake news. Created during the 24h Hack-a-Troll Hackathon in 2022.",
+  "image": "~/assets/projects/coderscamp-hackathon.png",
+  "tags": ["group"],
+  "links": [
+    {
+      "type": "deploy",
+      "href": "https://faktyczka.vercel.app"
+    },
+    {
+      "type": "download",
+      "href": "https://github.com/CodersCamp2021-HK/CodersCamp2021.Hackathon/releases/latest"
+    },
+    {
+      "type": "github",
+      "repo": "CodersCamp2021.Hackathon",
+      "owner": "CodersCamp2021-HK"
+    }
+  ],
+  "parts": [
+    {
+      "name": "Extension",
+      "skillIds": ["react", "typescript", "emotion"]
+    },
+    {
+      "name": "Website",
+      "skillIds": ["nextjs", "react", "typescript", "css"]
+    },
+    {
+      "name": "Server",
+      "skillIds": ["nestjs", "typescript", "mongodb", "rxjs", "express", "nodejs", "lodash"]
+    },
+    {
+      "name": "Tools",
+      "skillIds": ["swagger", "docker", "github-actions", "figma"]
+    }
+  ]
+}

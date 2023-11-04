@@ -1,0 +1,27 @@
+{
+  "name": "Rick and Morty Quiz",
+  "description": "Online singleplayer quiz testing your knowledge about the Rick and Morty show. Built without using any front-end frameworks.",
+  "image": "~/assets/projects/coderscamp-javascript.png",
+  "tags": ["group"],
+  "links": [
+    {
+      "type": "deploy",
+      "href": "https://coderscamp2021-hk.github.io/CodersCamp2021.Project.JavaScript"
+    },
+    {
+      "type": "github",
+      "repo": "CodersCamp2021.Project.JavaScript",
+      "owner": "CodersCamp2021-HK"
+    }
+  ],
+  "parts": [
+    {
+      "name": "Website",
+      "skillIds": ["javascript", "css", "html", "lodash"]
+    },
+    {
+      "name": "Tools",
+      "skillIds": ["testing-library", "jest", "github-actions", "figma"]
+    }
+  ]
+}

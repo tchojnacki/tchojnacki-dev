@@ -1,0 +1,35 @@
+{
+  "name": "Tanks",
+  "description": "Online real-time multiplayer game powered by WebSockets. Final project for the Script Languages university course.",
+  "image": "~/assets/projects/scripting-tanks.png",
+  "tags": ["university"],
+  "links": [
+    {
+      "type": "deploy",
+      "href": "https://scripting-tanks.fly.dev"
+    },
+    {
+      "type": "github",
+      "repo": "scripting-tanks"
+    }
+  ],
+  "parts": [
+    {
+      "name": "Frontend",
+      "skillIds": ["threejs", "react", "mantine", "immer", "typescript", "lodash"]
+    },
+    {
+      "name": "Backend",
+      "skillIds": ["csharp", "dotnet", "aspnet", "mediatr", "fluent-validation"]
+    },
+    {
+      "name": "Tools",
+      "skillIds": ["xunit", "docker", "github-actions", "fluent-assertions", "nsubstitute"]
+    },
+    {
+      "name": "Legacy Backend",
+      "skillIds": ["python", "fastapi"],
+      "tags": ["deprecated"]
+    }
+  ]
+}

@@ -1,11 +1,16 @@
 ---
+import * as ICONS from 'simple-icons'
 import { LinkButton } from '~/components/common/LinkButton'
 import Wave from '~/components/common/Wave.astro'
 import { SimpleIconSvg } from '~/components/common/SimpleIconSvg'
-import { SOCIAL_LINKS } from '~/data'
+import { getSkills, techSphereSkillIds, getSocials } from '~/utils/content'
 
 import { WavingEmoji } from './WavingEmoji'
 import { TechSphere } from './TechSphere'
+
+const skills = await getSkills()
+const skillNames = techSphereSkillIds.map(id => skills[id].name)
+const socials = await getSocials()
 ---
 
 <header
@@ -30,17 +35,17 @@ import { TechSphere } from './TechSphere'
     <nav class="flex items-center justify-center gap-8 lg:justify-start">
       <LinkButton href="/projects">View Projects</LinkButton>
       {
-        SOCIAL_LINKS.map(({ label, href, icon }) => (
+        socials.map(({ label, href, icon }) => (
           <a
-            class="group inline-block h-8 w-8"
-            href={href}
+            {href}
             target="_blank"
             rel="noreferrer"
             title={label}
             aria-label={label}
+            class="group inline-block h-8 w-8"
           >
             <SimpleIconSvg
-              icon={icon}
+              icon={ICONS[icon as keyof typeof ICONS]}
               pathClassName="fill-slate-8 group-hover:fill-slate-3 dark:fill-slate-11 dark:group-hover:fill-slate-12 duration-200"
             />
           </a>
@@ -52,7 +57,7 @@ import { TechSphere } from './TechSphere'
     class="grid h-full min-h-[75vw] w-full animate-enteronload items-center justify-items-center
       overflow-hidden p-8 grid-in-sphere onenter-fromright motion-reduce:animate-none lg:min-h-full lg:items-end"
   >
-    <TechSphere client:idle />
+    <TechSphere client:load {skillNames} />
   </section>
   <div class="bottom-0 flex h-full w-full flex-col justify-end lg:absolute lg:h-[20vh]">
     <Wave />

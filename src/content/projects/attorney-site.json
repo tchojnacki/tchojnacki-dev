@@ -1,0 +1,14 @@
+{
+  "name": "Attorney Site",
+  "description": "Website created for and used by a local law firm.",
+  "image": "~/assets/projects/attorney-site.png",
+  "tags": ["freelance"],
+  "links": [{ "type": "deploy", "href": "https://kancelariawalbrzych.pl" }],
+  "parts": [
+    { "name": "Website", "skillIds": ["astro", "svelte", "typescript"] },
+    {
+      "name": "Tools",
+      "skillIds": ["figma", "github-actions"]
+    }
+  ]
+}

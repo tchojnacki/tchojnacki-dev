@@ -1,0 +1,26 @@
+{
+  "name": "esolangs",
+  "description": "Compilers and interpreters for esoteric programming languages.",
+  "image": "~/assets/projects/esolangs.png",
+  "tags": ["personal"],
+  "links": [
+    {
+      "type": "github",
+      "repo": "esolangs"
+    },
+    {
+      "type": "documentation",
+      "href": "https://tchojnacki.github.io/esolangs"
+    }
+  ],
+  "parts": [
+    {
+      "name": "Brainfuck",
+      "skillIds": ["rust"]
+    },
+    {
+      "name": "Common",
+      "skillIds": ["rust", "web-assembly", "github-actions"]
+    }
+  ]
+}
