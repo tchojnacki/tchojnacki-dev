@@ -1,11 +1,6 @@
 import { describe, it, expect } from 'vitest'
 
-import {
-  findRotation,
-  pointerToSpherePoint,
-  rotateAroundUnitVector,
-  worldToCamera,
-} from '~/logic/techSphere'
+import { findRotation, pointerToSpherePoint, rotateAroundUnitVector, worldToCamera } from '~/logic'
 
 describe(rotateAroundUnitVector, () => {
   it.each([

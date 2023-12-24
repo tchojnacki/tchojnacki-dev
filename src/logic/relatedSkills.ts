@@ -1,11 +1,14 @@
-import { getProjects, getSkills, type SkillId } from '~/utils/content'
+import { type SkillId, type Skill, type Project, type ProjectId } from '~/utils/content'
 
-async function calculateRelatedSkills(): Promise<Record<SkillId, SkillId[]>> {
-  const skillIds = Object.keys(await getSkills()) as SkillId[]
-  const projects = Object.values(await getProjects()).map(project =>
+export function calculateRelatedSkills(
+  skillEntries: Record<SkillId, Skill>,
+  projectEntries: Record<ProjectId, Project>,
+): Record<SkillId, SkillId[]> {
+  const skillIds = Object.keys(skillEntries) as SkillId[]
+  const projects = Object.values(projectEntries).map(project =>
     project.parts.flatMap(part => part.skills.map(skill => skill.id)),
   )
-  const parts = Object.values(await getProjects()).flatMap(project =>
+  const parts = Object.values(projectEntries).flatMap(project =>
     project.parts.map(part => part.skills.map(skill => skill.id)),
   )
 
@@ -31,5 +34,3 @@ async function calculateRelatedSkills(): Promise<Record<SkillId, SkillId[]>> {
     ]),
   ) as Record<SkillId, SkillId[]>
 }
-
-export const relatedSkills = await calculateRelatedSkills()

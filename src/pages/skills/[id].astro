@@ -1,18 +1,22 @@
 ---
 import type { GetStaticPaths } from 'astro'
-import { relatedSkills } from '~/logic'
+import { calculateRelatedSkills } from '~/logic'
 import SectionHeader from '~/components/common/SectionHeader.astro'
 import Wave from '~/components/common/Wave.astro'
 import SkillCard from '~/components/projects/skills/SkillCard.astro'
 import SkillCardWrapper from '~/components/projects/skills/SkillCardWrapper.astro'
 import ProjectList from '~/components/projects/ProjectList.astro'
 import Layout from '~/layouts/Layout.astro'
-import { getSkills, type SkillId } from '~/utils/content'
+import { getProjects, getSkills, type SkillId } from '~/utils/content'
 
 export const getStaticPaths = (async () =>
   Object.keys(await getSkills()).map(id => ({ params: { id } }))) satisfies GetStaticPaths
 
-const skill = (await getSkills())[Astro.params.id as SkillId]
+const skillEntries = await getSkills()
+const projectEntries = await getProjects()
+
+const skill = skillEntries[Astro.params.id as SkillId]
+const relatedSkills = calculateRelatedSkills(skillEntries, projectEntries)
 ---
 
 <Layout name={`${skill.name} - Skills`} description={skill.description}>

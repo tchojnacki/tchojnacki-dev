@@ -4,7 +4,7 @@ import * as ICONS from 'simple-icons'
 
 export type SkillId = CollectionEntry<'skills'>['id']
 type SkillType = CollectionEntry<'skills'>['data']['type']
-type Skill = {
+export type Skill = {
   id: SkillId
   type: SkillType
   icon: ICONS.SimpleIcon | string
@@ -12,7 +12,7 @@ type Skill = {
   description: string
 }
 
-type ProjectId = CollectionEntry<'projects'>['id']
+export type ProjectId = CollectionEntry<'projects'>['id']
 export type ProjectTag = CollectionEntry<'projects'>['data']['tags'][number]
 export type ProjectLink = CollectionEntry<'projects'>['data']['links'][number]
 type ProjectPart = {
