@@ -157,7 +157,11 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
           </button>
           <ul className="z-[2] m-4 inline-flex h-min flex-col gap-2 grid-in-buttons">
             {project.links.map(link => (
-              <Link key={link.type} link={link} isActive={isActive} />
+              <Link
+                key={`${link.type}-${link.type === 'github' ? link.repo : link.href}`}
+                link={link}
+                isActive={isActive}
+              />
             ))}
           </ul>
         </div>

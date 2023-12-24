@@ -1,0 +1,26 @@
+---
+import SimpleIconSvg from '~/components/common/SimpleIconSvg'
+import { getSkills, type SkillId } from '~/utils/content'
+
+interface Props {
+  skillId: SkillId
+}
+
+const skill = (await getSkills())[Astro.props.skillId]
+---
+
+<li>
+  <a
+    href={`/skills/${skill.id}`}
+    class="flex h-full flex-col items-center gap-2 rounded-xl bg-slate-12 p-3 pt-5 shadow-md shadow-indigo-2/25 dark:bg-indigo-2 dark:shadow-indigo-11/10"
+  >
+    <SimpleIconSvg
+      icon={skill.icon}
+      className="h-full"
+      pathClassName="fill-slate-3 dark:fill-slate-12"
+    />
+    <h5 class="whitespace-nowrap text-center text-xl">
+      {skill.name}
+    </h5>
+  </a>
+</li>

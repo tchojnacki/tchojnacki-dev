@@ -1,10 +1,11 @@
 ---
 interface Props {
   inverted?: boolean
+  full?: boolean
   className?: string
 }
 
-const { inverted, className } = Astro.props
+const { inverted, full, className } = Astro.props
 ---
 
 <svg
@@ -13,9 +14,10 @@ const { inverted, className } = Astro.props
     'max-h-64 w-full',
     'bg-gradient-to-t from-indigo-11 !to-[transparent_5%] dark:from-indigo-4',
     inverted && 'rotate-180',
+    full ? 'max-h-64' : 'max-h-48',
     className,
   ]}
-  viewBox="0 0 1280 180"
+  viewBox={full ? '0 0 1280 180' : '0 -90 1280 270'}
   xmlns="http://www.w3.org/2000/svg"
   preserveAspectRatio="none"
 >
