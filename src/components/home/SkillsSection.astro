@@ -1,0 +1,19 @@
+---
+import Wave from '~/components/common/Wave.astro'
+
+import SectionHeader from '~/components/common/SectionHeader.astro'
+import SkillCardWrapper from '~/components/projects/skills/SkillCardWrapper.astro'
+import SkillCard from '~/components/projects/skills/SkillCard.astro'
+---
+
+<Wave />
+<section class="bg-indigo-11 px-8 dark:bg-indigo-4">
+  <SectionHeader text="Featured skills" />
+  <SkillCardWrapper>
+    <SkillCard skillId="react" />
+    <SkillCard skillId="aspnet" />
+    <SkillCard skillId="typescript" />
+    <SkillCard skillId="rust" />
+  </SkillCardWrapper>
+</section>
+<Wave inverted />

@@ -11,8 +11,7 @@ const { inverted, full, className } = Astro.props
 <svg
   aria-hidden="true"
   class:list={[
-    'max-h-64 w-full',
-    'bg-gradient-to-t from-indigo-11 !to-[transparent_5%] dark:from-indigo-4',
+    'w-full bg-gradient-to-t from-indigo-11 !to-[transparent_5%] dark:from-indigo-4',
     inverted && 'rotate-180',
     full ? 'max-h-64' : 'max-h-48',
     className,
