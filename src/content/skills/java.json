@@ -1,5 +1,6 @@
 {
   "type": "language",
   "icon": "siOpenjdk",
-  "name": "Java"
+  "name": "Java",
+  "description": "TODO"
 }

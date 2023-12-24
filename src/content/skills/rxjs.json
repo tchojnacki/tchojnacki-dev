@@ -1,5 +1,6 @@
 {
   "type": "library",
   "icon": "siReactivex",
-  "name": "RxJS"
+  "name": "RxJS",
+  "description": "TODO"
 }

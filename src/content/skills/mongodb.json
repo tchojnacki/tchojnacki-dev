@@ -1,4 +1,5 @@
 {
   "type": "tool",
-  "icon": "siMongodb"
+  "icon": "siMongodb",
+  "description": "TODO"
 }

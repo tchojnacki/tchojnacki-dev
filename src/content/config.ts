@@ -31,17 +31,21 @@ const projects = defineCollection({
 
 const skills = defineCollection({
   type: 'data',
-  schema: z.union([
+  schema: z.intersection(
+    z.union([
+      z.object({
+        icon: z.string(),
+        name: z.string().optional(),
+      }),
+      z.object({
+        name: z.string(),
+      }),
+    ]),
     z.object({
       type: z.enum(['language', 'library', 'tool']),
-      icon: z.string(),
-      name: z.string().optional(),
+      description: z.string(),
     }),
-    z.object({
-      type: z.enum(['language', 'library', 'tool']),
-      name: z.string(),
-    }),
-  ]),
+  ),
 })
 
 const socials = defineCollection({

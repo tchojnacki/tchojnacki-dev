@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "name": "MediatR"
+  "name": "MediatR",
+  "description": "TODO"
 }

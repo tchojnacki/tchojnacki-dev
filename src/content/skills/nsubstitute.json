@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "name": "NSubstitute"
+  "name": "NSubstitute",
+  "description": "TODO"
 }

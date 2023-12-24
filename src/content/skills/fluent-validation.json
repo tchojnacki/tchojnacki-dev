@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "name": "FluentValidation"
+  "name": "FluentValidation",
+  "description": "TODO"
 }

@@ -1,4 +1,5 @@
 {
   "type": "tool",
-  "name": "JSDoc"
+  "name": "JSDoc",
+  "description": "TODO"
 }

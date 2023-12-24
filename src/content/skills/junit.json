@@ -1,5 +1,6 @@
 {
   "type": "library",
   "icon": "siJunit5",
-  "name": "JUnit"
+  "name": "JUnit",
+  "description": "TODO"
 }

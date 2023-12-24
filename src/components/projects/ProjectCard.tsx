@@ -174,7 +174,7 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
         )}
       >
         <h4 className="mb-2 flex flex-col gap-4 lg:flex-row lg:items-center">
-          <span itemProp="name" className="mr-auto text-3xl font-bold">
+          <span itemProp="name" className="mr-auto text-2xl font-bold">
             {project.name}
           </span>
           <ul itemProp="keywords" className="flex gap-2">

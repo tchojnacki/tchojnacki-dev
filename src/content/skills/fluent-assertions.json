@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "name": "FluentAssertions"
+  "name": "FluentAssertions",
+  "description": "TODO"
 }

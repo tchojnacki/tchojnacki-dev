@@ -2,12 +2,14 @@ import type { ImageMetadata } from 'astro'
 import { getCollection, type CollectionEntry } from 'astro:content'
 import * as ICONS from 'simple-icons'
 
-type SkillId = CollectionEntry<'skills'>['id']
+export type SkillId = CollectionEntry<'skills'>['id']
 type SkillType = CollectionEntry<'skills'>['data']['type']
 type Skill = {
+  id: SkillId
   type: SkillType
   icon: ICONS.SimpleIcon | string
   name: string
+  description: string
 }
 
 type ProjectId = CollectionEntry<'projects'>['id']
@@ -19,6 +21,7 @@ type ProjectPart = {
   tags: ProjectTag[]
 }
 export type Project = {
+  id: ProjectId
   name: string
   description: string
   image: ImageMetadata
@@ -34,12 +37,12 @@ export async function getSkills(): Promise<Record<SkillId, Skill>> {
   return Object.fromEntries(
     skillEntries.map(({ id, data }) => {
       if ('icon' in data) {
-        const { type, name } = data
+        const { type, name, description } = data
         const icon = ICONS[data.icon as keyof typeof ICONS]
-        return [id, { type, icon, name: name ?? icon.title }]
+        return [id, { id, type, icon, name: name ?? icon.title, description } satisfies Skill]
       } else {
-        const { type, name } = data
-        return [id, { type, icon: name, name }]
+        const { type, name, description } = data
+        return [id, { id, type, icon: name, name, description } satisfies Skill]
       }
     }),
   ) as Record<SkillId, Skill>
@@ -52,6 +55,7 @@ export async function getProjects(): Promise<Record<ProjectId, Project>> {
     projectEntries.map(({ id, data: { name, description, image, tags, links, parts } }) => [
       id,
       {
+        id,
         name,
         description,
         image,
@@ -62,7 +66,7 @@ export async function getProjects(): Promise<Record<ProjectId, Project>> {
           tags: tags ?? [],
           skills: skillIds.map(({ id }) => skills[id]),
         })),
-      },
+      } satisfies Project,
     ]),
   ) as Record<ProjectId, Project>
 }

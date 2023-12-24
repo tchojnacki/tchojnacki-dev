@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "icon": "siAstro"
+  "icon": "siAstro",
+  "description": "Astro is a web framework for building content-driven websites."
 }

@@ -1,5 +1,6 @@
 {
   "type": "language",
   "icon": "siHtml5",
-  "name": "HTML"
+  "name": "HTML",
+  "description": "TODO"
 }

@@ -1,4 +1,5 @@
 {
   "type": "tool",
-  "icon": "siMicrosoftsqlserver"
+  "icon": "siMicrosoftsqlserver",
+  "description": "TODO"
 }
