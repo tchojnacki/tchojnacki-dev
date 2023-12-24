@@ -27,7 +27,7 @@ async function calculateRelatedSkills(): Promise<Record<SkillId, SkillId[]>> {
   return Object.fromEntries(
     skillIds.map(target => [
       target,
-      skillIds.toSorted((a, b) => similarity(target, b) - similarity(target, a)).slice(0, 4),
+      [...skillIds].sort((a, b) => similarity(target, b) - similarity(target, a)).slice(0, 4),
     ]),
   ) as Record<SkillId, SkillId[]>
 }
