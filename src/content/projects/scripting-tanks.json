@@ -15,19 +15,19 @@
   ],
   "parts": [
     {
-      "name": "Frontend",
+      "name": "Front end",
       "skillIds": ["threejs", "react", "mantine", "immer", "typescript", "lodash"]
     },
     {
-      "name": "Backend",
-      "skillIds": ["csharp", "dotnet", "aspnet", "mediatr", "fluent-validation"]
+      "name": "Back end",
+      "skillIds": ["csharp", "aspnet", "dotnet", "mediatr", "fluent-validation"]
     },
     {
       "name": "Tools",
-      "skillIds": ["xunit", "docker", "github-actions", "fluent-assertions", "nsubstitute"]
+      "skillIds": ["xunitnet", "docker", "github-actions", "fluent-assertions", "nsubstitute"]
     },
     {
-      "name": "Legacy Backend",
+      "name": "Legacy back end",
       "skillIds": ["python", "fastapi"],
       "tags": ["deprecated"]
     }

@@ -4,6 +4,8 @@ import { routes } from '~/utils/routes'
 
 import Wave from './Wave.astro'
 
+const linkClass = 'hover:text-pure-black hover:underline hover:dark:text-pure-white'
+
 const entries = [routes.about, routes.projects, routes.blog]
 
 const projectLinks = [
@@ -21,7 +23,7 @@ const socials = await getSocials()
       {
         entries.map(({ href, label }) => (
           <li>
-            <a {href} class="hover:underline">
+            <a {href} class={linkClass}>
               {label}
             </a>
           </li>
@@ -32,7 +34,7 @@ const socials = await getSocials()
       {
         socials.map(({ href, label }) => (
           <li>
-            <a {href} class="hover:underline" target="_blank" rel="noreferrer">
+            <a {href} class={linkClass} target="_blank" rel="noreferrer">
               {label}
             </a>
           </li>
@@ -40,11 +42,11 @@ const socials = await getSocials()
       }
     </ul>
     <ul>
-      <a href="/sitemap" class="hover:underline">Sitemap</a>
+      <a href="/sitemap" class={linkClass}>Sitemap</a>
       {
         projectLinks.map(({ href, label }) => (
           <li>
-            <a {href} target="_blank" rel="noreferrer" class="hover:underline">
+            <a {href} class={linkClass} target="_blank" rel="noreferrer">
               {label}
             </a>
           </li>

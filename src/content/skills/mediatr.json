@@ -1,5 +1,5 @@
 {
   "type": "library",
   "name": "MediatR",
-  "description": "TODO"
+  "description": "MediatR is a simple .NET mediator implementation."
 }

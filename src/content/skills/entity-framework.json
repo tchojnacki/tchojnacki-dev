@@ -1,5 +1,5 @@
 {
   "type": "library",
   "name": "Entity Framework",
-  "description": "TODO"
+  "description": "Entity Framework is an object-relational mapper for .NET developers."
 }

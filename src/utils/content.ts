@@ -77,8 +77,9 @@ export async function getSocials(): Promise<Social[]> {
 
 export const projectImportanceOrder = [
   'tchojnacki-dev',
-  'scripting-tanks',
+  'senso',
   'coderscamp-fullstack',
+  'scripting-tanks',
   'attorney-site',
   'uni-sem-6-ai',
   'esolangs',

@@ -1,5 +1,5 @@
 {
   "type": "library",
   "name": "Mapster",
-  "description": "TODO"
+  "description": "Mapster is a fast .NET object to object mapper."
 }

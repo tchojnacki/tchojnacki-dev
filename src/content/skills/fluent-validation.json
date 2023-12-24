@@ -1,5 +1,5 @@
 {
   "type": "library",
   "name": "FluentValidation",
-  "description": "TODO"
+  "description": "FluentValidation is a .NET library for building strongly-typed validation rules."
 }

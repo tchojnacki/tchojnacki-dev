@@ -1,5 +1,5 @@
 {
   "type": "tool",
   "icon": "siStorybook",
-  "description": "TODO"
+  "description": "Storybook is a tool for building UI components in isolation."
 }

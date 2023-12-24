@@ -1,5 +1,5 @@
 {
   "type": "language",
   "icon": "siWebassembly",
-  "description": "TODO"
+  "description": "WebAssembly is a portable compilation target for programming languages."
 }

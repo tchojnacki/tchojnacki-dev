@@ -2,5 +2,5 @@
   "type": "library",
   "icon": "siJunit5",
   "name": "JUnit",
-  "description": "TODO"
+  "description": "JUnit is a unit testing framework for the Java programming language."
 }

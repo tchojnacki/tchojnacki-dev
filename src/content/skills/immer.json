@@ -1,5 +1,5 @@
 {
   "type": "library",
   "icon": "siImmer",
-  "description": "TODO"
+  "description": "Immer is a package that simplifies working with immutable data structures."
 }

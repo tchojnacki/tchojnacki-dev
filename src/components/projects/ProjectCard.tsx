@@ -5,6 +5,7 @@ import {
   BrandGithub,
   Download,
   ExternalLink,
+  FileAnalytics,
   InfoCircle,
   Notes,
   PlayerPause,
@@ -60,7 +61,7 @@ function Link({ link, isActive }: LinkProps) {
     switch (link.type) {
       case 'github':
         return {
-          label: 'Source',
+          label: 'Source' + (link.part ? ` - ${link.part}` : ''),
           href: `https://github.com/${link.owner ?? 'tchojnacki'}/${link.repo}`,
           Icon: BrandGithub,
         }
@@ -74,6 +75,8 @@ function Link({ link, isActive }: LinkProps) {
         return { label: 'Download', href: link.href, Icon: Download }
       case 'swagger':
         return { label: 'Swagger', href: link.href, Icon: Api }
+      case 'paper':
+        return { label: 'Paper', href: link.href, Icon: FileAnalytics }
     }
   })()
 

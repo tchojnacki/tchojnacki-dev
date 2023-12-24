@@ -1,5 +1,5 @@
 {
   "type": "library",
   "icon": "siNodedotjs",
-  "description": "TODO"
+  "description": "Node.js is a multiplatform JavaScript runtime built on Chrome's V8 engine."
 }

@@ -1,5 +1,5 @@
 {
   "type": "language",
   "icon": "siRust",
-  "description": "TODO"
+  "description": "Rust is a fast and reliable language for building embedded devices, web services and more."
 }

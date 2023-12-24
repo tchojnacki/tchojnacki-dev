@@ -1,5 +1,5 @@
 {
   "type": "library",
   "icon": "siMui",
-  "description": "TODO"
+  "description": "MUI is a library of React components implementing Google's Material Design."
 }

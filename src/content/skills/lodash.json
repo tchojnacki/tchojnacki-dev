@@ -1,5 +1,5 @@
 {
   "type": "library",
   "icon": "siLodash",
-  "description": "TODO"
+  "description": "Lodash is a library that provides modular methods for different data structures."
 }

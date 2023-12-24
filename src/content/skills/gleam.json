@@ -1,5 +1,5 @@
 {
   "type": "language",
   "name": "Gleam",
-  "description": "TODO"
+  "description": "Gleam is a friendly language for building scalable type-safe systems."
 }

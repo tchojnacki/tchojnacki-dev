@@ -1,0 +1,6 @@
+{
+  "type": "library",
+  "icon": "siReact",
+  "name": "React Native",
+  "description": "React Native is a library that lets you create native apps using React."
+}

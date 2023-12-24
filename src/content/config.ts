@@ -3,9 +3,14 @@ import { z, defineCollection, reference } from 'astro:content'
 const projectTag = z.enum(['personal', 'university', 'group', 'freelance', 'deprecated', 'wip'])
 
 const projectLink = z.union([
-  z.object({ type: z.literal('github'), repo: z.string(), owner: z.string().optional() }),
   z.object({
-    type: z.enum(['deploy', 'documentation', 'information', 'download', 'swagger']),
+    type: z.literal('github'),
+    repo: z.string(),
+    owner: z.string().optional(),
+    part: z.string().optional(),
+  }),
+  z.object({
+    type: z.enum(['deploy', 'documentation', 'information', 'download', 'swagger', 'paper']),
     href: z.string().url(),
   }),
 ])
