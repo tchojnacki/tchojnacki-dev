@@ -203,19 +203,21 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
               className="flex flex-wrap gap-2 overflow-hidden after:flex-grow-[100]
               lg:flex-nowrap lg:[mask-image:linear-gradient(90deg,#000_75%,transparent)]"
             >
-              {technologies.map(({ name, icon }, i) => (
-                <li
-                  key={name}
-                  className="flex flex-1 items-center justify-center gap-1 whitespace-nowrap rounded-full
-                  bg-slate-3/10 px-3 dark:bg-slate-12/10"
-                >
-                  <SimpleIconSvg
-                    icon={icon ?? name}
-                    title={name}
-                    className="my-1 h-[1em]"
-                    pathClassName="fill-slate-3 dark:fill-slate-12"
-                  />
-                  {i < 3 && <span>{name}</span>}
+              {technologies.map(({ name, icon, id }, i) => (
+                <li key={name}>
+                  <a
+                    href={`/skills/${id}`}
+                    className="flex flex-1 items-center justify-center gap-1 whitespace-nowrap rounded-full bg-slate-3/10
+                      px-3 duration-200 hover:bg-slate-3/20 dark:bg-slate-12/10 hover:dark:bg-slate-12/20"
+                  >
+                    <SimpleIconSvg
+                      icon={icon ?? name}
+                      title={name}
+                      className="my-1 h-[1em]"
+                      pathClassName="fill-slate-3 dark:fill-slate-12"
+                    />
+                    {i < 3 && <span>{name}</span>}
+                  </a>
                 </li>
               ))}
             </ul>
