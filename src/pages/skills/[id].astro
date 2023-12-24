@@ -1,5 +1,6 @@
 ---
 import type { GetStaticPaths } from 'astro'
+import { relatedSkills } from '~/logic'
 import SectionHeader from '~/components/common/SectionHeader.astro'
 import Wave from '~/components/common/Wave.astro'
 import SkillCard from '~/components/projects/skills/SkillCard.astro'
@@ -23,10 +24,7 @@ const skill = (await getSkills())[Astro.params.id as SkillId]
   <section class="bg-indigo-11 dark:bg-indigo-4">
     <SectionHeader text="Related Skills" />
     <SkillCardWrapper>
-      <SkillCard skillId="astro" />
-      <SkillCard skillId="astro" />
-      <SkillCard skillId="astro" />
-      <SkillCard skillId="astro" />
+      {relatedSkills[skill.id].map(skillId => <SkillCard {skillId} />)}
     </SkillCardWrapper>
   </section>
   <Wave inverted />

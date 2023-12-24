@@ -12,7 +12,7 @@ const skill = (await getSkills())[Astro.props.skillId]
 <li>
   <a
     href={`/skills/${skill.id}`}
-    class="flex h-full flex-col items-center gap-2 rounded-xl bg-slate-12 p-3 pt-5 shadow-md
+    class="flex h-full flex-col items-center gap-3 rounded-xl bg-slate-12 p-3 pt-4 shadow-md
       shadow-indigo-2/25 hover:scale-105 hover:shadow-lg hover:brightness-95 dark:bg-indigo-2
       dark:shadow-indigo-11/10 hover:dark:brightness-125"
   >
@@ -21,7 +21,7 @@ const skill = (await getSkills())[Astro.props.skillId]
       className="h-full"
       pathClassName="fill-slate-3 dark:fill-slate-12"
     />
-    <h5 class="whitespace-nowrap text-center text-lg">
+    <h5 class="h-6 w-full overflow-hidden text-ellipsis whitespace-nowrap text-center leading-none">
       {skill.name}
     </h5>
   </a>
