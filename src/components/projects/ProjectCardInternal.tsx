@@ -118,7 +118,7 @@ export default function ProjectCardInternal({
       <div
         className={clsx(
           'relative aspect-[4/3]',
-          flipped ? 'onenter-fromright lg:col-start-4' : 'onenter-fromleft lg:col-start-1',
+          flipped ? 'lg:col-start-4 lg:onenter-fromright' : 'lg:col-start-1 lg:onenter-fromleft',
           'overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl',
           'lg:shadow-indigo-925/25 dark:lg:shadow-indigo-100/10 shadow-none lg:shadow-md',
           'scale-100 duration-200 ease-in',
@@ -178,8 +178,8 @@ export default function ProjectCardInternal({
         itemType="https://schema.org/SoftwareApplication"
         className={clsx(
           flipped
-            ? 'bg-gradient-to-l onenter-fromleft lg:col-start-1 lg:rounded-bl-none lg:rounded-tr-3xl'
-            : 'bg-gradient-to-r onenter-fromright lg:col-start-4 lg:rounded-br-none lg:rounded-tl-3xl',
+            ? 'bg-gradient-to-l lg:col-start-1 lg:rounded-bl-none lg:rounded-tr-3xl lg:onenter-fromleft'
+            : 'bg-gradient-to-r lg:col-start-4 lg:rounded-br-none lg:rounded-tl-3xl lg:onenter-fromright',
           'z-[1] flex flex-col rounded-b-3xl p-8 lg:col-span-5 lg:row-span-full',
           'from-indigo-100 to-indigo-100 lg:to-neudigo-50',
           'dark:from-indigo-925 dark:to-indigo-925 dark:lg:to-neudigo-950',
