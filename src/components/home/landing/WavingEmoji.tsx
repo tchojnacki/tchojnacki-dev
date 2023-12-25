@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { useEventListener } from 'ahooks'
 import clsx from 'clsx'
 
 import Emoji from '~/components/common/Emoji'
+import { useEventListener } from '~/hooks'
 
 const WAVING_DELAY = 1000
 
@@ -12,7 +12,7 @@ export default function WavingEmoji() {
   const stopPlaying = useCallback(() => setIsPlaying(false), [])
 
   const ref = useRef<HTMLButtonElement>(null)
-  useEventListener('animationend', stopPlaying, { target: ref })
+  useEventListener(ref, 'animationend', stopPlaying)
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
