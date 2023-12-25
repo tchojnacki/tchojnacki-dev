@@ -9,23 +9,44 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   darkMode: 'class',
   theme: {
-    // https://www.radix-ui.com/docs/colors/palette-composition/the-scales
     colors: {
-      legacyindigo: {
-        2: '#15192d',
-        4: '#1c274f',
-        8: '#2f4eb2',
-        11: '#c2ceff',
+      neutral: {
+        0: '#ffffff',
+        // 50: '#fafafa',
+        100: '#f5f5f5',
+        200: '#e5e5e5',
+        // 300: '#d4d4d4',
+        400: '#a3a3a3',
+        // 500: '#737373',
+        600: '#525252',
+        // 700: '#404040',
+        800: '#262626',
+        900: '#171717',
+        // 950: '#0a0a0a',
+        1000: '#000000',
       },
-      legacyslate: {
-        3: '#202425',
-        8: '#4c5155',
-        11: '#9ba1a6',
-        12: '#ecedee',
+      indigo: {
+        // 50: '#eef2ff',
+        // 75: '#e7edff',
+        100: '#e0e7ff',
+        // 200: '#c7d2fe',
+        300: '#a5b4fc',
+        // 400: '#818cf8',
+        500: '#6366f1',
+        600: '#4f46e5',
+        700: '#4338ca',
+        // 800: '#3730a3',
+        // 900: '#312e81',
+        925: '#282566',
+        // 950: '#1e1b4b',
       },
-      pure: {
-        black: '#000000',
-        white: '#ffffff',
+      neudigo: {
+        50: '#f7f9ff',
+        950: '#14122b',
+      },
+      purple: {
+        300: '#d8b4fe',
+        700: '#7e22ce',
       },
     },
     fontFamily: {

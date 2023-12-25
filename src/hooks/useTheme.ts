@@ -17,12 +17,12 @@ function adjustHtmlBackground(theme: string) {
   if (scroll / height > 0.5) {
     document.documentElement.style.setProperty(
       'background-color',
-      theme === 'dark' ? '#1C274F' : '#C2CEFF',
+      theme === 'dark' ? '#282566' : '#e0e7ff',
     )
   } else {
     document.documentElement.style.setProperty(
       'background-color',
-      theme === 'dark' ? '#15192D' : '#ECEDEE',
+      theme === 'dark' ? '#14122b' : '#f7f9ff',
     )
   }
 }

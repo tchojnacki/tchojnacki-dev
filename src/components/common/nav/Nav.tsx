@@ -14,11 +14,11 @@ export default function Nav({ pathname }: NavProps) {
   return (
     <>
       <dialog
-        className='max-w-16 invisible z-10 mb-auto ml-auto mr-0
-          mt-0 flex h-[min(100vmin,30rem)] max-h-16 w-[min(100vmin,30rem)] flex-col
-          items-end justify-start overflow-hidden rounded-bl-[50%] bg-pure-black/0
-          bg-[url("/static/img/light-menu-blob.svg")] bg-contain bg-right-top
-          bg-no-repeat p-0 opacity-0 duration-500 backdrop:bg-pure-black/50 open:visible
+        className='max-w-16 bg-neutral-1000/0 backdrop:bg-neutral-1000/50 invisible z-10 mb-auto
+          ml-auto mr-0 mt-0 flex h-[min(100vmin,30rem)] max-h-16
+          w-[min(100vmin,30rem)] flex-col items-end justify-start overflow-hidden
+          rounded-bl-[50%] bg-[url("/static/img/light-menu-blob.svg")] bg-contain
+          bg-right-top bg-no-repeat p-0 opacity-0 duration-500 open:visible
           open:max-h-full open:max-w-full open:rounded-none open:opacity-100 dark:bg-[url("/static/img/dark-menu-blob.svg")]'
         ref={dialogRef}
       >
@@ -38,7 +38,7 @@ export default function Nav({ pathname }: NavProps) {
         <NavLinkList
           listClassName="hidden sm:flex gap-16 mx-auto"
           itemClassName="px-4 py-[calc(theme(spacing.nav-height)/8)] rounded-lg
-           hover:bg-legacyindigo-11/30 dark:hover:bg-legacyindigo-11/10"
+           hover:bg-indigo-700/10 dark:hover:bg-indigo-300/10"
           pathname={pathname}
         />
         <ul className="flex items-center">

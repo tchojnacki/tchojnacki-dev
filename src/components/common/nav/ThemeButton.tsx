@@ -18,8 +18,9 @@ export default function ThemeButton() {
       onClick={toggleTheme}
     >
       <ThemeIcon
-        className="stroke-legacyslate-8 group-hover:stroke-legacyslate-3 dark:stroke-legacyslate-11 dark:group-hover:stroke-legacyslate-12 animate-enteronload
-       duration-200 onenter-scaling motion-reduce:animate-none"
+        role="presentation"
+        className="stroke-neutral-600 group-hover:stroke-neutral-900 dark:stroke-neutral-400
+        dark:group-hover:stroke-neutral-100 animate-enteronload duration-200 onenter-scaling motion-reduce:animate-none"
       />
     </button>
   )

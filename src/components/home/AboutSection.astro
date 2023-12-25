@@ -1,23 +1,21 @@
 ---
 import Wave from '~/components/common/Wave.astro'
-
-import SectionHeader from '../common/SectionHeader.astro'
+import SectionHeader from '~/components/common/SectionHeader.astro'
+import Link from '~/components/common/Link'
 ---
 
-<main class="bg-legacyindigo-11 dark:bg-legacyindigo-4 px-8">
-  <SectionHeader text="About Me" />
-  <div class="text-legacyslate-8 dark:text-legacyslate-11 flex justify-center py-8">
+<main class="bg-indigo-100 dark:bg-indigo-925 px-8">
+  <SectionHeader text="About me" />
+  <div class="text-neutral-800 dark:text-neutral-200 flex justify-center py-8">
     <ul class="ml-8 list-disc">
       <li>Software developer based in Wrocław, Poland.</li>
       <li>
-        Student of Applied Computer Science at{' '}
-        <a
-          class="text-legacyindigo-8 dark:text-legacyindigo-11 hover:underline"
+        Student of Applied Computer Science at <Link
+          external
+          text="WUST"
+          title="Wrocław University of Science and Technology"
           href="https://pwr.edu.pl/en/"
-          target="_blank"
-          rel="noreferrer"
-          title="Wrocław University of Science and Technology">WUST</a
-        >.
+        />.
       </li>
       <li>
         Interested in:

@@ -4,7 +4,7 @@ import { routes } from '~/utils/routes'
 
 import Wave from './Wave.astro'
 
-const linkClass = 'hover:text-pure-black hover:underline hover:dark:text-pure-white'
+const linkClass = 'duration-200 hover:text-neutral-1000 hover:underline hover:dark:text-neutral-0'
 
 const entries = [routes.about, routes.projects, routes.blog]
 
@@ -18,7 +18,7 @@ const socials = await getSocials()
 
 <Wave className="!max-h-32" />
 <footer
-  class="bg-legacyindigo-11 dark:bg-legacyindigo-4 text-legacyslate-8 dark:text-legacyslate-11 px-8 text-sm"
+  class="bg-indigo-100 dark:bg-indigo-925 text-neutral-600 dark:text-neutral-400 px-8 text-sm"
 >
   <section class="flex flex-col justify-center text-center sm:flex-row sm:gap-32 sm:text-left">
     <ul>
@@ -57,7 +57,7 @@ const socials = await getSocials()
     </ul>
   </section>
   <section>
-    <p class="text-legacyslate-8 dark:text-legacyslate-11 py-8 text-center">
+    <p class="py-8 text-center">
       Designed and developed by <strong>Tomasz&nbsp;Chojnacki</strong>
     </p>
   </section>
