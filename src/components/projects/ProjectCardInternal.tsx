@@ -16,6 +16,7 @@ import {
 
 import LinkButton from '~/components/common/LinkButton'
 import SimpleIconSvg from '~/components/common/SimpleIconSvg.tsx'
+import { useIsMounted } from '~/hooks'
 import type { Project, ProjectLink, ProjectTag } from '~/utils/content'
 
 interface TagProps {
@@ -101,6 +102,7 @@ export default function ProjectCardInternal({
   heading,
 }: ProjectCardInternalProps) {
   const [isActive, toggleActive] = useReducer(prev => !prev, false)
+  const isMounted = useIsMounted()
 
   const { width, height } = project.image
   const maxImageScroll = Math.floor(((height - (width * 3) / 4) / width) * 100)
@@ -116,11 +118,12 @@ export default function ProjectCardInternal({
       <div
         className={clsx(
           'relative aspect-[4/3]',
-          flipped ? 'lg:col-start-4' : 'lg:col-start-1',
+          flipped ? 'onenter-fromright lg:col-start-4' : 'onenter-fromleft lg:col-start-1',
           'overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl',
           'shadow-none lg:shadow-md lg:shadow-indigo-2/25 dark:lg:shadow-indigo-11/10',
           'scale-100 duration-200 ease-in',
           isActive && 'lg:scale-105',
+          isMounted ? 'animate-enteronload opacity-100 motion-reduce:animate-none' : 'opacity-0',
         )}
       >
         <img
@@ -174,13 +177,14 @@ export default function ProjectCardInternal({
         itemType="https://schema.org/SoftwareApplication"
         className={clsx(
           flipped
-            ? 'bg-gradient-to-l lg:col-start-1 lg:rounded-bl-none lg:rounded-tr-3xl'
-            : 'bg-gradient-to-r lg:col-start-4 lg:rounded-br-none lg:rounded-tl-3xl',
+            ? 'bg-gradient-to-l onenter-fromleft lg:col-start-1 lg:rounded-bl-none lg:rounded-tr-3xl'
+            : 'bg-gradient-to-r onenter-fromright lg:col-start-4 lg:rounded-br-none lg:rounded-tl-3xl',
           'z-[1] flex flex-col rounded-b-3xl p-8 lg:col-span-5 lg:row-span-full',
           'from-indigo-11 to-indigo-11 lg:to-slate-12',
           'dark:from-indigo-4 dark:to-indigo-4 dark:lg:to-indigo-2',
           'translate-x-0 transition-[transform] duration-200 ease-in',
           isActive && (flipped ? 'lg:-translate-x-1/3' : 'lg:translate-x-1/3'),
+          isMounted ? 'animate-enteronload opacity-100 motion-reduce:animate-none' : 'opacity-0',
         )}
       >
         <H1 className="mb-2 flex flex-col gap-4 lg:flex-row lg:items-center">
