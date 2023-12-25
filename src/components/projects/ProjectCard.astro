@@ -4,10 +4,11 @@ import ProjectCardInternal from './ProjectCardInternal'
 
 interface Props {
   project: Project
-  flipped?: boolean
+  flipped: boolean
+  heading: number
 }
 
-const { project, flipped = false } = Astro.props
+const { project, flipped, heading } = Astro.props
 ---
 
 <li
@@ -15,5 +16,5 @@ const { project, flipped = false } = Astro.props
       shadow-indigo-2/25 dark:shadow-indigo-11/10
       lg:grid-cols-8 lg:grid-rows-1 lg:shadow-none"
 >
-  <ProjectCardInternal client:visible {project} {flipped} />
+  <ProjectCardInternal client:visible {project} {flipped} {heading} />
 </li>

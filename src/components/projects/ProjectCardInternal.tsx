@@ -31,6 +31,7 @@ interface LinkProps {
 interface ProjectCardInternalProps {
   project: Project
   flipped: boolean
+  heading: number
 }
 
 function Tag({ tag, small }: TagProps) {
@@ -94,7 +95,11 @@ function Link({ link, isActive }: LinkProps) {
   )
 }
 
-export default function ProjectCardInternal({ project, flipped }: ProjectCardInternalProps) {
+export default function ProjectCardInternal({
+  project,
+  flipped,
+  heading,
+}: ProjectCardInternalProps) {
   const [isActive, toggleActive] = useReducer(prev => !prev, false)
 
   const { width, height } = project.image
@@ -103,6 +108,8 @@ export default function ProjectCardInternal({ project, flipped }: ProjectCardInt
   const activeIcon = maxImageScroll !== 0 ? PlayerPause : ZoomCancel
   const inactiveIcon = maxImageScroll !== 0 ? PlayerPlay : ZoomIn
   const ZoomIcon = isActive ? activeIcon : inactiveIcon
+  const H1 = `h${heading}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
+  const H2 = `h${heading + 1}` as 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
   return (
     <>
@@ -162,7 +169,7 @@ export default function ProjectCardInternal({ project, flipped }: ProjectCardInt
           </ul>
         </div>
       </div>
-      <div
+      <article
         itemScope
         itemType="https://schema.org/SoftwareApplication"
         className={clsx(
@@ -176,7 +183,7 @@ export default function ProjectCardInternal({ project, flipped }: ProjectCardInt
           isActive && (flipped ? 'lg:-translate-x-1/3' : 'lg:translate-x-1/3'),
         )}
       >
-        <h4 className="mb-2 flex flex-col gap-4 lg:flex-row lg:items-center">
+        <H1 className="mb-2 flex flex-col gap-4 lg:flex-row lg:items-center">
           <span itemProp="name" className="mr-auto text-2xl font-bold">
             {project.name}
           </span>
@@ -185,27 +192,28 @@ export default function ProjectCardInternal({ project, flipped }: ProjectCardInt
               <Tag key={tag} tag={tag} />
             ))}
           </ul>
-        </h4>
+        </H1>
         <p itemProp="description" className="text-justify text-slate-8 dark:text-slate-11">
           {project.description}
         </p>
         {project.parts.map(({ name, skills: technologies, tags }) => (
           <Fragment key={name}>
-            <h5 className="mb-2 mt-4 flex flex-col gap-2 lg:flex-row lg:items-center">
+            <H2 className="mb-2 mt-4 flex flex-col gap-2 lg:flex-row lg:items-center">
               <span className="mr-auto text-xl">{name}</span>
               <ul className="flex gap-2">
                 {tags.map(tag => (
                   <Tag key={tag} tag={tag} small />
                 ))}
               </ul>
-            </h5>
+            </H2>
             <ul
               className="flex flex-wrap gap-2 overflow-hidden after:flex-grow-[100]
               lg:flex-nowrap lg:[mask-image:linear-gradient(90deg,#000_75%,transparent)]"
             >
               {technologies.map(({ name, icon, id }, i) => (
-                <li key={name}>
+                <li key={id}>
                   <a
+                    title={name}
                     href={`/skills/${id}`}
                     className="flex flex-1 items-center justify-center gap-1 whitespace-nowrap rounded-full bg-slate-3/10
                       px-3 duration-200 hover:bg-slate-3/20 dark:bg-slate-12/10 hover:dark:bg-slate-12/20"
@@ -223,7 +231,7 @@ export default function ProjectCardInternal({ project, flipped }: ProjectCardInt
             </ul>
           </Fragment>
         ))}
-      </div>
+      </article>
     </>
   )
 }

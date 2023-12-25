@@ -3,11 +3,12 @@ import { getProjects, type Project, projectImportanceOrder } from '~/utils/conte
 import ProjectCard from './ProjectCard.astro'
 
 interface Props {
+  heading?: number
   length?: number
   filter?: (project: Project) => boolean
 }
 
-const { length = Infinity, filter } = Astro.props
+const { heading = 1, length = Infinity, filter } = Astro.props
 
 const projectData = await getProjects()
 const projects = projectImportanceOrder.map(id => projectData[id]).filter(p => !filter || filter(p))
@@ -16,5 +17,9 @@ const projects = projectImportanceOrder.map(id => projectData[id]).filter(p => !
 <ul
   class="flex animate-enteronload flex-col items-center gap-16 px-4 py-16 motion-reduce:animate-none lg:px-16"
 >
-  {projects.slice(0, length).map((p, i) => <ProjectCard project={p} flipped={i % 2 === 1} />)}
+  {
+    projects
+      .slice(0, length)
+      .map((project, i) => <ProjectCard {heading} {project} flipped={i % 2 === 1} />)
+  }
 </ul>

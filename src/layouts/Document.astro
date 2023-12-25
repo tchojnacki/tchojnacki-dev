@@ -63,6 +63,11 @@ const image = new URL('/static/img/open-graph.png', Astro.site).toString()
         document.documentElement.classList.remove('dark')
       }
     </script>
+    <style is:global>
+      * {
+        scroll-behavior: smooth;
+      }
+    </style>
   </head>
   <body class="overflow-x-hidden bg-slate-12 text-slate-3 dark:bg-indigo-2 dark:text-slate-12">
     <slot />
