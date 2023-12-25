@@ -28,9 +28,9 @@ interface LinkProps {
   isActive: boolean
 }
 
-interface ProjectCardProps {
+interface ProjectCardInternalProps {
   project: Project
-  flipped?: boolean
+  flipped: boolean
 }
 
 function Tag({ tag, small }: TagProps) {
@@ -94,7 +94,7 @@ function Link({ link, isActive }: LinkProps) {
   )
 }
 
-export function ProjectCard({ project, flipped }: ProjectCardProps) {
+export default function ProjectCardInternal({ project, flipped }: ProjectCardInternalProps) {
   const [isActive, toggleActive] = useReducer(prev => !prev, false)
 
   const { width, height } = project.image
@@ -105,11 +105,7 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
   const ZoomIcon = isActive ? activeIcon : inactiveIcon
 
   return (
-    <li
-      className="grid w-full max-w-[64rem] items-center rounded-3xl shadow-md
-      shadow-indigo-2/25 dark:shadow-indigo-11/10
-      lg:grid-cols-8 lg:grid-rows-1 lg:shadow-none"
-    >
+    <>
       <div
         className={clsx(
           'relative aspect-[4/3]',
@@ -228,6 +224,6 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
           </Fragment>
         ))}
       </div>
-    </li>
+    </>
   )
 }
