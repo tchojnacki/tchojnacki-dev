@@ -1,19 +1,15 @@
-import { useEventListener } from 'ahooks'
 import type { RefObject } from 'react'
+import { useEventListener } from './useEventListener'
 
 export function usePointerStart(target: RefObject<HTMLElement>, handler: () => any) {
-  useEventListener('mousedown', handler, { target })
-  useEventListener(
-    'touchstart',
-    event => {
-      event.preventDefault()
-      handler()
-    },
-    { target },
-  )
+  useEventListener(target, 'mousedown', handler)
+  useEventListener(target, 'touchstart', event => {
+    event.preventDefault()
+    handler()
+  })
 }
 
 export function usePointerStop(target: RefObject<HTMLElement>, handler: () => any) {
-  useEventListener('pointerup', handler, { target })
-  useEventListener('pointerleave', handler, { target })
+  useEventListener(target, 'pointerup', handler)
+  useEventListener(target, 'pointerleave', handler)
 }

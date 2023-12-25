@@ -1,19 +1,15 @@
-import { Moon, Sun } from 'tabler-icons-react'
-
-import { useDialog, useTheme } from '~/hooks'
+import { useDialog } from '~/hooks'
 
 import NavHamburger from './NavHamburger'
 import NavLinkList from './NavLinkList'
+import ThemeButton from './ThemeButton'
 
 interface NavProps {
   pathname: string
 }
 
 export default function Nav({ pathname }: NavProps) {
-  const { theme, toggleTheme } = useTheme()
   const { isOpen, toggleDialog, dialogRef } = useDialog()
-
-  const ThemeIcon = theme === 'dark' ? Sun : Moon
 
   return (
     <>
@@ -47,16 +43,7 @@ export default function Nav({ pathname }: NavProps) {
         />
         <ul className="flex items-center">
           <li>
-            <button
-              className="group px-3 py-1"
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-              onClick={toggleTheme}
-            >
-              <ThemeIcon
-                className="stroke-slate-8 duration-200
-                 group-hover:stroke-slate-3 dark:stroke-slate-11 dark:group-hover:stroke-slate-12"
-              />
-            </button>
+            <ThemeButton />
           </li>
           <li>
             <NavHamburger menuOpen={isOpen} toggle={toggleDialog} className="sm:hidden" />

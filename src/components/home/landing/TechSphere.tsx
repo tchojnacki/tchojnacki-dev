@@ -1,9 +1,9 @@
-import { useEventListener } from 'ahooks'
 import clamp from 'lodash/clamp'
 import { useEffect, useMemo, useRef } from 'react'
 
 import {
   useAnimationFrame,
+  useEventListener,
   useParentSize,
   usePointerStart,
   usePointerStop,
@@ -88,29 +88,25 @@ export default function TechSphere({ skillNames }: TechSphereProps) {
     }
   })
 
-  useEventListener(
-    'pointermove',
-    (event: PointerEvent) => {
-      const now = Date.now()
-      const deltaTime = now - lastMoveTimeStampRef.current
-      lastMoveTimeStampRef.current = now
+  useEventListener(canvasRef, 'pointermove', (event: PointerEvent) => {
+    const now = Date.now()
+    const deltaTime = now - lastMoveTimeStampRef.current
+    lastMoveTimeStampRef.current = now
 
-      dragPixelsPerMsRef.current = {
-        x: (event.offsetX - hoverPosRef.current.x) / deltaTime,
-        y: (event.offsetY - hoverPosRef.current.y) / deltaTime,
-      }
+    dragPixelsPerMsRef.current = {
+      x: (event.offsetX - hoverPosRef.current.x) / deltaTime,
+      y: (event.offsetY - hoverPosRef.current.y) / deltaTime,
+    }
 
-      hoverPosRef.current = { x: event.offsetX, y: event.offsetY }
+    hoverPosRef.current = { x: event.offsetX, y: event.offsetY }
 
-      if (dragStartPosRef.current) {
-        const end = pointerToSpherePoint(hoverPosRef.current, sphereRadius, projection)
-        const { axis, theta } = findRotation(dragStartPosRef.current, end)
-        axisRef.current = axis
-        thetaRef.current = theta
-      }
-    },
-    { target: canvasRef },
-  )
+    if (dragStartPosRef.current) {
+      const end = pointerToSpherePoint(hoverPosRef.current, sphereRadius, projection)
+      const { axis, theta } = findRotation(dragStartPosRef.current, end)
+      axisRef.current = axis
+      thetaRef.current = theta
+    }
+  })
 
   useAnimationFrame(deltaTime => {
     let epsilon: number
