@@ -11,13 +11,13 @@ export default {
   theme: {
     // https://www.radix-ui.com/docs/colors/palette-composition/the-scales
     colors: {
-      indigo: {
+      legacyindigo: {
         2: '#15192d',
         4: '#1c274f',
         8: '#2f4eb2',
         11: '#c2ceff',
       },
-      slate: {
+      legacyslate: {
         3: '#202425',
         8: '#4c5155',
         11: '#9ba1a6',

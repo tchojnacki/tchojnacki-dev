@@ -27,10 +27,10 @@ const socials = await getSocials()
     <p class="text-2xl font-bold">
       Hello&nbsp;<WavingEmoji client:idle />, my name is
     </p>
-    <h1 class="text-5xl font-bold leading-tight text-indigo-8 dark:text-indigo-11">
+    <h1 class="text-legacyindigo-8 dark:text-legacyindigo-11 text-5xl font-bold leading-tight">
       Tomasz Chojnacki
     </h1>
-    <p class="mb-16 mt-6 inline-block text-2xl text-slate-8 dark:text-slate-11">
+    <p class="text-legacyslate-8 dark:text-legacyslate-11 mb-16 mt-6 inline-block text-2xl">
       I am a software developer.
     </p>
     <nav class="flex items-center justify-center gap-8 lg:justify-start">
@@ -47,7 +47,7 @@ const socials = await getSocials()
           >
             <SimpleIconSvg
               icon={ICONS[icon as keyof typeof ICONS]}
-              pathClassName="fill-slate-8 group-hover:fill-slate-3 dark:fill-slate-11 dark:group-hover:fill-slate-12 duration-200"
+              pathClassName="fill-legacyslate-8 group-hover:fill-legacyslate-3 dark:fill-legacyslate-11 dark:group-hover:fill-legacyslate-12 duration-200"
             />
           </a>
         ))

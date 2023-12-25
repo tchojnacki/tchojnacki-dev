@@ -38,7 +38,7 @@ export default function Nav({ pathname }: NavProps) {
         <NavLinkList
           listClassName="hidden sm:flex gap-16 mx-auto"
           itemClassName="px-4 py-[calc(theme(spacing.nav-height)/8)] rounded-lg
-           hover:bg-indigo-11/30 dark:hover:bg-indigo-11/10"
+           hover:bg-legacyindigo-11/30 dark:hover:bg-legacyindigo-11/10"
           pathname={pathname}
         />
         <ul className="flex items-center">

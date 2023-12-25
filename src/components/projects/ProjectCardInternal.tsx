@@ -49,7 +49,7 @@ function Tag({ tag, small }: TagProps) {
     <li
       style={{ backgroundColor }}
       className={clsx(
-        'block whitespace-nowrap rounded-full text-slate-12',
+        'text-legacyslate-12 block whitespace-nowrap rounded-full',
         small ? 'px-2 text-sm' : 'px-3',
       )}
     >
@@ -120,7 +120,7 @@ export default function ProjectCardInternal({
           'relative aspect-[4/3]',
           flipped ? 'onenter-fromright lg:col-start-4' : 'onenter-fromleft lg:col-start-1',
           'overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl',
-          'shadow-none lg:shadow-md lg:shadow-indigo-2/25 dark:lg:shadow-indigo-11/10',
+          'lg:shadow-legacyindigo-2/25 dark:lg:shadow-legacyindigo-11/10 shadow-none lg:shadow-md',
           'scale-100 duration-200 ease-in',
           isActive && 'lg:scale-105',
           isMounted ? 'animate-enteronload opacity-100 motion-reduce:animate-none' : 'opacity-0',
@@ -138,7 +138,7 @@ export default function ProjectCardInternal({
         />
         <div
           className={clsx(
-            'absolute left-0 top-0 grid h-full w-full grid-rows-[1fr] text-slate-12',
+            'text-legacyslate-12 absolute left-0 top-0 grid h-full w-full grid-rows-[1fr]',
             flipped
               ? 'grid-cols-[1fr_auto] grid-areas-featured-project-flipped'
               : 'grid-cols-[auto_1fr] grid-areas-featured-project-normal',
@@ -180,10 +180,10 @@ export default function ProjectCardInternal({
             ? 'bg-gradient-to-l onenter-fromleft lg:col-start-1 lg:rounded-bl-none lg:rounded-tr-3xl'
             : 'bg-gradient-to-r onenter-fromright lg:col-start-4 lg:rounded-br-none lg:rounded-tl-3xl',
           'z-[1] flex flex-col rounded-b-3xl p-8 lg:col-span-5 lg:row-span-full',
-          'from-indigo-11 to-indigo-11 lg:to-slate-12',
-          'dark:from-indigo-4 dark:to-indigo-4 dark:lg:to-indigo-2',
-          'translate-x-0 transition-[transform] duration-200 ease-in',
-          isActive && (flipped ? 'lg:-translate-x-1/3' : 'lg:translate-x-1/3'),
+          'from-legacyindigo-11 to-legacyindigo-11 lg:to-legacyslate-12',
+          'dark:from-legacyindigo-4 dark:to-legacyindigo-4 dark:lg:to-legacyindigo-2',
+          'tranlegacyslate-x-0 transition-[transform] duration-200 ease-in',
+          isActive && (flipped ? 'lg:-tranlegacyslate-x-1/3' : 'lg:tranlegacyslate-x-1/3'),
           isMounted ? 'animate-enteronload opacity-100 motion-reduce:animate-none' : 'opacity-0',
         )}
       >
@@ -197,7 +197,10 @@ export default function ProjectCardInternal({
             ))}
           </ul>
         </H1>
-        <p itemProp="description" className="text-justify text-slate-8 dark:text-slate-11">
+        <p
+          itemProp="description"
+          className="text-legacyslate-8 dark:text-legacyslate-11 text-justify"
+        >
           {project.description}
         </p>
         {project.parts.map(({ name, skills: technologies, tags }) => (
@@ -219,14 +222,14 @@ export default function ProjectCardInternal({
                   <a
                     title={name}
                     href={`/skills/${id}`}
-                    className="flex flex-1 items-center justify-center gap-1 whitespace-nowrap rounded-full bg-slate-3/10
-                      px-3 duration-200 hover:bg-slate-3/20 dark:bg-slate-12/10 hover:dark:bg-slate-12/20"
+                    className="bg-legacyslate-3/10 hover:bg-legacyslate-3/20 dark:bg-legacyslate-12/10 hover:dark:bg-legacyslate-12/20 flex flex-1 items-center justify-center
+                      gap-1 whitespace-nowrap rounded-full px-3 duration-200"
                   >
                     <SimpleIconSvg
                       icon={icon ?? name}
                       title={name}
                       className="my-1 h-[1em]"
-                      pathClassName="fill-slate-3 dark:fill-slate-12"
+                      pathClassName="fill-legacyslate-3 dark:fill-legacyslate-12"
                     />
                     {i < 3 && <span>{name}</span>}
                   </a>

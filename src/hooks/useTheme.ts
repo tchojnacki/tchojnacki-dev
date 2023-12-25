@@ -10,6 +10,23 @@ function initialTheme() {
   return 'dark'
 }
 
+function adjustHtmlBackground(theme: string) {
+  var scroll = document.body.scrollTop || document.documentElement.scrollTop
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight
+
+  if (scroll / height > 0.5) {
+    document.documentElement.style.setProperty(
+      'background-color',
+      theme === 'dark' ? '#1C274F' : '#C2CEFF',
+    )
+  } else {
+    document.documentElement.style.setProperty(
+      'background-color',
+      theme === 'dark' ? '#15192D' : '#ECEDEE',
+    )
+  }
+}
+
 export function useTheme() {
   const [theme, setTheme] = useState(initialTheme())
 
@@ -21,6 +38,11 @@ export function useTheme() {
     }
 
     localStorage.setItem('theme', theme)
+
+    adjustHtmlBackground(theme)
+    const listener = () => adjustHtmlBackground(theme)
+    document.addEventListener('scroll', listener)
+    return () => document.removeEventListener('scroll', listener)
   }, [theme])
 
   const toggleTheme = useCallback(() => setTheme(prev => (prev === 'dark' ? 'light' : 'dark')), [])

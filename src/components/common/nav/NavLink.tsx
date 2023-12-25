@@ -15,8 +15,8 @@ export default function NavLink({ href, children, pathname, className }: NavLink
         className,
         'block duration-200',
         pathsEqual(href, pathname)
-          ? 'font-bold text-slate-3 dark:text-slate-12'
-          : 'text-slate-8 dark:text-slate-11',
+          ? 'text-legacyslate-3 dark:text-legacyslate-12 font-bold'
+          : 'text-legacyslate-8 dark:text-legacyslate-11',
       )}
     >
       {children}

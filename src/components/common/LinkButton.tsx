@@ -20,7 +20,7 @@ export default function LinkButton({
     <a
       href={href}
       className={clsx(
-        'inline-block rounded-xl bg-indigo-8 leading-none text-slate-12 duration-200 hover:brightness-150',
+        'bg-legacyindigo-8 text-legacyslate-12 inline-block rounded-xl leading-none duration-200 hover:brightness-150',
         size === 'normal' ? 'px-6 py-3' : 'px-4 py-2',
         className,
       )}

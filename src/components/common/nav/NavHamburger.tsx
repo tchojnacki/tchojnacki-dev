@@ -17,8 +17,8 @@ export default function NavHamburger({ menuOpen, toggle, className }: NavHamburg
       onClick={toggle}
     >
       <Icon
-        className="stroke-slate-8 duration-200
-      group-hover:stroke-slate-3 dark:stroke-slate-11 dark:group-hover:stroke-slate-12"
+        className="stroke-legacyslate-8 group-hover:stroke-legacyslate-3
+      dark:stroke-legacyslate-11 dark:group-hover:stroke-legacyslate-12 duration-200"
       />
     </button>
   )
