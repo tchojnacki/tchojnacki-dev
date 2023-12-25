@@ -49,7 +49,7 @@ function Tag({ tag, small }: TagProps) {
     <li
       style={{ backgroundColor }}
       className={clsx(
-        'block whitespace-nowrap rounded-full text-slate-12',
+        'text-neutral-100 block whitespace-nowrap rounded-full',
         small ? 'px-2 text-sm' : 'px-3',
       )}
     >
@@ -85,12 +85,12 @@ function Link({ link, isActive }: LinkProps) {
   return (
     <li>
       <LinkButton
+        external
         href={href}
-        type="external"
         size="small"
         className={clsx('flex items-center gap-2', isActive && 'opacity-25 hover:opacity-100')}
       >
-        <Icon /> {label}
+        <Icon role="presentation" /> {label}
       </LinkButton>
     </li>
   )
@@ -120,7 +120,7 @@ export default function ProjectCardInternal({
           'relative aspect-[4/3]',
           flipped ? 'onenter-fromright lg:col-start-4' : 'onenter-fromleft lg:col-start-1',
           'overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl',
-          'shadow-none lg:shadow-md lg:shadow-indigo-2/25 dark:lg:shadow-indigo-11/10',
+          'lg:shadow-indigo-925/25 dark:lg:shadow-indigo-100/10 shadow-none lg:shadow-md',
           'scale-100 duration-200 ease-in',
           isActive && 'lg:scale-105',
           isMounted ? 'animate-enteronload opacity-100 motion-reduce:animate-none' : 'opacity-0',
@@ -138,7 +138,7 @@ export default function ProjectCardInternal({
         />
         <div
           className={clsx(
-            'absolute left-0 top-0 grid h-full w-full grid-rows-[1fr] text-slate-12',
+            'text-neutral-100 absolute left-0 top-0 grid h-full w-full grid-rows-[1fr]',
             flipped
               ? 'grid-cols-[1fr_auto] grid-areas-featured-project-flipped'
               : 'grid-cols-[auto_1fr] grid-areas-featured-project-normal',
@@ -149,11 +149,12 @@ export default function ProjectCardInternal({
             className={clsx(
               'z-[1] col-start-1 col-end-[-1] row-start-1 row-end-[-1]',
               'group flex items-center justify-center duration-200',
-              !isActive && 'bg-pure-black/25',
+              !isActive && 'bg-neutral-1000/25',
             )}
             onClick={toggleActive}
           >
             <ZoomIcon
+              role="presentation"
               className={clsx(
                 'duration-200',
                 isActive ? 'opacity-0 group-hover:opacity-25' : 'opacity-25 group-hover:opacity-75',
@@ -180,8 +181,8 @@ export default function ProjectCardInternal({
             ? 'bg-gradient-to-l onenter-fromleft lg:col-start-1 lg:rounded-bl-none lg:rounded-tr-3xl'
             : 'bg-gradient-to-r onenter-fromright lg:col-start-4 lg:rounded-br-none lg:rounded-tl-3xl',
           'z-[1] flex flex-col rounded-b-3xl p-8 lg:col-span-5 lg:row-span-full',
-          'from-indigo-11 to-indigo-11 lg:to-slate-12',
-          'dark:from-indigo-4 dark:to-indigo-4 dark:lg:to-indigo-2',
+          'from-indigo-100 to-indigo-100 lg:to-neudigo-50',
+          'dark:from-indigo-925 dark:to-indigo-925 dark:lg:to-neudigo-950',
           'translate-x-0 transition-[transform] duration-200 ease-in',
           isActive && (flipped ? 'lg:-translate-x-1/3' : 'lg:translate-x-1/3'),
           isMounted ? 'animate-enteronload opacity-100 motion-reduce:animate-none' : 'opacity-0',
@@ -197,7 +198,7 @@ export default function ProjectCardInternal({
             ))}
           </ul>
         </H1>
-        <p itemProp="description" className="text-justify text-slate-8 dark:text-slate-11">
+        <p itemProp="description" className="text-neutral-600 dark:text-neutral-400 text-justify">
           {project.description}
         </p>
         {project.parts.map(({ name, skills: technologies, tags }) => (
@@ -219,14 +220,14 @@ export default function ProjectCardInternal({
                   <a
                     title={name}
                     href={`/skills/${id}`}
-                    className="flex flex-1 items-center justify-center gap-1 whitespace-nowrap rounded-full bg-slate-3/10
-                      px-3 duration-200 hover:bg-slate-3/20 dark:bg-slate-12/10 hover:dark:bg-slate-12/20"
+                    className="bg-neutral-900/10 hover:bg-neutral-900/20 dark:bg-neutral-100/10 hover:dark:bg-neutral-100/20 flex flex-1 items-center justify-center
+                      gap-1 whitespace-nowrap rounded-full px-3 duration-200"
                   >
                     <SimpleIconSvg
                       icon={icon ?? name}
                       title={name}
                       className="my-1 h-[1em]"
-                      pathClassName="fill-slate-3 dark:fill-slate-12"
+                      pathClassName="fill-neutral-900 dark:fill-neutral-100"
                     />
                     {i < 3 && <span>{name}</span>}
                   </a>

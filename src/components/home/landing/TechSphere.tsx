@@ -162,6 +162,7 @@ export default function TechSphere({ skillNames }: TechSphereProps) {
 
   return (
     <canvas
+      role="presentation"
       className={clsx(
         'cursor-grab touch-none select-none active:cursor-grabbing',
         isMounted

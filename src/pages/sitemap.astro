@@ -1,6 +1,7 @@
 ---
 import { routes } from '~/utils/routes'
 import Layout from '~/layouts/Layout.astro'
+import Link from '~/components/common/Link'
 
 const entries = [routes.about, routes.projects, routes.blog]
 ---
@@ -13,9 +14,7 @@ const entries = [routes.about, routes.projects, routes.blog]
         {
           entries.map(({ href, label }) => (
             <li>
-              <a {href} class="hover:underline">
-                {label}
-              </a>
+              <Link text={label} {href} />
             </li>
           ))
         }

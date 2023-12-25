@@ -1,7 +1,6 @@
 ---
 import Nav from '~/components/common/nav/Nav'
 import Footer from '~/components/common/Footer.astro'
-import OverscrollFixer from '~/components/common/OverscrollFixer'
 import Document from './Document.astro'
 
 interface Props {
@@ -16,5 +15,4 @@ const { pathname } = Astro.url
   <Nav {pathname} client:load />
   <slot />
   <Footer />
-  <OverscrollFixer client:idle />
 </Document>

@@ -25,7 +25,7 @@ const relatedSkills = calculateRelatedSkills(skillEntries, projectEntries)
     <p>{skill.description}</p>
   </main>
   <Wave />
-  <section class="bg-indigo-11 dark:bg-indigo-4">
+  <section class="bg-indigo-100 dark:bg-indigo-925">
     <SectionHeader text="Related Skills" />
     <SkillCardWrapper>
       {relatedSkills[skill.id].map(skillId => <SkillCard {skillId} />)}

@@ -12,9 +12,8 @@ const { project, flipped, heading } = Astro.props
 ---
 
 <li
-  class="grid w-full max-w-[64rem] items-center rounded-3xl shadow-md
-      shadow-indigo-2/25 dark:shadow-indigo-11/10
-      lg:grid-cols-8 lg:grid-rows-1 lg:shadow-none"
+  class="shadow-indigo-925/10 dark:shadow-indigo-100/10 grid w-full max-w-[64rem]
+    items-center rounded-3xl shadow-lg lg:grid-cols-8 lg:grid-rows-1 lg:shadow-none"
 >
   <ProjectCardInternal client:visible {project} {flipped} {heading} />
 </li>

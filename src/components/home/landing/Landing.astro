@@ -27,14 +27,14 @@ const socials = await getSocials()
     <p class="text-2xl font-bold">
       Hello&nbsp;<WavingEmoji client:idle />, my name is
     </p>
-    <h1 class="text-5xl font-bold leading-tight text-indigo-8 dark:text-indigo-11">
+    <h1 class="text-indigo-700 dark:text-indigo-300 text-5xl font-bold leading-tight">
       Tomasz Chojnacki
     </h1>
-    <p class="mb-16 mt-6 inline-block text-2xl text-slate-8 dark:text-slate-11">
+    <p class="text-neutral-600 dark:text-neutral-400 mb-16 mt-6 inline-block text-2xl">
       I am a software developer.
     </p>
     <nav class="flex items-center justify-center gap-8 lg:justify-start">
-      <LinkButton href="/projects">View Projects</LinkButton>
+      <LinkButton href="/projects">View projects...</LinkButton>
       {
         socials.map(({ label, href, icon }) => (
           <a
@@ -47,7 +47,7 @@ const socials = await getSocials()
           >
             <SimpleIconSvg
               icon={ICONS[icon as keyof typeof ICONS]}
-              pathClassName="fill-slate-8 group-hover:fill-slate-3 dark:fill-slate-11 dark:group-hover:fill-slate-12 duration-200"
+              pathClassName="fill-neutral-600 group-hover:fill-neutral-900 dark:fill-neutral-400 dark:group-hover:fill-neutral-100 duration-200"
             />
           </a>
         ))
