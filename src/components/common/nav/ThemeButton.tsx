@@ -18,8 +18,8 @@ export default function ThemeButton() {
       onClick={toggleTheme}
     >
       <ThemeIcon
-        className="animate-enteronload stroke-slate-8 duration-200 onenter-scaling
-       group-hover:stroke-slate-3 dark:stroke-slate-11 dark:group-hover:stroke-slate-12"
+        className="animate-enteronload stroke-slate-8 duration-200 onenter-scaling group-hover:stroke-slate-3
+       motion-reduce:animate-none dark:stroke-slate-11 dark:group-hover:stroke-slate-12"
       />
     </button>
   )

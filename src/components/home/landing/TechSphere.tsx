@@ -1,9 +1,11 @@
+import clsx from 'clsx'
 import clamp from 'lodash/clamp'
 import { useEffect, useMemo, useRef } from 'react'
 
 import {
   useAnimationFrame,
   useEventListener,
+  useIsMounted,
   useParentSize,
   usePointerStart,
   usePointerStop,
@@ -32,6 +34,7 @@ interface TechSphereProps {
 }
 
 export default function TechSphere({ skillNames }: TechSphereProps) {
+  const isMounted = useIsMounted()
   const prefersReducedMotion = usePrefersReducedMotion()
   const { width, height, childRef: canvasRef } = useParentSize<HTMLCanvasElement>()
   const canvasSize = clamp(Math.min(width, height) - 50, 200, 450)
@@ -159,7 +162,12 @@ export default function TechSphere({ skillNames }: TechSphereProps) {
 
   return (
     <canvas
-      className="cursor-grab touch-none select-none active:cursor-grabbing"
+      className={clsx(
+        'cursor-grab touch-none select-none active:cursor-grabbing',
+        isMounted
+          ? 'animate-enteronload opacity-100 onenter-fromright motion-reduce:animate-none'
+          : 'opacity-0',
+      )}
       ref={canvasRef}
       width={canvasSize}
       height={canvasSize}

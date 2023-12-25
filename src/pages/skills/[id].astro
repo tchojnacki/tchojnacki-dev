@@ -35,6 +35,7 @@ const relatedSkills = calculateRelatedSkills(skillEntries, projectEntries)
   <section>
     <SectionHeader text="Related Projects" />
     <ProjectList
+      heading={3}
       filter={project => project.parts.some(part => part.skills.some(({ id }) => id === skill.id))}
     />
   </section>
