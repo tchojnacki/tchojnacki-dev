@@ -1,5 +1,12 @@
 import { type SkillId, type Skill, type Project, type ProjectId } from '~/utils/content'
 
+export function jaccard(a: SkillId, b: SkillId, list: SkillId[][]) {
+  const aSize = list.filter(p => p.includes(a)).length
+  const bSize = list.filter(p => p.includes(b)).length
+  const commonSize = list.filter(p => p.includes(a) && p.includes(b)).length
+  return commonSize / (aSize + bSize - commonSize)
+}
+
 export function calculateRelatedSkills(
   skillEntries: Record<SkillId, Skill>,
   projectEntries: Record<ProjectId, Project>,
@@ -11,13 +18,6 @@ export function calculateRelatedSkills(
   const parts = Object.values(projectEntries).flatMap(project =>
     project.parts.map(part => part.skills.map(skill => skill.id)),
   )
-
-  function jaccard(a: SkillId, b: SkillId, list: SkillId[][]) {
-    const aSize = list.filter(p => p.includes(a)).length
-    const bSize = list.filter(p => p.includes(b)).length
-    const commonSize = list.filter(p => p.includes(a) && p.includes(b)).length
-    return commonSize / (aSize + bSize - commonSize)
-  }
 
   function similarity(a: SkillId, b: SkillId) {
     if (a === b) {
