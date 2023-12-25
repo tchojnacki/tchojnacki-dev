@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "icon": "siNestjs"
+  "icon": "siNestjs",
+  "description": "NestJS is a progressive Node.js framework for server-side applications."
 }

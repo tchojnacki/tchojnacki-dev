@@ -1,4 +1,5 @@
 {
   "type": "tool",
-  "icon": "siFigma"
+  "icon": "siFigma",
+  "description": "Figma is a collaborative web app for interface design."
 }

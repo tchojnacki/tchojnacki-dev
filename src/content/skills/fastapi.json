@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "icon": "siFastapi"
+  "icon": "siFastapi",
+  "description": "FastAPI is a modern and fast web framework for building APIs with Python."
 }

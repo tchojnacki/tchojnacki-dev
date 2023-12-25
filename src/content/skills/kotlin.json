@@ -1,4 +1,5 @@
 {
   "type": "language",
-  "icon": "siKotlin"
+  "icon": "siKotlin",
+  "description": "Kotlin is a concise multiplatform programming language built by JetBrains."
 }

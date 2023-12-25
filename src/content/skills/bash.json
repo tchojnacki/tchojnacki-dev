@@ -1,5 +1,6 @@
 {
   "type": "language",
   "icon": "siGnubash",
-  "name": "Bash"
+  "name": "Bash",
+  "description": "Bash is a shell and command language."
 }

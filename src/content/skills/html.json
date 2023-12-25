@@ -1,5 +1,6 @@
 {
   "type": "language",
   "icon": "siHtml5",
-  "name": "HTML"
+  "name": "HTML",
+  "description": "HTML is the standard markup language for documents displayed in a web browser."
 }

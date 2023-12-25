@@ -1,5 +1,6 @@
 {
   "type": "tool",
   "icon": "siPostgresql",
-  "name": "Postgres"
+  "name": "Postgres",
+  "description": "Postgres is a powerful, open-source object-relational database system."
 }

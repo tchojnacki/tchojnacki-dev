@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "name": "Emotion"
+  "name": "Emotion",
+  "description": "Emotion is a library that allows you to compose CSS styles with JavaScript."
 }

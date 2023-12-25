@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "icon": "siTailwindcss"
+  "icon": "siTailwindcss",
+  "description": "Tailwind CSS is a powerful and flexible CSS framework."
 }

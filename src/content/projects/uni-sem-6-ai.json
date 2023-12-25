@@ -13,6 +13,10 @@
     {
       "name": "Exercises",
       "skillIds": ["rust", "python", "scikit-learn", "prolog", "numpy", "pandas", "jupyter"]
+    },
+    {
+      "name": "Reports",
+      "skillIds": ["latex"]
     }
   ]
 }

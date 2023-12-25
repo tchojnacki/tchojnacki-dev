@@ -2,10 +2,11 @@ import { describe, it, expect } from 'vitest'
 
 import {
   findRotation,
+  initialPositionsOf,
   pointerToSpherePoint,
   rotateAroundUnitVector,
   worldToCamera,
-} from '~/logic/techSphere'
+} from '~/logic'
 
 describe(rotateAroundUnitVector, () => {
   it.each([
@@ -17,6 +18,25 @@ describe(rotateAroundUnitVector, () => {
     expect(result.x).toBeCloseTo(expected.x)
     expect(result.y).toBeCloseTo(expected.y)
     expect(result.z).toBeCloseTo(expected.z)
+  })
+})
+
+describe(initialPositionsOf, () => {
+  it('returns empty result for empty input', () => {
+    expect(initialPositionsOf([])).toStrictEqual([])
+  })
+
+  it('correctly positions one item', () => {
+    const list = initialPositionsOf(['TEST'])
+    expect(list).toHaveLength(1)
+    const {
+      item,
+      position: { x, y, z },
+    } = list[0]!
+    expect(item).toBe('TEST')
+    expect(x).toBeCloseTo(1)
+    expect(y).toBeCloseTo(0)
+    expect(z).toBeCloseTo(0)
   })
 })
 

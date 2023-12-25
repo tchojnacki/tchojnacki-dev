@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "icon": "siScikitlearn"
+  "icon": "siScikitlearn",
+  "description": "scikit-learn is a set of tools for predictive data analysis in Python."
 }

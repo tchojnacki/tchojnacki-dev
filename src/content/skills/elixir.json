@@ -1,4 +1,5 @@
 {
   "type": "language",
-  "icon": "siElixir"
+  "icon": "siElixir",
+  "description": "Elixir is a dynamic, functional language for building scalable applications."
 }

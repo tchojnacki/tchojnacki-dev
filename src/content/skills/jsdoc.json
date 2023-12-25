@@ -1,4 +1,5 @@
 {
   "type": "tool",
-  "name": "JSDoc"
+  "name": "JSDoc",
+  "description": "JSDoc is an API documentation generator for JavaScript."
 }

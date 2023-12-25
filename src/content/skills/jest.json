@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "icon": "siJest"
+  "icon": "siJest",
+  "description": "Jest is a testing tool for JavaScript projects."
 }

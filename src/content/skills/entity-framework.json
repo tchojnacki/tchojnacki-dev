@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "name": "Entity Framework"
+  "name": "Entity Framework",
+  "description": "Entity Framework is an object-relational mapper for .NET developers."
 }

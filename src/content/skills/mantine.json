@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "name": "Mantine"
+  "name": "Mantine",
+  "description": "Mantine is a fully featured React components library."
 }

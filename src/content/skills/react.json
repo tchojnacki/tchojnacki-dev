@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "icon": "siReact"
+  "icon": "siReact",
+  "description": "React is the library for web and native user interfaces."
 }

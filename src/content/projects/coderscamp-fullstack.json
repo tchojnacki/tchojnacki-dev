@@ -12,11 +12,11 @@
   ],
   "parts": [
     {
-      "name": "Frontend",
+      "name": "Front end",
       "skillIds": ["react", "typescript", "mui", "react-router", "immer", "lodash"]
     },
     {
-      "name": "Backend",
+      "name": "Back end",
       "skillIds": ["nestjs", "typescript", "mongodb", "express", "passport", "nodejs"]
     },
     {

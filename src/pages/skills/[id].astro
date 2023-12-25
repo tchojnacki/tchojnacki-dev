@@ -1,0 +1,41 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { calculateRelatedSkills } from '~/logic'
+import SectionHeader from '~/components/common/SectionHeader.astro'
+import Wave from '~/components/common/Wave.astro'
+import SkillCard from '~/components/projects/skills/SkillCard.astro'
+import SkillCardWrapper from '~/components/projects/skills/SkillCardWrapper.astro'
+import ProjectList from '~/components/projects/ProjectList.astro'
+import Layout from '~/layouts/Layout.astro'
+import { getProjects, getSkills, type SkillId } from '~/utils/content'
+
+export const getStaticPaths = (async () =>
+  Object.keys(await getSkills()).map(id => ({ params: { id } }))) satisfies GetStaticPaths
+
+const skillEntries = await getSkills()
+const projectEntries = await getProjects()
+
+const skill = skillEntries[Astro.params.id as SkillId]
+const relatedSkills = calculateRelatedSkills(skillEntries, projectEntries)
+---
+
+<Layout name={`${skill.name} - Skills`} description={skill.description}>
+  <main class="mx-auto max-w-[68rem] px-8 py-16">
+    <h1 class="pb-4 text-4xl">{skill.name}</h1>
+    <p>{skill.description}</p>
+  </main>
+  <Wave />
+  <section class="bg-indigo-11 dark:bg-indigo-4">
+    <SectionHeader text="Related Skills" />
+    <SkillCardWrapper>
+      {relatedSkills[skill.id].map(skillId => <SkillCard {skillId} />)}
+    </SkillCardWrapper>
+  </section>
+  <Wave inverted />
+  <section>
+    <SectionHeader text="Related Projects" />
+    <ProjectList
+      filter={project => project.parts.some(part => part.skills.some(({ id }) => id === skill.id))}
+    />
+  </section>
+</Layout>

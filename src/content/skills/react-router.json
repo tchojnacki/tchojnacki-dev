@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "icon": "siReactrouter"
+  "icon": "siReactrouter",
+  "description": "React Router is a flexible router library for React."
 }

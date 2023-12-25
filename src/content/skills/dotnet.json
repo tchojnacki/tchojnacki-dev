@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "icon": "siDotnet"
+  "icon": "siDotnet",
+  "description": ".NET is a cross-platform framework for building apps and cloud services."
 }

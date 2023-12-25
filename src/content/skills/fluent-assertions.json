@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "name": "FluentAssertions"
+  "name": "FluentAssertions",
+  "description": "FluentAssertions is a large set of extension methods for writing TDD unit tests."
 }

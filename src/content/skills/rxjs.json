@@ -1,5 +1,6 @@
 {
   "type": "library",
   "icon": "siReactivex",
-  "name": "RxJS"
+  "name": "RxJS",
+  "description": "RxJS is a library for reactive programming using observables."
 }

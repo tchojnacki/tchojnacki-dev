@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "icon": "siTestinglibrary"
+  "icon": "siTestinglibrary",
+  "description": "Testing Library is a family of libraries for writing tests for UI code."
 }

@@ -4,7 +4,9 @@ import { routes } from '~/utils/routes'
 
 import Wave from './Wave.astro'
 
-const entries = [routes.about, routes.blog, routes.projects]
+const linkClass = 'hover:text-pure-black hover:underline hover:dark:text-pure-white'
+
+const entries = [routes.about, routes.projects, routes.blog]
 
 const projectLinks = [
   { href: 'https://github.com/tchojnacki/tchojnacki-dev', label: 'Source' },
@@ -14,14 +16,14 @@ const projectLinks = [
 const socials = await getSocials()
 ---
 
-<Wave className="!max-h-24" />
+<Wave className="!max-h-32" />
 <footer class="bg-indigo-11 px-8 text-sm text-slate-8 dark:bg-indigo-4 dark:text-slate-11">
   <section class="flex flex-col justify-center text-center sm:flex-row sm:gap-32 sm:text-left">
     <ul>
       {
         entries.map(({ href, label }) => (
           <li>
-            <a {href} class="hover:underline">
+            <a {href} class={linkClass}>
               {label}
             </a>
           </li>
@@ -32,7 +34,7 @@ const socials = await getSocials()
       {
         socials.map(({ href, label }) => (
           <li>
-            <a {href} class="hover:underline" target="_blank" rel="noreferrer">
+            <a {href} class={linkClass} target="_blank" rel="noreferrer">
               {label}
             </a>
           </li>
@@ -40,11 +42,11 @@ const socials = await getSocials()
       }
     </ul>
     <ul>
-      <a href="/sitemap" class="hover:underline">Sitemap</a>
+      <a href="/sitemap" class={linkClass}>Sitemap</a>
       {
         projectLinks.map(({ href, label }) => (
           <li>
-            <a {href} target="_blank" rel="noreferrer" class="hover:underline">
+            <a {href} class={linkClass} target="_blank" rel="noreferrer">
               {label}
             </a>
           </li>

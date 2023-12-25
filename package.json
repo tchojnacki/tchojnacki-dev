@@ -27,7 +27,6 @@
     "@astrojs/react": "^3.0.2",
     "@astrojs/sitemap": "^3.0.3",
     "@astrojs/tailwind": "^5.0.0",
-    "@astrojs/vercel": "^5.0.1",
     "@commitlint/cli": "^17.7.2",
     "@commitlint/config-conventional": "^17.7.0",
     "@commitlint/types": "^17.4.4",

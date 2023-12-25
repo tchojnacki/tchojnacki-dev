@@ -5,6 +5,7 @@ import {
   BrandGithub,
   Download,
   ExternalLink,
+  FileAnalytics,
   InfoCircle,
   Notes,
   PlayerPause,
@@ -60,7 +61,7 @@ function Link({ link, isActive }: LinkProps) {
     switch (link.type) {
       case 'github':
         return {
-          label: 'Source',
+          label: 'Source' + (link.part ? ` - ${link.part}` : ''),
           href: `https://github.com/${link.owner ?? 'tchojnacki'}/${link.repo}`,
           Icon: BrandGithub,
         }
@@ -74,6 +75,8 @@ function Link({ link, isActive }: LinkProps) {
         return { label: 'Download', href: link.href, Icon: Download }
       case 'swagger':
         return { label: 'Swagger', href: link.href, Icon: Api }
+      case 'paper':
+        return { label: 'Paper', href: link.href, Icon: FileAnalytics }
     }
   })()
 
@@ -154,7 +157,11 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
           </button>
           <ul className="z-[2] m-4 inline-flex h-min flex-col gap-2 grid-in-buttons">
             {project.links.map(link => (
-              <Link key={link.type} link={link} isActive={isActive} />
+              <Link
+                key={`${link.type}-${link.type === 'github' ? link.repo : link.href}`}
+                link={link}
+                isActive={isActive}
+              />
             ))}
           </ul>
         </div>
@@ -174,7 +181,7 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
         )}
       >
         <h4 className="mb-2 flex flex-col gap-4 lg:flex-row lg:items-center">
-          <span itemProp="name" className="mr-auto text-3xl font-bold">
+          <span itemProp="name" className="mr-auto text-2xl font-bold">
             {project.name}
           </span>
           <ul itemProp="keywords" className="flex gap-2">
@@ -200,19 +207,21 @@ export function ProjectCard({ project, flipped }: ProjectCardProps) {
               className="flex flex-wrap gap-2 overflow-hidden after:flex-grow-[100]
               lg:flex-nowrap lg:[mask-image:linear-gradient(90deg,#000_75%,transparent)]"
             >
-              {technologies.map(({ name, icon }, i) => (
-                <li
-                  key={name}
-                  className="flex flex-1 items-center justify-center gap-1 whitespace-nowrap rounded-full
-                  bg-slate-3/10 px-3 dark:bg-slate-12/10"
-                >
-                  <SimpleIconSvg
-                    icon={icon ?? name}
-                    title={name}
-                    className="my-1 h-[1em]"
-                    pathClassName="fill-slate-3 dark:fill-slate-12"
-                  />
-                  {i < 3 && <span>{name}</span>}
+              {technologies.map(({ name, icon, id }, i) => (
+                <li key={name}>
+                  <a
+                    href={`/skills/${id}`}
+                    className="flex flex-1 items-center justify-center gap-1 whitespace-nowrap rounded-full bg-slate-3/10
+                      px-3 duration-200 hover:bg-slate-3/20 dark:bg-slate-12/10 hover:dark:bg-slate-12/20"
+                  >
+                    <SimpleIconSvg
+                      icon={icon ?? name}
+                      title={name}
+                      className="my-1 h-[1em]"
+                      pathClassName="fill-slate-3 dark:fill-slate-12"
+                    />
+                    {i < 3 && <span>{name}</span>}
+                  </a>
                 </li>
               ))}
             </ul>

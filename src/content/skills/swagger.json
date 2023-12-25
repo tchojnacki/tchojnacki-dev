@@ -1,4 +1,5 @@
 {
   "type": "tool",
-  "icon": "siSwagger"
+  "icon": "siSwagger",
+  "description": "Swagger is a platform that simplifies API development using the OpenAPI spec."
 }

@@ -1,4 +1,5 @@
 {
   "type": "library",
-  "icon": "siPandas"
+  "icon": "siPandas",
+  "description": "pandas is a tool for data analysis and manipulation, built on Python."
 }
