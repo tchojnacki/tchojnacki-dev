@@ -46,6 +46,23 @@ const image = new URL('/static/img/open-graph.png', Astro.site).toString()
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          const local = localStorage.getItem('theme')
+          if (local === 'dark' || local === 'light') {
+            return local
+          }
+        }
+        return 'dark'
+      })()
+
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    </script>
   </head>
   <body class="overflow-x-hidden bg-slate-12 text-slate-3 dark:bg-indigo-2 dark:text-slate-12">
     <slot />

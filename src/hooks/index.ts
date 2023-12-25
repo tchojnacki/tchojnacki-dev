@@ -1,5 +1,6 @@
 export * from './useAnimationFrame'
 export * from './useDialog'
+export * from './useIsMounted'
 export * from './useParentSize'
 export * from './usePointer'
 export * from './usePrefersReducedMotion'

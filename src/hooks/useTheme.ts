@@ -1,23 +1,29 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useMutationObserver } from 'ahooks'
 
-const extractTheme = () => (document.documentElement.classList.contains('dark') ? 'dark' : 'light')
+function initialTheme() {
+  if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+    const local = localStorage.getItem('theme')
+    if (local === 'dark' || local === 'light') {
+      return local
+    }
+  }
+  return 'dark'
+}
 
 export function useTheme() {
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
+  const [theme, setTheme] = useState(initialTheme())
 
-  useEffect(() => setTheme(extractTheme()), [])
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
 
-  useMutationObserver(
-    () => setTheme(extractTheme()),
-    () => document.documentElement,
-    {
-      attributes: true,
-      attributeFilter: ['class'],
-    },
-  )
+    localStorage.setItem('theme', theme)
+  }, [theme])
 
-  const toggleTheme = useCallback(() => document.documentElement.classList.toggle('dark'), [])
+  const toggleTheme = useCallback(() => setTheme(prev => (prev === 'dark' ? 'light' : 'dark')), [])
 
   return { theme, toggleTheme }
 }
