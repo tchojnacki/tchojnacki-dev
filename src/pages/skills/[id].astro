@@ -20,23 +20,26 @@ const relatedSkills = calculateRelatedSkills(skillEntries, projectEntries)
 ---
 
 <Layout name={`${skill.name} - Skills`} description={skill.description}>
-  <main class="mx-auto max-w-[68rem] px-8 py-16">
-    <h1 class="pb-4 text-4xl">{skill.name}</h1>
-    <p>{skill.description}</p>
+  <main class="min-h-screen">
+    <header class="centered-header">
+      <h1 class="pb-4 text-3xl sm:text-4xl">{skill.name}</h1>
+      <p>{skill.description}</p>
+    </header>
+    <Wave />
+    <section class="bg-indigo-100 dark:bg-indigo-925">
+      <SectionHeader text="Related skills" />
+      <SkillCardWrapper>
+        {relatedSkills[skill.id].map(skillId => <SkillCard {skillId} />)}
+      </SkillCardWrapper>
+    </section>
+    <Wave inverted />
+    <section>
+      <SectionHeader text="Related projects" />
+      <ProjectList
+        heading={3}
+        filter={project =>
+          project.parts.some(part => part.skills.some(({ id }) => id === skill.id))}
+      />
+    </section>
   </main>
-  <Wave />
-  <section class="bg-indigo-100 dark:bg-indigo-925">
-    <SectionHeader text="Related Skills" />
-    <SkillCardWrapper>
-      {relatedSkills[skill.id].map(skillId => <SkillCard {skillId} />)}
-    </SkillCardWrapper>
-  </section>
-  <Wave inverted />
-  <section>
-    <SectionHeader text="Related Projects" />
-    <ProjectList
-      heading={3}
-      filter={project => project.parts.some(part => part.skills.some(({ id }) => id === skill.id))}
-    />
-  </section>
 </Layout>

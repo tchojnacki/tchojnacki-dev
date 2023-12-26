@@ -62,4 +62,16 @@ const socials = defineCollection({
   }),
 })
 
-export const collections = { projects, skills, socials }
+const posts = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    author: z.string(),
+    date: z.date(),
+    abstract: z.string(),
+    skills: z.array(reference('skills')),
+    tags: z.array(z.string().regex(/^[a-z-]+$/)),
+  }),
+})
+
+export const collections = { projects, skills, socials, posts }

@@ -11,6 +11,14 @@ export const routes = {
     href: '/blog',
     label: 'Blog',
   },
+  tags: {
+    href: '/tags',
+    label: 'Tags',
+  },
+  skills: {
+    href: '/skills',
+    label: 'Skills',
+  },
   sitemap: {
     href: '/sitemap',
     label: 'Sitemap',

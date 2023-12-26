@@ -14,7 +14,7 @@ export default function NavLink({ href, children, pathname, className }: NavLink
       className={clsx(
         className,
         'block duration-200',
-        pathsEqual(href, pathname)
+        pathsMatch(href, pathname)
           ? 'text-neutral-900 dark:text-neutral-100 font-bold'
           : 'text-neutral-600 dark:text-neutral-400 ',
       )}
@@ -24,8 +24,15 @@ export default function NavLink({ href, children, pathname, className }: NavLink
   )
 }
 
-function pathsEqual(a: string, b: string): boolean {
+function pathsMatch(t: string, c: string): boolean {
   const canonize = (path: string) => path.replace(/(^[/\\]+|[/\\]+$)/g, '').replace(/[/\\]+/g, '/')
 
-  return canonize(a) === canonize(b)
+  const target = canonize(t)
+  const current = canonize(c)
+
+  if (target === '') {
+    return current === target
+  }
+
+  return current.startsWith(target)
 }

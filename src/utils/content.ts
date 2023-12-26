@@ -1,6 +1,7 @@
 import type { ImageMetadata } from 'astro'
 import { getCollection, type CollectionEntry } from 'astro:content'
 import * as ICONS from 'simple-icons'
+import { keyComparator } from './sorting'
 
 export type SkillId = CollectionEntry<'skills'>['id']
 type SkillType = CollectionEntry<'skills'>['data']['type']
@@ -31,6 +32,8 @@ export type Project = {
 }
 
 type Social = CollectionEntry<'socials'>['data']
+
+export type Post = CollectionEntry<'posts'>
 
 export async function getSkills(): Promise<Record<SkillId, Skill>> {
   const skillEntries = await getCollection('skills')
@@ -73,6 +76,14 @@ export async function getProjects(): Promise<Record<ProjectId, Project>> {
 
 export async function getSocials(): Promise<Social[]> {
   return (await getCollection('socials')).map(({ data }) => data)
+}
+
+export async function getPosts(): Promise<Post[]> {
+  return (await getCollection('posts')).sort(keyComparator(p => p.data.date.getTime(), true))
+}
+
+export async function getTags(): Promise<string[]> {
+  return [...new Set((await getCollection('posts')).flatMap(p => p.data.tags))].sort()
 }
 
 export const projectImportanceOrder = [

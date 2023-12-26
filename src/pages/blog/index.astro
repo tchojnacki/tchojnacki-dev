@@ -1,0 +1,20 @@
+---
+import Link from '~/components/common/Link'
+import Layout from '~/layouts/Layout.astro'
+import { getPosts } from '~/utils/content'
+
+const posts = await getPosts()
+---
+
+<Layout name="Blog" description="List of all posts from the Tomasz Chojnacki's blog.">
+  <h1>Blog</h1>
+  <ul>
+    {
+      posts.map(p => (
+        <li>
+          <Link href={`/blog/${p.slug}`}>{p.data.title}</Link>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>

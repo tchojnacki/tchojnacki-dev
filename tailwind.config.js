@@ -107,9 +107,6 @@ export default {
   },
   plugins: [
     /** @type {any} */ (gridAreas),
-    plugin(({ addVariant }) => {
-      addVariant('pseudo', ['&::before', '&::after'])
-    }),
     plugin(({ addUtilities }) => {
       addUtilities({
         '.onenter-fromleft': {
@@ -123,6 +120,12 @@ export default {
         },
         '.onenter-scaling': {
           '--enter-transform': 'scale(0.75)',
+        },
+        '.centered-header': {
+          'box-sizing': 'content-box',
+          'max-width': '70ch',
+          margin: '0 auto',
+          padding: '4rem 1rem',
         },
       })
     }),

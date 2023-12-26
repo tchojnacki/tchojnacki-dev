@@ -1,24 +1,57 @@
 ---
 import { routes } from '~/utils/routes'
-import Layout from '~/layouts/Layout.astro'
 import Link from '~/components/common/Link'
+import Listing from '~/layouts/Listing.astro'
+import { getPosts, getSkills, getTags } from '~/utils/content'
 
-const entries = [routes.about, routes.projects, routes.blog]
+const listClass = 'list-disc pl-8'
+
+const postList = await getPosts()
+const tagList = await getTags()
+const skillList = Object.values(await getSkills())
+
+const { about, projects, blog, tags, skills } = routes
 ---
 
-<Layout name="Sitemap" description="List of all pages in the Tomasz Chojnacki's website.">
-  <main class="p-16 text-center">
-    <h1 class="pb-8 text-4xl font-bold capitalize">Sitemap</h1>
-    <nav>
-      <ul>
-        {
-          entries.map(({ href, label }) => (
-            <li>
-              <Link text={label} {href} />
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-  </main>
-</Layout>
+<Listing name="Sitemap" description="List of all pages in the Tomasz Chojnacki's website.">
+  <div class="flex justify-center text-left">
+    <ul class={listClass}>
+      <li><Link href={about.href}>{about.label}</Link></li>
+      <li><Link href={projects.href}>{projects.label}</Link></li>
+      <li>
+        <Link href={blog.href}>{blog.label}</Link>
+        <ul class={listClass}>
+          {
+            postList.map(p => (
+              <li>
+                <Link href={`/blog/${p.slug}`}>"{p.data.title}"</Link>
+              </li>
+            ))
+          }
+        </ul>
+      </li>
+      <li>
+        <Link href={tags.href}>{tags.label}</Link><ul class={listClass}>
+          {
+            tagList.map(t => (
+              <li>
+                <Link href={`/tags/${t}`}>#{t}</Link>
+              </li>
+            ))
+          }
+        </ul>
+      </li>
+      <li>
+        <Link href={skills.href}>{skills.label}</Link><ul class={listClass}>
+          {
+            skillList.map(s => (
+              <li>
+                <Link href={`/skills/${s.id}`}>{s.name}</Link>
+              </li>
+            ))
+          }
+        </ul>
+      </li>
+    </ul>
+  </div>
+</Listing>
