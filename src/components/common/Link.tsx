@@ -1,7 +1,7 @@
 import type { ComponentProps } from 'react'
 
 export default function Link({ children, href, ...props }: ComponentProps<'a'>) {
-  const external = href && !href.startsWith('/')
+  const external = href && !href.startsWith('/') && !href.startsWith('#')
 
   return (
     <a

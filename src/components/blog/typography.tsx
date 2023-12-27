@@ -37,4 +37,12 @@ function P({ children }: ComponentProps<'p'>) {
   return <p className="my-1 text-justify">{children}</p>
 }
 
-export const typography = { h1: H1, h2: H2, h3: H3, h4: H4, p: P, a: Link }
+function Code({ children }: ComponentProps<'code'>) {
+  return (
+    <code className="bg-neutral-300 dark:bg-neutral-700 -my-0.5 rounded-md px-1 py-0.5 text-neutral-900 dark:text-neutral-100">
+      {children}
+    </code>
+  )
+}
+
+export const typography = { h1: H1, h2: H2, h3: H3, h4: H4, p: P, a: Link, code: Code }
