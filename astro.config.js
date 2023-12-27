@@ -7,9 +7,13 @@ import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import robotsTxt from 'astro-robots-txt'
 import compress from 'astro-compress'
+import { remarkReadingTime } from './src/utils/readingTime'
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://tchojnacki.dev',
   integrations: [tailwind(), react(), mdx(), sitemap(), robotsTxt(), compress()],
+  markdown: {
+    remarkPlugins: [remarkReadingTime],
+  },
 })

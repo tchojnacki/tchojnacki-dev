@@ -14,7 +14,7 @@ const { about, projects, blog, tags, skills } = routes
 ---
 
 <Listing name="Sitemap" description="List of all pages in the Tomasz Chojnacki's website.">
-  <div class="flex justify-center text-left">
+  <div class="flex flex-col items-center text-left">
     <ul class={listClass}>
       <li><Link href={about.href}>{about.label}</Link></li>
       <li><Link href={projects.href}>{projects.label}</Link></li>
@@ -52,6 +52,12 @@ const { about, projects, blog, tags, skills } = routes
           }
         </ul>
       </li>
+    </ul>
+    <hr class="border-t-1 my-8 w-1/2 border-t-neutral-900 dark:border-t-neutral-100" />
+    <ul class={listClass}>
+      <li><Link href="/rss.xml">/rss.xml</Link></li>
+      <li><Link href="/sitemap-index.xml">/sitemap-index.xml</Link></li>
+      <li><Link href="/robots.txt">/robots.txt</Link></li>
     </ul>
   </div>
 </Listing>

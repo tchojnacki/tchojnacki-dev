@@ -6,9 +6,10 @@ import { keyComparator } from '~/utils/sorting'
 
 interface Props {
   post: Post
+  readingTime: number
 }
 
-const { post } = Astro.props
+const { post, readingTime } = Astro.props
 
 const tags = [
   ...post.data.skills.map(s => ({ tag: s.id, href: `/skills/${s.id}` })),
@@ -33,7 +34,7 @@ const tags = [
           year: 'numeric',
         })
       }</time
-    ><Bullet /><span class="font-bold text-neutral-1000 dark:text-neutral-0">0{/* TODO */} min</span
+    ><Bullet /><span class="font-bold text-neutral-1000 dark:text-neutral-0">{readingTime} min</span
     > read
   </div>
   <ul class="flex flex-wrap justify-center gap-4 sm:justify-start">

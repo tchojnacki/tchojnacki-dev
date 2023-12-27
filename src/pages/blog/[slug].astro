@@ -14,13 +14,16 @@ interface Props {
 }
 
 const { post } = Astro.props
-const { Content } = await post.render()
+const {
+  Content,
+  remarkPluginFrontmatter: { readingTime },
+} = await post.render()
 ---
 
 <Layout name={`"${post.data.title}"`} description={post.data.abstract}>
   <main class="min-h-screen">
     <article>
-      <PostHeader {post} />
+      <PostHeader {post} {readingTime} />
       <section class="post-content">
         <Content components={{ ...typography }} />
       </section>
