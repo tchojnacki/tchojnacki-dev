@@ -67,6 +67,8 @@ export default {
       'landing-mobile': ['text', 'sphere', '.'],
       'featured-project-normal': ['buttons .'],
       'featured-project-flipped': ['. buttons'],
+      'blog-desktop': ['header .', 'posts tags'],
+      'blog-mobile': ['header', 'posts', 'tags'],
     },
     keyframes: {
       errshake: {

@@ -1,0 +1,14 @@
+---
+import type { Post } from '~/utils/content'
+import PostEntry from './PostEntry.astro'
+
+interface Props {
+  heading: number
+  count?: number
+  posts: Post[]
+}
+
+const { heading, count = Infinity, posts } = Astro.props
+---
+
+<>{posts.slice(0, count).map(post => <PostEntry {heading} {post} />)}</>
