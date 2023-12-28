@@ -2,7 +2,44 @@
 title: 'Hello, world!'
 author: 'Tomasz Chojnacki'
 date: 2023-12-28
-abstract: 'The first post on the blog.'
+abstract: 'After almost a year of procrastination, the blog section of my personal website is finally ready. You might expect some old posts to be published here, alongside brand-new works.'
 skills: ['astro']
-tags: ['meta']
+tags: ['blogging']
 ---
+
+After almost a year of procrastination, the blog section of my personal website is finally ready.
+I've been gathering many drafts of blog posts on the side for the entire period, so you might expect
+some old posts to be published here from time to time, alongside brand-new works.
+
+# About the blog
+
+I've wanted to write about different topics related to computer science and software engineering
+for a long time now. It feels great to share your experiences, promote less popular concepts, and I
+personally just enjoy writing too.
+
+The upcoming posts will describe my thoughts on different programming languages, frameworks and
+libraries, provide some guidance to obscurely documented technologies, as well as showcase my
+personal projects.
+
+I'm currently focused on full stack web development, language and compiler design, and developer
+tooling. However, I might branch out to other topics in the future.
+
+# The underlying technology
+
+The entire website was recently rewritten in [Astro](https://astro.build). The previous version was
+made using [Next.js](https://nextjs.org), and while I love both of these technologies, Astro seems
+like a much better fit here.
+
+Every post on the blog is an MDX document, utilizing Astro's
+[Markdown support](https://docs.astro.build/en/guides/markdown-content). This allows you to write
+the article in plain text, but also to embed React and Astro components, providing interactivity.
+
+The entire website is compiled to static HTML. Content collections, like blogs or projects, are
+queried during build time and emitted in relevant places, providing sections such as "recent posts",
+"popular tags", or "related projects".
+
+# What's next
+
+My first real post, called ["Evaluating Gleam with Advent of Code"](/blog/evaluating-gleam-with-aoc)
+is already up, and there are many more to come. I also plan to expand the blog's features, perhaps
+by introducing more interactive components.
