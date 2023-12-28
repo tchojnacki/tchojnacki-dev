@@ -14,7 +14,7 @@ const projectData = await getProjects()
 const projects = projectImportanceOrder.map(id => projectData[id]).filter(p => !filter || filter(p))
 ---
 
-<ul class="flex flex-col items-center gap-16 px-4 py-16 lg:px-16">
+<ul class="flex flex-col items-center gap-16 px-4 py-8 lg:px-16">
   {
     projects
       .slice(0, length)

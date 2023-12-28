@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from 'astro'
 import { getTags } from '~/utils/content'
 import Layout from '../../layouts/Layout.astro'
+import PostList from '~/components/blog/PostList.astro'
 
 export const getStaticPaths = (async () =>
   (await getTags()).map(id => ({ params: { id } }))) satisfies GetStaticPaths
@@ -14,5 +15,8 @@ const tag = Astro.params.id
     <header class="centered-header">
       <h1 class="pb-4 text-3xl text-purple-700 dark:text-purple-300 sm:text-4xl">#{tag}</h1>
     </header>
+    <section class="mx-auto max-w-[calc(70ch+2rem)]">
+      <PostList heading={2} filter={p => p.data.tags.includes(tag)} />
+    </section>
   </main>
 </Layout>

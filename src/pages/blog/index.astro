@@ -34,7 +34,7 @@ const popularTags = [...allTags].sort(keyComparator(({ tag }) => tagCounts[tag],
     </header>
     <section class="py-4 grid-in-posts">
       <h2 class="px-4 text-2xl text-neutral-1000 dark:text-neutral-0">Recent posts</h2>
-      <PostList heading={3} {posts} />
+      <PostList heading={3} />
     </section>
     <aside class="p-4 grid-in-tags">
       <h2 class="pb-3 text-2xl text-neutral-1000 dark:text-neutral-0">Popular tags</h2>

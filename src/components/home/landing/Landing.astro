@@ -1,7 +1,6 @@
 ---
 import * as ICONS from 'simple-icons'
 
-import LinkButton from '~/components/common/LinkButton'
 import Wave from '~/components/common/Wave.astro'
 import SimpleIconSvg from '~/components/common/SimpleIconSvg'
 import { getSkills, techSphereSkillIds, getSocials } from '~/utils/content'
@@ -34,7 +33,6 @@ const socials = await getSocials()
       I am a software developer.
     </p>
     <nav class="flex items-center justify-center gap-8 lg:justify-start">
-      <LinkButton href="/blog">See posts</LinkButton>
       {
         socials.map(({ label, href, icon }) => (
           <a
