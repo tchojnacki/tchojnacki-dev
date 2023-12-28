@@ -1,0 +1,73 @@
+---
+import {
+  BrandLinkedin,
+  BrandTwitter,
+  BrandReddit,
+  Rss,
+  BrandYcombinator,
+  LetterL,
+  BrandGithub,
+} from 'tabler-icons-react'
+import Link from '~/components/common/Link'
+
+interface Props {
+  slug: string
+}
+
+const { slug } = Astro.props
+
+const url = new URL(`/blog/${slug}`, Astro.site).toString()
+
+const socials = [
+  {
+    Icon: BrandTwitter,
+    name: 'Twitter / X',
+    href: `https://twitter.com/intent/tweet?url=${url}`,
+  },
+  {
+    Icon: BrandLinkedin,
+    name: 'LinkedIn',
+    href: `https://www.linkedin.com/sharing/share-offsite?url=${url}`,
+  },
+  {
+    Icon: BrandReddit,
+    name: 'Reddit',
+    href: `https://www.reddit.com/submit?url=${url}`,
+  },
+  {
+    Icon: BrandYcombinator,
+    name: 'Hacker News',
+    href: `https://news.ycombinator.com/submitlink?u=${url}`,
+  },
+  {
+    Icon: LetterL,
+    name: 'Lobsters',
+    href: 'https://lobste.rs',
+  },
+]
+---
+
+<footer class="mt-16 flex flex-col gap-6 p-4 text-center text-sm">
+  <ul class="flex justify-center gap-2">
+    {
+      socials.map(({ Icon, name, href }) => {
+        const title = `Share on ${name}...`
+        return (
+          <li>
+            <Link {href} {title}>
+              <Icon size={24} aria-label={title} />
+            </Link>
+          </li>
+        )
+      })
+    }
+  </ul>
+  <p>
+    <Link
+      href={`https://github.com/tchojnacki/tchojnacki-dev/tree/main/src/content/posts/${slug}.mdx`}
+    >
+      Fix a typo on <BrandGithub size={16} className="inline-block" /> GitHub.
+    </Link>
+  </p>
+  <p><Link href="/rss.xml">Subscribe to <Rss size={16} className="inline-block" /> RSS.</Link></p>
+</footer>

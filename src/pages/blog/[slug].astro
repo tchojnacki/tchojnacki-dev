@@ -1,5 +1,6 @@
 ---
 import type { GetStaticPaths } from 'astro'
+import PostFooter from '~/components/blog/PostFooter.astro'
 import PostHeader from '~/components/blog/PostHeader.astro'
 import { typography } from '~/components/blog/typography'
 import Layout from '~/layouts/Layout.astro'
@@ -27,6 +28,7 @@ const {
       <section class="post-content">
         <Content components={{ ...typography }} />
       </section>
+      <PostFooter slug={post.slug} />
     </article>
   </main>
 </Layout>
