@@ -20,10 +20,10 @@ const tags = [
 <header class="flex flex-col gap-3 text-center centered-header sm:text-left">
   <h1 class="text-3xl text-neutral-1000 dark:text-neutral-0 sm:text-4xl">{post.data.title}</h1>
   <div class="text-neutral-800 dark:text-neutral-200">
-    by <address class="inline font-bold not-italic text-neutral-1000 dark:text-neutral-0">
+    by&nbsp;<address class="inline font-bold not-italic text-neutral-1000 dark:text-neutral-0">
       {post.data.author}
     </address>
-    <Bullet />on <time
+    <Bullet />on&nbsp;<time
       datetime={post.data.date.toISOString().split('T')[0]}
       class="font-bold text-neutral-1000 dark:text-neutral-0"
       >{
@@ -34,8 +34,9 @@ const tags = [
           year: 'numeric',
         })
       }</time
-    ><Bullet /><span class="font-bold text-neutral-1000 dark:text-neutral-0">{readingTime} min</span
-    > read
+    ><Bullet /><span class="font-bold text-neutral-1000 dark:text-neutral-0"
+      >{readingTime}&nbsp;min</span
+    >&nbsp;read
   </div>
   <ul class="flex flex-wrap justify-center gap-4 sm:justify-start">
     {
