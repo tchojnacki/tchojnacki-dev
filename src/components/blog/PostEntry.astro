@@ -1,0 +1,46 @@
+---
+import { ArrowRight } from 'tabler-icons-react'
+import type { Post } from '~/utils/content'
+
+interface Props {
+  heading: number
+  post: Post
+}
+
+const { heading, post } = Astro.props
+
+const H = `h${heading}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+---
+
+<article>
+  <a class="group block max-w-[60ch] p-4" href={`/blog/${post.slug}`}>
+    <H
+      class="text-xl font-bold text-purple-700 duration-200 group-hover:text-neutral-1000 group-hover:underline dark:text-purple-300 dark:group-hover:text-neutral-0"
+    >
+      {post.data.title}
+    </H>
+    <time class="text-sm" datetime={post.data.date.toISOString().split('T')[0]}
+      >{
+        post.data.date.toLocaleDateString('en-US', {
+          weekday: undefined,
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric',
+        })
+      }</time
+    >
+    <p
+      class="my-2 text-justify text-sm text-neutral-700 duration-200 group-hover:text-neutral-900 dark:text-neutral-300 dark:group-hover:text-neutral-100"
+    >
+      {post.data.abstract}
+    </p>
+    <div
+      class="flex items-center gap-1 text-sm font-bold leading-none text-neutral-1000 dark:text-neutral-0"
+    >
+      Read more <ArrowRight
+        className="inline-block opacity-0 group-hover:opacity-100 duration-200 stroke-neutral-1000 dark:stroke-neutral-0"
+        size="16"
+      />
+    </div>
+  </a>
+</article>

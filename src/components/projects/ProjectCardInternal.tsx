@@ -49,7 +49,7 @@ function Tag({ tag, small }: TagProps) {
     <li
       style={{ backgroundColor }}
       className={clsx(
-        'text-neutral-100 block whitespace-nowrap rounded-full',
+        'block whitespace-nowrap rounded-full text-neutral-100',
         small ? 'px-2 text-sm' : 'px-3',
       )}
     >
@@ -118,9 +118,9 @@ export default function ProjectCardInternal({
       <div
         className={clsx(
           'relative aspect-[4/3]',
-          flipped ? 'onenter-fromright lg:col-start-4' : 'onenter-fromleft lg:col-start-1',
+          flipped ? 'lg:col-start-4 lg:onenter-fromright' : 'lg:col-start-1 lg:onenter-fromleft',
           'overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl',
-          'lg:shadow-indigo-925/25 dark:lg:shadow-indigo-100/10 shadow-none lg:shadow-md',
+          'shadow-none lg:shadow-md lg:shadow-indigo-925/25 dark:lg:shadow-indigo-100/10',
           'scale-100 duration-200 ease-in',
           isActive && 'lg:scale-105',
           isMounted ? 'animate-enteronload opacity-100 motion-reduce:animate-none' : 'opacity-0',
@@ -138,7 +138,7 @@ export default function ProjectCardInternal({
         />
         <div
           className={clsx(
-            'text-neutral-100 absolute left-0 top-0 grid h-full w-full grid-rows-[1fr]',
+            'absolute left-0 top-0 grid h-full w-full grid-rows-[1fr] text-neutral-100',
             flipped
               ? 'grid-cols-[1fr_auto] grid-areas-featured-project-flipped'
               : 'grid-cols-[auto_1fr] grid-areas-featured-project-normal',
@@ -178,8 +178,8 @@ export default function ProjectCardInternal({
         itemType="https://schema.org/SoftwareApplication"
         className={clsx(
           flipped
-            ? 'bg-gradient-to-l onenter-fromleft lg:col-start-1 lg:rounded-bl-none lg:rounded-tr-3xl'
-            : 'bg-gradient-to-r onenter-fromright lg:col-start-4 lg:rounded-br-none lg:rounded-tl-3xl',
+            ? 'bg-gradient-to-l lg:col-start-1 lg:rounded-bl-none lg:rounded-tr-3xl lg:onenter-fromleft'
+            : 'bg-gradient-to-r lg:col-start-4 lg:rounded-br-none lg:rounded-tl-3xl lg:onenter-fromright',
           'z-[1] flex flex-col rounded-b-3xl p-8 lg:col-span-5 lg:row-span-full',
           'from-indigo-100 to-indigo-100 lg:to-neudigo-50',
           'dark:from-indigo-925 dark:to-indigo-925 dark:lg:to-neudigo-950',
@@ -198,7 +198,7 @@ export default function ProjectCardInternal({
             ))}
           </ul>
         </H1>
-        <p itemProp="description" className="text-neutral-600 dark:text-neutral-400 text-justify">
+        <p itemProp="description" className="text-justify text-neutral-600 dark:text-neutral-400">
           {project.description}
         </p>
         {project.parts.map(({ name, skills: technologies, tags }) => (
@@ -220,8 +220,8 @@ export default function ProjectCardInternal({
                   <a
                     title={name}
                     href={`/skills/${id}`}
-                    className="bg-neutral-900/10 hover:bg-neutral-900/20 dark:bg-neutral-100/10 hover:dark:bg-neutral-100/20 flex flex-1 items-center justify-center
-                      gap-1 whitespace-nowrap rounded-full px-3 duration-200"
+                    className="flex flex-1 items-center justify-center gap-1 whitespace-nowrap rounded-full bg-neutral-900/10
+                      px-3 duration-200 hover:bg-neutral-900/20 dark:bg-neutral-100/10 hover:dark:bg-neutral-100/20"
                   >
                     <SimpleIconSvg
                       icon={icon ?? name}

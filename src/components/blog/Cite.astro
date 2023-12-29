@@ -1,0 +1,19 @@
+---
+import Link from '~/components/common/Link'
+
+interface Props {
+  ordinal: number | number[]
+}
+
+const { ordinal } = Astro.props
+const numbers = Array.isArray(ordinal) ? ordinal : [ordinal]
+---
+
+&nbsp;[{
+  numbers.map((n, i) => (
+    <>
+      <Link href={`#cite-${n}`}>{n}</Link>
+      {i !== numbers.length - 1 ? <>,&nbsp;</> : null}
+    </>
+  ))
+}]

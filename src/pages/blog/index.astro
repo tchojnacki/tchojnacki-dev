@@ -1,0 +1,54 @@
+---
+import PostList from '~/components/blog/PostList.astro'
+import Link from '~/components/common/Link'
+import Layout from '~/layouts/Layout.astro'
+import { getPosts } from '~/utils/content'
+import { keyComparator } from '~/utils/sorting'
+
+const posts = await getPosts()
+
+const allTags = [
+  ...new Set(
+    posts.flatMap(p => [
+      ...p.data.tags.map(tag => ({ tag, href: `/tags/${tag}` })),
+      ...p.data.skills.map(skill => ({ tag: skill.id, href: `/skills/${skill.id}` })),
+    ]),
+  ),
+]
+const tagCounts = Object.fromEntries(
+  allTags.map(({ tag }) => [
+    tag,
+    posts.filter(p => p.data.tags.includes(tag) || p.data.skills.some(({ id }) => id == tag))
+      .length,
+  ]),
+)
+const popularTags = [...allTags].sort(keyComparator(({ tag }) => tagCounts[tag], true))
+---
+
+<Layout name="Blog" description="List of all posts from the Tomasz Chojnacki's blog.">
+  <main
+    class="grid min-h-screen grid-cols-1 grid-rows-[repeat(3,auto)] grid-areas-blog-mobile md:grid-cols-[2fr,1fr] md:grid-rows-[auto,1fr] md:p-4 md:grid-areas-blog-desktop"
+  >
+    <header class="px-4 py-8 grid-in-header">
+      <h1 class="text-3xl font-bold text-neutral-1000 dark:text-neutral-0">Blog</h1>
+    </header>
+    <section class="py-4 grid-in-posts">
+      <h2 class="px-4 text-2xl text-neutral-1000 dark:text-neutral-0">Recent posts</h2>
+      <PostList heading={3} />
+    </section>
+    <aside class="p-4 grid-in-tags">
+      <h2 class="pb-3 text-2xl text-neutral-1000 dark:text-neutral-0">Popular tags</h2>
+      <nav>
+        <ul>
+          {
+            popularTags.map(({ tag, href }) => (
+              <li class="py-1">
+                <Link {href}>#{tag}</Link>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </aside>
+  </main>
+</Layout>

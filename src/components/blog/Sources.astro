@@ -1,0 +1,29 @@
+---
+import Link from '~/components/common/Link'
+
+type Source = { href: string; title: string }
+
+interface Props {
+  sources: Source[]
+}
+
+const { sources } = Astro.props
+---
+
+<section>
+  <ol class="mt-8 list-decimal pl-12 [counter-reset:cite]">
+    {
+      sources.map((s, i) => (
+        <li class="[counter-increment:cite]" id={`cite-${i + 1}`}>
+          <Link href={s.href}>{s.title}</Link>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  li::marker {
+    content: '[' counter(cite) '] ';
+  }
+</style>

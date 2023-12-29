@@ -1,23 +1,18 @@
 ---
-import { Link } from 'tabler-icons-react'
+import GithubSlugger from 'github-slugger'
 
 interface Props {
   text: string
-  slug?: string
 }
 
-const textToSlug = (text: string) => text.toLowerCase().replace(/\s+/g, '-')
+const slugger = new GithubSlugger()
 
-const { text, slug } = Astro.props
-const id = slug ?? textToSlug(text)
+const { text } = Astro.props
+const id = slugger.slug(text)
 ---
 
-<h2 {id} class="group flex items-center justify-center pt-4 text-center text-3xl font-bold">
-  <a class="px-10" href={`#${id}`}>
+<h2 {id} class="pt-4 text-center text-3xl font-bold text-neutral-1000 dark:text-neutral-0">
+  <a href={`#${id}`}>
     {text}
   </a>
-  <Link
-    role="presentation"
-    className="-order-1 -mr-8 opacity-0 group-hover:opacity-50 duration-200"
-  />
 </h2>

@@ -1,0 +1,340 @@
+---
+title: 'Evaluating Gleam with Advent of Code'
+author: 'Tomasz Chojnacki'
+date: 2023-12-29
+abstract: "I used this year's Christmas break to finally finish solving all the yearly Advent of Code puzzles in the Gleam programming language. This post describes my adventure with the language, its good sides and pain points."
+skills: ['gleam']
+tags: ['advent-of-code']
+---
+import Banner from '~/components/blog/Banner.astro'
+import Cite from '~/components/blog/Cite.astro'
+import Sources from '~/components/blog/Sources.astro'
+import Syntax from '~/components/blog/Syntax.astro'
+
+# Introduction
+
+I used this year's Christmas break to finally finish solving all the yearly Advent of Code puzzles
+in the Gleam programming language (and to [build this blog](/blog/hello-world)).
+
+Since this is posted a few days after the 2023 edition of Advent of Code, you might think that those
+were the puzzles I tackled. But in fact, I was solving the set from three years ago on the side for
+the last few months. I'm currently on my way to do all the puzzles from past years, using a
+different language for each year, and Gleam was my choice for 2020.
+
+## What is Gleam?
+
+Gleam is a friendly language for building type-safe systems that scale<Cite ordinal={1} />. It can
+run on the Erlang virtual machine (BEAM) and in JavaScript runtimes, with the former option being
+seemingly more popular. You can sort of think of it like a statically typed Elixir with a Rust-like
+syntax, but of course this simple functional language offers a lot more than that.
+
+<Banner kind="warning">
+  I've used versions v0.24 to v0.33 of the language inclusively, and you might notice, that they all
+  start with a zero. Gleam has not reached version v1.0 as of writing and it is likely to undergo
+  breaking changes in the future<Cite ordinal={2} />. If you are reading this post in the future,
+  it is possible that many things I'm talking about have changed.
+</Banner>
+
+## What is Advent of Code?
+
+Advent of Code is an Advent calendar of small programming puzzles<Cite ordinal={3} />. Basically,
+every December, you get a fun coding challenge daily for the first 25 days. Each puzzle consists
+of two parts, and you can preview the second one only after solving the first, easier one.
+
+There's a [global leaderboard](https://adventofcode.com/2023/leaderboard), and you can also create
+your own custom leaderboards and invite people to them. However, I was never really focused on the
+competitive aspect of the challenge, and prefer to learn new things using the puzzles. The calendar
+is a great way to brush up your data structures & algorithms knowledge, but also to learn new
+languages and tools.
+
+# My thoughts on Gleam
+
+I've written over [3000 lines of Gleam](https://github.com/tchojnacki/advent-of-code/tree/main/aoc-2020-gleam)
+during the challenge, so there's a lot to talk about. To keep it somewhat manageable, I've divided
+my comments into different categories.
+
+I won't be going in-depth on the basics, since there are other great resources available online.
+This post would ideally be directed at someone who has already read the
+[Gleam language tour](https://gleam.run/book/tour) at least once.
+
+## The good
+
+### Nothing is special
+
+Nowadays, many languages introduce features based around some particular type being "special". For
+instance, you might have a built-in operator, based on result types, which redirects control flow
+in case of an error. Some languages have different casing rules for different types, e.g. using
+PascalCase for structures and lowercase for primitives. You could even go further and say, that
+booleans are "special" in most programming languages, since all control flow primitives are based
+on them.
+
+Gleam has none of that, and surprisingly, it feels great.
+
+The `Bool` type in Gleam is defined as follows<Cite ordinal={4} />:
+
+<Syntax lang="gleam" code={`
+pub type Bool {
+  True
+  False
+}
+`} />
+
+It's **just** a type with two constructors, or in other words - a sum type. It isn't treated specially
+by conditional statements, since there are no `if`s and `else`s in the language. Pretty much all
+control flow is done through the `case` expression, which does pattern matching. It supports bools,
+since it supports **all** types - there's no magic involved.
+
+As a side note, there's also no expression grouping with parentheses. Since Gleam is
+expression-based, every block yields a value. This means that `3 * ( 2 + 1 )` is redundant, since we
+can just use `3 * { 2 + 1 }` instead.
+
+### The `use` expression
+
+It's basically the `with` statement from Python, but actually good.
+
+The `use` expression is Gleam's solution to the "callback hell" problem. It's basically a piece
+of syntax sugar, which turns all the following expressions into an anonymous function that gets
+passed as the last argument of the `use`d function<Cite ordinal={5} />. This explanation is a
+mouthful, so let's just see the code instead:
+
+<Syntax lang="gleam" code={`
+// This:
+use x <- resource()
+io.println("Hello")
+
+// Is equivalent to this:
+resource(fn (x) {
+  io.println("Hello")
+})
+`} />
+
+The anonymous function can have multiple parameters, or none at all. And the `resource` may call other
+code before or after calling the anonymous function, or it may not call it at all.
+
+This might initially feel useless, but this simple construct can actually model surprisingly many
+features commonly included in other languages, for instance:
+
+<Syntax lang="gleam" code={`
+// Guard clause / early return
+use <- bool.guard(when: number == 0, return: 1)
+
+// Java's try-with-resources
+use f <- file.open("data.txt")
+
+// Go's defer
+use <- defer(fn() { io.println("Cleaning up...") })
+
+// Zig's try
+use value <- use result.try(dict.get(key))
+
+// Scala's for comprehensions
+set.from_list({
+  use x <- list.flat_map([-1, 0, 1])
+  use y <- list.map([-1, 0, 1])
+  #(x, y)
+})
+`} />
+
+### Approach to mutability
+
+While imperative programming languages tend to represent program state with mutable variables,
+functional languages are much more creative. Clojure has atoms, Haskell has monads, OCaml has
+refs...
+
+But in my option, the most elegant way to handle state in functional languages is the model
+popularized by languages running on the BEAM. In it, you spawn a lightweight process that exposes
+its state via messages and infinitely recurses on itself with the current state<Cite ordinal={7} />.
+
+You can actually solve most problems using just some data, recursive functions and the standard
+library. From what I understand, the presented model should be seen as an escape hatch, rather than
+a common occurrence. I've only used this once during the entire challenge, and in hindsight I didn't
+have to. But when I actually did, many of Gleam's features came together to form an extremely satisfying result -
+[cache.gleam](https://github.com/tchojnacki/advent-of-code/blob/main/aoc-2020-gleam/src/util/cache.gleam).
+
+The API linked above might look like a bunch of boilerplate - and it mostly is, but it's obviously something
+that would be written only once and then used many times. Here's how the introduced type could be used:
+
+<Syntax lang="gleam" code={`
+fn part2(numbers: List(Int)) -> Int {
+  let adapters = process_adapters(numbers)
+  let assert Ok(device_joltage) = list.last(adapters)
+  // The use expression keeps the code flat,
+  // and cleans up the cache when \`part2\`'s scope ends
+  use cache <- cache.create() 
+  arrangements(device_joltage, adapters, cache)
+}
+
+fn arrangements(number: Int, adapters: List(Int), cache: Cache(Int, Int)) -> Int {
+  use <- bool.guard(when: number == 0, return: 1)
+  use <- bool.guard(when: !list.contains(adapters, number), return: 0)
+  // The use expression "skips" the computation below
+  // if \`number\` is found in cache, otherwise it
+  // calculates the result and saves it in the cache
+  use <- cache.memoize(with: cache, this: number)
+
+  list.range(from: 1, to: max_increase)
+  |> list.map(with: fn(j) { arrangements(number - j, adapters, cache) })
+  |> int.sum
+}
+`} />
+
+### The documentation
+
+The documentation of the language is great for its age. The stdlib has a clean and concise reference,
+there's a language tour going over its most important features, and you can find many more official
+resources, such as a FAQ page or many "Gleam for X users" cheatsheets.
+
+Many languages could learn a thing or two from Gleam regarding this aspect.
+
+## The bad
+
+### Young language quirks
+
+There's generally not a lot of libraries available yet. You can interoperate with other BEAM
+languages, and the experience is quite good, but it always feels better to use packages native
+to Gleam.
+
+The formatter can sometimes act really weirdly, it used to constantly crash half a year ago, but
+that doesn't seem to be an issue anymore. Compilation error recovery could also be a bit better,
+you can generally only see one error at a time.
+
+As you might expect, there's not a lot of commercial use. Elixir is pretty niche itself, and Gleam
+goes a step further, since it's much younger.
+
+I actually had to build [my own parser combinator library](https://github.com/tchojnacki/advent-of-code/blob/main/aoc-2020-gleam/src/util/parser.gleam)
+for use in the puzzles, since none of the published ones satisfied all of my needs. It's not
+really production ready, but it does its job and was good enough for the challenge. Regardless, it
+shows that thanks to the `|>` operator, such code can look quite nice in Gleam, despite no
+operator overloading:
+
+<Syntax lang="gleam" code={`
+let instruction_parser =
+  p.literal("mask = ")
+  |> p.proceed(with: p.any_str_greedy())
+  |> p.map(with: ChangeMask)
+  |> p.or(
+    p.literal("mem[")
+    |> p.proceed(with: p.int())
+    |> p.skip(p.literal("] = "))
+    |> p.then(p.int())
+    |> p.map2(with: SetMem),
+  )
+`} />
+
+### Low discoverability
+
+My biggest problem with Gleam isn't even directly related to the language itself - it's really
+painful to search for anything related to the ecosystem.
+
+For instance, searching "gleam" shows the language as the 14th result in DuckDuckGo and the 7th in
+Google. The query "gleam faq" displays the correct page as the 7th link in DuckDuckGo and the 4th
+in Google. As for the "gleam list" search, the documentation shows up 5th in DuckDuckGo and 6th in
+Google.
+
+I generally started going directly to [gleam.run](https://gleam.run) and navigating the links from
+there, since otherwise I tend to spend more time looking for the correct page, than reading it.
+
+## The... ugly?
+
+### The `Option` type
+
+Gleam once had only the `Result(value, reason)` type with the `Ok(value)` and `Error(reason)`
+constructors. Optional values were represented as `Result(t, Nil)`, where `Nil` is the type with
+only one value (also called `Nil`) and `t` represents some generic type. This was pretty elegant,
+and if a type alias `type Option(t) = Result(t, Nil)` was introduced, I would even call it perfect.
+
+This convention for representing optional values is really common in the Gleam standard library.
+For example, the `dict.get` function returns `Result(b, Nil)`, and so does `list.find`.
+
+And then, the previously mentioned `Option(a)` type was introduced. However, it was not a type alias,
+but rather a completely separate type. All the functions in the standard library still return `Result`,
+and `Option` constructors have to be explicitly imported, as opposed to the `Result`, which is included
+in the prelude.
+
+The _resulting_ situation is pretty awkward. You feel pressured to use the `Option` type, but you
+have to explicitly map it back and forth every time you use the stdlib. I feel like Gleam should
+have gone either all-in and changed all relevant functions to use `Option` instead, or preferably,
+never introduced this type as a separate construct.
+
+### Lack of interfaces
+
+Gleam has no interfaces, protocols, traits, type classes or any other similar feature. It's not
+necessarily a bad thing, since they don't actually allow you to express anything new<Cite ordinal={6} />.
+This omission seems nice, and mostly is, but it can also lead to verbosity.
+
+For instance, every time you want to sort a list, you have to explicitly pass a comparator, since
+there's no `Ord` trait. If you want to stringify a generic type (similar to Rust's `Debug`), you
+have to call `string.inspect`, which calls an external, platform-specific built-in function.
+
+A distinct, yet somewhat related topic is function disparity between different modules. There's
+`list.filter_map`, but not `iterator.filter_map`. Same with `list.window`. There's no
+`bool.lazy_guard` alternative to `bool.guard`, even though both `result.unwrap` and `result.lazy_unwrap`
+exist. Sets have unions and intersections, but they somehow can't be subtracted.
+
+### Other small things
+
+There's no built-in function to take a `Result`'s value or panic if missing (`unwrap`/`expect` from
+Rust), although you can implement such function yourself with pattern matching. This seems to go
+against the "let it crash" philosophy of BEAM, but I understand why you could see it as an antipattern.
+
+Patterns, even irrefutable, can't be used in lambda definitions, e.g. you can't do
+`list.map(indexed, fn (#(value, index)) { todo })` to map a list of pairs.
+
+It feels like parameters without explicit labels should take the parameter's name as a label instead.
+For instance, `regex.from_string` in `gleam/regex` has the following parameter: `pattern: String`,
+but you can't call it like `regex.from_string(pattern: "abcd")`, unless the parameter was defined
+as `pattern pattern: String`, which looks awfully. It's especially weird, since types can be
+constructed with labels taken from the constructor parameter names, like `Person(name: "Mark")`.
+
+You can't do inner/nested functions. You can create anonymous local functions, but they can't be
+called recursively. This leads to many of Gleam's standard library utilities being written as two
+top-level functions, `something` and `do_something`. The former one is public and has pleasant API,
+while the latter takes extra arguments, such as loop counters and is private. This means you have to
+explicitly pass all the arguments to the helper function, even those which are constant.
+
+# Conclusion
+
+**I love Gleam, but it's still a bit rough around the edges.**
+
+It's worth highlighting how fast the project actually moves. I've been noting down my main pain
+points over the months, and over 90% of problems were fixed before I got around to write this post.
+It seems that the language has a _gleaming_ future ahead of it.
+
+<Banner kind="info">
+  If you want to support the Gleam project, you can learn more about the language on
+  [its home page](https://gleam.run), or maybe even [sponsor it](https://github.com/sponsors/lpil).
+  I am in no way affiliated with the project.
+</Banner>
+
+<Sources
+  sources={[
+    {
+      href: 'https://gleam.run',
+      title: 'Gleam'
+    },
+    {
+      href: 'https://gleam.run/frequently-asked-questions',
+      title: 'Frequently asked questions - Gleam'
+    },
+    {
+      href: 'https://adventofcode.com/2023/about',
+      title: 'About - Advent of Code'
+    },
+    {
+      href: 'https://gleam.run/book/tour/custom-types.html',
+      title: 'Custom types - The Gleam Book'
+    },
+    {
+      href: 'https://gleam.run/news/v0.25-introducing-use-expressions',
+      title: 'Introducing use expressions! - Gleam'
+    },
+    {
+      href: 'https://mckayla.blog/posts/all-you-need-is-data-and-functions.html',
+      title: 'All you need is data and functions'
+    },
+    {
+      href: 'https://github.com/WhiteRookPL/learn-elixir-the-hard-way/blob/master/docs/concurrency-and-actor-model.md',
+      title: 'Concurrency and Actor Model - Learn Elixir The Hard Way'
+    }
+  ]}
+/>

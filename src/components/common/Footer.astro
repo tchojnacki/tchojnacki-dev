@@ -8,17 +8,12 @@ const linkClass = 'duration-200 hover:text-neutral-1000 hover:underline hover:da
 
 const entries = [routes.about, routes.projects, routes.blog]
 
-const projectLinks = [
-  { href: 'https://github.com/tchojnacki/tchojnacki-dev', label: 'Source' },
-  { href: 'https://github.com/tchojnacki/tchojnacki-dev/issues', label: 'Issues' },
-]
-
 const socials = await getSocials()
 ---
 
 <Wave className="!max-h-32" />
 <footer
-  class="bg-indigo-100 dark:bg-indigo-925 text-neutral-600 dark:text-neutral-400 px-8 text-sm"
+  class="bg-indigo-100 px-8 text-sm text-neutral-600 dark:bg-indigo-925 dark:text-neutral-400"
 >
   <section class="flex flex-col justify-center text-center sm:flex-row sm:gap-32 sm:text-left">
     <ul>
@@ -44,16 +39,20 @@ const socials = await getSocials()
       }
     </ul>
     <ul>
-      <a href="/sitemap" class={linkClass}>Sitemap</a>
-      {
-        projectLinks.map(({ href, label }) => (
-          <li>
-            <a {href} class={linkClass} target="_blank" rel="noreferrer">
-              {label}
-            </a>
-          </li>
-        ))
-      }
+      <li>
+        <a href="/sitemap" class={linkClass}>Sitemap</a>
+      </li>
+      <li>
+        <a href="/rss.xml" class={linkClass}>RSS Feed</a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/tchojnacki/tchojnacki-dev"
+          target="_blank"
+          rel="noreferrer"
+          class={linkClass}>Source & Issues</a
+        >
+      </li>
     </ul>
   </section>
   <section>

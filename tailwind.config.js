@@ -15,11 +15,11 @@ export default {
         // 50: '#fafafa',
         100: '#f5f5f5',
         200: '#e5e5e5',
-        // 300: '#d4d4d4',
+        300: '#d4d4d4',
         400: '#a3a3a3',
         // 500: '#737373',
         600: '#525252',
-        // 700: '#404040',
+        700: '#404040',
         800: '#262626',
         900: '#171717',
         // 950: '#0a0a0a',
@@ -48,6 +48,12 @@ export default {
         300: '#d8b4fe',
         700: '#7e22ce',
       },
+      amber: {
+        500: '#f59e0b',
+      },
+      sky: {
+        500: '#0ea5e9',
+      },
     },
     fontFamily: {
       sans: ['"Inter Variable"', 'Inter', ...defaultTheme.fontFamily.sans],
@@ -61,6 +67,8 @@ export default {
       'landing-mobile': ['text', 'sphere', '.'],
       'featured-project-normal': ['buttons .'],
       'featured-project-flipped': ['. buttons'],
+      'blog-desktop': ['header .', 'posts tags'],
+      'blog-mobile': ['header', 'posts', 'tags'],
     },
     keyframes: {
       errshake: {
@@ -107,9 +115,6 @@ export default {
   },
   plugins: [
     /** @type {any} */ (gridAreas),
-    plugin(({ addVariant }) => {
-      addVariant('pseudo', ['&::before', '&::after'])
-    }),
     plugin(({ addUtilities }) => {
       addUtilities({
         '.onenter-fromleft': {
@@ -123,6 +128,12 @@ export default {
         },
         '.onenter-scaling': {
           '--enter-transform': 'scale(0.75)',
+        },
+        '.centered-header': {
+          'box-sizing': 'content-box',
+          'max-width': '70ch',
+          margin: '0 auto',
+          padding: '4rem 1rem',
         },
       })
     }),

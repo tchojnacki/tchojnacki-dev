@@ -1,7 +1,6 @@
 ---
 import * as ICONS from 'simple-icons'
 
-import LinkButton from '~/components/common/LinkButton'
 import Wave from '~/components/common/Wave.astro'
 import SimpleIconSvg from '~/components/common/SimpleIconSvg'
 import { getSkills, techSphereSkillIds, getSocials } from '~/utils/content'
@@ -27,14 +26,13 @@ const socials = await getSocials()
     <p class="text-2xl font-bold">
       Hello&nbsp;<WavingEmoji client:idle />, my name is
     </p>
-    <h1 class="text-indigo-700 dark:text-indigo-300 text-5xl font-bold leading-tight">
+    <h1 class="text-5xl font-bold leading-tight text-indigo-700 dark:text-indigo-300">
       Tomasz Chojnacki
     </h1>
-    <p class="text-neutral-600 dark:text-neutral-400 mb-16 mt-6 inline-block text-2xl">
+    <p class="mb-16 mt-6 inline-block text-2xl text-neutral-600 dark:text-neutral-400">
       I am a software developer.
     </p>
     <nav class="flex items-center justify-center gap-8 lg:justify-start">
-      <LinkButton href="/projects">View projects...</LinkButton>
       {
         socials.map(({ label, href, icon }) => (
           <a

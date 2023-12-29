@@ -1,0 +1,27 @@
+---
+import { Code } from 'astro:components'
+
+interface Props {
+  code: string
+  lang: string
+}
+
+const { code: rawCode, lang: rawLang } = Astro.props
+
+const code = rawCode.replace(/(^\n+)|(\n+$)/, '')
+
+const lang: any = (() => {
+  switch (rawLang) {
+    case 'gleam':
+      return {
+        id: 'gleam',
+        scopeName: 'source.gleam',
+        path: '../../src/assets/langs/gleam.tmLanguage.json',
+      }
+    default:
+      return rawLang
+  }
+})()
+---
+
+<div class="my-2 rounded-md bg-[#24292e] p-2"><Code {code} {lang} /></div>

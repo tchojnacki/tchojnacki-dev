@@ -1,14 +1,13 @@
 ---
 import LinkButton from '~/components/common/LinkButton'
 import ProjectList from '~/components/projects/ProjectList.astro'
-
-import SectionHeader from '../common/SectionHeader.astro'
+import SectionHeader from '~/components/common/SectionHeader.astro'
 ---
 
 <section>
   <SectionHeader text="Featured projects" />
   <ProjectList heading={3} length={3} />
   <div class="flex justify-center">
-    <LinkButton href="/projects">View All Projects</LinkButton>
+    <LinkButton href="/projects">View all projects</LinkButton>
   </div>
 </section>
