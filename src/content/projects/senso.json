@@ -1,7 +1,7 @@
 {
   "name": "Senso",
   "description": "Group project built for my BSc thesis.",
-  "image": "~/assets/projects/placeholder.png",
+  "image": "~/assets/projects/senso.png",
   "tags": ["university", "group"],
   "links": [
     { "type": "github", "repo": "senso-frontend", "owner": "zpi-2023", "part": "App" },
