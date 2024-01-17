@@ -1,6 +1,3 @@
-// @ts-check
-
-import defaultTheme from 'tailwindcss/defaultTheme'
 import plugin from 'tailwindcss/plugin'
 import gridAreas from '@savvywombat/tailwindcss-grid-areas'
 
@@ -54,9 +51,6 @@ export default {
       sky: {
         500: '#0ea5e9',
       },
-    },
-    fontFamily: {
-      sans: ['"Inter Variable"', 'Inter', ...defaultTheme.fontFamily.sans],
     },
     fontWeight: {
       normal: '400',
