@@ -1,5 +1,5 @@
 ---
-import '@fontsource-variable/inter'
+import { AstroFont } from 'astro-font'
 import { SEO } from 'astro-seo'
 
 const DEFAULT_TITLE = 'Tomasz Chojnacki'
@@ -69,9 +69,22 @@ const image = new URL('/static/img/open-graph.png', Astro.site).toString()
         scroll-behavior: smooth;
       }
     </style>
+    <AstroFont
+      config={[
+        {
+          src: [],
+          name: "Inter",
+          preload: false,
+          display: "swap",
+          fallback: "sans-serif",
+          selector: ".font-inter",
+          googleFontsURL: 'https://fonts.googleapis.com/css2?family=Inter:wght@100..900',
+        },
+      ]}
+    />
   </head>
   <body
-    class="overflow-x-hidden bg-neudigo-50 text-neutral-900 dark:bg-neudigo-950 dark:text-neutral-100"
+    class="overflow-x-hidden bg-neudigo-50 text-neutral-900 dark:bg-neudigo-950 dark:text-neutral-100 font-inter"
   >
     <slot />
   </body>
