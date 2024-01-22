@@ -30,7 +30,7 @@ syntax, but of course this simple functional language offers a lot more than tha
 
 <Banner kind="warning">
   I've used versions v0.24 to v0.33 of the language inclusively, and you might notice, that they all
-  start with a zero. Gleam has not reached version v1.0 as of writing and it is likely to undergo
+  start with a zero. Gleam has not reached version v1.0 as of writing, and it is likely to undergo
   breaking changes in the future<Cite ordinal={2} />. If you are reading this post in the future,
   it is possible that many things I'm talking about have changed.
 </Banner>
@@ -147,7 +147,7 @@ its state via messages and infinitely recurses on itself with the current state<
 
 You can actually solve most problems using just some data, recursive functions and the standard
 library. From what I understand, the presented model should be seen as an escape hatch, rather than
-a common occurrence. I've only used this once during the entire challenge, and in hindsight I didn't
+a common occurrence. I've only used this once during the entire challenge, and in hindsight, I didn't
 have to. But when I actually did, many of Gleam's features came together to form an extremely satisfying result -
 [cache.gleam](https://github.com/tchojnacki/advent-of-code/blob/main/aoc-2020-gleam/src/util/cache.gleam).
 
@@ -182,7 +182,7 @@ fn arrangements(number: Int, adapters: List(Int), cache: Cache(Int, Int)) -> Int
 
 The documentation of the language is great for its age. The stdlib has a clean and concise reference,
 there's a language tour going over its most important features, and you can find many more official
-resources, such as a FAQ page or many "Gleam for X users" cheatsheets.
+resources, such as a FAQ page or many "Gleam for X users" cheat sheets.
 
 Many languages could learn a thing or two from Gleam regarding this aspect.
 
@@ -266,7 +266,7 @@ For instance, every time you want to sort a list, you have to explicitly pass a 
 there's no `Ord` trait. If you want to stringify a generic type (similar to Rust's `Debug`), you
 have to call `string.inspect`, which calls an external, platform-specific built-in function.
 
-A distinct, yet somewhat related topic is function disparity between different modules. There's
+A distinct, yet somewhat related, topic is function disparity between different modules. There's
 `list.filter_map`, but not `iterator.filter_map`. Same with `list.window`. There's no
 `bool.lazy_guard` alternative to `bool.guard`, even though both `result.unwrap` and `result.lazy_unwrap`
 exist. Sets have unions and intersections, but they somehow can't be subtracted.
@@ -274,7 +274,7 @@ exist. Sets have unions and intersections, but they somehow can't be subtracted.
 ### Other small things
 
 There's no built-in function to take a `Result`'s value or panic if missing (`unwrap`/`expect` from
-Rust), although you can implement such function yourself with pattern matching. This seems to go
+Rust), although you can implement such a function yourself with pattern matching. This seems to go
 against the "let it crash" philosophy of BEAM, but I understand why you could see it as an antipattern.
 
 Patterns, even irrefutable, can't be used in lambda definitions, e.g. you can't do
