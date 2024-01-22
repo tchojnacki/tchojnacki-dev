@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { jaccard, calculateRelatedSkills } from '~/logic'
+import { jaccard, calculateRelatedSkills } from '~/logic/relatedSkills'
 import type { Project, ProjectId, Skill, SkillId } from '~/utils/content'
 
 describe(jaccard, () => {
