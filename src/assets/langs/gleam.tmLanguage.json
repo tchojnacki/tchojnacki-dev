@@ -1,6 +1,8 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "name": "Gleam",
+  "name": "gleam",
+  "id": "gleam",
+  "aliases": ["gleam"],
   "patterns": [
     {
       "include": "#comments"
@@ -86,7 +88,7 @@
       "patterns": [
         {
           "name": "comment.line.gleam",
-          "match": "\/\/.*"
+          "match": "//.*"
         }
       ]
     },

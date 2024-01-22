@@ -1,3 +1,5 @@
+// @ts-check
+
 import plugin from 'tailwindcss/plugin'
 import gridAreas from '@savvywombat/tailwindcss-grid-areas'
 
