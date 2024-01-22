@@ -1,4 +1,5 @@
 ---
+// @ts-ignore
 import { AstroFont } from 'astro-font'
 import { SEO } from 'astro-seo'
 
@@ -12,7 +13,7 @@ interface Props {
 }
 
 const { name, description = DEFAULT_DESCRIPTION } = Astro.props
-const title = name ? `${name} | ${DEFAULT_TITLE}` : DEFAULT_TITLE
+const title = name ? `${name} - ${DEFAULT_TITLE}` : DEFAULT_TITLE
 const image = new URL('/static/img/open-graph.png', Astro.site).toString()
 ---
 
@@ -73,18 +74,18 @@ const image = new URL('/static/img/open-graph.png', Astro.site).toString()
       config={[
         {
           src: [],
-          name: "Inter",
+          name: 'Inter',
           preload: false,
-          display: "swap",
-          fallback: "sans-serif",
-          selector: ".font-inter",
+          display: 'swap',
+          fallback: 'sans-serif',
+          selector: '.font-inter',
           googleFontsURL: 'https://fonts.googleapis.com/css2?family=Inter:wght@100..900',
         },
       ]}
     />
   </head>
   <body
-    class="overflow-x-hidden bg-neudigo-50 text-neutral-900 dark:bg-neudigo-950 dark:text-neutral-100 font-inter"
+    class="font-inter overflow-x-hidden bg-neudigo-50 text-neutral-900 dark:bg-neudigo-950 dark:text-neutral-100"
   >
     <slot />
   </body>

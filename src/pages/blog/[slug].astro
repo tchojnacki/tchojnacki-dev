@@ -21,7 +21,7 @@ const {
 } = await post.render()
 ---
 
-<Layout name={`"${post.data.title}"`} description={post.data.abstract}>
+<Layout name={post.data.title} description={post.data.abstract}>
   <main class="min-h-screen">
     <article>
       <PostHeader {post} {readingTime} />
