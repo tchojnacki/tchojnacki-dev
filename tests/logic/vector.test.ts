@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { v2scale, v2sub, v2add, v3dot, v3cross, v3len, v3scale, v3add, v3sub } from '~/logic'
+import { v2scale, v2sub, v2add, v3dot, v3cross, v3len, v3scale, v3add, v3sub } from '~/logic/vector'
 
 describe(v2scale, () => {
   it.each([

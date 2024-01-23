@@ -6,7 +6,7 @@ import {
   pointerToSpherePoint,
   rotateAroundUnitVector,
   worldToCamera,
-} from '~/logic'
+} from '~/logic/techSphere'
 
 describe(rotateAroundUnitVector, () => {
   it.each([
