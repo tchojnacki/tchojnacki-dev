@@ -11,18 +11,18 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "astro": "^3.6.4",
+    "astro": "^4.2.3",
     "clsx": "^2.1.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "simple-icons": "^9.21.0",
+    "simple-icons": "^11.2.0",
     "tabler-icons-react": "^1.56.0",
     "twemoji": "^14.0.2"
   },
   "devDependencies": {
     "@astrojs/check": "^0.4.1",
-    "@astrojs/mdx": "^1.1.5",
+    "@astrojs/mdx": "^2.0.6",
     "@astrojs/react": "^3.0.9",
     "@astrojs/rss": "^4.0.3",
     "@astrojs/sitemap": "^3.0.5",
