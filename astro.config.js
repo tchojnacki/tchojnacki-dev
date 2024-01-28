@@ -13,6 +13,7 @@ import { remarkReadingTime } from './src/utils/readingTime'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://tchojnacki.dev',
+  trailingSlash: 'never',
   integrations: [tailwind(), react(), mdx(), sitemap(), robotsTxt(), compress()],
   markdown: {
     remarkPlugins: [remarkReadingTime],
