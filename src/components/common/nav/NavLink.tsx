@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { canonize } from '~/utils/canonize'
 
 interface NavLinkProps {
   href: string
@@ -15,7 +16,7 @@ export default function NavLink({ href, children, pathname, className }: NavLink
         className,
         'block duration-200',
         pathsMatch(href, pathname)
-          ? 'text-neutral-900 dark:text-neutral-100 font-bold'
+          ? 'font-bold text-neutral-900 dark:text-neutral-100'
           : 'text-neutral-600 dark:text-neutral-400 ',
       )}
     >
@@ -25,8 +26,6 @@ export default function NavLink({ href, children, pathname, className }: NavLink
 }
 
 function pathsMatch(t: string, c: string): boolean {
-  const canonize = (path: string) => path.replace(/(^[/\\]+|[/\\]+$)/g, '').replace(/[/\\]+/g, '/')
-
   const target = canonize(t)
   const current = canonize(c)
 
