@@ -10,6 +10,7 @@ export function GET(context: APIContext) {
     description: 'A personal blog of Tomasz Chojnacki centered around software development.',
     site: context.site!,
     stylesheet: '/static/pretty-feed-v3.xsl',
+    trailingSlash: false,
     items: posts.map(p => ({
       title: p.data.title,
       pubDate: p.data.date,

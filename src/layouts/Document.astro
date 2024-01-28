@@ -2,6 +2,7 @@
 // @ts-ignore
 import { AstroFont } from 'astro-font'
 import { SEO } from 'astro-seo'
+import { canonize } from '~/utils/canonize'
 
 const DEFAULT_TITLE = 'Tomasz Chojnacki'
 const DEFAULT_DESCRIPTION =
@@ -15,6 +16,7 @@ interface Props {
 const { name, description = DEFAULT_DESCRIPTION } = Astro.props
 const title = name ? `${name} - ${DEFAULT_TITLE}` : DEFAULT_TITLE
 const image = new URL('/static/img/open-graph.png', Astro.site).toString()
+const canonical = canonize(Astro.url.href)
 ---
 
 <!doctype html>
@@ -23,12 +25,14 @@ const image = new URL('/static/img/open-graph.png', Astro.site).toString()
     <SEO
       {title}
       {description}
+      {canonical}
       charset="UTF-8"
       openGraph={{
         basic: {
           title,
           type: 'website',
           image,
+          url: canonical,
         },
         optional: {
           description,
