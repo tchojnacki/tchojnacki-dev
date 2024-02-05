@@ -79,10 +79,10 @@ pub type Bool {
 }
 `} />
 
-It's **just** a type with two constructors, or in other words - a sum type. It isn't treated specially
+It's **just** a type with two constructors, or in other words &ndash; a sum type. It isn't treated specially
 by conditional statements, since there are no `if`s and `else`s in the language. Pretty much all
 control flow is done through the `case` expression, which does pattern matching. It supports bools,
-since it supports **all** types - there's no magic involved.
+since it supports **all** types &ndash; there's no magic involved.
 
 As a side note, there's also no expression grouping with parentheses. Since Gleam is
 expression-based, every block yields a value. This means that `3 * ( 2 + 1 )` is redundant, since we
@@ -148,10 +148,10 @@ its state via messages and infinitely recurses on itself with the current state<
 You can actually solve most problems using just some data, recursive functions and the standard
 library. From what I understand, the presented model should be seen as an escape hatch, rather than
 a common occurrence. I've only used this once during the entire challenge, and in hindsight, I didn't
-have to. But when I actually did, many of Gleam's features came together to form an extremely satisfying result -
+have to. But when I actually did, many of Gleam's features came together to form an extremely satisfying result &ndash;
 [cache.gleam](https://github.com/tchojnacki/advent-of-code/blob/main/aoc-2020-gleam/src/util/cache.gleam).
 
-The API linked above might look like a bunch of boilerplate - and it mostly is, but it's obviously something
+The API linked above might look like a bunch of boilerplate &ndash; and it mostly is, but it's obviously something
 that would be written only once and then used many times. Here's how the introduced type could be used:
 
 <Syntax lang="gleam" code={`
@@ -223,7 +223,7 @@ let instruction_parser =
 
 ### Low discoverability
 
-My biggest problem with Gleam isn't even directly related to the language itself - it's really
+My biggest problem with Gleam isn't even directly related to the language itself &ndash; it's really
 painful to search for anything related to the ecosystem.
 
 For instance, searching "gleam" shows the language as the 14th result in DuckDuckGo and the 7th in
@@ -314,19 +314,19 @@ It seems that the language has a _gleaming_ future ahead of it.
     },
     {
       href: 'https://gleam.run/frequently-asked-questions',
-      title: 'Frequently asked questions - Gleam'
+      title: 'Frequently asked questions – Gleam'
     },
     {
       href: 'https://adventofcode.com/2023/about',
-      title: 'About - Advent of Code'
+      title: 'About – Advent of Code'
     },
     {
       href: 'https://gleam.run/book/tour/custom-types.html',
-      title: 'Custom types - The Gleam Book'
+      title: 'Custom types – The Gleam Book'
     },
     {
       href: 'https://gleam.run/news/v0.25-introducing-use-expressions',
-      title: 'Introducing use expressions! - Gleam'
+      title: 'Introducing use expressions! – Gleam'
     },
     {
       href: 'https://mckayla.blog/posts/all-you-need-is-data-and-functions.html',
@@ -334,7 +334,7 @@ It seems that the language has a _gleaming_ future ahead of it.
     },
     {
       href: 'https://github.com/WhiteRookPL/learn-elixir-the-hard-way/blob/master/docs/concurrency-and-actor-model.md',
-      title: 'Concurrency and Actor Model - Learn Elixir The Hard Way'
+      title: 'Concurrency and Actor Model – Learn Elixir The Hard Way'
     }
   ]}
 />

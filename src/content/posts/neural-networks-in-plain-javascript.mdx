@@ -1,0 +1,145 @@
+---
+title: 'Neural networks in plain JavaScript'
+author: 'Tomasz Chojnacki'
+date: 2024-02-05
+abstract: "Artificial neural networks can be thought of as a certain class of huge mathematical expressions. This thought is explored in this post, where we build a simple multi-layer perceptron in plain JavaScript, using a custom scalar automatic differentiation engine."
+skills: ['javascript']
+tags: ['artificial-intelligence']
+---
+import Cite from '~/components/blog/Cite.astro'
+import Sources from '~/components/blog/Sources.astro'
+import Syntax from '~/components/blog/Syntax.astro'
+import JsdocSwitch from '~/components/blog/neural-networks-in-plain-javascript/JsdocSwitch'
+import JsdocSyntax from '~/components/blog/neural-networks-in-plain-javascript/JsdocSyntax.astro'
+import SimpleScalarExample from '~/components/blog/neural-networks-in-plain-javascript/SimpleScalarExample'
+
+# Introduction
+
+> What I cannot create, I do not understand.
+
+Artificial neural networks may seem terrifying. Wikipedia defines them as "models that are built
+using principles of neuronal organization discovered by connectionism in the biological neural
+networks constituting animal brains"<Cite ordinal={1} />. While mostly accurate, this definition does not
+really help you understand how these constructs work. A description which is much less mysterious, is that
+artificial neural networks are, at their core, a **certain class of huge mathematical expressions**.
+
+That's why in this post, we will build a simple neural network in plain JavaScript, keeping this
+approach in mind. We will start with the smallest building blocks &ndash; numbers, and then we will
+gradually compose them into neurons, layers, and finally, a multi-layer perceptron.
+
+The code built in this post is used purely for educational purposes. In particular, the final library
+is not optimized for performance, nor is it suitable for production use. I will use the simplest (and
+not always the best) algorithms to keep the topic as simple as possible. If you are seeking a mature
+neural network library for JS, I'd recommend looking at [TensorFlow.js](https://www.tensorflow.org/js).
+
+## Related work
+
+There are plenty of other resources describing the construction of neural networks without any external
+frameworks. In particular, I'd recommend the "[Neural Networks from Scratch in Python](https://nnfs.io)"
+book, and its accompanying YouTube series. However, most of these resources jump straight into
+building the layers, and work directly with matrices and vectors.
+
+A counterexample, would be the phenomenal [micrograd](https://github.com/karpathy/micrograd) library
+by Andrej Karpathy, which takes a much closer approach to the one I'm going to present here.
+
+## Prerequisites
+
+The post assumes that you know your way around JavaScript, and that you have a surface-level
+understanding of the mathematical concepts behind neural networks, in particular you should know
+how to differentiate using the [chain rule](https://en.wikipedia.org/wiki/Chain_rule).
+
+The only required software is a working web browser, which you do have if you are reading this post.
+We won't be using Node.js, npm, or any other tools. You can write the entire code in the browser's
+console, but I'd recommend grabbing a text editor and creating a bare-bones HTML file instead.
+
+If you prefer to read typed code, you can use the following switch to enable
+[JSDoc](https://jsdoc.app) type annotations in all the code snippets:
+<JsdocSwitch client:idle />
+
+# Basics of scalar automatic differentiation
+
+The engine, that we are going to build is **scalar**, which means that we will work on single floating
+point number values, as opposed to their (possibly multidimensional) arrays. The other approach, which
+operates on **tensors**, is much more common, and way faster, but also more complex.
+
+The basic building block of the entire system is the `Scalar` class, which represents a single number.
+Its initial form is just a wrapper around a JavaScript `number`:
+
+<JsdocSyntax typed={`
+class Scalar {
+  /** @type {number} */
+  value;
+
+  /** @param {number} value */
+  constructor(value) {
+    this.value = value;
+  }
+}
+`} untyped={`
+class Scalar {
+  value;
+
+  constructor(value) {
+    this.value = value;
+  }
+}
+`} />
+
+As mentioned before, we want to build huge mathematical expressions from these numbers, and to do that,
+we want to be able to compose them using different operations. For instance, we can implement
+`add` and `mul`, responsible for addition and multiplication. Our `Scalar` will hold an additional
+private property called `#children`, which is a list of scalars used as its subexpressions:
+
+<JsdocSyntax typed={`
+/**
+ * @param {Scalar} other
+ * @returns {Scalar}
+ */
+add(other) {
+  const out = new Scalar(this.value + other.value);
+  out.#children = [this, other];
+  return out;
+}
+
+/**
+ * @param {Scalar} other
+ * @returns {Scalar}
+ */
+mul(other) {
+  const out = new Scalar(this.value * other.value);
+  out.#children = [this, other];
+  return out;
+}
+`} untyped={`
+add(other) {
+  const out = new Scalar(this.value + other.value);
+  out.#children = [this, other];
+  return out;
+}
+
+mul(other) {
+  const out = new Scalar(this.value * other.value);
+  out.#children = [this, other];
+  return out;
+}
+`} />
+
+This lets us build some simple expressions, like:
+<Syntax lang="javascript" code={`
+const x = new Scalar(3);
+const y = new Scalar(4);
+const z = new Scalar(5);
+console.log(x.add(y).mul(z));
+`} />
+
+<SimpleScalarExample client:idle />
+
+# A simple linear regression model
+
+# Gradually building the neural network
+
+# Conclusion
+
+<Sources sources={[
+  { title: 'Artificial neural network - Wikipedia', href: 'https://en.wikipedia.org/wiki/Artificial_neural_network' }
+]} />

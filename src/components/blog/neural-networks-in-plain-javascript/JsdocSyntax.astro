@@ -1,0 +1,18 @@
+---
+import Syntax from '../Syntax.astro'
+import JsdocCond from './JsdocCond'
+
+interface Props {
+  typed: string
+  untyped: string
+}
+
+const { typed, untyped } = Astro.props
+---
+
+<JsdocCond when={true} client:idle>
+  <Syntax lang="javascript" code={typed} />
+</JsdocCond>
+<JsdocCond when={false} client:idle>
+  <Syntax lang="javascript" code={untyped} />
+</JsdocCond>
