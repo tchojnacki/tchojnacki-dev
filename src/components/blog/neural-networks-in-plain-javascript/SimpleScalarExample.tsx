@@ -1,6 +1,8 @@
 import ObjectTree from './ObjectTree'
 
 class Scalar {
+  static name = 'Scalar'
+
   value: number
   $children: Scalar[] = []
 

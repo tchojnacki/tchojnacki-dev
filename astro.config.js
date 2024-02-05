@@ -14,7 +14,7 @@ import { remarkReadingTime } from './src/utils/readingTime'
 export default defineConfig({
   site: 'https://tchojnacki.dev',
   trailingSlash: 'never',
-  integrations: [tailwind(), react(), mdx(), sitemap(), robotsTxt(), compress()],
+  integrations: [tailwind(), react(), mdx(), sitemap(), robotsTxt(), compress({ HTML: false })],
   markdown: {
     remarkPlugins: [remarkReadingTime],
   },

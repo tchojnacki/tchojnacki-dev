@@ -41,7 +41,7 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
             'text-purple-700 opacity-50 dark:text-purple-300',
           )}
         >
-          {value.__proto__.constructor.name}
+          {constr}
         </span>
       )
     }
