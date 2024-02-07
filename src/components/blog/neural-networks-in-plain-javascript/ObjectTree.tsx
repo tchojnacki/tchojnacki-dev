@@ -79,6 +79,9 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
         </ul>
       )
     }
+    if (typeof value === 'function') {
+      return ''
+    }
     return ` = ${value}`
   })()
 
@@ -131,7 +134,7 @@ interface ObjectTreeProps {
 
 export default function ObjectTree({ name, value }: ObjectTreeProps) {
   return (
-    <aside className="py-5 pr-5 font-mono">
+    <aside className="overflow-x-auto whitespace-nowrap py-5 font-mono">
       <ul>
         <PropertyNode name={name} value={value} />
       </ul>

@@ -6,12 +6,15 @@ abstract: "Artificial neural networks can be thought of as a certain class of hu
 skills: ['javascript']
 tags: ['artificial-intelligence']
 ---
+import Banner from '~/components/blog/Banner.astro'
 import Cite from '~/components/blog/Cite.astro'
+import Math from '~/components/blog/Math.astro'
 import Sources from '~/components/blog/Sources.astro'
 import Syntax from '~/components/blog/Syntax.astro'
 import JsdocSwitch from '~/components/blog/neural-networks-in-plain-javascript/JsdocSwitch'
 import JsdocSyntax from '~/components/blog/neural-networks-in-plain-javascript/JsdocSyntax.astro'
 import SimpleScalarExample from '~/components/blog/neural-networks-in-plain-javascript/SimpleScalarExample'
+import RationalExprExample from '~/components/blog/neural-networks-in-plain-javascript/RationalExprExample'
 
 # Introduction
 
@@ -91,36 +94,40 @@ we want to be able to compose them using different operations. For instance, we 
 private property called `#children`, which is a list of scalars used as its subexpressions:
 
 <JsdocSyntax typed={`
-/**
- * @param {Scalar} other
- * @returns {Scalar}
- */
-add(other) {
-  const out = new Scalar(this.value + other.value);
-  out.#children = [this, other];
-  return out;
-}
+class Scalar {
+  /**
+  * @param {Scalar} other
+  * @returns {Scalar}
+  */
+  add(other) {
+    const out = new Scalar(this.value + other.value);
+    out.#children = [this, other];
+    return out;
+  }
 
-/**
- * @param {Scalar} other
- * @returns {Scalar}
- */
-mul(other) {
-  const out = new Scalar(this.value * other.value);
-  out.#children = [this, other];
-  return out;
+  /**
+  * @param {Scalar} other
+  * @returns {Scalar}
+  */
+  mul(other) {
+    const out = new Scalar(this.value * other.value);
+    out.#children = [this, other];
+    return out;
+  }
 }
 `} untyped={`
-add(other) {
-  const out = new Scalar(this.value + other.value);
-  out.#children = [this, other];
-  return out;
-}
+class Scalar {
+  add(other) {
+    const out = new Scalar(this.value + other.value);
+    out.#children = [this, other];
+    return out;
+  }
 
-mul(other) {
-  const out = new Scalar(this.value * other.value);
-  out.#children = [this, other];
-  return out;
+  mul(other) {
+    const out = new Scalar(this.value * other.value);
+    out.#children = [this, other];
+    return out;
+  }
 }
 `} />
 
@@ -134,6 +141,288 @@ console.log(x.add(y).mul(z));
 
 <SimpleScalarExample client:idle />
 
+The core concept that we are going to use in our models is **optimization**. We want to, given an
+expression, find the values of its parameters (which are just `Scalar` instances) that ensures our
+inputs are transformed into the desired outputs.
+
+For instance, let's say that our expression is <Math latex="y = x + p" />, where <Math latex="x" />
+is an input and <Math latex="p" /> is a parameter. We want to know, how <Math latex="p" /> should be
+changed, so that the relationship between <Math latex="x" /> and <Math latex="y" /> is as close to
+the desired one as possible. Let's say that the modelled function should return 3 for input 2, and our
+parameter is initially set to 5. Obviously, we should decrease the parameter, since the current
+output is larger than the desired one.
+
+The formal way to do this is to calculate the **partial derivative** of the output with respect to
+the parameter, and then nudge the parameter in the opposite direction. This derivative quantifies the
+sensitivity of changes in the output with respect to changes in the parameter. In our previous example,
+we get <Math latex="\frac{\partial y}{\partial p} = 1" />, which means that increasing <Math latex="p" /> increases
+<Math latex="y" /> by the same amount. Therefore, we should decrease <Math latex="p" />.
+
+In our system, the automatic differentiation can be achieved using **backpropagation**. This method
+is an application of the chain rule, which goes backwards from the result towards the inputs, and
+calculates the partial derivatives along the way. Mathematically, this is the relevant substitution<Cite ordinal={2} />:
+<Math block latex="\dfrac{\partial y}{\partial x} = \dfrac{\partial y}{\partial w_1}\dfrac{\partial w_1}{\partial x} = \dfrac{\partial y}{\partial w_1}\dfrac{\partial w_1}{\partial w_2}\dfrac{\partial w_2}{\partial x} = \dots" />
+
+I won't go into the details of backpropagation, since it could very well be a topic for a separate
+post. If you want to dive deeper into this concept, I'd recommend [3Blue1Brown's video on the subject](https://www.youtube.com/watch?v=tIeHLnjs5U8).
+This article will instead focus on the implementation.
+
+Let's add the partial derivatives, and means to update them to our `Scalar` class. We can introduce
+two new properties: `partial`, initially equal to zero, holding the current value of the partial
+derivative, and `#propagate`, which is a function responsible for updating the derivatives of the
+children, based on the derivative of the current node. We can rewrite the `add` method as:
+
+<JsdocSyntax typed={`
+class Scalar {
+  /**
+    * @param {Scalar} other
+    * @returns {Scalar}
+    */
+  add(other) {
+    const out = new Scalar(this.value + other.value);
+    out.#children = [this, other];
+    out.#propagate = () => {
+      this.partial += out.partial;
+      other.partial += out.partial;
+    };
+    return out;
+  }
+}
+`} untyped={`
+class Scalar {
+  add(other) {
+    const out = new Scalar(this.value + other.value);
+    out.#children = [this, other];
+    out.#propagate = () => {
+      this.partial += out.partial;
+      other.partial += out.partial;
+    };
+    return out;
+  }
+}
+`} />
+
+For reference, <Math latex="\frac{\partial}{\partial x} (x + y) = 1" />, or in other words, any
+change in either addend results in the same change in the sum. This should explain the body of the
+`#propagate` function. This pattern is so common, that we can create a helper function, called `#op`,
+which is a factory for composed scalars, and rewrite the `add` method:
+
+<JsdocSyntax typed={`
+class Scalar {
+  /**
+    * @param {Scalar[]} children
+    * @param {number} value
+    * @param {(out: Scalar) => void} propagate
+    * @returns {Scalar}
+    */
+  static #op(children, value, propagate) {
+    const out = new Scalar(value);
+    out.#children = children;
+    out.#propagate = () => propagate(out);
+    return out;
+  }
+
+  /**
+   * @param {Scalar} other
+   * @returns {Scalar}
+   */
+  add(other) {
+    return Scalar.#op([this, other], this.value + other.value, out => {
+      this.partial += out.partial;
+      other.partial += out.partial;
+    });
+  }
+}
+`} untyped={`
+class Scalar {
+  static #op(children, value, propagate) {
+    const out = new Scalar(value);
+    out.#children = children;
+    out.#propagate = () => propagate(out);
+    return out;
+  }
+
+  add(other) {
+    return Scalar.#op([this, other], this.value + other.value, out => {
+      this.partial += out.partial;
+      other.partial += out.partial;
+    });
+  }
+}
+`} />
+
+We can now define arbitrary operations on the `Scalar` instances, as long as we know how to calculate
+their result and how to propagate their derivatives. Here are some useful ones, namely: summation,
+multiplication, exponentiation, subtraction, and division:
+<JsdocSyntax typed={`
+class Scalar {
+  /**
+   * @param {Scalar[]} scalars
+   * @returns {Scalar}
+   */
+  static sum(scalars) {
+    return Scalar.#op(
+      scalars,
+      scalars.reduce((acc, s) => acc + s.value, 0),
+      out =>
+        scalars.forEach(s => {
+          s.partial += out.partial;
+        })
+    );
+  }
+
+  /**
+   * @param {Scalar} other
+   * @returns {Scalar}
+   */
+  mul(other) {
+    return Scalar.#op([this, other], this.value * other.value, out => {
+      this.partial += other.value * out.partial;
+      other.partial += this.value * out.partial;
+    });
+  }
+
+  /**
+   * @param {number} n
+   * @returns {Scalar}
+   */
+  pow(n) {
+    return Scalar.#op([this], this.value ** n, out => {
+      this.partial += n * this.value ** (n - 1) * out.partial;
+    });
+  }
+
+  /**
+   * @param {Scalar} other
+   * @returns {Scalar}
+   */
+  sub(other) {
+    return this.add(other.mul(new Scalar(-1)));
+  }
+
+  /**
+   * @param {Scalar} other
+   * @returns {Scalar}
+   */
+  div(other) {
+    return this.mul(other.pow(-1));
+  }
+}
+`} untyped={`
+class Scalar {
+  static sum(scalars) {
+    return Scalar.#op(
+      scalars,
+      scalars.reduce((acc, s) => acc + s.value, 0),
+      out =>
+        scalars.forEach(s => {
+          s.partial += out.partial;
+        })
+    );
+  }
+
+  mul(other) {
+    return Scalar.#op([this, other], this.value * other.value, out => {
+      this.partial += other.value * out.partial;
+      other.partial += this.value * out.partial;
+    });
+  }
+
+  pow(n) {
+    return Scalar.#op([this], this.value ** n, out => {
+      this.partial += n * this.value ** (n - 1) * out.partial;
+    });
+  }
+
+  sub(other) {
+    return this.add(other.mul(new Scalar(-1)));
+  }
+
+  div(other) {
+    return this.mul(other.pow(-1));
+  }
+}
+`} />
+
+The final piece of the puzzle, which makes the `Scalar` class pretty much feature-complete, is the
+`derive` method, which fills out all the `partial` properties in arbitrarily nested subexpressions.
+
+We have to make some observations. First, the partial derivative of a scalar with respect to itself
+is just one (<Math latex="\frac{\partial x}{\partial x} = 1" />). Second, all other derivatives are
+initially equal to zero. In some frameworks, for greater flexibility, this is done manually by the
+user (for example `Optimizer.zero_grad` in PyTorch), but we can zero them out before every calculation
+for simplicity. Finally, the order in which we propagate the derivatives is important in the general
+case. We should start from the output, and go backwards, but since one variable can be used multiple
+times in different subexpressions, we have to do a **topological sort** of the graph of the expression.
+This means that we try to find an order in which we calculate all the dependencies before computing
+their dependents. Note that this order always exists for our `Scalar` class, since because the
+`#children` property is never modified, the graph has to be acyclic.
+
+<Banner kind="warning">
+The topological sort is required here, since we aim to support arbitrary math expressions. In artificial
+neural networks, the division of the computational graph into layers makes the sort unnecessary, since
+a given layer depends only on the previous one. This means that simply iterating over the layers in
+reverse order implicitly produces the topological ordering.
+</Banner>
+
+These three requirements lead us directly to the algorithm presented below:
+<JsdocSyntax typed={`
+class Scalar {
+  derive() {
+    const order = topologicalSort(this, s => s.#children);
+
+    for (const s of order) {
+      s.partial = 0;
+    }
+
+    this.partial = 1;
+
+    for (const s of order) {
+      s.#propagate();
+    }
+  }
+}
+`} untyped={`
+class Scalar {
+  derive() {
+    const order = topologicalSort(this, s => s.#children);
+
+    for (const s of order) {
+      s.partial = 0;
+    }
+
+    this.partial = 1;
+
+    for (const s of order) {
+      s.#propagate();
+    }
+  }
+}
+`} />
+
+This is the core of the `Scalar` class. We can extend it to add more operations, or some utility
+methods, but the current form is enough to build some models and optimize them. Let's consolidate
+our current knowledge with an example:
+<Math block latex="f = \dfrac{2x - 3}{x^3 + x^2 - x}" />
+<JsdocSyntax typed={`
+const x = new Scalar(1);
+const numerator = new Scalar(2).mul(x).sub(new Scalar(3)); // 2x - 3
+const denominator = x.pow(3).add(x.pow(2)).sub(x); // x^3 + x^2 - x
+const f = numerator.div(denominator);
+f.derive();
+console.log(x.partial); // => 6
+console.log(f);
+`} untyped={`
+const x = new Scalar(1);
+const numerator = new Scalar(2).mul(x).sub(new Scalar(3)); // 2x - 3
+const denominator = x.pow(3).add(x.pow(2)).sub(x); // x^3 + x^2 - x
+const f = numerator.div(denominator);
+f.derive();
+console.log(x.partial); // => 6
+console.log(f);
+`} />
+<RationalExprExample client:idle />
+
 # A simple linear regression model
 
 # Gradually building the neural network
@@ -141,5 +430,6 @@ console.log(x.add(y).mul(z));
 # Conclusion
 
 <Sources sources={[
-  { title: 'Artificial neural network - Wikipedia', href: 'https://en.wikipedia.org/wiki/Artificial_neural_network' }
+  { title: 'Artificial neural network – Wikipedia', href: 'https://en.wikipedia.org/wiki/Artificial_neural_network' },
+  { title: 'Reverse accumulation – Automatic differentiation – Wikipedia', href: 'https://en.wikipedia.org/wiki/Automatic_differentiation#Reverse_accumulation' }
 ]} />

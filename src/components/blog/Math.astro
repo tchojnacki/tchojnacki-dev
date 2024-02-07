@@ -1,0 +1,21 @@
+---
+import katex from 'katex'
+
+interface Props {
+  latex: string
+  block?: boolean
+}
+
+const { latex, block = false } = Astro.props
+const html = katex.renderToString(latex, { throwOnError: false })
+---
+
+{
+  block ? (
+    <div class="my-2 flex justify-center">
+      <span set:html={html} />
+    </div>
+  ) : (
+    <span set:html={html} />
+  )
+}
