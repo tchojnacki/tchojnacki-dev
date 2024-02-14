@@ -15,6 +15,7 @@ import JsdocSwitch from '~/components/blog/neural-networks-in-plain-javascript/J
 import JsdocSyntax from '~/components/blog/neural-networks-in-plain-javascript/JsdocSyntax.astro'
 import SimpleScalarExample from '~/components/blog/neural-networks-in-plain-javascript/SimpleScalarExample'
 import RationalExprExample from '~/components/blog/neural-networks-in-plain-javascript/RationalExprExample'
+import LinearExample from '~/components/blog/neural-networks-in-plain-javascript/LinearExample'
 
 # Introduction
 
@@ -424,6 +425,220 @@ console.log(f);
 <RationalExprExample client:idle />
 
 # A simple linear regression model
+
+We can use the class to build some **models** or in other words, functions which map inputs to predicted
+outputs. For our purposes, we will assume that a model takes many inputs, but returns a single output.
+This choice is arbitrary, we could also handle multiple outputs, or single inputs with little change.
+
+We can define an abstract `Model` class, which we can later extend to create specific models. The
+`Scalar.wrap` function used inside `predict` transforms an array of numbers into an array of `Scalar` instances.
+
+<JsdocSyntax typed={`
+/** @abstract */
+class Model {
+  /** @returns {Scalar[]} */
+  parameters() {
+    throw new TypeError("Method \`parameters\` must be implemented!");
+  }
+
+  /**
+   * @param {Scalar[]} x
+   * @returns {Scalar}
+   */
+  evaluate(x) {
+    throw new TypeError("Method \`evaluate\` must be implemented!");
+  }
+
+  /** @param {number[]} x  */
+  predict(x) {
+    return this.evaluate(Scalar.wrap(x)).value;
+  }
+}
+`} untyped={`
+class Model {
+  parameters() {
+    throw new TypeError("Method \`parameters\` must be implemented!");
+  }
+
+  evaluate(x) {
+    throw new TypeError("Method \`evaluate\` must be implemented!");
+  }
+
+  predict(x) {
+    return this.evaluate(Scalar.wrap(x)).value;
+  }
+}
+`} />
+
+The core of the class is the `#loss` method shown below, which calculates how much the predicted
+value differ from the real result. What's crucial is that the method returns a `Scalar` instance.
+This means that we can use `derive` to see how the parameters affect the error, and then use this
+information to update them.
+
+We are using the mean squared error, which is a pretty simple metric &ndash; it's just the average
+of squared differences between the predicted and real values. The `#loss` method can be modified to
+improve our model's performance, for instance by adding
+[regularization](https://developers.google.com/machine-learning/glossary#regularization).
+
+<JsdocSyntax typed={`
+/** @abstract */
+class Model {
+  /**
+   * @param {number[][]} X
+   * @param {number[]} y
+   * @returns {Scalar}
+   */
+  #loss(X, y) {
+    const inputs = Scalar.wrap(X);
+    const outputs = Scalar.wrap(y);
+    const guesses = inputs.map((x) => this.evaluate(x));
+    const errors = guesses.map((g, i) => g.sub(outputs[i]).pow(2));
+    return Scalar.sum(errors).div(new Scalar(errors.length));
+  }
+
+  /**
+   * @param {number[][]} X
+   * @param {number[]} y
+   * @param {number} eta
+   * @returns {number}
+   */
+  fit(X, y, eta) {
+    const loss = this.#loss(X, y);
+    loss.derive();
+    for (const p of this.parameters()) {
+      p.value -= eta * p.partial;
+    }
+    return loss.value;
+  }
+}
+`} untyped={`
+class Model {
+  #loss(X, y) {
+    const inputs = Scalar.wrap(X);
+    const outputs = Scalar.wrap(y);
+    const guesses = inputs.map((x) => this.evaluate(x));
+    const errors = guesses.map((g, i) => g.sub(outputs[i]).pow(2));
+    return Scalar.sum(errors).div(new Scalar(errors.length));
+  }
+
+  fit(X, y, eta) {
+    const loss = this.#loss(X, y);
+    loss.derive();
+    for (const p of this.parameters()) {
+      p.value -= eta * p.partial;
+    }
+    return loss.value;
+  }
+}
+`} />
+
+The `fit` method is what we'd call the **training**. The `eta` parameter is the learning rate, which
+determines how much we want to update the weights in each step. If set too low, the convergence will
+be slow, and if set too high, we might overshoot while searching.
+
+<Banner kind="warning">
+  The `fit` function often refers to a training loop, which repeatedly calculates the loss and
+  updates the parameters. In this example, the method does only a single pass of optimization
+  and is meant to be called multiple times.
+</Banner>
+
+What we defined above is enough to build a simple linear regression model. This is a model, which
+transforms a single input into a single output, according to the following formula:
+<Math block latex="y = ax + b" />
+
+Since we assumed that models take many inputs, here we only take the first array element and ignore
+the rest. The subclass is as follows:
+<JsdocSyntax typed={`
+class Linear extends Model {
+  /** @type {Scalar} */
+  #a;
+  /** @type {Scalar} */
+  #b;
+
+  constructor() {
+    super();
+    this.#a = new Scalar(0);
+    this.#b = new Scalar(0);
+  }
+
+  /**
+   * @override
+   * @returns {Scalar[]}
+   */
+  parameters() {
+    return [this.#a, this.#b];
+  }
+
+  /**
+   * @override
+   * @param {Scalar[]} x
+   * @returns {Scalar}
+   */
+  evaluate(x) {
+    return this.#a.mul(x[0]).add(this.#b);
+  }
+}
+`} untyped={`
+class Linear extends Model {
+  constructor() {
+    super();
+    this.#a = new Scalar(0);
+    this.#b = new Scalar(0);
+  }
+
+  parameters() {
+    return [this.#a, this.#b];
+  }
+
+  evaluate(x) {
+    return this.#a.mul(x[0]).add(this.#b);
+  }
+}
+`} />
+
+Let's say our dataset consists of the following datapoints: <br /> `(3.1, -0.6)`, `(-0.1, -1.9)`, `(4, 0)`, `(-2.1, -3)`.
+
+We can train our model as follows:
+<JsdocSyntax typed={`
+const linear = new Linear();
+const X = [[3.1], [-0.1], [4], [-2.1]];
+const y = [-0.6, -1.9, 0, -3];
+for (let k = 0; k < 100; k++) {
+  linear.fit(X, y, 0.1);
+}
+console.log(linear.predict([1])); // => -1.48
+console.log(linear);
+`} untyped={`
+const linear = new Linear();
+const X = [[3.1], [-0.1], [4], [-2.1]];
+const y = [-0.6, -1.9, 0, -3];
+for (let k = 0; k < 100; k++) {
+  linear.fit(X, y, 0.1);
+}
+console.log(linear.predict([1])); // => -1.48
+console.log(linear);
+`} />
+<LinearExample client:idle />
+
+Here's how our model predicts (orange) based on the training data (green):
+<svg viewBox="-3 -4 8 5" xmlns="http://www.w3.org/2000/svg" class="my-2 rounded-md -scale-y-100">
+  <rect x="-3" y="-4" width="8" height="5" fill="#cbd5e1" />
+
+  <path d="M-3 0 L5 0 Z" stroke="#475569" stroke-width="0.02" />
+  <path d="M0 -4 L0 9 Z" stroke="#475569" stroke-width="0.02" />
+  <path d="M-1 -0.05 L-1 0.05 Z" stroke="#475569" stroke-width="0.02" />
+  <path d="M1 -0.05 L1 0.05 Z" stroke="#475569" stroke-width="0.02" />
+  <path d="M-0.05 -1 L0.05 -1 Z" stroke="#475569" stroke-width="0.02" />
+  <path d="M-0.05 1 L0.05 1 Z" stroke="#475569" stroke-width="0.02" />
+
+  <path d="M-3 -3.374 L5 0.411 Z" stroke="#FF7F0F" stroke-width="0.02" />
+  <circle cx="1" cy="-1.48" r="0.05" fill="#FF7F0F" />
+
+  <circle cx="3.1" cy="-0.6" r="0.05" fill="#2CA02C" />
+  <circle cx="-0.1" cy="-1.9" r="0.05" fill="#2CA02C" />
+  <circle cx="4" cy="0" r="0.05" fill="#2CA02C" />
+  <circle cx="-2.1" cy="-3" r="0.05" fill="#2CA02C" />
+</svg>
 
 # Gradually building the neural network
 
