@@ -1,6 +1,6 @@
 import { useStore } from '@nanostores/react'
 import { useId } from 'react'
-import { isJsdocShown } from '~/utils/stores/jsdoc'
+import { isJsdocShown } from '~/utils/blog/stores/jsdoc'
 
 export default function JsdocSwitch() {
   const id = useId()

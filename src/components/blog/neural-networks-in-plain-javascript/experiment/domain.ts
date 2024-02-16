@@ -1,8 +1,7 @@
-import ObjectTree from './ObjectTree'
-
 function topologicalSort<Node>(start: Node, neighbors: (node: Node) => Node[]): Node[] {
   const acc: Node[] = []
-  const visited = new Set<Node>()
+
+  const visited: Set<Node> = new Set()
 
   const visit = (n: Node) => {
     if (visited.has(n)) {
@@ -24,7 +23,7 @@ class Scalar {
   value: number
   partial: number = 0
   $children: this[] = []
-  $propagate: () => void = () => {}
+  $propagate: () => void = (): void => {}
 
   constructor(value: number) {
     this.value = value
@@ -79,6 +78,16 @@ class Scalar {
     return this.mul(other.pow(-1))
   }
 
+  linear(): Scalar {
+    return this
+  }
+
+  relu(): Scalar {
+    return Scalar.$op([this], this.value < 0 ? 0 : this.value, out => {
+      this.partial += out.value > 0 ? out.partial : 0
+    })
+  }
+
   derive() {
     const order = topologicalSort(this, s => s.$children)
 
@@ -94,17 +103,20 @@ class Scalar {
   }
 }
 
-abstract class Model {
+export abstract class Model {
   static name = 'Model'
   abstract get parameters(): Scalar[]
   abstract evaluate(x: Scalar[]): Scalar
 
-  $loss(X: number[][], y: number[]) {
+  $loss(X: number[][], y: number[]): Scalar {
     const inputs = Scalar.wrap(X)
     const outputs = Scalar.wrap(y)
     const guesses = inputs.map(x => this.evaluate(x))
     const errors = guesses.map((g, i) => g.sub(outputs[i]!).pow(2))
-    return Scalar.sum(errors).div(new Scalar(errors.length))
+    const l2 = Scalar.sum(this.parameters.map(p => p.pow(2)))
+      .div(new Scalar(this.parameters.length))
+      .mul(new Scalar(0.001))
+    return Scalar.sum(errors).div(new Scalar(errors.length)).add(l2)
   }
 
   fit(X: number[][], y: number[], eta: number): number {
@@ -118,35 +130,71 @@ abstract class Model {
 
     return loss.value
   }
+
+  predict(x: number[]) {
+    return this.evaluate(Scalar.wrap(x)).value
+  }
 }
 
-class Linear extends Model {
-  static override name = 'Linear'
-  $a: Scalar
+class Neuron extends Model {
+  static override name = 'Neuron'
+  $w: Scalar[]
   $b: Scalar
+  $activation: 'linear' | 'relu'
 
-  constructor() {
+  constructor(inputCount: number, activation: 'linear' | 'relu' = 'relu') {
     super()
-    this.$a = new Scalar(0)
+    this.$w = Array.from({ length: inputCount }, () => new Scalar(Math.random() * 2 - 1))
     this.$b = new Scalar(0)
+    this.$activation = activation
   }
 
-  override get parameters() {
-    return [this.$a, this.$b]
+  get parameters(): Scalar[] {
+    return [...this.$w, this.$b]
   }
 
-  override evaluate(x: Scalar[]) {
-    return this.$a.mul(x[0]!).add(this.$b)
+  evaluate(x: Scalar[]): Scalar {
+    return Scalar.sum(this.$w.map((wi, i) => wi.mul(x[i]!)))
+      .add(this.$b)
+      [this.$activation]()
   }
 }
 
-const linear = new Linear()
-const X = [[3.1], [-0.1], [4], [-2.1]]
-const y = [-0.6, -1.9, 0, -3]
-for (let k = 0; k < 100; k++) {
-  linear.fit(X, y, 0.1)
+class Layer {
+  static name = 'Layer'
+  $neurons: Neuron[]
+
+  constructor(inputCount: number, outputCount: number, activation: 'linear' | 'relu') {
+    this.$neurons = Array.from({ length: outputCount }, () => new Neuron(inputCount, activation))
+  }
+
+  get parameters(): Scalar[] {
+    return this.$neurons.flatMap(n => n.parameters)
+  }
+
+  evaluate(x: Scalar[]): Scalar[] {
+    return this.$neurons.map(n => n.evaluate(x))
+  }
 }
 
-export default function LinearExample() {
-  return <ObjectTree name="linear" value={linear} />
+export class Network extends Model {
+  static override name = 'Network'
+  $layers: Layer[]
+
+  constructor(inputCount: number, layers: number[] = []) {
+    super()
+    const sizes = [inputCount, ...layers]
+    this.$layers = [
+      ...layers.map((_, i) => new Layer(sizes[i]!, sizes[i + 1]!, 'relu')),
+      new Layer(sizes[sizes.length - 1]!, 1, 'linear'),
+    ]
+  }
+
+  get parameters(): Scalar[] {
+    return this.$layers.flatMap(l => l.parameters)
+  }
+
+  evaluate(x: Scalar[]): Scalar {
+    return this.$layers.reduce((acc, l) => l.evaluate(acc), x)[0]!
+  }
 }

@@ -8,7 +8,7 @@ import sitemap from '@astrojs/sitemap'
 import robotsTxt from 'astro-robots-txt'
 import compress from 'astro-compress'
 
-import { remarkReadingTime } from './src/utils/readingTime'
+import { remarkReadingTime } from './src/utils/blog/readingTime'
 
 // https://astro.build/config
 export default defineConfig({

@@ -1,4 +1,4 @@
-import ObjectTree from './ObjectTree'
+import ObjectTree from '~/components/blog/ObjectTree'
 
 function topologicalSort<Node>(start: Node, neighbors: (node: Node) => Node[]): Node[] {
   const acc: Node[] = []

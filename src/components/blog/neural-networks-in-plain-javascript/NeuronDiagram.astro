@@ -1,63 +1,54 @@
 ---
-
+const objectClass = "stroke-[currentColor] fill-none stroke-[0.5]"
+const textClass = "fill-[currentColor] [text-anchor:middle] [dominant-baseline:middle]"
 ---
 
 <figure class="my-2">
   <svg viewBox="-100 -50 200 100">
-    <circle cx="0" cy="0" r="10" stroke-width="0.5" stroke="currentColor" fill="none"></circle>
+    <circle cx="0" cy="0" r="10" class={objectClass}></circle>
     <text
       x="0"
       y="0"
-      fill="currentColor"
-      text-anchor="middle"
-      dominant-baseline="middle"
+      class={textClass}
       font-size="8">∑</text
     >
 
-    <path d="M 10 0 L 35 0" stroke-width="0.5" stroke="currentColor"></path>
+    <path d="M 10 0 L 35 0" class={objectClass}></path>
 
-    <circle cx="40" cy="0" r="5" stroke-width="0.5" stroke="currentColor" fill="none"></circle>
+    <circle cx="40" cy="0" r="5" class={objectClass}></circle>
     <text
       x="40"
       y="0"
-      fill="currentColor"
-      text-anchor="middle"
-      dominant-baseline="middle"
+      class={textClass}
       font-size="6">σ</text
     >
 
-    <path d="M 45 0 L 70 0" stroke-width="0.5" stroke="currentColor"></path>
+    <path d="M 45 0 L 70 0" class={objectClass}></path>
     <text
       x="65"
       y="-5"
-      fill="currentColor"
-      text-anchor="middle"
-      dominant-baseline="middle"
+      class={textClass}
       font-size="6">y</text
     >
 
     {
       [-30, -10, 10, 30].map((cy, i) => (
         <>
-          <path d={`M -70 ${cy} L -45 ${cy}`} stroke-width="0.5" stroke="currentColor" />
+          <path d={`M -70 ${cy} L -45 ${cy}`} class={objectClass} />
           <text
             x="-65"
             y={cy - 5}
-            fill="currentColor"
-            text-anchor="middle"
-            dominant-baseline="middle"
+            class={textClass}
             font-size="6"
           >
             <!-- -->x<tspan font-size="3" dy="2">{i + 1}</tspan><!-- -->
           </text>
-          <circle cx="-40" cy={cy} r="5" stroke-width="0.5" stroke="currentColor" fill="none" />
-          <path d={`M -35 ${cy} L -10 0`} stroke-width="0.5" stroke="currentColor" />
+          <circle cx="-40" cy={cy} r="5" class={objectClass} />
+          <path d={`M -35 ${cy} L -10 0`} class={objectClass} />
           <text
             x="-40"
             y={cy}
-            fill="currentColor"
-            text-anchor="middle"
-            dominant-baseline="middle"
+            class={textClass}
             font-size="6"
           >
             <!-- -->w<tspan font-size="3" dy="2">{i + 1}</tspan><!-- -->
