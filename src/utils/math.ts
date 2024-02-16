@@ -1,6 +1,4 @@
-export function clamp(x: number, min: number, max: number): number {
-  return Math.min(Math.max(x, min), max)
-}
+import clamp from 'lodash/clamp'
 
 export function lerpUnbound(
   x: number,

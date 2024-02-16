@@ -1,5 +1,6 @@
+import clamp from 'lodash/clamp'
 import Chart from '~/components/blog/Chart'
-import { clamp, lerp } from '~/utils/math'
+import { lerp } from '~/utils/math'
 
 type LossFigureProps = { losses: number[] }
 
