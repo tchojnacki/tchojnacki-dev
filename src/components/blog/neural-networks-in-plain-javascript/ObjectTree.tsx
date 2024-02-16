@@ -7,6 +7,14 @@ interface PropertyNodeProps {
   value: any
 }
 
+const propertiesOf = (instance: any): [string, any][] => {
+  const fields = Object.entries(instance)
+  const getters = Object.entries(Object.getOwnPropertyDescriptors(Reflect.getPrototypeOf(instance)))
+    .filter(e => typeof e[1].get === 'function' && e[0] !== '__proto__')
+    .map(([name]) => [name, instance[name]] as [string, any])
+  return [...fields, ...getters]
+}
+
 function PropertyNode({ name, value }: PropertyNodeProps) {
   const [open, setOpen] = useState(false)
 
@@ -33,7 +41,7 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
       )
     }
     if (typeof value === 'object') {
-      const constr = value.__proto__.constructor.name
+      const constr = Reflect.getPrototypeOf(value)?.constructor.name
       return (
         <span
           className={clsx(
@@ -65,7 +73,7 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
       )
     }
     if (typeof value === 'object') {
-      if (Object.entries(value).length === 0) {
+      if (propertiesOf(value).length === 0) {
         return ' = {}'
       }
       if (!open) {
@@ -73,7 +81,7 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
       }
       return (
         <ul>
-          {Object.entries(value).map(([name, value]) => (
+          {propertiesOf(value).map(([name, value]) => (
             <PropertyNode key={name} name={name} value={value} />
           ))}
         </ul>
@@ -81,6 +89,9 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
     }
     if (typeof value === 'function') {
       return ''
+    }
+    if (typeof value === 'string') {
+      return ` = "${value}"`
     }
     return ` = ${value}`
   })()
@@ -90,7 +101,7 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
       return value.length > 0
     }
     if (typeof value === 'object') {
-      return Object.entries(value).length > 0
+      return propertiesOf(value).length > 0
     }
     return false
   })()
@@ -134,10 +145,10 @@ interface ObjectTreeProps {
 
 export default function ObjectTree({ name, value }: ObjectTreeProps) {
   return (
-    <aside className="overflow-x-auto whitespace-nowrap py-5 font-mono">
+    <figure className="overflow-x-auto whitespace-nowrap py-5 font-mono">
       <ul>
         <PropertyNode name={name} value={value} />
       </ul>
-    </aside>
+    </figure>
   )
 }

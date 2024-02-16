@@ -95,7 +95,8 @@ class Scalar {
 }
 
 abstract class Model {
-  abstract parameters(): Scalar[]
+  static name = 'Model'
+  abstract get parameters(): Scalar[]
   abstract evaluate(x: Scalar[]): Scalar
 
   $loss(X: number[][], y: number[]) {
@@ -111,7 +112,7 @@ abstract class Model {
 
     loss.derive()
 
-    for (const p of this.parameters()) {
+    for (const p of this.parameters) {
       p.value -= eta * p.partial
     }
 
@@ -130,7 +131,7 @@ class Linear extends Model {
     this.$b = new Scalar(0)
   }
 
-  override parameters() {
+  override get parameters() {
     return [this.$a, this.$b]
   }
 
@@ -147,5 +148,5 @@ for (let k = 0; k < 100; k++) {
 }
 
 export default function LinearExample() {
-  return <ObjectTree name={null} value={linear} />
+  return <ObjectTree name="linear" value={linear} />
 }

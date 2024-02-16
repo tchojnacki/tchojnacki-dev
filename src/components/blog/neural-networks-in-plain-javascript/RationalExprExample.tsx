@@ -87,5 +87,5 @@ const f = numerator.div(denominator)
 f.derive()
 
 export default function RationalExprExample() {
-  return <ObjectTree name={null} value={f} />
+  return <ObjectTree name="f" value={f} />
 }

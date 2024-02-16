@@ -7,14 +7,14 @@ interface Props {
 }
 
 const { latex, block = false } = Astro.props
-const html = katex.renderToString(latex, { throwOnError: false })
+const html = katex.renderToString(latex, { throwOnError: false, displayMode: block })
 ---
 
 {
   block ? (
-    <div class="my-2 flex justify-center">
+    <figure class="my-2 flex justify-center">
       <span set:html={html} />
-    </div>
+    </figure>
   ) : (
     <span set:html={html} />
   )
