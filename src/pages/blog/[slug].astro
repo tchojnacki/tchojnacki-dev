@@ -1,4 +1,5 @@
 ---
+import 'katex/dist/katex.min.css'
 import type { GetStaticPaths } from 'astro'
 import PostFooter from '~/components/blog/PostFooter.astro'
 import PostHeader from '~/components/blog/PostHeader.astro'
@@ -42,6 +43,10 @@ const {
 
   .post-content > :global(*) {
     grid-column: 2;
+  }
+
+  .post-content > :global(astro-island) {
+    display: block;
   }
 
   .post-content > :global(.post-full-bleed) {

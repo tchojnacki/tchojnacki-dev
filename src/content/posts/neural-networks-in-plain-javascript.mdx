@@ -1,0 +1,904 @@
+---
+title: 'Neural networks in plain JavaScript'
+author: 'Tomasz Chojnacki'
+date: 2024-02-17
+abstract: "Artificial neural networks can be thought of as a certain class of huge mathematical expressions. This thought is explored in this post, where we build a simple multi-layer perceptron in plain JavaScript, using a custom scalar automatic differentiation engine."
+skills: ['javascript']
+tags: ['machine-learning']
+---
+import Banner from '~/components/blog/Banner.astro'
+import Cite from '~/components/blog/Cite.astro'
+import Math from '~/components/blog/Math.astro'
+import Sources from '~/components/blog/Sources.astro'
+import Syntax from '~/components/blog/Syntax.astro'
+import JsdocSwitch from '~/components/blog/neural-networks-in-plain-javascript/jsdoc/JsdocSwitch'
+import JsdocSyntax from '~/components/blog/neural-networks-in-plain-javascript/jsdoc/JsdocSyntax.astro'
+import SimpleScalarExample from '~/components/blog/neural-networks-in-plain-javascript/examples/SimpleScalarExample'
+import RationalExprExample from '~/components/blog/neural-networks-in-plain-javascript/examples/RationalExprExample'
+import LinearExample from '~/components/blog/neural-networks-in-plain-javascript/examples/LinearExample'
+import Chart from '~/components/blog/Chart'
+import NeuronDiagram from '~/components/blog/neural-networks-in-plain-javascript/NeuronDiagram.astro'
+import Experiment from '~/components/blog/neural-networks-in-plain-javascript/experiment/Experiment'
+
+# Introduction
+
+> What I cannot create, I do not understand.
+
+Artificial neural networks may seem terrifying. Wikipedia defines them as "models that are built
+using principles of neuronal organization discovered by connectionism in the biological neural
+networks constituting animal brains"<Cite ordinal={1} />. While mostly accurate, this definition does not
+really help you understand how these constructs work. A description which is much less mysterious, is that
+artificial neural networks are, at their core, a **certain class of huge mathematical expressions**.
+
+That's why in this post, we will build a simple neural network in plain JavaScript, keeping this
+approach in mind. We will start with the smallest building blocks &ndash; numbers, and then we will
+gradually compose them into neurons, layers, and finally, a multi-layer perceptron.
+
+The code built in this post is used purely for educational purposes. In particular, the final library
+is not optimized for performance, nor is it suitable for production use. I will use the simplest (and
+not always the best) algorithms to keep the topic as simple as possible. If you are seeking a mature
+neural network library for JS, I'd recommend looking at [TensorFlow.js](https://www.tensorflow.org/js).
+
+## Related work
+
+There are plenty of other resources describing the construction of neural networks without any external
+frameworks. In particular, I'd recommend the "[Neural Networks from Scratch in Python](https://nnfs.io)"
+book, and its accompanying YouTube series. However, most of these resources jump straight into
+building the layers, and work directly with matrices and vectors.
+
+A counterexample, would be the phenomenal [micrograd](https://github.com/karpathy/micrograd) library
+by Andrej Karpathy, which takes a much closer approach to the one I'm going to present here. Certain
+parts of my solution are directly inspired by micrograd.
+
+## Prerequisites
+
+The post assumes that you know your way around JavaScript, and that you have a surface-level
+understanding of the mathematical concepts behind neural networks, in particular you should know
+how to differentiate using the [chain rule](https://en.wikipedia.org/wiki/Chain_rule). A basic
+knowledge of the structure of simple artificial neural networks might also prove useful.
+
+The only required software to follow along is a working web browser, which you do have if you are
+reading this post. We won't be using Node.js, npm, or any other tools. You can write the entire code
+in the browser's console, but I'd recommend grabbing a text editor and creating a bare-bones HTML
+file instead.
+
+If you prefer to read typed code, you can use the following switch to enable
+[JSDoc](https://jsdoc.app) type annotations in all the code snippets:
+<JsdocSwitch client:idle />
+
+# Basics of scalar automatic differentiation
+
+The engine, that we are going to build is **scalar**, which means that we will work on single floating
+point number values, as opposed to their (possibly multidimensional) arrays. The other approach, which
+operates on **tensors**, is much more common, and way faster, but also more complex.
+
+The basic building block of the entire system is the `Scalar` class, which represents a single number.
+Its initial form is just a wrapper around a JavaScript `number`:
+
+<JsdocSyntax typed={`
+class Scalar {
+  /** @type {number} */
+  value;
+
+  /** @param {number} value */
+  constructor(value) {
+    this.value = value;
+  }
+}
+`} untyped={`
+class Scalar {
+  value;
+
+  constructor(value) {
+    this.value = value;
+  }
+}
+`} />
+
+As mentioned before, we want to build huge mathematical expressions from these numbers, and to do that,
+we want to be able to compose them using different operations. For instance, we can implement
+`add` and `mul`, responsible for addition and multiplication. Our `Scalar` will hold an additional
+private property called `#children`, which is a list of scalars used as its subexpressions:
+
+<JsdocSyntax typed={`
+class Scalar {
+  /**
+  * @param {Scalar} other
+  * @returns {Scalar}
+  */
+  add(other) {
+    const out = new Scalar(this.value + other.value);
+    out.#children = [this, other];
+    return out;
+  }
+
+  /**
+  * @param {Scalar} other
+  * @returns {Scalar}
+  */
+  mul(other) {
+    const out = new Scalar(this.value * other.value);
+    out.#children = [this, other];
+    return out;
+  }
+}
+`} untyped={`
+class Scalar {
+  add(other) {
+    const out = new Scalar(this.value + other.value);
+    out.#children = [this, other];
+    return out;
+  }
+
+  mul(other) {
+    const out = new Scalar(this.value * other.value);
+    out.#children = [this, other];
+    return out;
+  }
+}
+`} />
+
+This lets us build some simple expressions, like:
+<Syntax lang="javascript" code={`
+const x = new Scalar(3);
+const y = new Scalar(4);
+const z = new Scalar(5);
+console.log(x.add(y).mul(z));
+`} />
+
+<SimpleScalarExample client:idle />
+
+The core concept that we are going to use in our models is **optimization**. We want to, given an
+expression, find the values of its parameters (which are just `Scalar` instances) that ensures our
+inputs are transformed into the desired outputs.
+
+For instance, let's say that our expression is <Math latex="y = x + p" />, where <Math latex="x" />
+is an input and <Math latex="p" /> is a parameter. We want to know, how <Math latex="p" /> should be
+changed, so that the relationship between <Math latex="x" /> and <Math latex="y" /> is as close to
+the desired one as possible. Let's say that the modelled function should return 3 for input 2, and our
+parameter is initially set to 5. Obviously, we should decrease the parameter, since the current
+output is larger than the desired one.
+
+The formal way to do this is to calculate the **partial derivative** of the output with respect to
+the parameter, and then nudge the parameter in the opposite direction. This derivative quantifies the
+sensitivity of changes in the output with respect to changes in the parameter. In our previous example,
+we get <Math latex="\frac{\partial y}{\partial p} = 1" />, which means that increasing <Math latex="p" /> increases
+<Math latex="y" /> by the same amount. Therefore, we should decrease <Math latex="p" />.
+
+In our system, the automatic differentiation can be achieved using **backpropagation**. This method
+is an application of the chain rule, which goes backwards from the result towards the inputs, and
+calculates the partial derivatives along the way. Mathematically, this is the relevant substitution<Cite ordinal={2} />:
+<Math block latex="\frac{\partial y}{\partial x} = \frac{\partial y}{\partial w_1}\frac{\partial w_1}{\partial x} = \frac{\partial y}{\partial w_1}\frac{\partial w_1}{\partial w_2}\frac{\partial w_2}{\partial x} = \dots" />
+
+I won't go into the details of backpropagation, since it could very well be a topic for a separate
+post. If you want to dive deeper into this concept, I'd recommend [3Blue1Brown's video on the subject](https://www.youtube.com/watch?v=tIeHLnjs5U8).
+This article will instead focus on the implementation.
+
+Let's add the partial derivatives, and the means to update them to our `Scalar` class. We can introduce
+two new properties: `partial`, initially equal to zero, holding the current value of the partial
+derivative, and `#propagate`, which is a function responsible for updating the derivatives of the
+children, based on the derivative of the current node. We can rewrite the `add` method as:
+
+<JsdocSyntax typed={`
+class Scalar {
+  /**
+    * @param {Scalar} other
+    * @returns {Scalar}
+    */
+  add(other) {
+    const out = new Scalar(this.value + other.value);
+    out.#children = [this, other];
+    out.#propagate = () => {
+      this.partial += out.partial;
+      other.partial += out.partial;
+    };
+    return out;
+  }
+}
+`} untyped={`
+class Scalar {
+  add(other) {
+    const out = new Scalar(this.value + other.value);
+    out.#children = [this, other];
+    out.#propagate = () => {
+      this.partial += out.partial;
+      other.partial += out.partial;
+    };
+    return out;
+  }
+}
+`} />
+
+For reference, <Math latex="\frac{\partial}{\partial x} (x + y) = 1" />, or in other words, any
+change in either addend results in the same change in the sum. This should explain the body of the
+`#propagate` function. This pattern is so common, that we can create a helper function, called `#op`,
+which is a factory for composed scalars, and rewrite the `add` method:
+
+<JsdocSyntax typed={`
+class Scalar {
+  /**
+    * @param {Scalar[]} children
+    * @param {number} value
+    * @param {(out: Scalar) => void} propagate
+    * @returns {Scalar}
+    */
+  static #op(children, value, propagate) {
+    const out = new Scalar(value);
+    out.#children = children;
+    out.#propagate = () => propagate(out);
+    return out;
+  }
+
+  /**
+   * @param {Scalar} other
+   * @returns {Scalar}
+   */
+  add(other) {
+    return Scalar.#op([this, other], this.value + other.value, out => {
+      this.partial += out.partial;
+      other.partial += out.partial;
+    });
+  }
+}
+`} untyped={`
+class Scalar {
+  static #op(children, value, propagate) {
+    const out = new Scalar(value);
+    out.#children = children;
+    out.#propagate = () => propagate(out);
+    return out;
+  }
+
+  add(other) {
+    return Scalar.#op([this, other], this.value + other.value, out => {
+      this.partial += out.partial;
+      other.partial += out.partial;
+    });
+  }
+}
+`} />
+
+We can now define arbitrary operations on the `Scalar` instances, as long as we know how to calculate
+their result and how to propagate their derivatives. Here are some useful ones, namely: summation,
+multiplication, exponentiation, subtraction, and division:
+<JsdocSyntax typed={`
+class Scalar {
+  /**
+   * @param {Scalar[]} scalars
+   * @returns {Scalar}
+   */
+  static sum(scalars) {
+    return Scalar.#op(
+      scalars,
+      scalars.reduce((acc, s) => acc + s.value, 0),
+      out =>
+        scalars.forEach(s => {
+          s.partial += out.partial;
+        })
+    );
+  }
+
+  /**
+   * @param {Scalar} other
+   * @returns {Scalar}
+   */
+  mul(other) {
+    return Scalar.#op([this, other], this.value * other.value, out => {
+      this.partial += other.value * out.partial;
+      other.partial += this.value * out.partial;
+    });
+  }
+
+  /**
+   * @param {number} n
+   * @returns {Scalar}
+   */
+  pow(n) {
+    return Scalar.#op([this], this.value ** n, out => {
+      this.partial += n * this.value ** (n - 1) * out.partial;
+    });
+  }
+
+  /**
+   * @param {Scalar} other
+   * @returns {Scalar}
+   */
+  sub(other) {
+    return this.add(other.mul(new Scalar(-1)));
+  }
+
+  /**
+   * @param {Scalar} other
+   * @returns {Scalar}
+   */
+  div(other) {
+    return this.mul(other.pow(-1));
+  }
+}
+`} untyped={`
+class Scalar {
+  static sum(scalars) {
+    return Scalar.#op(
+      scalars,
+      scalars.reduce((acc, s) => acc + s.value, 0),
+      out =>
+        scalars.forEach(s => {
+          s.partial += out.partial;
+        })
+    );
+  }
+
+  mul(other) {
+    return Scalar.#op([this, other], this.value * other.value, out => {
+      this.partial += other.value * out.partial;
+      other.partial += this.value * out.partial;
+    });
+  }
+
+  pow(n) {
+    return Scalar.#op([this], this.value ** n, out => {
+      this.partial += n * this.value ** (n - 1) * out.partial;
+    });
+  }
+
+  sub(other) {
+    return this.add(other.mul(new Scalar(-1)));
+  }
+
+  div(other) {
+    return this.mul(other.pow(-1));
+  }
+}
+`} />
+
+The final piece of the puzzle, which makes the `Scalar` class pretty much feature-complete, is the
+`derive` method, which fills out all the `partial` properties in arbitrarily nested subexpressions.
+
+We have to make some observations. First, the partial derivative of a scalar with respect to itself
+is just one (<Math latex="\frac{\partial x}{\partial x} = 1" />). Second, all other derivatives are
+initially equal to zero. In some frameworks, for greater flexibility, this is done manually by the
+user (for example `Optimizer.zero_grad` in PyTorch), but we can zero them out before every calculation
+for simplicity. Finally, the order in which we propagate the derivatives is important in the general
+case <Cite ordinal={3} />. We should start from the output, and go backwards, but since one variable can be used multiple
+times in different subexpressions, we have to do a **topological sort** of the graph of the expression.
+This means that we try to find an order in which we calculate all the dependencies before computing
+their dependents. Note that this order always exists for our `Scalar` class, since because the
+`#children` property is never modified, the graph has to be acyclic.
+
+<Banner kind="warning">
+The topological sort is required here, since we aim to support arbitrary math expressions. In artificial
+neural networks, the division of the computational graph into layers makes the sort unnecessary, since
+a given layer depends only on the previous one. This means that simply iterating over the layers in
+reverse order implicitly produces the topological ordering.
+</Banner>
+
+These three requirements lead us directly to the algorithm presented below:
+<JsdocSyntax typed={`
+class Scalar {
+  derive() {
+    const order = topologicalSort(this, s => s.#children);
+
+    for (const s of order) {
+      s.partial = 0;
+    }
+
+    this.partial = 1;
+
+    for (const s of order) {
+      s.#propagate();
+    }
+  }
+}
+`} untyped={`
+class Scalar {
+  derive() {
+    const order = topologicalSort(this, s => s.#children);
+
+    for (const s of order) {
+      s.partial = 0;
+    }
+
+    this.partial = 1;
+
+    for (const s of order) {
+      s.#propagate();
+    }
+  }
+}
+`} />
+
+This is the core of the `Scalar` class. We can extend it to add more operations, or some utility
+methods, but the current form is enough to build some models and optimize them.
+
+Let's consolidate our current knowledge with an example:
+<Math block latex="f = \frac{2x - 3}{x^3 + x^2 - x}" />
+<JsdocSyntax typed={`
+const x = new Scalar(1);
+const numerator = new Scalar(2).mul(x).sub(new Scalar(3)); // 2x - 3
+const denominator = x.pow(3).add(x.pow(2)).sub(x); // x^3 + x^2 - x
+const f = numerator.div(denominator);
+f.derive();
+console.log(x.partial); // => 6
+console.log(f);
+`} untyped={`
+const x = new Scalar(1);
+const numerator = new Scalar(2).mul(x).sub(new Scalar(3)); // 2x - 3
+const denominator = x.pow(3).add(x.pow(2)).sub(x); // x^3 + x^2 - x
+const f = numerator.div(denominator);
+f.derive();
+console.log(x.partial); // => 6
+console.log(f);
+`} />
+<RationalExprExample client:idle />
+
+# A simple linear regression model
+
+We can use the class to build some **models** or in other words, functions which map inputs to predicted
+outputs. For our purposes, we will assume that a model takes many inputs, but returns a single output.
+This choice is arbitrary, we could also handle multiple outputs, or single inputs with little change.
+
+We can define an abstract `Model` class, which we can later extend to create specific models. The
+`Scalar.wrap` function used inside `predict` transforms an array of numbers into an array of `Scalar` instances.
+
+<JsdocSyntax typed={`
+/** @abstract */
+class Model {
+  /** @type {Scalar[]} */
+  get parameters() {
+    throw new TypeError("Getter \`parameters\` must be implemented!");
+  }
+
+  /**
+   * @param {Scalar[]} x
+   * @returns {Scalar}
+   */
+  evaluate(x) {
+    throw new TypeError("Method \`evaluate\` must be implemented!");
+  }
+
+  /** @param {number[]} x  */
+  predict(x) {
+    return this.evaluate(Scalar.wrap(x)).value;
+  }
+}
+`} untyped={`
+class Model {
+  get parameters() {
+    throw new TypeError("Getter \`parameters\` must be implemented!");
+  }
+
+  evaluate(x) {
+    throw new TypeError("Method \`evaluate\` must be implemented!");
+  }
+
+  predict(x) {
+    return this.evaluate(Scalar.wrap(x)).value;
+  }
+}
+`} />
+
+The core of the class is the `#loss` method showcased below, which calculates how much the predicted
+value differs from the real result. What's important is that this method returns a `Scalar` instance.
+This means that we can use `derive` to see how the parameters affect the final error value, and then
+use this information to nudge the parameters accordingly.
+
+We are using the mean squared error, which is a pretty simple metric &ndash; it's just the average
+of squared differences between the predicted and real values. The `#loss` method can be improved,
+for instance by adding [regularization](https://developers.google.com/machine-learning/glossary#regularization).
+
+<JsdocSyntax typed={`
+/** @abstract */
+class Model {
+  /**
+   * @param {number[][]} X
+   * @param {number[]} y
+   * @returns {Scalar}
+   */
+  #loss(X, y) {
+    const inputs = Scalar.wrap(X);
+    const outputs = Scalar.wrap(y);
+    const guesses = inputs.map((x) => this.evaluate(x));
+    const errors = guesses.map((g, i) => g.sub(outputs[i]).pow(2));
+    return Scalar.sum(errors).div(new Scalar(errors.length));
+  }
+
+  /**
+   * @param {number[][]} X
+   * @param {number[]} y
+   * @param {number} eta
+   * @returns {number}
+   */
+  fit(X, y, eta) {
+    const loss = this.#loss(X, y);
+    loss.derive();
+    for (const p of this.parameters) {
+      p.value -= eta * p.partial;
+    }
+    return loss.value;
+  }
+}
+`} untyped={`
+class Model {
+  #loss(X, y) {
+    const inputs = Scalar.wrap(X);
+    const outputs = Scalar.wrap(y);
+    const guesses = inputs.map((x) => this.evaluate(x));
+    const errors = guesses.map((g, i) => g.sub(outputs[i]).pow(2));
+    return Scalar.sum(errors).div(new Scalar(errors.length));
+  }
+
+  fit(X, y, eta) {
+    const loss = this.#loss(X, y);
+    loss.derive();
+    for (const p of this.parameters) {
+      p.value -= eta * p.partial;
+    }
+    return loss.value;
+  }
+}
+`} />
+
+The `fit` method is what we'd call the **training**. The `eta` (<Math latex="\eta" />) parameter is the learning rate, which
+determines how much we want to update the weights in each step. If set too low, the convergence will
+be slow, and if set too high, we might overshoot while searching.
+
+<Banner kind="warning">
+  The `fit` function often refers to a training loop, which repeatedly calculates the loss and
+  updates the parameters. In this example, the method does only a single pass of optimization
+  and is meant to be called multiple times.
+</Banner>
+
+What we defined above is enough to build a simple linear regression model. The model transforms a
+single input into a single output, according to the following formula:
+<Math block latex="y = ax + b" />
+
+Since we previously assumed that models take many inputs, here we only take the first array element
+and ignore the rest. The subclass looks as follows:
+<JsdocSyntax typed={`
+class Linear extends Model {
+  /** @type {Scalar} */
+  #a;
+  /** @type {Scalar} */
+  #b;
+
+  constructor() {
+    super();
+    this.#a = new Scalar(0);
+    this.#b = new Scalar(0);
+  }
+
+  /**
+   * @override
+   * @type {Scalar[]}
+   */
+  get parameters() {
+    return [this.#a, this.#b];
+  }
+
+  /**
+   * @override
+   * @param {Scalar[]} x
+   * @returns {Scalar}
+   */
+  evaluate(x) {
+    return this.#a.mul(x[0]).add(this.#b);
+  }
+}
+`} untyped={`
+class Linear extends Model {
+  constructor() {
+    super();
+    this.#a = new Scalar(0);
+    this.#b = new Scalar(0);
+  }
+
+  get parameters() {
+    return [this.#a, this.#b];
+  }
+
+  evaluate(x) {
+    return this.#a.mul(x[0]).add(this.#b);
+  }
+}
+`} />
+
+Let's say our dataset consists of the following data points: <br />
+`(3.1, -0.6)`, `(-0.1, -1.9)`, `(4, 0)`, `(-2.1, -3)`.
+
+We can train our model as follows:
+<JsdocSyntax typed={`
+const linear = new Linear();
+const X = [[3.1], [-0.1], [4], [-2.1]];
+const y = [-0.6, -1.9, 0, -3];
+for (let k = 0; k < 100; k++) {
+  linear.fit(X, y, 0.1);
+}
+console.log(linear.predict([1])); // => -1.48
+console.log(linear);
+`} untyped={`
+const linear = new Linear();
+const X = [[3.1], [-0.1], [4], [-2.1]];
+const y = [-0.6, -1.9, 0, -3];
+for (let k = 0; k < 100; k++) {
+  linear.fit(X, y, 0.1);
+}
+console.log(linear.predict([1])); // => -1.48
+console.log(linear);
+`} />
+<LinearExample client:idle />
+
+Here's how our model predicts (orange) based on the training data (blue):
+<figure class="my-2 overflow-hidden rounded-md">
+  <Chart xMin={-3} xMax={5} yMin={-4} yMax={1} defaultLineWidth={0.02} defaultRadius={0.05} elements={[
+    { type: 'axes', tickSize: 0.05 },
+    { type: 'line', color: 'orange', start: [-3, -3.374], end: [5, 0.411] },
+    { type: 'scatter', color: 'orange', data: [[1, -1.48]] },
+    { type: 'scatter', color: 'blue', data: [[3.1, -0.6], [-0.1, -1.9], [4, 0], [-2.1, -3]] },
+  ]} />
+</figure>
+
+# Gradually building the neural network
+
+Now, we can finally focus on the neural network. It's not really different from the previous
+example. Our multi-layer perceptron is just a more complex expression. Since the model is
+highly structured, we can divide it into layers, and then even further &ndash; into neurons.
+
+Let's build from the bottom up. The `Neuron` class is a `Model`, which takes many inputs, multiplies
+them by their corresponding weights, adds a bias term, and then applies an activation function.
+Mathematically, it can be expressed as:
+<Math block latex="y = \sigma\left(\sum_{i=1}^{n} w_i x_i + b\right)" />
+<NeuronDiagram />
+
+<Banner kind="warning">
+  In some machine learning libraries, the activation function is applied in a separate layer. The
+  end result is equivalent. Separate activation layers are more flexible, but we are going to use
+  the simpler approach here.
+</Banner>
+
+Our class is fairly straightforward. We initialize the weights randomly from the <Math latex="[-1, 1]" />,
+range and set the bias to zero. Then we implement the abstract methods from `Model`:
+<JsdocSyntax typed={`
+class Neuron extends Model {
+  /** @type {Scalar[]} */
+  #w;
+  /** @type {Scalar} */
+  #b;
+  /** @type {'linear' | 'relu'} */
+  #activation;
+
+  /**
+   * @param {number} inputCount
+   * @param {'linear' | 'relu'} activation
+   */
+  constructor(inputCount, activation = "relu") {
+    super();
+    this.#w = Array.from(
+      { length: inputCount },
+      () => new Scalar(Math.random() * 2 - 1)
+    );
+    this.#b = new Scalar(0);
+    this.#activation = activation;
+  }
+
+  /**
+   * @override
+   * @type {Scalar[]}
+   */
+  get parameters() { return [...this.#w, this.#b]; }
+
+  /**
+   * @override
+   * @param {Scalar[]} x
+   * @returns {Scalar}
+   */
+  evaluate(x) {
+    return Scalar.sum(this.#w.map((wi, i) => wi.mul(x[i])))
+      .add(this.#b)[this.#activation]();
+  }
+}
+`} untyped={`
+class Neuron extends Model {
+  constructor(inputCount, activation = "relu") {
+    super();
+    this.#w = Array.from(
+      { length: inputCount },
+      () => new Scalar(Math.random() * 2 - 1)
+    );
+    this.#b = new Scalar(0);
+    this.#activation = activation;
+  }
+
+  get parameters() { return [...this.#w, this.#b]; }
+
+  evaluate(x) {
+    return Scalar.sum(this.#w.map((wi, i) => wi.mul(x[i])))
+      .add(this.#b)[this.#activation]();
+  }
+}
+`} />
+
+You might notice, that this addition requires us to implement the activation functions in the `Scalar`
+class. The `linear` function is extremely simple, it doesn't change the input at all (`return this;`).
+The `relu` method computes the [ReLU](https://en.wikipedia.org/wiki/Rectifier_(neural_networks))
+activation function, which is defined as <Math latex="f(x) = \max(0, x)" />. Its implementation is
+left as an exercise to the reader.
+
+Next, we build the `Layer`. Note that this class doesn't inherit from `Model`, since it returns multiple
+results with each evaluation (one for each neuron). This part would feel a bit more elegant if we defined
+our model to produce multiple outputs instead.
+
+Regardless, we can implement the standalone `parameters` and `evaluate` methods:
+<JsdocSyntax typed={`
+class Layer {
+  /** @type {Neuron[]} */
+  #neurons;
+
+  /**
+   * @param {number} inputCount
+   * @param {number} outputCount
+   * @param {'linear' | 'relu'} activation
+   */
+  constructor(inputCount, outputCount, activation) {
+    this.#neurons = Array.from(
+      { length: outputCount },
+      () => new Neuron(inputCount, activation)
+    );
+  }
+
+  /** @type {Scalar[]} */
+  get parameters() { return this.#neurons.flatMap((n) => n.parameters); }
+
+  /**
+   * @param {Scalar[]} x
+   * @returns {Scalar[]}
+   */
+  evaluate(x) { return this.#neurons.map((n) => n.evaluate(x)); }
+}
+`} untyped={`
+class Layer {
+  constructor(inputCount, outputCount, activation) {
+    this.#neurons = Array.from(
+      { length: outputCount },
+      () => new Neuron(inputCount, activation)
+    );
+  }
+
+  get parameters() { return this.#neurons.flatMap((n) => n.parameters); }
+
+  evaluate(x) { return this.#neurons.map((n) => n.evaluate(x)); }
+}
+`} />
+
+Finally, we define the `Network` as:
+<JsdocSyntax typed={`
+class Network extends Model {
+  /** @type {Layer[]} */
+  #layers;
+
+  /**
+   * @param {number} inputCount
+   * @param {number[]} layers
+   */
+  constructor(inputCount, layers = []) {
+    super();
+    const sizes = [inputCount, ...layers];
+    this.#layers = [
+      ...layers.map((_, i) => new Layer(sizes[i], sizes[i + 1], "relu")),
+      new Layer(sizes[sizes.length - 1], 1, "linear"),
+    ];
+  }
+
+  /**
+   * @override
+   * @returns {Scalar[]}
+   */
+  get parameters() {
+    return this.#layers.flatMap((l) => l.parameters);
+  }
+
+  /**
+   * @override
+   * @param {Scalar[]} x
+   * @returns {Scalar}
+   */
+  evaluate(x) {
+    return this.#layers.reduce((acc, l) => l.evaluate(acc), x)[0];
+  }
+}
+`} untyped={`
+class Network extends Model {
+  constructor(inputCount, layers = []) {
+    super();
+    const sizes = [inputCount, ...layers];
+    this.#layers = [
+      ...layers.map((_, i) => new Layer(sizes[i], sizes[i + 1], "relu")),
+      new Layer(sizes[sizes.length - 1], 1, "linear"),
+    ];
+  }
+
+  get parameters() {
+    return this.#layers.flatMap((l) => l.parameters);
+  }
+
+  evaluate(x) {
+    return this.#layers.reduce((acc, l) => l.evaluate(acc), x)[0];
+  }
+}
+`} />
+
+Notice how simple it is to combine smaller models into larger ones.
+
+All of our hidden layers use the rectifier activation function. It would be trivial to add support
+for other functions. However, the output layer doesn't do any activation at all. If we used the ReLU
+function instead, our network could only produce non-negative outputs.
+
+Finally, we can test our network.
+
+The task at hand is to approximate the [signed distance function](https://en.wikipedia.org/wiki/Signed_distance_function)
+for a circle. Note that this can be easily calculated by just plugging our inputs into a formula, but for this
+task we'll pretend that this formula is unknown. You can run the experiment below:
+<Experiment client:idle>
+<JsdocSyntax typed={`
+/**
+ * @param {number} batch
+ * @param {number} eta
+ */
+function learn(batch, eta) {
+  /** @type {number[][]} */
+  const X = [];
+  /** @type {number[]} */
+  const y = [];
+  for (let i = 0; i < batch; i++) {
+    const x0 = Math.random() * 2 - 1;
+    const x1 = Math.random() * 2 - 1;
+    X.push([x0, x1]);
+    y.push(Math.sqrt(x0 * x0 + x1 * x1) - 0.5);
+  }
+  model.fit(X, y, eta);
+}
+`} untyped={`
+function learn(batch, eta) {
+  const X = [];
+  const y = [];
+  for (let i = 0; i < batch; i++) {
+    const x0 = Math.random() * 2 - 1;
+    const x1 = Math.random() * 2 - 1;
+    X.push([x0, x1]);
+    y.push(Math.sqrt(x0 ** 2 + x1 ** 2) - 0.5);
+  }
+  model.fit(X, y, eta);
+}
+`} />
+</Experiment>
+
+<Banner kind="warning">
+  All of the showcased metrics refer to the training data. A key concept in machine learning is
+  data splitting, which involves dividing the dataset into training and testing sets. This was
+  omitted in the experiment for simplicity.
+</Banner>
+
+# Conclusion
+
+We have successfully built a simple artificial neural network in plain JavaScript. It is extremely
+unoptimized and not suitable for production use, but as presented above, it can be used to solve
+simple machine learning problems.
+
+The next step would be to make the engine operate on tensors instead of scalars. This generally
+allows us to parallelize many of the operations, and provides a more convenient memory layout.
+In pure JavaScript, many of these benefits are lost, since the language is single-threaded by
+design. That's why TensorFlow.js opts to use WebGL instead, using shaders to parallelize
+the computations.
+
+Most importantly, the experiment showcases, how these networks are just huge mathematical
+expressions &ndash; we could log the result of the `#loss` method and expand the object down
+to every single input and parameter.
+
+<Banner kind="info">
+  The entire code is available as the [**network.js**](https://gist.github.com/tchojnacki/75fa2268166f3eb95655fce05f1615e3) Gist.
+</Banner>
+
+<Sources sources={[
+  { title: 'Artificial neural network – Wikipedia', href: 'https://en.wikipedia.org/wiki/Artificial_neural_network' },
+  { title: 'Reverse accumulation – Automatic differentiation – Wikipedia', href: 'https://en.wikipedia.org/wiki/Automatic_differentiation#Reverse_accumulation' },
+  { title: 'Backpropagation – Introduction to Machine Learning – Matt Gormley', href: 'http://www.cs.cmu.edu/~mgormley/courses/10601bd-f18/slides/lecture12-backprop.pdf' }
+]} />
