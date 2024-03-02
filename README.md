@@ -15,8 +15,9 @@
 - React
 - Tailwind CSS
 - TypeScript
-- Lodash
+- MDX
 - Vitest
+- Lodash
 - Prettier
 - Git
 
@@ -30,3 +31,17 @@ Run the development server:
 npm run dev
 ```
 Open [http://localhost:4321](http://localhost:4321) with your browser to see the result.
+
+You can build the project and preview an optimized version using:
+```bash
+npm run build
+npm run preview
+```
+
+### Testing 🧪
+Enter the following command:
+```bash
+npm run test
+```
+Test results will be printed alongside a coverage report. The tests are also run as part of the CI/CD process
+on every pull request. Note that only the logic is tested - there are no visual tests.
