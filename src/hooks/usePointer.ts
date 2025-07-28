@@ -1,7 +1,7 @@
 import type { RefObject } from 'react'
 import { useEventListener } from './useEventListener'
 
-export function usePointerStart(target: RefObject<HTMLElement>, handler: () => any) {
+export function usePointerStart(target: RefObject<HTMLElement | null>, handler: () => any) {
   useEventListener(target, 'mousedown', handler)
   useEventListener(target, 'touchstart', event => {
     event.preventDefault()
@@ -9,7 +9,7 @@ export function usePointerStart(target: RefObject<HTMLElement>, handler: () => a
   })
 }
 
-export function usePointerStop(target: RefObject<HTMLElement>, handler: () => any) {
+export function usePointerStop(target: RefObject<HTMLElement | null>, handler: () => any) {
   useEventListener(target, 'pointerup', handler)
   useEventListener(target, 'pointerleave', handler)
 }

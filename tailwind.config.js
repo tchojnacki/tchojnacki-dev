@@ -1,10 +1,10 @@
 // @ts-check
 
-import plugin from 'tailwindcss/plugin'
 import gridAreas from '@savvywombat/tailwindcss-grid-areas'
+import plugin from 'tailwindcss/plugin'
+import resolveConfig from 'tailwindcss/resolveConfig'
 
-/** @type {import('tailwindcss').Config} */
-export default {
+export default resolveConfig({
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   darkMode: 'class',
   theme: {
@@ -39,25 +39,12 @@ export default {
         925: '#282566',
         // 950: '#1e1b4b',
       },
-      neudigo: {
-        50: '#f7f9ff',
-        950: '#14122b',
-      },
-      purple: {
-        300: '#d8b4fe',
-        700: '#7e22ce',
-      },
-      amber: {
-        500: '#f59e0b',
-      },
-      sky: {
-        500: '#0ea5e9',
-      },
+      neudigo: { 50: '#f7f9ff', 950: '#14122b' },
+      purple: { 300: '#d8b4fe', 700: '#7e22ce' },
+      amber: { 500: '#f59e0b' },
+      sky: { 500: '#0ea5e9' },
     },
-    fontWeight: {
-      normal: '400',
-      bold: '600',
-    },
+    fontWeight: { normal: '400', bold: '600' },
     gridTemplateAreas: {
       'landing-desktop': ['. text sphere .', '. . sphere .', '. . . .'],
       'landing-mobile': ['text', 'sphere', '.'],
@@ -78,22 +65,12 @@ export default {
         '75%': { transform: 'rotate(30deg)' },
       },
       enteronload: {
-        from: {
-          opacity: '0',
-          transform: 'var(--enter-transform, none)',
-        },
-        to: {
-          opacity: '1',
-          transform: 'none',
-        },
+        from: { opacity: '0', transform: 'var(--enter-transform, none)' },
+        to: { opacity: '1', transform: 'none' },
       },
       scrollprojectimage: {
-        from: {
-          marginTop: '0',
-        },
-        to: {
-          marginTop: 'var(--max-image-scroll, 0)',
-        },
+        from: { marginTop: '0' },
+        to: { marginTop: 'var(--max-image-scroll, 0)' },
       },
     },
     animation: {
@@ -103,28 +80,16 @@ export default {
       enteronload: 'enteronload 500ms ease-out',
       scrollprojectimage: 'scrollprojectimage 5s ease-in-out alternate infinite',
     },
-    extend: {
-      spacing: {
-        'nav-height': '4rem',
-      },
-    },
+    extend: { spacing: { 'nav-height': '4rem' } },
   },
   plugins: [
     /** @type {any} */ (gridAreas),
     plugin(({ addUtilities }) => {
       addUtilities({
-        '.onenter-fromleft': {
-          '--enter-transform': 'translateX(-50px)',
-        },
-        '.onenter-fromtop': {
-          '--enter-transform': 'translateY(-50px)',
-        },
-        '.onenter-fromright': {
-          '--enter-transform': 'translateX(50px)',
-        },
-        '.onenter-scaling': {
-          '--enter-transform': 'scale(0.75)',
-        },
+        '.onenter-fromleft': { '--enter-transform': 'translateX(-50px)' },
+        '.onenter-fromtop': { '--enter-transform': 'translateY(-50px)' },
+        '.onenter-fromright': { '--enter-transform': 'translateX(50px)' },
+        '.onenter-scaling': { '--enter-transform': 'scale(0.75)' },
         '.centered-header': {
           'box-sizing': 'content-box',
           'max-width': '70ch',
@@ -134,4 +99,4 @@ export default {
       })
     }),
   ],
-}
+})
