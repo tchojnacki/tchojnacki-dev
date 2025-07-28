@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { jaccard, calculateRelatedSkills } from '~/logic/relatedSkills'
-import type { Project, ProjectId, Skill, SkillId } from '~/utils/content'
+import { calculateRelatedSkills, jaccard } from '~/logic/relatedSkills'
+import type { Project, Skill } from '~/utils/content'
 
 describe(jaccard, () => {
   it('returns NaN when the list is empty', () => {
@@ -34,7 +34,7 @@ describe(calculateRelatedSkills, () => {
       csharp: {},
       react: {},
       typescript: {},
-    } as Record<SkillId, Skill>
+    } as unknown as Record<string, Skill>
     const projectEntries = {
       senso: {
         parts: [
@@ -42,7 +42,7 @@ describe(calculateRelatedSkills, () => {
           { skills: [{ id: 'react' }, { id: 'typescript' }] },
         ],
       },
-    } as Record<ProjectId, Project>
+    } as unknown as Record<string, Project>
 
     const related = calculateRelatedSkills(skillEntries, projectEntries)
 

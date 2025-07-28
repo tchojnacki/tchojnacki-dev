@@ -1,12 +1,16 @@
 ---
 import SimpleIconSvg from '~/components/common/SimpleIconSvg'
-import { getSkills, type SkillId } from '~/utils/content'
+import { getSkills } from '~/utils/content'
 
 interface Props {
-  skillId: SkillId
+  skillId: string
 }
 
 const skill = (await getSkills())[Astro.props.skillId]
+if (!skill) {
+  throw new Error(`Skill with id "${Astro.props.skillId}" not found`)
+}
+
 ---
 
 <li>

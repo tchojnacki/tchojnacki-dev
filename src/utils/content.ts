@@ -3,22 +3,20 @@ import { getCollection, type CollectionEntry } from 'astro:content'
 import * as ICONS from 'simple-icons'
 import { keyComparator } from './sorting'
 
-export type SkillId = CollectionEntry<'skills'>['id']
 type SkillType = CollectionEntry<'skills'>['data']['type']
 export type Skill = {
-  id: SkillId
+  id: string
   type: SkillType
   icon: ICONS.SimpleIcon | string
   name: string
   description: string
 }
 
-export type ProjectId = CollectionEntry<'projects'>['id']
 export type ProjectTag = CollectionEntry<'projects'>['data']['tags'][number]
 export type ProjectLink = CollectionEntry<'projects'>['data']['links'][number]
 type ProjectPart = { name: string; skills: Skill[]; tags: ProjectTag[] }
 export type Project = {
-  id: ProjectId
+  id: string
   name: string
   description: string
   image: ImageMetadata
@@ -31,7 +29,7 @@ type Social = CollectionEntry<'socials'>['data']
 
 export type Post = CollectionEntry<'posts'>
 
-export async function getSkills(): Promise<Record<SkillId, Skill>> {
+export async function getSkills(): Promise<Record<string, Skill>> {
   const skillEntries = await getCollection('skills')
   return Object.fromEntries(
     skillEntries.map(({ id, data }) => {
@@ -44,10 +42,10 @@ export async function getSkills(): Promise<Record<SkillId, Skill>> {
         return [id, { id, type, icon: name, name, description } satisfies Skill]
       }
     }),
-  ) as Record<SkillId, Skill>
+  ) as Record<string, Skill>
 }
 
-export async function getProjects(): Promise<Record<ProjectId, Project>> {
+export async function getProjects(): Promise<Record<string, Project>> {
   const skills = await getSkills()
   const projectEntries = await getCollection('projects')
   return Object.fromEntries(
@@ -63,11 +61,11 @@ export async function getProjects(): Promise<Record<ProjectId, Project>> {
         parts: parts.map(({ name, tags, skillIds }) => ({
           name,
           tags: tags ?? [],
-          skills: skillIds.map(({ id }) => skills[id]),
+          skills: skillIds.flatMap(({ id }) => (id in skills ? [skills[id]!] : [])),
         })),
       } satisfies Project,
     ]),
-  ) as Record<ProjectId, Project>
+  ) as Record<string, Project>
 }
 
 export async function getSocials(): Promise<Social[]> {
@@ -101,7 +99,7 @@ export const projectImportanceOrder = [
   'ocaml-scala-run',
   'node-wikia-api',
   'fandom-monaco',
-] satisfies ProjectId[]
+]
 
 export const techSphereSkillIds = [
   'react',
@@ -121,4 +119,4 @@ export const techSphereSkillIds = [
   'postgres',
   'css',
   'html',
-] satisfies SkillId[]
+]

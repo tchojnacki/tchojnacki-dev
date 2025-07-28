@@ -1,14 +1,14 @@
 ---
 import type { GetStaticPaths } from 'astro'
-import { calculateRelatedSkills } from '~/logic/relatedSkills'
+import PostList from '~/components/blog/PostList.astro'
 import SectionHeader from '~/components/common/SectionHeader.astro'
 import Wave from '~/components/common/Wave.astro'
+import ProjectList from '~/components/projects/ProjectList.astro'
 import SkillCard from '~/components/projects/skills/SkillCard.astro'
 import SkillCardWrapper from '~/components/projects/skills/SkillCardWrapper.astro'
-import ProjectList from '~/components/projects/ProjectList.astro'
 import Layout from '~/layouts/Layout.astro'
-import { getProjects, getSkills, type SkillId } from '~/utils/content'
-import PostList from '~/components/blog/PostList.astro'
+import { calculateRelatedSkills } from '~/logic/relatedSkills'
+import { getProjects, getSkills } from '~/utils/content'
 
 export const getStaticPaths = (async () =>
   Object.keys(await getSkills()).map(id => ({ params: { id } }))) satisfies GetStaticPaths
@@ -16,7 +16,7 @@ export const getStaticPaths = (async () =>
 const skillEntries = await getSkills()
 const projectEntries = await getProjects()
 
-const skill = skillEntries[Astro.params.id as SkillId]
+const skill = skillEntries[Astro.params.id]!
 const relatedSkills = calculateRelatedSkills(skillEntries, projectEntries)
 ---
 
@@ -33,7 +33,7 @@ const relatedSkills = calculateRelatedSkills(skillEntries, projectEntries)
     <section class="bg-indigo-100 dark:bg-indigo-925">
       <SectionHeader text="Related skills" />
       <SkillCardWrapper>
-        {relatedSkills[skill.id].map(skillId => <SkillCard {skillId} />)}
+        {relatedSkills[skill.id]!.map(skillId => <SkillCard {skillId} />)}
       </SkillCardWrapper>
     </section>
     <Wave inverted />

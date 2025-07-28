@@ -9,7 +9,7 @@ import TechSphere from './TechSphere'
 import WavingEmoji from './WavingEmoji'
 
 const skills = await getSkills()
-const skillNames = techSphereSkillIds.map(id => skills[id].name)
+const skillNames = techSphereSkillIds.flatMap(id => id in skills ? [skills[id]!.name] : [])
 const socials = await getSocials()
 ---
 

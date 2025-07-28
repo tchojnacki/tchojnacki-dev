@@ -1,7 +1,7 @@
-import { type SkillId, type Skill, type Project, type ProjectId } from '~/utils/content'
+import { type Project, type Skill } from '~/utils/content'
 import { keyComparator } from '~/utils/sorting'
 
-export function jaccard(a: SkillId, b: SkillId, list: SkillId[][]) {
+export function jaccard(a: string, b: string, list: string[][]) {
   const aSize = list.filter(p => p.includes(a)).length
   const bSize = list.filter(p => p.includes(b)).length
   const commonSize = list.filter(p => p.includes(a) && p.includes(b)).length
@@ -9,10 +9,10 @@ export function jaccard(a: SkillId, b: SkillId, list: SkillId[][]) {
 }
 
 export function calculateRelatedSkills(
-  skillEntries: Record<SkillId, Skill>,
-  projectEntries: Record<ProjectId, Project>,
-): Record<SkillId, SkillId[]> {
-  const skillIds = Object.keys(skillEntries) as SkillId[]
+  skillEntries: Record<string, Skill>,
+  projectEntries: Record<string, Project>,
+): Record<string, string[]> {
+  const skillIds = Object.keys(skillEntries)
   const projects = Object.values(projectEntries).map(project =>
     project.parts.flatMap(part => part.skills.map(skill => skill.id)),
   )
@@ -20,7 +20,7 @@ export function calculateRelatedSkills(
     project.parts.map(part => part.skills.map(skill => skill.id)),
   )
 
-  function similarity(a: SkillId, b: SkillId) {
+  function similarity(a: string, b: string) {
     if (a === b) {
       return 0
     }
@@ -33,5 +33,5 @@ export function calculateRelatedSkills(
       target,
       [...skillIds].sort(keyComparator(s => similarity(target, s), true)).slice(0, 4),
     ]),
-  ) as Record<SkillId, SkillId[]>
+  ) as Record<string, string[]>
 }
