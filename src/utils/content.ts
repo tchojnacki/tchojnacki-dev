@@ -16,11 +16,7 @@ export type Skill = {
 export type ProjectId = CollectionEntry<'projects'>['id']
 export type ProjectTag = CollectionEntry<'projects'>['data']['tags'][number]
 export type ProjectLink = CollectionEntry<'projects'>['data']['links'][number]
-type ProjectPart = {
-  name: string
-  skills: Skill[]
-  tags: ProjectTag[]
-}
+type ProjectPart = { name: string; skills: Skill[]; tags: ProjectTag[] }
 export type Project = {
   id: ProjectId
   name: string
@@ -41,7 +37,7 @@ export async function getSkills(): Promise<Record<SkillId, Skill>> {
     skillEntries.map(({ id, data }) => {
       if ('icon' in data) {
         const { type, name, description } = data
-        const icon = ICONS[data.icon as keyof typeof ICONS]
+        const icon = ICONS[data.icon as keyof typeof ICONS] as ICONS.SimpleIcon
         return [id, { id, type, icon, name: name ?? icon.title, description } satisfies Skill]
       } else {
         const { type, name, description } = data

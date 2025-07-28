@@ -1,12 +1,12 @@
 ---
 import * as ICONS from 'simple-icons'
 
-import Wave from '~/components/common/Wave.astro'
 import SimpleIconSvg from '~/components/common/SimpleIconSvg'
-import { getSkills, techSphereSkillIds, getSocials } from '~/utils/content'
+import Wave from '~/components/common/Wave.astro'
+import { getSkills, getSocials, techSphereSkillIds } from '~/utils/content'
 
-import WavingEmoji from './WavingEmoji'
 import TechSphere from './TechSphere'
+import WavingEmoji from './WavingEmoji'
 
 const skills = await getSkills()
 const skillNames = techSphereSkillIds.map(id => skills[id].name)
@@ -44,7 +44,7 @@ const socials = await getSocials()
             class="group inline-block h-8 w-8"
           >
             <SimpleIconSvg
-              icon={ICONS[icon as keyof typeof ICONS]}
+              icon={ICONS[icon as keyof typeof ICONS] as ICONS.SimpleIcon}
               pathClassName="fill-neutral-600 group-hover:fill-neutral-900 dark:fill-neutral-400 dark:group-hover:fill-neutral-100 duration-200"
             />
           </a>
