@@ -4,10 +4,9 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "check": "astro check",
+    "test": "astro check && vitest run --coverage",
     "build": "astro build",
     "preview": "astro preview",
-    "test": "vitest run --coverage",
     "prepare": "husky install"
   },
   "dependencies": {

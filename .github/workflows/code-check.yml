@@ -16,19 +16,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Use Node.js v20
-        uses: actions/setup-node@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 20.8
+          node-version-file: .nvmrc
           cache: npm
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Check
-        run: npm run check
-
-      - name: Test with coverage
+      - name: Check and test with coverage
         run: npm run test
 
       - name: Upload coverage to Codecov
