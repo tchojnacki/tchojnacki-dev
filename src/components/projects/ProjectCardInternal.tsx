@@ -105,7 +105,7 @@ export default function ProjectCardInternal({
   const isMounted = useIsMounted()
 
   const { width, height } = project.image
-  const maxImageScroll = Math.floor(((height - (width * 3) / 4) / width) * 100)
+  const maxImageScroll = Math.floor(100 - (75 * width) / height)
 
   const activeIcon = maxImageScroll !== 0 ? PlayerPause : ZoomCancel
   const inactiveIcon = maxImageScroll !== 0 ? PlayerPlay : ZoomIn
@@ -129,7 +129,7 @@ export default function ProjectCardInternal({
         <img
           alt={project.name}
           src={project.image.src}
-          className={clsx('h-auto w-full', isActive && 'animate-scrollprojectimage')}
+          className={clsx('absolute h-auto w-full', isActive && 'animate-scrollprojectimage')}
           style={
             {
               '--max-image-scroll': `-${maxImageScroll}%`,

@@ -87,10 +87,10 @@
 
   @keyframes scrollprojectimage {
     from {
-      margin-top: 0;
+      transform: translateY(0);
     }
     to {
-      margin-top: var(--max-image-scroll, 0);
+      transform: translateY(var(--max-image-scroll, 0));
     }
   }
 }
