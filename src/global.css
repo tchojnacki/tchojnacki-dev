@@ -43,7 +43,6 @@
 
   --spacing-nav-height: 4rem;
 
-  --animate-none: none;
   --animate-errshake: errshake 200ms 600ms;
   --animate-emojiwave: emojiwave 1s ease-in-out;
   --animate-enteronload: enteronload 500ms ease-out;

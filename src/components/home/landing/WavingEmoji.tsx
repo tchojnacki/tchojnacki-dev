@@ -28,7 +28,7 @@ export default function WavingEmoji() {
       onClick={startPlaying}
       className={clsx(
         'inline-block origin-[75%_75%] cursor-pointer',
-        isPlaying && 'animate-emojiwave motion-reduce:animate-none',
+        isPlaying && 'motion-safe:animate-emojiwave',
       )}
     >
       <Emoji size={24} text="👋" />

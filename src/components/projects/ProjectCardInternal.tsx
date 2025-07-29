@@ -123,7 +123,7 @@ export default function ProjectCardInternal({
           'lg:shadow-indigo-925/25 shadow-none lg:shadow-md dark:lg:shadow-indigo-100/10',
           'scale-100 duration-200 ease-in',
           isActive && 'lg:scale-105',
-          isMounted ? 'animate-enteronload opacity-100 motion-reduce:animate-none' : 'opacity-0',
+          isMounted ? 'motion-safe:animate-enteronload opacity-100' : 'opacity-0',
         )}
       >
         <img
@@ -185,7 +185,7 @@ export default function ProjectCardInternal({
           'dark:from-indigo-925 dark:to-indigo-925 dark:lg:to-neudigo-950',
           'translate-x-0 transition-[translate] duration-200 ease-in',
           isActive && (flipped ? 'lg:-translate-x-1/3' : 'lg:translate-x-1/3'),
-          isMounted ? 'animate-enteronload opacity-100 motion-reduce:animate-none' : 'opacity-0',
+          isMounted ? 'motion-safe:animate-enteronload opacity-100' : 'opacity-0',
         )}
       >
         <H1 className="mb-2 flex flex-col gap-4 lg:flex-row lg:items-center">

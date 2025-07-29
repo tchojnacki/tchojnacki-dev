@@ -11,7 +11,6 @@ import {
   usePointerStop,
   usePrefersReducedMotion,
 } from '~/hooks'
-import { type Vec3D, v2add, v2scale, v2sub, v3scale } from '~/logic/vector'
 import {
   DAMPING_FACTOR,
   INITIAL_ROTATION_AXIS,
@@ -22,6 +21,7 @@ import {
   rotateAroundUnitVector,
   worldToCamera,
 } from '~/logic/techSphere'
+import { type Vec3D, v2add, v2scale, v2sub, v3scale } from '~/logic/vector'
 
 const FONT_SCALE = 0.05
 
@@ -161,9 +161,7 @@ export default function TechSphere({ skillNames }: TechSphereProps) {
       role="presentation"
       className={clsx(
         'cursor-grab touch-none select-none active:cursor-grabbing',
-        isMounted
-          ? 'animate-enteronload opacity-100 onenter-fromright motion-reduce:animate-none'
-          : 'opacity-0',
+        isMounted ? 'motion-safe:animate-enteronload onenter-fromright opacity-100' : 'opacity-0',
       )}
       ref={canvasRef}
       width={canvasSize}
