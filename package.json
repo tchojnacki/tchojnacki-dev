@@ -19,8 +19,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "simple-icons": "^11.15.0",
-    "tabler-icons-react": "^1.56.0",
-    "twemoji": "^14.0.2"
+    "tabler-icons-react": "^1.56.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
