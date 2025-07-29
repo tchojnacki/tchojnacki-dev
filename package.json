@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@nanostores/react": "^1.0.0",
-    "astro": "^5.12.4",
+    "astro": "^5.12.3",
     "clsx": "^2.1.1",
     "katex": "^0.16.22",
     "lodash": "^4.17.21",
