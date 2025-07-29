@@ -1,6 +1,7 @@
 ---
-import 'katex/dist/katex.min.css'
 import type { GetStaticPaths } from 'astro'
+import { render } from 'astro:content'
+import 'katex/dist/katex.min.css'
 import PostFooter from '~/components/blog/PostFooter.astro'
 import PostHeader from '~/components/blog/PostHeader.astro'
 import { typography } from '~/components/blog/typography'
@@ -8,7 +9,7 @@ import Layout from '~/layouts/Layout.astro'
 import { getPosts, type Post } from '~/utils/content'
 
 export const getStaticPaths = (async () => {
-  return (await getPosts()).map(post => ({ params: { slug: post.slug }, props: { post } }))
+  return (await getPosts()).map(post => ({ params: { id: post.id }, props: { post } }))
 }) satisfies GetStaticPaths
 
 interface Props {
@@ -19,7 +20,7 @@ const { post } = Astro.props
 const {
   Content,
   remarkPluginFrontmatter: { readingTime },
-} = await post.render()
+} = await render(post)
 ---
 
 <Layout name={post.data.title} description={post.data.abstract}>
@@ -29,7 +30,7 @@ const {
       <section class="post-content">
         <Content components={{ ...typography }} />
       </section>
-      <PostFooter slug={post.slug} />
+      <PostFooter id={post.id} />
     </article>
   </main>
 </Layout>

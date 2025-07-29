@@ -1,22 +1,22 @@
 ---
 import {
+  BrandGithub,
   BrandLinkedin,
-  BrandTwitter,
   BrandReddit,
-  Rss,
+  BrandTwitter,
   BrandYcombinator,
   LetterL,
-  BrandGithub,
+  Rss,
 } from 'tabler-icons-react'
 import Link from '~/components/common/Link'
 
 interface Props {
-  slug: string
+  id: string
 }
 
-const { slug } = Astro.props
+const { id } = Astro.props
 
-const url = new URL(`/blog/${slug}`, Astro.site).toString()
+const url = new URL(`/blog/${id}`, Astro.site).toString()
 
 const socials = [
   {
@@ -64,7 +64,7 @@ const socials = [
   </ul>
   <p>
     <Link
-      href={`https://github.com/tchojnacki/tchojnacki-dev/tree/main/src/content/posts/${slug}.mdx`}
+      href={`https://github.com/tchojnacki/tchojnacki-dev/tree/main/src/content/posts/${id}.mdx`}
     >
       Fix a typo on <BrandGithub size={16} className="inline-block" /> GitHub.
     </Link>
