@@ -2,6 +2,10 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme inline {
+  --font-sans: var(--font-inter);
+}
+
 @theme {
   --color-*: initial;
   --color-neutral-0: #ffffff;
@@ -118,8 +122,12 @@
   padding: 4rem 1rem;
 }
 
-/* https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor */
 @layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+
+  /* https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor */
   button:not(:disabled),
   [role='button']:not(:disabled) {
     cursor: pointer;
