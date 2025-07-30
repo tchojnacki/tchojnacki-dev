@@ -1,17 +1,15 @@
 ---
-import GithubSlugger from 'github-slugger'
+import { slugify } from '~/logic/slugify'
 
 interface Props {
   text: string
 }
 
-const slugger = new GithubSlugger()
-
 const { text } = Astro.props
-const id = slugger.slug(text)
+const id = slugify(text)
 ---
 
-<h2 {id} class="pt-4 text-center text-3xl font-bold text-neutral-1000 dark:text-neutral-0">
+<h2 {id} class="text-neutral-1000 dark:text-neutral-0 pt-4 text-center text-3xl font-bold">
   <a href={`#${id}`}>
     {text}
   </a>
