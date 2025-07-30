@@ -28,23 +28,24 @@ describe(jaccard, () => {
 
 describe(calculateRelatedSkills, () => {
   it('returns relevant related skills', () => {
-    const skillEntries = {
-      aspnet: {},
-      dotnet: {},
-      csharp: {},
-      react: {},
-      typescript: {},
-    } as unknown as Record<string, Skill>
-    const projectEntries = {
-      senso: {
+    const skillList = [
+      { id: 'aspnet' },
+      { id: 'dotnet' },
+      { id: 'csharp' },
+      { id: 'react' },
+      { id: 'typescript' },
+    ] as Skill[]
+    const projectList = [
+      {
+        id: 'senso',
         parts: [
           { skills: [{ id: 'aspnet' }, { id: 'dotnet' }, { id: 'csharp' }] },
           { skills: [{ id: 'react' }, { id: 'typescript' }] },
         ],
       },
-    } as unknown as Record<string, Project>
+    ] as Project[]
 
-    const related = calculateRelatedSkills(skillEntries, projectEntries)
+    const related = calculateRelatedSkills(skillList, projectList)
 
     expect(related['aspnet']).toStrictEqual(['dotnet', 'csharp', 'react', 'typescript'])
     expect(related['react']).toStrictEqual(['typescript', 'aspnet', 'dotnet', 'csharp'])

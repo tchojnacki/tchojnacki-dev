@@ -1,8 +1,8 @@
 ---
+import { sortBy } from 'lodash-es'
 import Bullet from '~/components/blog/Bullet.astro'
 import Link from '~/components/common/Link'
-import { type Post } from '~/content'
-import { comparator } from '~/lib/sorting'
+import type { Post } from '~/content'
 
 interface Props {
   post: Post
@@ -11,10 +11,13 @@ interface Props {
 
 const { post, readingTime } = Astro.props
 
-const tags = [
-  ...post.data.skills.map(s => ({ tag: s.id, href: `/skills/${s.id}` })),
-  ...post.data.tags.map(t => ({ tag: t, href: `/tags/${t}` })),
-].sort(comparator(t => t.tag))
+const tags = sortBy(
+  [
+    ...post.data.skills.map(s => ({ tag: s.id, href: `/skills/${s.id}` })),
+    ...post.data.tags.map(t => ({ tag: t, href: `/tags/${t}` })),
+  ],
+  'tag',
+)
 ---
 
 <header class="centered-header flex flex-col gap-3 text-center sm:text-left">

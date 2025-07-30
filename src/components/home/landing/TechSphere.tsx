@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import clamp from 'lodash/clamp'
+import { clamp } from 'lodash-es'
 import { useEffect, useMemo, useRef } from 'react'
 
 import {

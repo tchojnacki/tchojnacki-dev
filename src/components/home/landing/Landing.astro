@@ -4,13 +4,34 @@ import { siGithub, siLinkedin } from 'simple-icons'
 import SimpleIconSvg from '~/components/common/SimpleIconSvg'
 import Wave from '~/components/common/Wave.astro'
 import { github, linkedin, resume } from '~/consts/socials'
-import { getSkills, techSphereSkillIds } from '~/content'
+import { getSkillById } from '~/content'
 import SocialLink from './SocialLink.astro'
 import TechSphere from './TechSphere'
 import WavingEmoji from './WavingEmoji'
 
-const skills = await getSkills()
-const skillNames = techSphereSkillIds.flatMap(id => (id in skills ? [skills[id]!.name] : []))
+const techSphereSkillIds = [
+  'react',
+  'aspnet',
+  'nestjs',
+  'nextjs',
+  'typescript',
+  'csharp',
+  'dotnet',
+  'javascript',
+  'express',
+  'nodejs',
+  'java',
+  'python',
+  'rust',
+  'mongodb',
+  'postgres',
+  'css',
+  'html',
+]
+
+const skillNames = await Promise.all(
+  techSphereSkillIds.map(id => getSkillById(id).then(s => s.name)),
+)
 ---
 
 <header

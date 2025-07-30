@@ -1,5 +1,5 @@
+import { fromPairs, sortBy } from 'lodash-es'
 import { type Project, type Skill } from '~/content'
-import { comparator } from '~/lib/sorting'
 
 export function jaccard(a: string, b: string, list: string[][]) {
   const aSize = list.filter(p => p.includes(a)).length
@@ -9,29 +9,22 @@ export function jaccard(a: string, b: string, list: string[][]) {
 }
 
 export function calculateRelatedSkills(
-  skillEntries: Record<string, Skill>,
-  projectEntries: Record<string, Project>,
+  skillList: Skill[],
+  projectList: Project[],
 ): Record<string, string[]> {
-  const skillIds = Object.keys(skillEntries)
-  const projects = Object.values(projectEntries).map(project =>
+  const skillIds = skillList.map(skill => skill.id)
+  const projects = projectList.map(project =>
     project.parts.flatMap(part => part.skills.map(skill => skill.id)),
   )
-  const parts = Object.values(projectEntries).flatMap(project =>
+  const parts = projectList.flatMap(project =>
     project.parts.map(part => part.skills.map(skill => skill.id)),
   )
 
   function similarity(a: string, b: string) {
-    if (a === b) {
-      return 0
-    }
-
-    return 10 * jaccard(a, b, parts) + jaccard(a, b, projects)
+    return a === b ? 0 : 10 * jaccard(a, b, parts) + jaccard(a, b, projects)
   }
 
-  return Object.fromEntries(
-    skillIds.map(target => [
-      target,
-      [...skillIds].sort(comparator(s => similarity(target, s), 'desc')).slice(0, 4),
-    ]),
-  ) as Record<string, string[]>
+  return fromPairs<string[]>(
+    skillIds.map(target => [target, sortBy(skillIds, s => -similarity(target, s)).slice(0, 4)]),
+  )
 }

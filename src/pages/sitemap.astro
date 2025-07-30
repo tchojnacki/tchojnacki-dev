@@ -8,7 +8,7 @@ const listClass = 'list-disc pl-8'
 
 const postList = await getPosts()
 const tagList = await getTags()
-const skillList = Object.values(await getSkills())
+const skillList = await getSkills()
 
 const { about, projects, blog, tags, skills } = routes
 ---

@@ -1,4 +1,4 @@
-import mean from 'lodash/mean'
+import { mean } from 'lodash-es'
 import { describe, expect, it } from 'vitest'
 import { lerp, lerpUnbound } from '~/lib/math'
 

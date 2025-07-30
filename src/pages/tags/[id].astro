@@ -1,11 +1,9 @@
 ---
-import type { GetStaticPaths } from 'astro'
 import PostList from '~/components/blog/PostList.astro'
-import { getTags } from '~/content'
+import { getTags, pathsFrom } from '~/content'
 import Layout from '../../layouts/Layout.astro'
 
-export const getStaticPaths = (async () =>
-  (await getTags()).map(id => ({ params: { id } }))) satisfies GetStaticPaths
+export const getStaticPaths = pathsFrom(getTags, id => ({ params: { id } }))
 
 const tag = Astro.params.id
 ---

@@ -1,7 +1,7 @@
-import type { ImageMetadata } from 'astro'
-import { getCollection, type CollectionEntry } from 'astro:content'
+import type { GetStaticPathsItem, ImageMetadata } from 'astro'
+import { getCollection, getEntry, type CollectionEntry } from 'astro:content'
+import { fromPairs, sortBy, uniq } from 'lodash-es'
 import * as ICONS from 'simple-icons'
-import { comparator } from '../lib/sorting'
 
 type SkillType = CollectionEntry<'skills'>['data']['type']
 export type Skill = {
@@ -27,54 +27,58 @@ export type Project = {
 
 export type Post = CollectionEntry<'posts'>
 
-export async function getSkills(): Promise<Record<string, Skill>> {
-  const skillEntries = await getCollection('skills')
-  return Object.fromEntries(
-    skillEntries.map(({ id, data }) => {
-      if ('icon' in data) {
-        const { type, name, description } = data
-        const icon = ICONS[data.icon as keyof typeof ICONS] as ICONS.SimpleIcon
-        return [id, { id, type, icon, name: name ?? icon.title, description } satisfies Skill]
-      } else {
-        const { type, name, description } = data
-        return [id, { id, type, icon: name, name, description } satisfies Skill]
-      }
-    }),
-  ) as Record<string, Skill>
+function resolveSkillEntry(entry: CollectionEntry<'skills'>): Skill {
+  const { type, description } = entry.data
+  if (!('icon' in entry.data)) {
+    return { id: entry.id, type, icon: entry.data.name, name: entry.data.name, description }
+  }
+  const icon = ICONS[entry.data.icon as keyof typeof ICONS] as ICONS.SimpleIcon
+  return { id: entry.id, type, icon, name: entry.data.name ?? icon.title, description }
 }
 
-export async function getProjects(): Promise<Record<string, Project>> {
-  const skills = await getSkills()
+export async function getSkillById(id: string): Promise<Skill> {
+  const skill = await getEntry('skills', id)
+  if (!skill) throw new Error(`Skill with id "${id}" not found`)
+  return resolveSkillEntry(skill)
+}
+
+export async function getSkills(): Promise<Skill[]> {
+  return sortBy((await getCollection('skills')).map(resolveSkillEntry), 'name')
+}
+
+export async function getProjects(): Promise<Project[]> {
+  const skillById = fromPairs<Skill>((await getSkills()).map(skill => [skill.id, skill]))
   const projectEntries = await getCollection('projects')
-  return Object.fromEntries(
-    projectEntries.map(({ id, data: { name, description, image, tags, links, parts } }) => [
+  return sortBy(
+    projectEntries.map(({ id, data }) => ({
       id,
-      {
-        id,
+      ...data,
+      parts: data.parts.map(({ name, tags = [], skillIds }) => ({
         name,
-        description,
-        image,
         tags,
-        links,
-        parts: parts.map(({ name, tags, skillIds }) => ({
-          name,
-          tags: tags ?? [],
-          skills: skillIds.flatMap(({ id }) => (id in skills ? [skills[id]!] : [])),
-        })),
-      } satisfies Project,
-    ]),
-  ) as Record<string, Project>
+        skills: skillIds.map(({ id }) => skillById[id]).filter(s => s !== undefined),
+      })),
+    })),
+    p => projectImportanceOrder.indexOf(p.id),
+  )
 }
 
 export async function getPosts(): Promise<Post[]> {
-  return (await getCollection('posts')).sort(comparator(p => p.data.date.getTime(), 'desc'))
+  return sortBy(await getCollection('posts'), p => -p.data.date.getTime())
 }
 
 export async function getTags(): Promise<string[]> {
-  return [...new Set((await getCollection('posts')).flatMap(p => p.data.tags))].sort()
+  return sortBy(uniq((await getCollection('posts')).flatMap(p => p.data.tags)))
 }
 
-export const projectImportanceOrder = [
+export function pathsFrom<C, R extends GetStaticPathsItem>(
+  getContent: () => Promise<C[]>,
+  mapper: (c: C) => R,
+): () => Promise<R[]> {
+  return () => getContent().then(c => c.map(mapper))
+}
+
+const projectImportanceOrder = [
   'tchojnacki-dev',
   'senso',
   'coderscamp-fullstack',
@@ -93,24 +97,4 @@ export const projectImportanceOrder = [
   'ocaml-scala-run',
   'node-wikia-api',
   'fandom-monaco',
-]
-
-export const techSphereSkillIds = [
-  'react',
-  'aspnet',
-  'nestjs',
-  'nextjs',
-  'typescript',
-  'csharp',
-  'dotnet',
-  'javascript',
-  'express',
-  'nodejs',
-  'java',
-  'python',
-  'rust',
-  'mongodb',
-  'postgres',
-  'css',
-  'html',
 ]

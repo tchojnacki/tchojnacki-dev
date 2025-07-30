@@ -1,9 +1,9 @@
 ---
+import { sortBy } from 'lodash-es'
 import PostList from '~/components/blog/PostList.astro'
 import Link from '~/components/common/Link'
 import { getPosts } from '~/content'
 import Layout from '~/layouts/Layout.astro'
-import { comparator } from '~/lib/sorting'
 
 const posts = await getPosts()
 
@@ -22,7 +22,11 @@ const tagCounts = Object.fromEntries(
       .length,
   ]),
 )
-const popularTags = [...allTags].sort(comparator(({ tag }) => tagCounts[tag], 'desc'))
+const popularTags = sortBy(
+  allTags,
+  ({ tag }) => -tagCounts[tag]!, // SAFETY: tagCounts is derived from allTags
+  ({ tag }) => tag,
+)
 ---
 
 <Layout name="Blog" description="List of all posts from the Tomasz Chojnacki's blog.">

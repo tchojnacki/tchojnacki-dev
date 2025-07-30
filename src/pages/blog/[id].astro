@@ -1,16 +1,16 @@
 ---
-import type { GetStaticPaths } from 'astro'
 import { render } from 'astro:content'
 import 'katex/dist/katex.min.css'
 import PostFooter from '~/components/blog/PostFooter.astro'
 import PostHeader from '~/components/blog/PostHeader.astro'
 import { typography } from '~/components/blog/typography'
-import { getPosts, type Post } from '~/content'
+import { getPosts, pathsFrom, type Post } from '~/content'
 import Layout from '~/layouts/Layout.astro'
 
-export const getStaticPaths = (async () => {
-  return (await getPosts()).map(post => ({ params: { id: post.id }, props: { post } }))
-}) satisfies GetStaticPaths
+export const getStaticPaths = pathsFrom(getPosts, post => ({
+  params: { id: post.id },
+  props: { post },
+}))
 
 interface Props {
   post: Post
