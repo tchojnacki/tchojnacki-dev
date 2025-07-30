@@ -25,8 +25,6 @@ export type Project = {
   parts: ProjectPart[]
 }
 
-type Social = CollectionEntry<'socials'>['data']
-
 export type Post = CollectionEntry<'posts'>
 
 export async function getSkills(): Promise<Record<string, Skill>> {
@@ -66,10 +64,6 @@ export async function getProjects(): Promise<Record<string, Project>> {
       } satisfies Project,
     ]),
   ) as Record<string, Project>
-}
-
-export async function getSocials(): Promise<Social[]> {
-  return (await getCollection('socials')).map(({ data }) => data)
 }
 
 export async function getPosts(): Promise<Post[]> {

@@ -1,13 +1,13 @@
 ---
 import {
-  BrandGithub,
-  BrandLinkedin,
-  BrandReddit,
-  BrandTwitter,
-  BrandYcombinator,
-  LetterL,
-  Rss,
-} from 'tabler-icons-react'
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconBrandReddit,
+  IconBrandTwitter,
+  IconBrandYcombinator,
+  IconLetterL,
+  IconRss,
+} from '@tabler/icons-react'
 import Link from '~/components/common/Link'
 
 interface Props {
@@ -20,27 +20,27 @@ const url = new URL(`/blog/${id}`, Astro.site).toString()
 
 const socials = [
   {
-    Icon: BrandTwitter,
+    Icon: IconBrandTwitter,
     name: 'Twitter / X',
     href: `https://x.com/intent/tweet?url=${url}`,
   },
   {
-    Icon: BrandLinkedin,
+    Icon: IconBrandLinkedin,
     name: 'LinkedIn',
     href: `https://www.linkedin.com/sharing/share-offsite?url=${url}`,
   },
   {
-    Icon: BrandReddit,
+    Icon: IconBrandReddit,
     name: 'Reddit',
     href: `https://www.reddit.com/submit?url=${url}`,
   },
   {
-    Icon: BrandYcombinator,
+    Icon: IconBrandYcombinator,
     name: 'Hacker News',
     href: `https://news.ycombinator.com/submitlink?u=${url}`,
   },
   {
-    Icon: LetterL,
+    Icon: IconLetterL,
     name: 'Lobsters',
     href: 'https://lobste.rs',
   },
@@ -66,8 +66,10 @@ const socials = [
     <Link
       href={`https://github.com/tchojnacki/tchojnacki-dev/tree/main/src/content/posts/${id}.mdx`}
     >
-      Fix a typo on <BrandGithub size={16} className="inline-block" /> GitHub.
+      Fix a typo on <IconBrandGithub size={16} className="inline-block" /> GitHub.
     </Link>
   </p>
-  <p><Link href="/rss.xml">Subscribe to <Rss size={16} className="inline-block" /> RSS.</Link></p>
+  <p>
+    <Link href="/rss.xml">Subscribe to <IconRss size={16} className="inline-block" /> RSS.</Link>
+  </p>
 </footer>

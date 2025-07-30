@@ -1,6 +1,6 @@
 ---
+import { IconArrowRight } from '@tabler/icons-react'
 import { render } from 'astro:content'
-import { ArrowRight } from 'tabler-icons-react'
 import type { Post } from '~/content'
 
 interface Props {
@@ -43,7 +43,7 @@ const H = `h${heading}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
     <div
       class="text-neutral-1000 dark:text-neutral-0 flex items-center gap-1 text-sm leading-none font-bold"
     >
-      Read more <ArrowRight
+      Read more <IconArrowRight
         role="presentation"
         className="stroke-neutral-1000 dark:stroke-neutral-0 inline-block opacity-0 duration-200 group-hover:opacity-100"
         size="16"

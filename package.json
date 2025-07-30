@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@nanostores/react": "^1.0.0",
+    "@tabler/icons-react": "^3.34.1",
     "astro": "^5.12.3",
     "clsx": "^2.1.1",
     "katex": "^0.16.22",
@@ -18,8 +19,7 @@
     "nanostores": "^1.0.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "simple-icons": "^11.15.0",
-    "tabler-icons-react": "^1.56.0"
+    "simple-icons": "^11.15.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",

@@ -20,14 +20,7 @@ const projects = defineCollection({
             part: z.string().optional(),
           }),
           z.object({
-            type: z.enum([
-              'deploy',
-              'documentation',
-              'information',
-              'download',
-              'swagger',
-              'paper',
-            ]),
+            type: z.enum(['deploy', 'documentation', 'download', 'paper']),
             href: z.string().url(),
           }),
         ]),
@@ -61,15 +54,6 @@ const skills = defineCollection({
   ),
 })
 
-const socials = defineCollection({
-  loader: glob({ pattern: '**/*.json', base: './src/content/socials' }),
-  schema: z.object({
-    label: z.string(),
-    href: z.string().url(),
-    icon: z.string(),
-  }),
-})
-
 const posts = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/posts' }),
   schema: z.object({
@@ -82,4 +66,4 @@ const posts = defineCollection({
   }),
 })
 
-export const collections = { projects, skills, socials, posts }
+export const collections = { projects, skills, posts }

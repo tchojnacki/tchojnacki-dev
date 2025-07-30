@@ -1,18 +1,16 @@
+import {
+  IconBrandGithub,
+  IconDownload,
+  IconExternalLink,
+  IconFileAnalytics,
+  IconNotes,
+  IconPlayerPause,
+  IconPlayerPlay,
+  IconZoomCancel,
+  IconZoomIn,
+} from '@tabler/icons-react'
 import clsx from 'clsx'
 import { Fragment, useReducer, type CSSProperties } from 'react'
-import {
-  Api,
-  BrandGithub,
-  Download,
-  ExternalLink,
-  FileAnalytics,
-  InfoCircle,
-  Notes,
-  PlayerPause,
-  PlayerPlay,
-  ZoomCancel,
-  ZoomIn,
-} from 'tabler-icons-react'
 
 import LinkButton from '~/components/common/LinkButton'
 import SimpleIconSvg from '~/components/common/SimpleIconSvg.tsx'
@@ -65,20 +63,16 @@ function Link({ link, isActive }: LinkProps) {
         return {
           label: 'Source' + (link.part ? ` - ${link.part}` : ''),
           href: `https://github.com/${link.owner ?? 'tchojnacki'}/${link.repo}`,
-          Icon: BrandGithub,
+          Icon: IconBrandGithub,
         }
       case 'deploy':
-        return { label: 'Visit', href: link.href, Icon: ExternalLink }
+        return { label: 'Visit', href: link.href, Icon: IconExternalLink }
       case 'documentation':
-        return { label: 'Documentation', href: link.href, Icon: Notes }
-      case 'information':
-        return { label: 'More Info', href: link.href, Icon: InfoCircle }
+        return { label: 'Documentation', href: link.href, Icon: IconNotes }
       case 'download':
-        return { label: 'Download', href: link.href, Icon: Download }
-      case 'swagger':
-        return { label: 'Swagger', href: link.href, Icon: Api }
+        return { label: 'Download', href: link.href, Icon: IconDownload }
       case 'paper':
-        return { label: 'Paper', href: link.href, Icon: FileAnalytics }
+        return { label: 'Paper', href: link.href, Icon: IconFileAnalytics }
     }
   })()
 
@@ -107,8 +101,8 @@ export default function ProjectCardInternal({
   const { width, height } = project.image
   const maxImageScroll = Math.floor(100 - (75 * width) / height)
 
-  const activeIcon = maxImageScroll !== 0 ? PlayerPause : ZoomCancel
-  const inactiveIcon = maxImageScroll !== 0 ? PlayerPlay : ZoomIn
+  const activeIcon = maxImageScroll !== 0 ? IconPlayerPause : IconZoomCancel
+  const inactiveIcon = maxImageScroll !== 0 ? IconPlayerPlay : IconZoomIn
   const ZoomIcon = isActive ? activeIcon : inactiveIcon
   const H1 = `h${heading}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
   const H2 = `h${heading + 1}` as 'h2' | 'h3' | 'h4' | 'h5' | 'h6'

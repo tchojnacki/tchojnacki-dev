@@ -122,6 +122,24 @@
   padding: 4rem 1rem;
 }
 
+@utility social-link {
+  & path {
+    transition-duration: 200ms;
+    fill: var(--color-neutral-600);
+  }
+  &:hover path {
+    fill: var(--color-neutral-900);
+  }
+  @variant dark {
+    & path {
+      fill: var(--color-neutral-400);
+    }
+    &:hover path {
+      fill: var(--color-neutral-100);
+    }
+  }
+}
+
 @layer base {
   * {
     scroll-behavior: smooth;
