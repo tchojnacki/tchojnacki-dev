@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { cpuBoundLoop } from '~/utils/perf'
+import { cpuBoundLoop } from '~/lib/perf'
 
 describe(cpuBoundLoop, () => {
   it.each([0, 1, 64, 100])('runs a correct number of iterations (%d)', async n => {

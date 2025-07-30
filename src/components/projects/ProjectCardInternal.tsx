@@ -16,8 +16,8 @@ import {
 
 import LinkButton from '~/components/common/LinkButton'
 import SimpleIconSvg from '~/components/common/SimpleIconSvg.tsx'
+import type { Project, ProjectLink, ProjectTag } from '~/content'
 import { useIsMounted } from '~/hooks'
-import type { Project, ProjectLink, ProjectTag } from '~/utils/content'
 
 interface TagProps {
   tag: ProjectTag

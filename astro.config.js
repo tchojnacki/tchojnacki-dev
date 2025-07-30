@@ -8,7 +8,7 @@ import compress from 'astro-compress'
 import robotsTxt from 'astro-robots-txt'
 import { defineConfig, fontProviders } from 'astro/config'
 
-import { remarkReadingTime } from './src/utils/blog/readingTime'
+import { remarkReadingTime } from './src/lib/readingTime'
 
 // https://astro.build/config
 export default defineConfig({

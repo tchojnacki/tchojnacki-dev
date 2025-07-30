@@ -1,6 +1,6 @@
 import mean from 'lodash/mean'
 import { describe, expect, it } from 'vitest'
-import { lerp, lerpUnbound } from '~/utils/math'
+import { lerp, lerpUnbound } from '~/lib/math'
 
 describe(lerpUnbound, () => {
   it.each([-20, -5, -2, 0, 1.5, 3.14, 4.5, 10])(

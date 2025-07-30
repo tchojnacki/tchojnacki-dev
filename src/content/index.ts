@@ -1,7 +1,7 @@
 import type { ImageMetadata } from 'astro'
 import { getCollection, type CollectionEntry } from 'astro:content'
 import * as ICONS from 'simple-icons'
-import { keyComparator } from './sorting'
+import { comparator } from '../lib/sorting'
 
 type SkillType = CollectionEntry<'skills'>['data']['type']
 export type Skill = {
@@ -73,7 +73,7 @@ export async function getSocials(): Promise<Social[]> {
 }
 
 export async function getPosts(): Promise<Post[]> {
-  return (await getCollection('posts')).sort(keyComparator(p => p.data.date.getTime(), true))
+  return (await getCollection('posts')).sort(comparator(p => p.data.date.getTime(), 'desc'))
 }
 
 export async function getTags(): Promise<string[]> {

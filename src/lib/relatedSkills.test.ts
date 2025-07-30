@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { calculateRelatedSkills, jaccard } from '~/logic/relatedSkills'
-import type { Project, Skill } from '~/utils/content'
+import type { Project, Skill } from '~/content'
+import { calculateRelatedSkills, jaccard } from '~/lib/relatedSkills'
 
 describe(jaccard, () => {
   it('returns NaN when the list is empty', () => {

@@ -1,6 +1,6 @@
 ---
-import { getSocials } from '~/utils/content'
-import { routes } from '~/utils/routes'
+import { routes } from '~/consts/routes'
+import { getSocials } from '~/content'
 
 import Wave from './Wave.astro'
 
@@ -13,7 +13,7 @@ const socials = await getSocials()
 
 <Wave className="max-h-32!" />
 <footer
-  class="bg-indigo-100 px-8 text-sm text-neutral-600 dark:bg-indigo-925 dark:text-neutral-400"
+  class="dark:bg-indigo-925 bg-indigo-100 px-8 text-sm text-neutral-600 dark:text-neutral-400"
 >
   <section class="flex flex-col justify-center text-center sm:flex-row sm:gap-32 sm:text-left">
     <ul>

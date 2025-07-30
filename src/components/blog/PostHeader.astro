@@ -1,8 +1,8 @@
 ---
 import Bullet from '~/components/blog/Bullet.astro'
 import Link from '~/components/common/Link'
-import { type Post } from '~/utils/content'
-import { keyComparator } from '~/utils/sorting'
+import { type Post } from '~/content'
+import { comparator } from '~/lib/sorting'
 
 interface Props {
   post: Post
@@ -14,18 +14,18 @@ const { post, readingTime } = Astro.props
 const tags = [
   ...post.data.skills.map(s => ({ tag: s.id, href: `/skills/${s.id}` })),
   ...post.data.tags.map(t => ({ tag: t, href: `/tags/${t}` })),
-].sort(keyComparator(t => t.tag))
+].sort(comparator(t => t.tag))
 ---
 
-<header class="flex flex-col gap-3 text-center centered-header sm:text-left">
-  <h1 class="text-3xl text-neutral-1000 dark:text-neutral-0 sm:text-4xl">{post.data.title}</h1>
+<header class="centered-header flex flex-col gap-3 text-center sm:text-left">
+  <h1 class="text-neutral-1000 dark:text-neutral-0 text-3xl sm:text-4xl">{post.data.title}</h1>
   <div class="text-neutral-800 dark:text-neutral-200">
-    by&nbsp;<address class="inline font-bold not-italic text-neutral-1000 dark:text-neutral-0">
+    by&nbsp;<address class="text-neutral-1000 dark:text-neutral-0 inline font-bold not-italic">
       {post.data.author}
     </address>
     <Bullet />on&nbsp;<time
       datetime={post.data.date.toISOString().split('T')[0]}
-      class="font-bold text-neutral-1000 dark:text-neutral-0"
+      class="text-neutral-1000 dark:text-neutral-0 font-bold"
       >{
         post.data.date.toLocaleDateString('en-US', {
           weekday: undefined,
@@ -34,7 +34,7 @@ const tags = [
           year: 'numeric',
         })
       }</time
-    ><Bullet /><span class="font-bold text-neutral-1000 dark:text-neutral-0"
+    ><Bullet /><span class="text-neutral-1000 dark:text-neutral-0 font-bold"
       >{readingTime}&nbsp;min</span
     >&nbsp;read
   </div>

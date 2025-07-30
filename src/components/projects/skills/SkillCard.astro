@@ -1,6 +1,6 @@
 ---
 import SimpleIconSvg from '~/components/common/SimpleIconSvg'
-import { getSkills } from '~/utils/content'
+import { getSkills } from '~/content'
 
 interface Props {
   skillId: string
@@ -10,22 +10,19 @@ const skill = (await getSkills())[Astro.props.skillId]
 if (!skill) {
   throw new Error(`Skill with id "${Astro.props.skillId}" not found`)
 }
-
 ---
 
 <li>
   <a
     href={`/skills/${skill.id}`}
-    class="shadow-indigo-925/25 dark:bg-neudigo-950 dark:shadow-indigo-100/10 bg-neudigo-50 flex h-full flex-col items-center gap-3 rounded-xl
-      p-3 pt-4 shadow-md hover:scale-105 hover:shadow-lg
-      hover:brightness-95 hover:dark:brightness-125"
+    class="shadow-indigo-925/25 dark:bg-neudigo-950 bg-neudigo-50 flex h-full flex-col items-center gap-3 rounded-xl p-3 pt-4 shadow-md hover:scale-105 hover:shadow-lg hover:brightness-95 dark:shadow-indigo-100/10 hover:dark:brightness-125"
   >
     <SimpleIconSvg
       icon={skill.icon}
       className="h-full"
       pathClassName="fill-neutral-800 dark:fill-neutral-200"
     />
-    <h5 class="h-6 w-full overflow-hidden text-ellipsis whitespace-nowrap text-center leading-none">
+    <h5 class="h-6 w-full overflow-hidden text-center leading-none text-ellipsis whitespace-nowrap">
       {skill.name}
     </h5>
   </a>

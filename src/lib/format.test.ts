@@ -1,9 +1,19 @@
-import { describe, expect, test } from 'vitest'
+import { describe, expect, it } from 'vitest'
+import { canonize, slugify } from './format'
 
-import { slugify } from '~/logic/slugify'
+describe(canonize, () => {
+  it.each([
+    ['', ''],
+    ['/path/to', 'path/to'],
+    ['path/to/', 'path/to'],
+    ['//path/to//', 'path/to'],
+  ])('canonizes %s to %s', (input, expected) => {
+    expect(canonize(input)).toBe(expected)
+  })
+})
 
 describe(slugify, () => {
-  test.each([
+  it.each([
     ['', ''],
     ['About me', 'about-me'],
     ['Recent posts', 'recent-posts'],

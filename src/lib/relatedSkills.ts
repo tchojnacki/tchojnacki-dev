@@ -1,5 +1,5 @@
-import { type Project, type Skill } from '~/utils/content'
-import { keyComparator } from '~/utils/sorting'
+import { type Project, type Skill } from '~/content'
+import { comparator } from '~/lib/sorting'
 
 export function jaccard(a: string, b: string, list: string[][]) {
   const aSize = list.filter(p => p.includes(a)).length
@@ -31,7 +31,7 @@ export function calculateRelatedSkills(
   return Object.fromEntries(
     skillIds.map(target => [
       target,
-      [...skillIds].sort(keyComparator(s => similarity(target, s), true)).slice(0, 4),
+      [...skillIds].sort(comparator(s => similarity(target, s), 'desc')).slice(0, 4),
     ]),
   ) as Record<string, string[]>
 }

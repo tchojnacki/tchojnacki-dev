@@ -1,9 +1,9 @@
 ---
 import PostList from '~/components/blog/PostList.astro'
 import Link from '~/components/common/Link'
+import { getPosts } from '~/content'
 import Layout from '~/layouts/Layout.astro'
-import { getPosts } from '~/utils/content'
-import { keyComparator } from '~/utils/sorting'
+import { comparator } from '~/lib/sorting'
 
 const posts = await getPosts()
 
@@ -22,7 +22,7 @@ const tagCounts = Object.fromEntries(
       .length,
   ]),
 )
-const popularTags = [...allTags].sort(keyComparator(({ tag }) => tagCounts[tag], true))
+const popularTags = [...allTags].sort(comparator(({ tag }) => tagCounts[tag], 'desc'))
 ---
 
 <Layout name="Blog" description="List of all posts from the Tomasz Chojnacki's blog.">
@@ -30,14 +30,14 @@ const popularTags = [...allTags].sort(keyComparator(({ tag }) => tagCounts[tag],
     class="grid min-h-screen grid-cols-1 grid-rows-[repeat(3,auto)] [grid-template-areas:'header''posts''tags'] md:grid-cols-[2fr_1fr] md:grid-rows-[auto_1fr] md:p-4 md:[grid-template-areas:'header_.''posts_tags']"
   >
     <header class="px-4 py-8 [grid-area:header]">
-      <h1 class="text-3xl font-bold text-neutral-1000 dark:text-neutral-0">Blog</h1>
+      <h1 class="text-neutral-1000 dark:text-neutral-0 text-3xl font-bold">Blog</h1>
     </header>
     <section class="py-4 [grid-area:posts]">
-      <h2 class="px-4 text-2xl text-neutral-1000 dark:text-neutral-0">Recent posts</h2>
+      <h2 class="text-neutral-1000 dark:text-neutral-0 px-4 text-2xl">Recent posts</h2>
       <PostList heading={3} />
     </section>
     <aside class="p-4 [grid-area:tags]">
-      <h2 class="pb-3 text-2xl text-neutral-1000 dark:text-neutral-0">Popular tags</h2>
+      <h2 class="text-neutral-1000 dark:text-neutral-0 pb-3 text-2xl">Popular tags</h2>
       <nav>
         <ul>
           {

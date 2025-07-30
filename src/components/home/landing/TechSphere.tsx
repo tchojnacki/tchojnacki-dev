@@ -15,13 +15,17 @@ import {
   DAMPING_FACTOR,
   INITIAL_ROTATION_AXIS,
   INITIAL_ROTATION_SPEED,
+  type Vec3D,
   findRotation,
   initialPositionsOf,
   pointerToSpherePoint,
   rotateAroundUnitVector,
+  v2add,
+  v2scale,
+  v2sub,
+  v3scale,
   worldToCamera,
-} from '~/logic/techSphere'
-import { type Vec3D, v2add, v2scale, v2sub, v3scale } from '~/logic/vector'
+} from '~/lib/techSphere'
 
 const FONT_SCALE = 0.05
 

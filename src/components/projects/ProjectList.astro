@@ -1,5 +1,5 @@
 ---
-import { getProjects, type Project, projectImportanceOrder } from '~/utils/content'
+import { getProjects, type Project, projectImportanceOrder } from '~/content'
 import ProjectCard from './ProjectCard.astro'
 
 interface Props {
@@ -11,7 +11,9 @@ interface Props {
 const { heading = 1, length = Infinity, filter } = Astro.props
 
 const projectData = await getProjects()
-const projects = projectImportanceOrder.flatMap(id => id in projectData ? [projectData[id]!] : []).filter(p => !filter || filter(p))
+const projects = projectImportanceOrder
+  .flatMap(id => (id in projectData ? [projectData[id]!] : []))
+  .filter(p => !filter || filter(p))
 ---
 
 <ul class="flex flex-col items-center gap-16 px-4 py-8 lg:px-16">

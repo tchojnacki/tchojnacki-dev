@@ -6,9 +6,9 @@ import Wave from '~/components/common/Wave.astro'
 import ProjectList from '~/components/projects/ProjectList.astro'
 import SkillCard from '~/components/projects/skills/SkillCard.astro'
 import SkillCardWrapper from '~/components/projects/skills/SkillCardWrapper.astro'
+import { getProjects, getSkills } from '~/content'
 import Layout from '~/layouts/Layout.astro'
-import { calculateRelatedSkills } from '~/logic/relatedSkills'
-import { getProjects, getSkills } from '~/utils/content'
+import { calculateRelatedSkills } from '~/lib/relatedSkills'
 
 export const getStaticPaths = (async () =>
   Object.keys(await getSkills()).map(id => ({ params: { id } }))) satisfies GetStaticPaths
@@ -30,7 +30,7 @@ const relatedSkills = calculateRelatedSkills(skillEntries, projectEntries)
       <PostList heading={3} filter={p => p.data.skills.some(s => s.id === skill.id)} />
     </section>
     <Wave />
-    <section class="bg-indigo-100 dark:bg-indigo-925">
+    <section class="dark:bg-indigo-925 bg-indigo-100">
       <SectionHeader text="Related skills" />
       <SkillCardWrapper>
         {relatedSkills[skill.id]!.map(skillId => <SkillCard {skillId} />)}
