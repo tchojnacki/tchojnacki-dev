@@ -1,5 +1,5 @@
 {
-  "name": "Tanks",
+  "name": "Scripting Tanks",
   "description": "Online real-time multiplayer game powered by WebSockets. Final project for the Script Languages university course.",
   "image": "~/assets/projects/scripting-tanks.png",
   "tags": ["academic"],

@@ -29,7 +29,7 @@ const projects = defineCollection({
           }),
           z.object({
             type: z.enum(['deploy', 'documentation', 'download', 'paper']),
-            href: z.string().url(),
+            href: z.string(),
           }),
         ]),
       ),

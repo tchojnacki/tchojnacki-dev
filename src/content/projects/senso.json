@@ -4,7 +4,7 @@
   "image": "~/assets/projects/senso.png",
   "tags": ["academic", "group"],
   "links": [
-    { "type": "paper", "href": "https://tchojnacki.dev/static/senso.pdf" },
+    { "type": "paper", "href": "/senso.pdf" },
     { "type": "github", "repo": "senso-frontend", "owner": "zpi-2023", "part": "Mobile" },
     { "type": "github", "repo": "SensoBackend", "owner": "zpi-2023", "part": "Server" }
   ],

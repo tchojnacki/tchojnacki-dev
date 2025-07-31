@@ -10,5 +10,5 @@ export const linkedin = {
 
 export const resume = {
   label: 'Resume',
-  href: '/static/resume.pdf',
+  href: '/resume.pdf',
 }
