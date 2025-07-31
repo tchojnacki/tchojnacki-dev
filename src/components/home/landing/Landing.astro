@@ -7,29 +7,27 @@ import SocialLink from './SocialLink.astro'
 import TechSphere from './TechSphere'
 import WavingEmoji from './WavingEmoji'
 
-const techSphereSkillIds = [
+const skillIds = [
   'react',
-  'aspnet',
-  'nestjs',
-  'nextjs',
   'typescript',
-  'csharp',
-  'dotnet',
-  'javascript',
-  'express',
-  'nodejs',
-  'java',
   'python',
   'rust',
-  'mongodb',
+  'astro',
+  'nextjs',
+  'tailwind-css',
   'postgres',
-  'css',
-  'html',
+  'mongodb',
+  'docker',
+  'nestjs',
+  'angular',
+  'csharp',
+  'java',
+  'aws',
+  'web-assembly',
+  'latex',
 ]
 
-const skillNames = await Promise.all(
-  techSphereSkillIds.map(id => getSkillById(id).then(s => s.name)),
-)
+const skillNames = await Promise.all(skillIds.map(id => getSkillById(id).then(s => s.name)))
 ---
 
 <header
