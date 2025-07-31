@@ -2,7 +2,7 @@
   "name": "JeszCoChcesz",
   "description": "Full stack web application, online food delivery system connecting restaurants with health-conscious users. Built during the CodersCamp 2021 web development bootcamp.",
   "image": "~/assets/projects/coderscamp-fullstack.png",
-  "tags": ["group"],
+  "tags": ["bootcamp", "group"],
   "links": [
     {
       "type": "github",

@@ -2,14 +2,14 @@
   "name": "Senso",
   "description": "Group project built for my BSc thesis.",
   "image": "~/assets/projects/senso.png",
-  "tags": ["university", "group"],
+  "tags": ["academic", "group"],
   "links": [
-    { "type": "github", "repo": "senso-frontend", "owner": "zpi-2023", "part": "App" },
-    { "type": "github", "repo": "SensoBackend", "owner": "zpi-2023", "part": "Server" },
-    { "type": "paper", "href": "https://tchojnacki.dev/static/senso.pdf" }
+    { "type": "paper", "href": "https://tchojnacki.dev/static/senso.pdf" },
+    { "type": "github", "repo": "senso-frontend", "owner": "zpi-2023", "part": "Mobile" },
+    { "type": "github", "repo": "SensoBackend", "owner": "zpi-2023", "part": "Server" }
   ],
   "parts": [
-    { "name": "Mobile app", "skillIds": ["react-native", "typescript", "react"] },
+    { "name": "Mobile", "skillIds": ["react-native", "typescript", "react"] },
     {
       "name": "Server",
       "skillIds": [

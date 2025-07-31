@@ -2,7 +2,7 @@
   "name": "Faktyczka",
   "description": "Brower extension which notifies you about fake news. Created during the 24h Hack-a-Troll Hackathon in 2022.",
   "image": "~/assets/projects/coderscamp-hackathon.png",
-  "tags": ["group"],
+  "tags": ["bootcamp", "group"],
   "links": [
     {
       "type": "deploy",

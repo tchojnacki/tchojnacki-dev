@@ -35,12 +35,13 @@ interface ProjectCardInternalProps {
 
 function Tag({ tag, small }: TagProps) {
   const { label, backgroundColor } = {
-    personal: { label: 'Personal', backgroundColor: '#075b52' },
-    university: { label: 'University', backgroundColor: '#075b52' },
-    group: { label: 'Group', backgroundColor: '#075b52' },
-    freelance: { label: 'Freelance', backgroundColor: '#075b52' },
-    deprecated: { label: 'DEPRECATED', backgroundColor: '#ca3214' },
-    wip: { label: 'WORK IN PROGRESS', backgroundColor: '#d97706' },
+    personal: { label: 'Personal', backgroundColor: '#115e59' },
+    academic: { label: 'Academic', backgroundColor: '#115e59' },
+    freelance: { label: 'Freelance', backgroundColor: '#115e59' },
+    bootcamp: { label: 'Bootcamp', backgroundColor: '#115e59' },
+    group: { label: 'Group', backgroundColor: '#6b21a8' },
+    wip: { label: 'WIP', backgroundColor: '#854d0e' },
+    deprecated: { label: 'DEPRECATED', backgroundColor: '#9f1239' },
   }[tag]
 
   return (
@@ -61,7 +62,7 @@ function Link({ link, isActive }: LinkProps) {
     switch (link.type) {
       case 'github':
         return {
-          label: 'Source' + (link.part ? ` - ${link.part}` : ''),
+          label: 'Source' + (link.part ? ` – ${link.part}` : ''),
           href: `https://github.com/${link.owner ?? 'tchojnacki'}/${link.repo}`,
           Icon: IconBrandGithub,
         }

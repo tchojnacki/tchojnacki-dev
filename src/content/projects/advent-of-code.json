@@ -1,13 +1,13 @@
 {
   "name": "Advent of Code",
-  "description": "My solutions to Advent of Code.",
+  "description": "My solutions to the Advent of Code yearly programming puzzles.",
   "image": "~/assets/projects/advent-of-code.png",
   "tags": ["personal"],
   "links": [{ "type": "github", "repo": "advent-of-code" }],
   "parts": [
-    { "name": "2019", "skillIds": ["elixir"], "tags": ["wip"] },
-    { "name": "2020", "skillIds": ["gleam"] },
+    { "name": "2022", "skillIds": ["fsharp", "dotnet"] },
     { "name": "2021", "skillIds": ["kotlin"] },
-    { "name": "2022", "skillIds": ["fsharp", "dotnet"] }
+    { "name": "2020", "skillIds": ["gleam"] },
+    { "name": "2019", "skillIds": ["elixir"], "tags": ["wip"] }
   ]
 }

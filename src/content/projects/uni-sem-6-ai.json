@@ -2,7 +2,7 @@
   "name": "Artificial Intelligence and Knowledge Engineering Coursework",
   "description": "Exercises for the Artificial Intelligence and Knowledge Engineering university course, which I took during my 6th semester. The scope included pathfinding algorithms, game theory, genetic algorithms, and machine learning.",
   "image": "~/assets/projects/uni-sem-6-ai.png",
-  "tags": ["university"],
+  "tags": ["academic"],
   "links": [
     {
       "type": "github",
@@ -12,7 +12,7 @@
   "parts": [
     {
       "name": "Exercises",
-      "skillIds": ["rust", "python", "scikit-learn", "prolog", "numpy", "pandas", "jupyter"]
+      "skillIds": ["rust", "python", "scikit-learn", "numpy", "pandas", "jupyter"]
     },
     {
       "name": "Reports",

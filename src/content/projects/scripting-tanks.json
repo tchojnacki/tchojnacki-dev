@@ -2,12 +2,8 @@
   "name": "Tanks",
   "description": "Online real-time multiplayer game powered by WebSockets. Final project for the Script Languages university course.",
   "image": "~/assets/projects/scripting-tanks.png",
-  "tags": ["university"],
+  "tags": ["academic"],
   "links": [
-    {
-      "type": "deploy",
-      "href": "https://scripting-tanks.fly.dev"
-    },
     {
       "type": "github",
       "repo": "scripting-tanks"

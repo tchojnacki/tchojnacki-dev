@@ -1,7 +1,15 @@
 import { glob } from 'astro/loaders'
 import { defineCollection, reference, z } from 'astro:content'
 
-const projectTag = z.enum(['personal', 'university', 'group', 'freelance', 'deprecated', 'wip'])
+const projectTag = z.enum([
+  'personal',
+  'academic',
+  'freelance',
+  'bootcamp',
+  'group',
+  'wip',
+  'deprecated',
+])
 
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/projects' }),
