@@ -33,7 +33,7 @@
     },
     {
       "name": "Tools",
-      "skillIds": ["swagger", "docker", "github-actions", "figma"]
+      "skillIds": ["openapi", "docker", "github-actions", "figma"]
     }
   ]
 }

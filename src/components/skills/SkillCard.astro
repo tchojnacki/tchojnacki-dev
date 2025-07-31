@@ -18,9 +18,10 @@ const skill = await getSkillById(Astro.props.skillId)
       icon={skill.icon}
       className="h-full"
       pathClassName="fill-neutral-800 dark:fill-neutral-200"
+      decoration
     />
-    <h5 class="h-6 w-full overflow-hidden text-center leading-none text-ellipsis whitespace-nowrap">
+    <h3 class="h-6 w-full overflow-hidden text-center leading-none text-ellipsis whitespace-nowrap">
       {skill.name}
-    </h5>
+    </h3>
   </a>
 </li>

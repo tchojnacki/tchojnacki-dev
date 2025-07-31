@@ -23,7 +23,7 @@
       "name": "Tools",
       "skillIds": [
         "testing-library",
-        "swagger",
+        "openapi",
         "docker",
         "storybook",
         "jest",

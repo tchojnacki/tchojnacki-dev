@@ -215,10 +215,10 @@ export default function ProjectCardInternal({
                     className="flex flex-1 items-center justify-center gap-1 rounded-full bg-neutral-900/10 px-3 whitespace-nowrap duration-200 hover:bg-neutral-900/20 dark:bg-neutral-100/10 hover:dark:bg-neutral-100/20"
                   >
                     <SimpleIconSvg
-                      icon={icon ?? name}
-                      title={name}
+                      icon={icon}
                       className="my-1 h-[1em]"
                       pathClassName="fill-neutral-900 dark:fill-neutral-100"
+                      decoration={i < 3}
                     />
                     {i < 3 && <span>{name}</span>}
                   </a>

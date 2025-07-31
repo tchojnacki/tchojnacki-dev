@@ -3,15 +3,25 @@ import type { SimpleIcon } from 'simple-icons'
 
 interface SimpleIconProps {
   icon: SimpleIcon | string
-  title?: string
   className?: string
   pathClassName?: string
+  decoration?: boolean
 }
 
-export default function SimpleIconSvg({ icon, title, pathClassName, className }: SimpleIconProps) {
+export default function SimpleIconSvg({
+  icon,
+  pathClassName,
+  className,
+  decoration,
+}: SimpleIconProps) {
   return (
-    <svg className={className} role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <title>{title ? title : typeof icon === 'string' ? icon : icon.title}</title>
+    <svg
+      className={className}
+      role={decoration ? 'presentation' : 'img'}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {decoration ? null : <title>{typeof icon === 'string' ? icon : icon.title}</title>}
       {typeof icon === 'string' ? (
         <text
           x="50%"

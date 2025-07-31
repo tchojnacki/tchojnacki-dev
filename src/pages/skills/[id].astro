@@ -1,10 +1,11 @@
 ---
 import PostList from '~/components/blog/PostList.astro'
 import SectionHeader from '~/components/common/SectionHeader.astro'
+import SimpleIconSvg from '~/components/common/SimpleIconSvg'
 import Wave from '~/components/common/Wave.astro'
 import ProjectList from '~/components/projects/ProjectList.astro'
-import SkillCard from '~/components/projects/skills/SkillCard.astro'
-import SkillCardWrapper from '~/components/projects/skills/SkillCardWrapper.astro'
+import SkillCard from '~/components/skills/SkillCard.astro'
+import SkillCardWrapper from '~/components/skills/SkillCardWrapper.astro'
 import { getProjects, getSkillById, getSkills, pathsFrom } from '~/content'
 import Layout from '~/layouts/Layout.astro'
 import { calculateRelatedSkills } from '~/lib/relatedSkills'
@@ -21,7 +22,15 @@ const relatedSkills = calculateRelatedSkills(skillList, projectList)
 <Layout name={`${skill.name} - Skills`} description={skill.description}>
   <main class="min-h-screen">
     <header class="centered-header">
-      <h1 class="pb-4 text-3xl sm:text-4xl">{skill.name}</h1>
+      <h1 class="flex items-center gap-4 pb-4 text-3xl sm:text-4xl">
+        {skill.name}
+        <SimpleIconSvg
+          icon={skill.icon}
+          className="h-[0.75em]"
+          pathClassName="fill-neutral-900 dark:fill-neutral-100"
+          decoration
+        />
+      </h1>
       <p>{skill.description}</p>
     </header>
     <section class="mx-auto max-w-[calc(70ch+2rem)]">

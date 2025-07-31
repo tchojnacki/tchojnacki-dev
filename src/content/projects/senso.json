@@ -29,7 +29,7 @@
     },
     {
       "name": "Tools",
-      "skillIds": ["docker", "swagger", "latex", "uml", "github-actions", "figma", "bash"]
+      "skillIds": ["docker", "openapi", "latex", "uml", "github-actions", "figma", "bash"]
     }
   ]
 }

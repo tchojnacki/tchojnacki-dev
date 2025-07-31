@@ -18,7 +18,7 @@
         "aspnet",
         "microsoft-sql-server",
         "entity-framework",
-        "swagger",
+        "openapi",
         "javascript",
         "html",
         "css",
