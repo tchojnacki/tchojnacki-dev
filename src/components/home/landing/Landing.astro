@@ -1,7 +1,5 @@
 ---
-import { IconFileCvFilled } from '@tabler/icons-react'
-import { siGithub, siLinkedin } from 'simple-icons'
-import SimpleIconSvg from '~/components/common/SimpleIconSvg'
+import { IconBrandGithub, IconBrandLinkedin, IconFileCv } from '@tabler/icons-react'
 import Wave from '~/components/common/Wave.astro'
 import { github, linkedin, resume } from '~/consts/socials'
 import { getSkillById } from '~/content'
@@ -46,18 +44,18 @@ const skillNames = await Promise.all(
     <h1 class="text-5xl leading-tight font-bold text-indigo-700 dark:text-indigo-300">
       Tomasz Chojnacki
     </h1>
-    <p class="mt-6 mb-16 inline-block text-2xl text-neutral-600 dark:text-neutral-400">
-      I am a software developer.
+    <p class="mt-6 mb-12 inline-block text-2xl text-neutral-600 dark:text-neutral-400">
+      I am a graduate software engineer.
     </p>
     <nav class="flex items-center justify-center gap-8 lg:justify-start">
       <SocialLink {...github}>
-        <SimpleIconSvg icon={siGithub} />
+        <IconBrandGithub size="" />
       </SocialLink>
       <SocialLink {...linkedin}>
-        <SimpleIconSvg icon={siLinkedin} />
+        <IconBrandLinkedin size="" />
       </SocialLink>
       <SocialLink {...resume}>
-        <IconFileCvFilled className="scale-115" size="" />
+        <IconFileCv size="" />
       </SocialLink>
     </nav>
   </section>
