@@ -16,7 +16,7 @@
         "csharp",
         "dotnet",
         "aspnet",
-        "microsoft-sql-server",
+        "postgres",
         "entity-framework",
         "openapi",
         "javascript",

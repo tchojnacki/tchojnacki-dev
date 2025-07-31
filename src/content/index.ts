@@ -30,6 +30,7 @@ function resolveSkillEntry(entry: CollectionEntry<'skills'>): Skill {
   if (!('icon' in entry.data)) {
     return { id: entry.id, icon: entry.data.name, name: entry.data.name, description }
   }
+  if (!(entry.data.icon in ICONS)) throw new Error(`Icon "${entry.data.icon}" not available`)
   const icon = ICONS[entry.data.icon as keyof typeof ICONS] as ICONS.SimpleIcon
   return { id: entry.id, icon, name: entry.data.name ?? icon.title, description }
 }
