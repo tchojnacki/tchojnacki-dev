@@ -1,6 +1,6 @@
 import type { GetStaticPathsItem, ImageMetadata } from 'astro'
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content'
-import { fromPairs, sortBy, uniq } from 'lodash-es'
+import { keyBy, sortBy, uniq } from 'lodash-es'
 import * as ICONS from 'simple-icons'
 
 export type Skill = {
@@ -45,7 +45,7 @@ export async function getSkills(): Promise<Skill[]> {
 }
 
 export async function getProjects(): Promise<Project[]> {
-  const skillById = fromPairs<Skill>((await getSkills()).map(skill => [skill.id, skill]))
+  const skillById = keyBy(await getSkills(), 'id')
   const projectEntries = await getCollection('projects')
   return sortBy(
     projectEntries.map(({ id, data }) => ({
