@@ -1,5 +1,4 @@
 {
-  "type": "tool",
   "icon": "siGithubactions",
   "description": "GitHub Actions is a platform that lets you create and run CI/CD workflows."
 }

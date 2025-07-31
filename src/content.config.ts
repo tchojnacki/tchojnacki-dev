@@ -56,7 +56,6 @@ const skills = defineCollection({
       }),
     ]),
     z.object({
-      type: z.enum(['language', 'library', 'tool']),
       description: z.string(),
     }),
   ),

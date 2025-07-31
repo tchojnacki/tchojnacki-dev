@@ -1,5 +1,4 @@
 {
-  "type": "library",
   "icon": "siVitest",
   "description": "Vitest is a fast Vite-native testing framework."
 }

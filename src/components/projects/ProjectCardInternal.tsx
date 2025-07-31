@@ -2,7 +2,7 @@ import {
   IconBrandGithub,
   IconDownload,
   IconExternalLink,
-  IconFileAnalytics,
+  IconFileTypePdf,
   IconNotes,
   IconPlayerPause,
   IconPlayerPlay,
@@ -73,7 +73,7 @@ function Link({ link, isActive }: LinkProps) {
       case 'download':
         return { label: 'Download', href: link.href, Icon: IconDownload }
       case 'paper':
-        return { label: 'Paper', href: link.href, Icon: IconFileAnalytics }
+        return { label: 'Paper', href: link.href, Icon: IconFileTypePdf }
     }
   })()
 

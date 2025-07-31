@@ -1,5 +1,4 @@
 {
-  "type": "library",
   "icon": "siNumpy",
   "description": "NumPy is a Python library that provides powerful array computations."
 }

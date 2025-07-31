@@ -3,10 +3,8 @@ import { getCollection, getEntry, type CollectionEntry } from 'astro:content'
 import { fromPairs, sortBy, uniq } from 'lodash-es'
 import * as ICONS from 'simple-icons'
 
-type SkillType = CollectionEntry<'skills'>['data']['type']
 export type Skill = {
   id: string
-  type: SkillType
   icon: ICONS.SimpleIcon | string
   name: string
   description: string
@@ -28,12 +26,12 @@ export type Project = {
 export type Post = CollectionEntry<'posts'>
 
 function resolveSkillEntry(entry: CollectionEntry<'skills'>): Skill {
-  const { type, description } = entry.data
+  const { description } = entry.data
   if (!('icon' in entry.data)) {
-    return { id: entry.id, type, icon: entry.data.name, name: entry.data.name, description }
+    return { id: entry.id, icon: entry.data.name, name: entry.data.name, description }
   }
   const icon = ICONS[entry.data.icon as keyof typeof ICONS] as ICONS.SimpleIcon
-  return { id: entry.id, type, icon, name: entry.data.name ?? icon.title, description }
+  return { id: entry.id, icon, name: entry.data.name ?? icon.title, description }
 }
 
 export async function getSkillById(id: string): Promise<Skill> {

@@ -1,5 +1,4 @@
 {
-  "type": "library",
   "icon": "siSvelte",
   "description": "Svelte is a web framework for concise and efficient web apps in HTML, CSS and JS."
 }

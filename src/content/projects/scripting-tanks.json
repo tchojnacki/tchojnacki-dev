@@ -21,11 +21,6 @@
     {
       "name": "Tools",
       "skillIds": ["xunitnet", "docker", "github-actions", "fluent-assertions", "nsubstitute"]
-    },
-    {
-      "name": "Legacy back end",
-      "skillIds": ["python", "fastapi"],
-      "tags": ["deprecated"]
     }
   ]
 }
