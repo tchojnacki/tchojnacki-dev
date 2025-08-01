@@ -3,9 +3,10 @@ import {
   IconDownload,
   IconExternalLink,
   IconFileTypePdf,
-  IconNotes,
+  IconNotebook,
   IconPlayerPause,
   IconPlayerPlay,
+  IconWritingSign,
   IconZoomCancel,
   IconZoomIn,
 } from '@tabler/icons-react'
@@ -57,25 +58,15 @@ function Tag({ tag, small }: TagProps) {
   )
 }
 
-function Link({ link, isActive }: LinkProps) {
-  const { label, href, Icon } = (() => {
-    switch (link.type) {
-      case 'github':
-        return {
-          label: 'Source' + (link.part ? ` – ${link.part}` : ''),
-          href: `https://github.com/${link.owner ?? 'tchojnacki'}/${link.repo}`,
-          Icon: IconBrandGithub,
-        }
-      case 'deploy':
-        return { label: 'Visit', href: link.href, Icon: IconExternalLink }
-      case 'documentation':
-        return { label: 'Documentation', href: link.href, Icon: IconNotes }
-      case 'download':
-        return { label: 'Download', href: link.href, Icon: IconDownload }
-      case 'paper':
-        return { label: 'Paper', href: link.href, Icon: IconFileTypePdf }
-    }
-  })()
+function Link({ link: { type, href, part }, isActive }: LinkProps) {
+  const { label, Icon } = {
+    repository: { label: 'Repository', Icon: IconBrandGithub },
+    livedemo: { label: 'Live Demo', Icon: IconExternalLink },
+    documentation: { label: 'Documentation', Icon: IconNotebook },
+    download: { label: 'Download', Icon: IconDownload },
+    publication: { label: 'Publication', Icon: IconFileTypePdf },
+    blogpost: { label: 'Blog Post', Icon: IconWritingSign }, // maybe message-star
+  }[type]
 
   return (
     <li>
@@ -85,7 +76,7 @@ function Link({ link, isActive }: LinkProps) {
         size="small"
         className={clsx('flex! items-center gap-2', isActive && 'opacity-25 hover:opacity-100')}
       >
-        <Icon role="presentation" /> {label}
+        <Icon role="presentation" /> {label + (part ? ` – ${part}` : '')}
       </LinkButton>
     </li>
   )
@@ -160,7 +151,7 @@ export default function ProjectCardInternal({
           <ul className="z-2 m-4 inline-flex h-min flex-col gap-2 [grid-area:buttons]">
             {project.links.map(link => (
               <Link
-                key={`${link.type}-${link.type === 'github' ? link.repo : link.href}`}
+                key={`${link.type}-${link.href}-${link.part}`}
                 link={link}
                 isActive={isActive}
               />

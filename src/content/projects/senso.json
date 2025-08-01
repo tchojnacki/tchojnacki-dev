@@ -4,9 +4,17 @@
   "image": "~/assets/projects/senso.png",
   "tags": ["academic", "group"],
   "links": [
-    { "type": "paper", "href": "/senso.pdf" },
-    { "type": "github", "repo": "senso-frontend", "owner": "zpi-2023", "part": "Mobile" },
-    { "type": "github", "repo": "SensoBackend", "owner": "zpi-2023", "part": "Server" }
+    { "type": "publication", "href": "/senso.pdf" },
+    {
+      "type": "repository",
+      "href": "https://github.com/zpi-2023/senso-frontend",
+      "part": "Mobile"
+    },
+    {
+      "type": "repository",
+      "href": "https://github.com/zpi-2023/SensoBackend",
+      "part": "Server"
+    }
   ],
   "parts": [
     { "name": "Mobile", "skillIds": ["react-native", "typescript", "react"] },

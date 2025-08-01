@@ -20,18 +20,18 @@ const projects = defineCollection({
       image: image(),
       tags: z.array(projectTag),
       links: z.array(
-        z.union([
-          z.object({
-            type: z.literal('github'),
-            repo: z.string(),
-            owner: z.string().optional(),
-            part: z.string().optional(),
-          }),
-          z.object({
-            type: z.enum(['deploy', 'documentation', 'download', 'paper']),
-            href: z.string(),
-          }),
-        ]),
+        z.object({
+          type: z.enum([
+            'repository',
+            'livedemo',
+            'documentation',
+            'download',
+            'publication',
+            'blogpost',
+          ]),
+          href: z.string(),
+          part: z.string().optional(),
+        }),
       ),
       parts: z.array(
         z.object({

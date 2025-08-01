@@ -5,7 +5,7 @@
   "tags": ["bootcamp", "group"],
   "links": [
     {
-      "type": "deploy",
+      "type": "livedemo",
       "href": "https://faktyczka.vercel.app"
     },
     {
@@ -13,9 +13,8 @@
       "href": "https://github.com/CodersCamp2021-HK/CodersCamp2021.Hackathon/releases/latest"
     },
     {
-      "type": "github",
-      "repo": "CodersCamp2021.Hackathon",
-      "owner": "CodersCamp2021-HK"
+      "type": "repository",
+      "href": "https://github.com/CodersCamp2021-HK/CodersCamp2021.Hackathon"
     }
   ],
   "parts": [

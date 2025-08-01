@@ -5,12 +5,12 @@
   "tags": ["personal"],
   "links": [
     {
-      "type": "deploy",
+      "type": "livedemo",
       "href": "https://tchojnacki.dev"
     },
     {
-      "type": "github",
-      "repo": "tchojnacki-dev"
+      "type": "repository",
+      "href": "https://github.com/tchojnacki/tchojnacki-dev"
     }
   ],
   "parts": [

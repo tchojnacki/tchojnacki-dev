@@ -3,7 +3,7 @@
   "description": "My solutions to the Advent of Code yearly programming puzzles.",
   "image": "~/assets/projects/advent-of-code.png",
   "tags": ["personal"],
-  "links": [{ "type": "github", "repo": "advent-of-code" }],
+  "links": [{ "type": "repository", "href": "https://github.com/tchojnacki/advent-of-code" }],
   "parts": [
     { "name": "2022", "skillIds": ["fsharp", "dotnet"] },
     { "name": "2021", "skillIds": ["kotlin"] },

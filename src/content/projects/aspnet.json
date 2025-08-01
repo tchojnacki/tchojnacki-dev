@@ -3,12 +3,7 @@
   "description": "Exercises for the Developing Web Applications with .NET university course, which I took during my 5th semester.",
   "image": "~/assets/projects/uni-sem-5-dotnet.png",
   "tags": ["academic"],
-  "links": [
-    {
-      "type": "github",
-      "repo": "uni-sem-5-dotnet"
-    }
-  ],
+  "links": [{ "type": "repository", "href": "https://github.com/tchojnacki/uni-sem-5-dotnet" }],
   "parts": [
     {
       "name": "Exercises",

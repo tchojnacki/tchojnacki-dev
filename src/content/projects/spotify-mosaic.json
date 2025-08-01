@@ -9,8 +9,8 @@
       "href": "https://crates.io/crates/spotifymosaic"
     },
     {
-      "type": "github",
-      "repo": "spotifymosaic"
+      "type": "repository",
+      "href": "https://github.com/tchojnacki/spotifymosaic"
     }
   ],
   "parts": [

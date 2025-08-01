@@ -13,8 +13,8 @@
       "href": "https://www.npmjs.com/package/nodewikiaapi"
     },
     {
-      "type": "github",
-      "repo": "nodewikiaapi"
+      "type": "repository",
+      "href": "https://github.com/tchojnacki/nodewikiaapi"
     }
   ],
   "parts": [

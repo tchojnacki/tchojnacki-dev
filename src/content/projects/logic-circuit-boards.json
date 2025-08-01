@@ -9,8 +9,8 @@
       "href": "https://www.curseforge.com/minecraft/mc-mods/logic-circuit-boards"
     },
     {
-      "type": "github",
-      "repo": "LogicCircuitBoards"
+      "type": "repository",
+      "href": "https://github.com/tchojnacki/LogicCircuitBoards"
     }
   ],
   "parts": [

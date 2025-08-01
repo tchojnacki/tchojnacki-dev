@@ -5,8 +5,8 @@
   "tags": ["academic"],
   "links": [
     {
-      "type": "github",
-      "repo": "uni-sem-4-script-languages"
+      "type": "repository",
+      "href": "https://github.com/tchojnacki/uni-sem-4-script-languages"
     }
   ],
   "parts": [

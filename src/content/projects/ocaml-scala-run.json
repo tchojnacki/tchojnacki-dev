@@ -9,8 +9,8 @@
       "href": "https://marketplace.visualstudio.com/items?itemName=tchojnacki.ocaml-scala-run"
     },
     {
-      "type": "github",
-      "repo": "ocaml-scala-run"
+      "type": "repository",
+      "href": "https://github.com/tchojnacki/ocaml-scala-run"
     }
   ],
   "parts": [

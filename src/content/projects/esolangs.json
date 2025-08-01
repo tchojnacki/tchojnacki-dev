@@ -5,8 +5,8 @@
   "tags": ["personal"],
   "links": [
     {
-      "type": "github",
-      "repo": "esolangs"
+      "type": "repository",
+      "href": "https://github.com/tchojnacki/esolangs"
     },
     {
       "type": "documentation",

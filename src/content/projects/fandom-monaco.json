@@ -9,8 +9,8 @@
       "href": "https://github.com/tchojnacki/FANDOM-Monaco/releases/latest"
     },
     {
-      "type": "github",
-      "repo": "FANDOM-Monaco"
+      "type": "repository",
+      "href": "https://github.com/tchojnacki/FANDOM-Monaco"
     }
   ],
   "parts": [

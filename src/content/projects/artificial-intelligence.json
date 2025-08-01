@@ -3,12 +3,7 @@
   "description": "Exercises for the Artificial Intelligence and Knowledge Engineering university course, which I took during my 6th semester. The scope included pathfinding algorithms, game theory, genetic algorithms, and machine learning.",
   "image": "~/assets/projects/uni-sem-6-ai.png",
   "tags": ["academic"],
-  "links": [
-    {
-      "type": "github",
-      "repo": "uni-sem-6-ai"
-    }
-  ],
+  "links": [{ "type": "repository", "href": "https://github.com/tchojnacki/uni-sem-6-ai" }],
   "parts": [
     {
       "name": "Exercises",
@@ -16,7 +11,7 @@
     },
     {
       "name": "Reports",
-      "skillIds": ["latex"]
+      "skillIds": ["latex", "matplotlib"]
     }
   ]
 }

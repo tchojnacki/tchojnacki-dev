@@ -5,13 +5,12 @@
   "tags": ["bootcamp", "group"],
   "links": [
     {
-      "type": "deploy",
+      "type": "livedemo",
       "href": "https://coderscamp2021-hk.github.io/CodersCamp2021.Project.JavaScript"
     },
     {
-      "type": "github",
-      "repo": "CodersCamp2021.Project.JavaScript",
-      "owner": "CodersCamp2021-HK"
+      "type": "repository",
+      "href": "https://github.com/CodersCamp2021-HK/CodersCamp2021.Project.JavaScript"
     }
   ],
   "parts": [
