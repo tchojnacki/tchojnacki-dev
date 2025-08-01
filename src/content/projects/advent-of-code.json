@@ -3,11 +3,14 @@
   "description": "My solutions to the Advent of Code yearly programming puzzles.",
   "image": "~/assets/projects/advent-of-code.png",
   "tags": ["personal"],
-  "links": [{ "type": "repository", "href": "https://github.com/tchojnacki/advent-of-code" }],
+  "links": [
+    { "type": "repository", "href": "https://github.com/tchojnacki/advent-of-code" },
+    { "type": "blogpost", "href": "/blog/evaluating-gleam-with-aoc", "part": "2020" }
+  ],
   "parts": [
-    { "name": "2022", "skillIds": ["fsharp", "dotnet"] },
-    { "name": "2021", "skillIds": ["kotlin"] },
-    { "name": "2020", "skillIds": ["gleam"] },
-    { "name": "2019", "skillIds": ["elixir"], "tags": ["wip"] }
+    { "name": "2022", "skillIds": ["fsharp", "dotnet"], "small": true },
+    { "name": "2021", "skillIds": ["kotlin"], "small": true },
+    { "name": "2020", "skillIds": ["gleam"], "small": true },
+    { "name": "2019", "skillIds": ["elixir"], "tags": ["wip"], "small": true }
   ]
 }

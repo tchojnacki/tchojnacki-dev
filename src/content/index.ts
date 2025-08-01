@@ -12,7 +12,7 @@ export type Skill = {
 
 export type ProjectTag = CollectionEntry<'projects'>['data']['tags'][number]
 export type ProjectLink = CollectionEntry<'projects'>['data']['links'][number]
-type ProjectPart = { name: string; skills: Skill[]; tags: ProjectTag[] }
+type ProjectPart = { name: string; skills: Skill[]; tags: ProjectTag[]; small: boolean }
 export type Project = {
   id: string
   name: string
@@ -52,10 +52,11 @@ export async function getProjects(): Promise<Project[]> {
     projectEntries.map(({ id, data }) => ({
       id,
       ...data,
-      parts: data.parts.map(({ name, tags = [], skillIds }) => ({
+      parts: data.parts.map(({ name, tags = [], skillIds, small }) => ({
         name,
         tags,
         skills: skillIds.map(({ id }) => skillById[id]).filter(s => s !== undefined),
+        small,
       })),
     })),
     p => projectImportanceOrder.indexOf(p.id),

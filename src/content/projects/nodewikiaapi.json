@@ -20,11 +20,13 @@
   "parts": [
     {
       "name": "Package",
-      "skillIds": ["javascript", "jsdoc"]
+      "skillIds": ["javascript", "jsdoc"],
+      "small": true
     },
     {
       "name": "Tools",
-      "skillIds": ["jest", "github-actions"]
+      "skillIds": ["jest", "github-actions"],
+      "small": true
     }
   ]
 }

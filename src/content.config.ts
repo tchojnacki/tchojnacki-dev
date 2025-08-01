@@ -38,6 +38,7 @@ const projects = defineCollection({
           name: z.string(),
           skillIds: z.array(reference('skills')),
           tags: z.array(projectTag).optional(),
+          small: z.boolean().default(false),
         }),
       ),
     }),
