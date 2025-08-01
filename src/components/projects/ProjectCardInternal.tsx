@@ -13,7 +13,7 @@ import clsx from 'clsx'
 import { Fragment, useReducer, type CSSProperties } from 'react'
 
 import LinkButton from '~/components/common/LinkButton'
-import SimpleIconSvg from '~/components/common/SimpleIconSvg.tsx'
+import SkillIcon from '~/components/skills/SkillIcon'
 import type { Project, ProjectLink, ProjectTag } from '~/content'
 import { useIsMounted } from '~/hooks'
 
@@ -196,31 +196,26 @@ export default function ProjectCardInternal({
         <p itemProp="description" className="text-justify text-neutral-600 dark:text-neutral-400">
           {project.description}
         </p>
-        {project.parts.map(({ name, skills: technologies, tags }) => (
-          <Fragment key={name}>
+        {project.parts.map(part => (
+          <Fragment key={part.name}>
             <H2 className="mt-4 mb-2 flex flex-col gap-2 lg:flex-row lg:items-center">
-              <span className="mr-auto text-xl">{name}</span>
+              <span className="mr-auto text-xl">{part.name}</span>
               <ul className="flex gap-2">
-                {tags.map(tag => (
+                {part.tags.map(tag => (
                   <Tag key={tag} tag={tag} small />
                 ))}
               </ul>
             </H2>
             <ul className="flex flex-wrap gap-2 overflow-hidden after:grow-100 lg:flex-nowrap lg:mask-[linear-gradient(90deg,#000_75%,transparent)]">
-              {technologies.map(({ name, icon, id }, i) => (
-                <li key={id}>
+              {part.skills.map((skill, i) => (
+                <li key={skill.id}>
                   <a
-                    title={name}
-                    href={`/skills/${id}`}
+                    title={skill.name}
+                    href={`/skills/${skill.id}`}
                     className="flex flex-1 items-center justify-center gap-1 rounded-full bg-neutral-900/10 px-3 whitespace-nowrap duration-200 hover:bg-neutral-900/20 dark:bg-neutral-100/10 hover:dark:bg-neutral-100/20"
                   >
-                    <SimpleIconSvg
-                      icon={icon}
-                      className="my-1 h-[1em]"
-                      pathClassName="fill-neutral-900 dark:fill-neutral-100"
-                      decoration={i < 3}
-                    />
-                    {i < 3 && <span>{name}</span>}
+                    <SkillIcon skill={skill} className="my-1 h-[1em]" decoration={i < 3} />
+                    {i < 3 && <span>{skill.name}</span>}
                   </a>
                 </li>
               ))}

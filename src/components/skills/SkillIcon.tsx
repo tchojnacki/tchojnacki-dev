@@ -1,19 +1,16 @@
-import clsx from 'clsx'
-import type { SimpleIcon } from 'simple-icons'
+import type { Skill } from '~/content'
 
-interface SimpleIconProps {
-  icon: SimpleIcon | string
+interface SkillIconProps {
+  skill: Skill
   className?: string
-  pathClassName?: string
   decoration?: boolean
 }
 
-export default function SimpleIconSvg({
-  icon,
-  pathClassName,
+export default function SkillIcon({
+  skill: { icon, name },
   className,
   decoration,
-}: SimpleIconProps) {
+}: SkillIconProps) {
   return (
     <svg
       className={className}
@@ -21,7 +18,7 @@ export default function SimpleIconSvg({
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {decoration ? null : <title>{typeof icon === 'string' ? icon : icon.title}</title>}
+      {decoration ? null : <title>{name}</title>}
       {typeof icon === 'string' ? (
         <text
           x="50%"
@@ -31,12 +28,12 @@ export default function SimpleIconSvg({
           fontFamily="monospace"
           textAnchor="middle"
           dominantBaseline="central"
-          className={clsx(pathClassName, 'select-none')}
+          className="fill-current select-none"
         >
-          {icon.charAt(0)}
+          {name.charAt(0)}
         </text>
       ) : (
-        <path className={pathClassName} d={icon.path} />
+        <path className="fill-current" d={icon.path} />
       )}
     </svg>
   )

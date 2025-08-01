@@ -1,11 +1,11 @@
 ---
 import PostList from '~/components/blog/PostList.astro'
 import SectionHeader from '~/components/common/SectionHeader.astro'
-import SimpleIconSvg from '~/components/common/SimpleIconSvg'
 import Wave from '~/components/common/Wave.astro'
 import ProjectList from '~/components/projects/ProjectList.astro'
 import SkillCard from '~/components/skills/SkillCard.astro'
 import SkillCardWrapper from '~/components/skills/SkillCardWrapper.astro'
+import SkillIcon from '~/components/skills/SkillIcon'
 import { getProjects, getSkillById, getSkills, pathsFrom } from '~/content'
 import Layout from '~/layouts/Layout.astro'
 import { calculateRelatedSkills } from '~/lib/relatedSkills'
@@ -24,12 +24,7 @@ const relatedSkills = calculateRelatedSkills(skillList, projectList)
     <header class="centered-header">
       <h1 class="flex items-center gap-4 pb-4 text-3xl sm:text-4xl">
         {skill.name}
-        <SimpleIconSvg
-          icon={skill.icon}
-          className="h-[0.75em]"
-          pathClassName="fill-neutral-900 dark:fill-neutral-100"
-          decoration
-        />
+        <SkillIcon {skill} className="h-[0.75em]" decoration />
       </h1>
       <p>{skill.description}</p>
     </header>
