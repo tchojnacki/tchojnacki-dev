@@ -1,6 +1,6 @@
 {
   "name": "JeszCoChcesz",
-  "description": "Full stack web application, online food delivery system connecting restaurants with health-conscious users. Built during the CodersCamp 2021 web development bootcamp.",
+  "description": "A full-stack web application, an online food delivery system connecting restaurants with health-conscious users. Supports both partner and customer workflows, such as searching, ordering, and dish management. Built during the CodersCamp 2021 web development bootcamp.",
   "image": "~/assets/projects/coderscamp-fullstack.png",
   "tags": ["bootcamp", "group"],
   "links": [
@@ -16,15 +16,15 @@
     },
     {
       "name": "Back end",
-      "skillIds": ["nestjs", "typescript", "mongodb", "express", "passport", "nodejs"]
+      "skillIds": ["nestjs", "typescript", "mongodb", "passport", "express"]
     },
     {
       "name": "Tools",
       "skillIds": [
         "testing-library",
-        "openapi",
-        "docker",
         "storybook",
+        "docker",
+        "openapi",
         "jest",
         "github-actions",
         "figma"

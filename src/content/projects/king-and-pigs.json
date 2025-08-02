@@ -1,6 +1,6 @@
 {
   "name": "King and Pigs",
-  "description": "Online platformer game with three stages built using public domain assets. The UI surrounding the game was created using React.",
+  "description": "An online platformer game using public domain assets with three playable stages. The UI surrounding the game is created using React. Built during the CodersCamp 2021 web development bootcamp.",
   "image": "~/assets/projects/coderscamp-react.png",
   "tags": ["bootcamp", "group"],
   "links": [

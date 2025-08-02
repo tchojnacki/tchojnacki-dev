@@ -1,6 +1,6 @@
 {
   "name": "Advent of Code",
-  "description": "My solutions to the Advent of Code yearly programming puzzles.",
+  "description": "My solutions to the Advent of Code yearly programming puzzles. Each year's solution is implemented in a different programming language to explore various paradigms and ecosystems.",
   "image": "~/assets/projects/advent-of-code.png",
   "tags": ["personal"],
   "links": [

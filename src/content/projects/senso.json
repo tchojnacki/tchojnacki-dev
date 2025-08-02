@@ -1,6 +1,6 @@
 {
   "name": "Senso",
-  "description": "Group project built for my BSc thesis.",
+  "description": "A group project built for my engineering thesis. A mobile application that aids the elderly in their daily life, including features such as medication reminders, emergency contacts, and an SOS button.",
   "image": "~/assets/projects/senso.png",
   "tags": ["academic", "group"],
   "links": [
@@ -17,23 +17,14 @@
     }
   ],
   "parts": [
-    { "name": "Mobile", "skillIds": ["react-native", "typescript", "react"] },
+    { "name": "Mobile", "skillIds": ["react-native", "typescript", "react", "css"] },
     {
       "name": "Server",
-      "skillIds": [
-        "csharp",
-        "aspnet",
-        "postgres",
-        "entity-framework",
-        "mediatr",
-        "mapster",
-        "fluent-validation",
-        "dotnet"
-      ]
+      "skillIds": ["csharp", "aspnet", "postgres", "entity-framework", "mediatr", "dotnet"]
     },
     {
       "name": "Testing",
-      "skillIds": ["xunitnet", "jest", "testing-library", "nsubstitute", "fluent-assertions"]
+      "skillIds": ["xunitnet", "jest", "testing-library"]
     },
     {
       "name": "Tools",

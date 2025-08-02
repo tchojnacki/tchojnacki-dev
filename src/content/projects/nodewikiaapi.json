@@ -1,6 +1,6 @@
 {
   "name": "nodewikiaapi",
-  "description": "JavaScript wrapper for the Fandom's Wikia API V1.",
+  "description": "A JavaScript wrapper for Fandom's Wikia API V1.",
   "image": "~/assets/projects/node-wikia-api.png",
   "tags": ["personal", "deprecated"],
   "links": [

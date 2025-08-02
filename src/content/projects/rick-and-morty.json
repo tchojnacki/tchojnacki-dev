@@ -1,6 +1,6 @@
 {
   "name": "Rick and Morty Quiz",
-  "description": "Online singleplayer quiz testing your knowledge about the Rick and Morty show. Built without using any front-end frameworks.",
+  "description": "An online single-player quiz testing your knowledge about the Rick and Morty TV show. Does not use any front-end frameworks. Built during the CodersCamp 2021 web development bootcamp.",
   "image": "~/assets/projects/coderscamp-javascript.png",
   "tags": ["bootcamp", "group"],
   "links": [

@@ -1,6 +1,6 @@
 {
   "name": "FANDOM-Monaco",
-  "description": "Browser extension that integrates the Monaco Editor with Fandom.",
+  "description": "A browser extension that integrates Monaco Editor with Fandom.",
   "image": "~/assets/projects/fandom-monaco.png",
   "tags": ["personal", "deprecated"],
   "links": [

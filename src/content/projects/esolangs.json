@@ -1,6 +1,6 @@
 {
   "name": "esolangs",
-  "description": "Compilers and interpreters for esoteric programming languages.",
+  "description": "Compilers and interpreters for esoteric programming languages built in Rust. Includes a library for declarative building of WebAssembly modules and an implementation of the Brainfuck language.",
   "image": "~/assets/projects/esolangs.png",
   "tags": ["personal"],
   "links": [
@@ -15,12 +15,14 @@
   ],
   "parts": [
     {
-      "name": "Brainfuck",
-      "skillIds": ["rust"]
+      "name": "Package",
+      "skillIds": ["rust", "web-assembly"],
+      "small": true
     },
     {
-      "name": "Common",
-      "skillIds": ["rust", "web-assembly", "github-actions"]
+      "name": "Tools",
+      "skillIds": ["github-actions"],
+      "small": true
     }
   ]
 }
