@@ -1,0 +1,22 @@
+{
+  "name": "Test Case Prioritization",
+  "description": "My master's thesis focused on the problem of prioritization within software test suites. The work presents a systematic study, a Python research framework, new evaluation metrics, and novel prioritization approaches. The proposed methods achieved state-of-the-art performance.",
+  "image": "~/assets/projects/placeholder.png",
+  "tags": ["academic"],
+  "links": [
+    { "type": "publication", "href": "/tcp.pdf" },
+    { "type": "repository", "href": "https://github.com/LechMadeyski/MSc25TomaszChojnacki" }
+  ],
+  "parts": [
+    {
+      "name": "Package",
+      "skillIds": ["python", "pandas"],
+      "small": true
+    },
+    {
+      "name": "Thesis",
+      "skillIds": ["latex", "matplotlib"],
+      "small": true
+    }
+  ]
+}

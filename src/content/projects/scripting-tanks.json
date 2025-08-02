@@ -1,6 +1,6 @@
 {
   "name": "Scripting Tanks",
-  "description": "An online three-dimensional real-time multiplayer game powered by WebSockets. Final project for the Script Languages university course, later rewritten from Python to C#.",
+  "description": "An online three-dimensional real-time multiplayer game powered by WebSockets. Designed and implemented for the Script Languages university course. Later rewritten from Python to C#.",
   "image": "~/assets/projects/scripting-tanks.png",
   "tags": ["academic"],
   "links": [{ "type": "repository", "href": "https://github.com/tchojnacki/scripting-tanks" }],
@@ -11,11 +11,11 @@
     },
     {
       "name": "Back end",
-      "skillIds": ["csharp", "aspnet", "dotnet", "mediatr"]
+      "skillIds": ["aspnet", "csharp", "mediatr", "xunitnet"]
     },
     {
       "name": "Tools",
-      "skillIds": ["xunitnet", "docker", "github-actions", "uml"]
+      "skillIds": ["docker", "github-actions", "uml"]
     }
   ]
 }

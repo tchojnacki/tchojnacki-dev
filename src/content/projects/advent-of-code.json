@@ -4,13 +4,13 @@
   "image": "~/assets/projects/advent-of-code.png",
   "tags": ["personal"],
   "links": [
-    { "type": "repository", "href": "https://github.com/tchojnacki/advent-of-code" },
-    { "type": "blogpost", "href": "/blog/evaluating-gleam-with-aoc", "part": "2020" }
+    { "type": "blogpost", "href": "/blog/evaluating-gleam-with-aoc", "part": "2020" },
+    { "type": "repository", "href": "https://github.com/tchojnacki/advent-of-code" }
   ],
   "parts": [
-    { "name": "2022", "skillIds": ["fsharp", "dotnet"], "small": true },
+    { "name": "2022", "skillIds": ["fsharp"], "small": true },
     { "name": "2021", "skillIds": ["kotlin"], "small": true },
     { "name": "2020", "skillIds": ["gleam"], "small": true },
-    { "name": "2019", "skillIds": ["elixir"], "tags": ["wip"], "small": true }
+    { "name": "2019", "skillIds": ["elixir"], "small": true }
   ]
 }

@@ -4,14 +4,8 @@
   "image": "~/assets/projects/esolangs.png",
   "tags": ["personal"],
   "links": [
-    {
-      "type": "repository",
-      "href": "https://github.com/tchojnacki/esolangs"
-    },
-    {
-      "type": "documentation",
-      "href": "https://tchojnacki.github.io/esolangs"
-    }
+    { "type": "documentation", "href": "https://tchojnacki.github.io/esolangs" },
+    { "type": "repository", "href": "https://github.com/tchojnacki/esolangs" }
   ],
   "parts": [
     {

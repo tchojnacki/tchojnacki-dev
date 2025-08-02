@@ -17,14 +17,13 @@
     }
   ],
   "parts": [
-    { "name": "Mobile", "skillIds": ["react-native", "typescript", "react", "css"] },
     {
-      "name": "Server",
-      "skillIds": ["csharp", "aspnet", "postgres", "entity-framework", "mediatr", "dotnet"]
+      "name": "Mobile",
+      "skillIds": ["react-native", "typescript", "react", "testing-library", "jest", "css"]
     },
     {
-      "name": "Testing",
-      "skillIds": ["xunitnet", "jest", "testing-library"]
+      "name": "Server",
+      "skillIds": ["aspnet", "csharp", "postgres", "entity-framework", "mediatr", "xunitnet"]
     },
     {
       "name": "Tools",

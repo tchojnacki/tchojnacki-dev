@@ -1,7 +1,7 @@
 {
   "name": "nodewikiaapi",
   "description": "A JavaScript wrapper for Fandom's Wikia API V1.",
-  "image": "~/assets/projects/node-wikia-api.png",
+  "image": "~/assets/projects/nodewikiaapi.png",
   "tags": ["personal", "deprecated"],
   "links": [
     {
@@ -20,7 +20,7 @@
   "parts": [
     {
       "name": "Package",
-      "skillIds": ["javascript", "jsdoc"],
+      "skillIds": ["javascript"],
       "small": true
     },
     {

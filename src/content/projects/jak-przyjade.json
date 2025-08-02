@@ -1,0 +1,27 @@
+{
+  "name": "JakPrzyjade",
+  "description": "A microservice-based public transit ticketing system. It consists of a set of services that handle various aspects of public transport ticketing, such as user accounts, ticket purchases, and payment processing. Designed and implemented for the Software System Design university course.",
+  "image": "~/assets/projects/placeholder.png",
+  "tags": ["academic", "group"],
+  "links": [
+    { "type": "repository", "href": "https://github.com/PWR-ACS-SE-24/SoftwareSystemDesign" }
+  ],
+  "parts": [
+    {
+      "name": "Services (TypeScript)",
+      "skillIds": ["nestjs", "hono", "typescript", "rxjs", "jest", "express"]
+    },
+    {
+      "name": "Services (Java)",
+      "skillIds": ["spring-boot", "java", "junit"]
+    },
+    {
+      "name": "Deployment",
+      "skillIds": ["kubernetes", "terraform", "docker", "postgres", "aws"]
+    },
+    {
+      "name": "Tools",
+      "skillIds": ["openapi", "uml", "github-actions", "figma"]
+    }
+  ]
+}

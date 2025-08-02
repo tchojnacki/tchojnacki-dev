@@ -1,0 +1,20 @@
+{
+  "name": "Image Steganography",
+  "description": "An online web application was created that allows users to hide messages in images using techniques such as LSB, DCT, and visual cryptography. Designed and implemented for the Engineering of Security and Knowledge Acquisition from Data and Databases university course.",
+  "image": "~/assets/projects/placeholder.png",
+  "tags": ["academic", "group"],
+  "links": [
+    { "type": "livedemo", "href": "https://pwr-acs-se-24.github.io/EoSaKAfDaD/#/" },
+    { "type": "repository", "href": "https://github.com/PWR-ACS-SE-24/EoSaKAfDaD" }
+  ],
+  "parts": [
+    {
+      "name": "Website",
+      "skillIds": ["angular", "web-assembly", "typescript", "rust", "rxjs", "lodash", "css"]
+    },
+    {
+      "name": "Tools",
+      "skillIds": ["github-actions", "jasmine"]
+    }
+  ]
+}

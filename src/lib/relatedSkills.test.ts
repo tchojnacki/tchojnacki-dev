@@ -4,15 +4,15 @@ import { calculateRelatedSkills, jaccard } from '~/lib/relatedSkills'
 
 describe(jaccard, () => {
   it('returns NaN when the list is empty', () => {
-    expect(jaccard('aspnet', 'dotnet', [])).toBeNaN()
+    expect(jaccard('aspnet', 'csharp', [])).toBeNaN()
   })
 
   it('returns 1.0 for common appearance in set', () => {
-    expect(jaccard('aspnet', 'dotnet', [['aspnet', 'dotnet']])).toBeCloseTo(1)
+    expect(jaccard('aspnet', 'csharp', [['aspnet', 'csharp']])).toBeCloseTo(1)
   })
 
   it('returns 0.0 for distinct appearances in sets', () => {
-    expect(jaccard('aspnet', 'dotnet', [['aspnet'], ['dotnet']])).toBeCloseTo(0)
+    expect(jaccard('aspnet', 'csharp', [['aspnet'], ['csharp']])).toBeCloseTo(0)
   })
 
   it('returns numbers between 0.5 and 1.0 for appearance combinations', () => {
@@ -30,24 +30,24 @@ describe(calculateRelatedSkills, () => {
   it('returns relevant related skills', () => {
     const skillList = [
       { id: 'aspnet' },
-      { id: 'dotnet' },
       { id: 'csharp' },
       { id: 'react' },
       { id: 'typescript' },
+      { id: 'css' },
     ] as Skill[]
     const projectList = [
       {
         id: 'senso',
         parts: [
-          { skills: [{ id: 'aspnet' }, { id: 'dotnet' }, { id: 'csharp' }] },
-          { skills: [{ id: 'react' }, { id: 'typescript' }] },
+          { skills: [{ id: 'aspnet' }, { id: 'csharp' }] },
+          { skills: [{ id: 'react' }, { id: 'typescript' }, { id: 'css' }] },
         ],
       },
     ] as Project[]
 
     const related = calculateRelatedSkills(skillList, projectList)
 
-    expect(related['aspnet']).toStrictEqual(['dotnet', 'csharp', 'react', 'typescript'])
-    expect(related['react']).toStrictEqual(['typescript', 'aspnet', 'dotnet', 'csharp'])
+    expect(related['aspnet']).toStrictEqual(['csharp', 'react', 'typescript', 'css'])
+    expect(related['react']).toStrictEqual(['typescript', 'css', 'aspnet', 'csharp'])
   })
 })
