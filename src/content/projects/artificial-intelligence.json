@@ -1,7 +1,7 @@
 {
   "name": "Artificial Intelligence Coursework",
   "description": "Exercises for the Artificial Intelligence and Knowledge Engineering university course, which I took during my 6th semester. The scope included pathfinding algorithms, game theory, genetic algorithms, and supervised machine learning.",
-  "image": "~/assets/projects/artificial-intelligence.png",
+  "image": "~/assets/projects/artificial-intelligence.jpg",
   "tags": ["academic"],
   "links": [
     { "type": "documentation", "href": "/static/si.pdf" },

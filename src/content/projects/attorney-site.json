@@ -1,7 +1,7 @@
 {
   "name": "kancelariawalbrzych.pl",
   "description": "A website commissioned and used by a local law firm. The site is visited by hundreds of users monthly and presents the firm's employees, contact information, and services.",
-  "image": "~/assets/projects/attorney-site.png",
+  "image": "~/assets/projects/attorney-site.jpg",
   "tags": ["freelance"],
   "links": [{ "type": "livedemo", "href": "https://kancelariawalbrzych.pl" }],
   "parts": [

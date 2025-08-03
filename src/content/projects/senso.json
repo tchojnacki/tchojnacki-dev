@@ -1,7 +1,7 @@
 {
   "name": "Senso",
   "description": "A group project built for my engineering thesis. A mobile application that aids the elderly in their daily life, including features such as medication reminders, emergency contacts, and an SOS button.",
-  "image": "~/assets/projects/senso.png",
+  "image": "~/assets/projects/senso.jpg",
   "tags": ["academic", "group"],
   "links": [
     { "type": "publication", "href": "/senso.pdf" },

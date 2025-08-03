@@ -1,7 +1,7 @@
 {
   "name": "Scripting Tanks",
   "description": "An online three-dimensional real-time multiplayer game powered by WebSockets. Designed and implemented for the Script Languages university course. Later rewritten from Python to C#.",
-  "image": "~/assets/projects/scripting-tanks.png",
+  "image": "~/assets/projects/scripting-tanks.jpg",
   "tags": ["academic"],
   "links": [{ "type": "repository", "href": "https://github.com/tchojnacki/scripting-tanks" }],
   "parts": [

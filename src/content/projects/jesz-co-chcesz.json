@@ -1,7 +1,7 @@
 {
   "name": "JeszCoChcesz",
   "description": "A full-stack web application, an online food delivery system connecting restaurants with health-conscious users. Supports both partner and customer workflows, such as searching, ordering, and dish management. Built during the CodersCamp 2021 web development bootcamp.",
-  "image": "~/assets/projects/jesz-co-chcesz.png",
+  "image": "~/assets/projects/jesz-co-chcesz.jpg",
   "tags": ["bootcamp", "group"],
   "links": [
     {

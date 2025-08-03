@@ -74,7 +74,7 @@ function Link({ link: { type, href, part }, isActive }: LinkProps) {
         external
         href={href}
         size="small"
-        className={clsx('flex! items-center gap-2', isActive && 'opacity-25 hover:opacity-100')}
+        className={clsx('flex! items-center gap-2', isActive && 'opacity-10 hover:opacity-100')}
       >
         <Icon role="presentation" /> {label + (part ? ` – ${part}` : '')}
       </LinkButton>
@@ -92,6 +92,7 @@ export default function ProjectCardInternal({
 
   const { width, height } = project.image
   const maxImageScroll = Math.floor(100 - (75 * width) / height)
+  const imageScrollDuration = Math.round(maxImageScroll * 100)
 
   const activeIcon = maxImageScroll !== 0 ? IconPlayerPause : IconZoomCancel
   const inactiveIcon = maxImageScroll !== 0 ? IconPlayerPlay : IconZoomIn
@@ -115,10 +116,14 @@ export default function ProjectCardInternal({
         <img
           alt={project.name}
           src={project.image.src}
-          className={clsx('absolute h-auto w-full', isActive && 'animate-scrollprojectimage')}
+          className={clsx(
+            'animate-scrollprojectimage absolute h-auto w-full',
+            isActive ? '[animation-play-state:running]' : '[animation-play-state:paused]',
+          )}
           style={
             {
               '--max-image-scroll': `-${maxImageScroll}%`,
+              animationDuration: `${imageScrollDuration}ms`,
             } as CSSProperties
           }
         />

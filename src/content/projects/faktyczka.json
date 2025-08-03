@@ -1,7 +1,7 @@
 {
   "name": "Faktyczka",
   "description": "A browser extension that notifies you about fake news. Upon visiting a web page, various fact-checkers are queried to see if the content is factual. Created during the 24-hour Hack-a-Troll Hackathon in 2022.",
-  "image": "~/assets/projects/faktyczka.png",
+  "image": "~/assets/projects/faktyczka.jpg",
   "tags": ["bootcamp", "group"],
   "links": [
     {

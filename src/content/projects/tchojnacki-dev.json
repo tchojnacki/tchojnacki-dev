@@ -1,7 +1,7 @@
 {
   "name": "tchojnacki.dev",
   "description": "A personal portfolio and blog website built with Astro. It presents my projects, skills, and relevant social links. A variety of interactive posts on interesting topics are available in the blog section.",
-  "image": "~/assets/projects/tchojnacki-dev.png",
+  "image": "~/assets/projects/placeholder.jpg",
   "tags": ["personal"],
   "links": [
     {

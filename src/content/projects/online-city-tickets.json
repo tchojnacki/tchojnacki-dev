@@ -1,7 +1,7 @@
 {
   "name": "Online City Tickets",
   "description": "A simple web application for mass transit ticket sales. The system supports multiple types of tickets, with full purchase, validation, and inspection flows implemented on the back end and front end. Designed and implemented for the Web Applications Design and Programming university course.",
-  "image": "~/assets/projects/placeholder.png",
+  "image": "~/assets/projects/online-city-tickets.jpg",
   "tags": ["academic", "group"],
   "links": [{ "type": "repository", "href": "https://github.com/RustyRipper/online-city-tickets" }],
   "parts": [

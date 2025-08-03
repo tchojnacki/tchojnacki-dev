@@ -1,7 +1,7 @@
 {
   "name": "OCaml & Scala Run in REPL",
   "description": "A Visual Studio Code extension that lets you run OCaml and Scala scripts in REPL with a single click. Built for personal usage during the Programming Paradigms university course.",
-  "image": "~/assets/projects/ocaml-scala-run.png",
+  "image": "~/assets/projects/ocaml-scala-run.jpg",
   "tags": ["personal", "deprecated"],
   "links": [
     {

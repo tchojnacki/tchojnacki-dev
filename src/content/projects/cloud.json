@@ -1,8 +1,8 @@
 {
   "name": "Cloud Coursework",
   "description": "Exercises for the Application of Cloud Solutions in Web Applications university course, which I took during my 9th semester. A cloud-based demo web chat application that showcases the integration of various AWS products to create a functional and scalable web application.",
-  "image": "~/assets/projects/placeholder.png",
-  "tags": ["academic"],
+  "image": "~/assets/projects/cloud.jpg",
+  "tags": ["academic", "deprecated"],
   "links": [{ "type": "repository", "href": "https://github.com/tchojnacki/uni-sem-9-cloud" }],
   "parts": [
     {

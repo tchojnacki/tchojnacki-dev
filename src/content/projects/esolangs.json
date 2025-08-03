@@ -1,7 +1,7 @@
 {
   "name": "esolangs",
   "description": "Compilers and interpreters for esoteric programming languages built in Rust. Includes a library for declarative building of WebAssembly modules and an implementation of the Brainfuck language.",
-  "image": "~/assets/projects/esolangs.png",
+  "image": "~/assets/projects/esolangs.jpg",
   "tags": ["personal"],
   "links": [
     { "type": "documentation", "href": "https://tchojnacki.github.io/esolangs" },

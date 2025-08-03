@@ -1,7 +1,7 @@
 {
   "name": "JakPrzyjade",
   "description": "A microservice-based public transit ticketing system. It consists of a set of services that handle various aspects of public transport ticketing, such as user accounts, ticket purchases, and payment processing. Designed and implemented for the Software System Design university course.",
-  "image": "~/assets/projects/placeholder.png",
+  "image": "~/assets/projects/jak-przyjade.jpg",
   "tags": ["academic", "group"],
   "links": [
     { "type": "repository", "href": "https://github.com/PWR-ACS-SE-24/SoftwareSystemDesign" }
