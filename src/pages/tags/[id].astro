@@ -8,7 +8,7 @@ export const getStaticPaths = pathsFrom(getTags, id => ({ params: { id } }))
 const tag = Astro.params.id
 ---
 
-<Layout name={`#${tag}`} description={`List of all posts with the #${tag} tag.`}>
+<Layout name={`#${tag} - Tags`} description={`List of all posts with the #${tag} tag.`}>
   <main class="min-h-screen">
     <header class="centered-header">
       <h1 class="pb-4 text-3xl text-purple-700 sm:text-4xl dark:text-purple-300">#{tag}</h1>

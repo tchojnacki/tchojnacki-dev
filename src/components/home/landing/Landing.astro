@@ -47,13 +47,13 @@ const skillNames = await Promise.all(skillIds.map(id => getSkillById(id).then(s 
     </p>
     <nav class="flex items-center justify-center gap-8 lg:justify-start">
       <SocialLink {...github}>
-        <IconBrandGithub size="" />
+        <IconBrandGithub title={github.label} size="" />
       </SocialLink>
       <SocialLink {...linkedin}>
-        <IconBrandLinkedin size="" />
+        <IconBrandLinkedin title={linkedin.label} size="" />
       </SocialLink>
       <SocialLink {...resume}>
-        <IconFileCv size="" />
+        <IconFileCv title={resume.label} size="" />
       </SocialLink>
     </nav>
   </section>
