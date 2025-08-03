@@ -13,7 +13,7 @@ const tag = Astro.params.id
     <header class="centered-header">
       <h1 class="pb-4 text-3xl text-purple-700 sm:text-4xl dark:text-purple-300">#{tag}</h1>
     </header>
-    <section class="mx-auto max-w-[calc(70ch+2rem)]">
+    <section class="mx-auto max-w-[calc(var(--spacing-reading)+2rem)]">
       <PostList heading={2} filter={p => p.data.tags.includes(tag)} />
     </section>
   </main>

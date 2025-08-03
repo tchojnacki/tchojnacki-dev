@@ -28,7 +28,7 @@ const relatedSkills = calculateRelatedSkills(skillList, projectList)
       </h1>
       <p>{skill.description}</p>
     </header>
-    <section class="mx-auto max-w-[calc(70ch+2rem)]">
+    <section class="mx-auto max-w-[calc(var(--spacing-reading)+2rem)]">
       <PostList heading={3} filter={p => p.data.skills.some(s => s.id === skill.id)} />
     </section>
     <Wave />

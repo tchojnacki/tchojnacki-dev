@@ -173,7 +173,7 @@ export default function ProjectCardInternal({
           flipped
             ? 'lg:onenter-fromleft bg-linear-to-l lg:col-start-1 lg:rounded-tr-3xl lg:rounded-bl-none'
             : 'lg:onenter-fromright bg-linear-to-r lg:col-start-4 lg:rounded-tl-3xl lg:rounded-br-none',
-          'z-1 rounded-b-3xl p-8 lg:col-span-5 lg:row-span-full',
+          'z-1 rounded-b-3xl p-4 sm:p-8 lg:col-span-5 lg:row-span-full',
           'lg:to-neudigo-50 from-indigo-100 to-indigo-100',
           'dark:from-indigo-925 dark:to-indigo-925 dark:lg:to-neudigo-950',
           'translate-x-0 transition-[translate] duration-200 ease-in',

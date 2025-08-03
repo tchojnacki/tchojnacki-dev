@@ -13,7 +13,7 @@ const { heading = 1, length = Infinity, filter } = Astro.props
 const projects = (await getProjects()).filter(p => !filter || filter(p))
 ---
 
-<ul class="flex flex-col items-center gap-16 px-4 py-8 lg:px-16">
+<ul class="flex flex-col items-center gap-8 px-4 py-8 sm:gap-16 lg:px-16">
   {
     projects
       .slice(0, length)

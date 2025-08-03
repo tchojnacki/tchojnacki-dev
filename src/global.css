@@ -46,6 +46,7 @@
   --font-weight-bold: 600;
 
   --spacing-nav-height: 4rem;
+  --spacing-reading: 70ch;
 
   --animate-errshake: errshake 200ms 600ms;
   --animate-emojiwave: emojiwave 1s ease-in-out;
@@ -117,7 +118,7 @@
 
 @utility centered-header {
   box-sizing: content-box;
-  max-width: 70ch;
+  max-width: var(--spacing-reading);
   margin: 0 auto;
   padding: 4rem 1rem;
 }
