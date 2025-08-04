@@ -73,10 +73,10 @@ Gleam has none of that, and surprisingly, it feels great.
 The `Bool` type in Gleam is defined as follows<Cite ordinal={4} />:
 
 <Syntax lang="gleam" code={`
-pub type Bool {
-  True
-  False
-}
+  pub type Bool {
+    True
+    False
+  }
 `} />
 
 It's **just** a type with two constructors, or in other words &ndash; a sum type. It isn't treated specially
@@ -98,14 +98,14 @@ passed as the last argument of the `use`d function<Cite ordinal={5} />. This exp
 mouthful, so let's just see the code instead:
 
 <Syntax lang="gleam" code={`
-// This:
-use x <- resource()
-io.println("Hello")
-
-// Is equivalent to this:
-resource(fn (x) {
+  // This:
+  use x <- resource()
   io.println("Hello")
-})
+
+  // Is equivalent to this:
+  resource(fn (x) {
+    io.println("Hello")
+  })
 `} />
 
 The anonymous function can have multiple parameters, or none at all. And the `resource` may call other
@@ -115,24 +115,24 @@ This might initially feel useless, but this simple construct can actually model 
 features commonly included in other languages, for instance:
 
 <Syntax lang="gleam" code={`
-// Guard clause / early return
-use <- bool.guard(when: number == 0, return: 1)
+  // Guard clause / early return
+  use <- bool.guard(when: number == 0, return: 1)
 
-// Java's try-with-resources
-use f <- file.open("data.txt")
+  // Java's try-with-resources
+  use f <- file.open("data.txt")
 
-// Go's defer
-use <- defer(fn() { io.println("Cleaning up...") })
+  // Go's defer
+  use <- defer(fn() { io.println("Cleaning up...") })
 
-// Zig's try
-use value <- use result.try(dict.get(key))
+  // Zig's try
+  use value <- use result.try(dict.get(key))
 
-// Scala's for comprehensions
-set.from_list({
-  use x <- list.flat_map([-1, 0, 1])
-  use y <- list.map([-1, 0, 1])
-  #(x, y)
-})
+  // Scala's for comprehensions
+  set.from_list({
+    use x <- list.flat_map([-1, 0, 1])
+    use y <- list.map([-1, 0, 1])
+    #(x, y)
+  })
 `} />
 
 ### Approach to mutability
@@ -155,27 +155,27 @@ The API linked above might look like a bunch of boilerplate &ndash; and it mostl
 that would be written only once and then used many times. Here's how the introduced type could be used:
 
 <Syntax lang="gleam" code={`
-fn part2(numbers: List(Int)) -> Int {
-  let adapters = process_adapters(numbers)
-  let assert Ok(device_joltage) = list.last(adapters)
-  // The use expression keeps the code flat,
-  // and cleans up the cache when \`part2\`'s scope ends
-  use cache <- cache.create() 
-  arrangements(device_joltage, adapters, cache)
-}
+  fn part2(numbers: List(Int)) -> Int {
+    let adapters = process_adapters(numbers)
+    let assert Ok(device_joltage) = list.last(adapters)
+    // The use expression keeps the code flat,
+    // and cleans up the cache when \`part2\`'s scope ends
+    use cache <- cache.create() 
+    arrangements(device_joltage, adapters, cache)
+  }
 
-fn arrangements(number: Int, adapters: List(Int), cache: Cache(Int, Int)) -> Int {
-  use <- bool.guard(when: number == 0, return: 1)
-  use <- bool.guard(when: !list.contains(adapters, number), return: 0)
-  // The use expression "skips" the computation below
-  // if \`number\` is found in cache, otherwise it
-  // calculates the result and saves it in the cache
-  use <- cache.memoize(with: cache, this: number)
+  fn arrangements(number: Int, adapters: List(Int), cache: Cache(Int, Int)) -> Int {
+    use <- bool.guard(when: number == 0, return: 1)
+    use <- bool.guard(when: !list.contains(adapters, number), return: 0)
+    // The use expression "skips" the computation below
+    // if \`number\` is found in cache, otherwise it
+    // calculates the result and saves it in the cache
+    use <- cache.memoize(with: cache, this: number)
 
-  list.range(from: 1, to: max_increase)
-  |> list.map(with: fn(j) { arrangements(number - j, adapters, cache) })
-  |> int.sum
-}
+    list.range(from: 1, to: max_increase)
+    |> list.map(with: fn(j) { arrangements(number - j, adapters, cache) })
+    |> int.sum
+  }
 `} />
 
 ### The documentation
@@ -208,17 +208,17 @@ shows that thanks to the `|>` operator, such code can look quite nice in Gleam, 
 operator overloading:
 
 <Syntax lang="gleam" code={`
-let instruction_parser =
-  p.literal("mask = ")
-  |> p.proceed(with: p.any_str_greedy())
-  |> p.map(with: ChangeMask)
-  |> p.or(
-    p.literal("mem[")
-    |> p.proceed(with: p.int())
-    |> p.skip(p.literal("] = "))
-    |> p.then(p.int())
-    |> p.map2(with: SetMem),
-  )
+  let instruction_parser =
+    p.literal("mask = ")
+    |> p.proceed(with: p.any_str_greedy())
+    |> p.map(with: ChangeMask)
+    |> p.or(
+      p.literal("mem[")
+      |> p.proceed(with: p.int())
+      |> p.skip(p.literal("] = "))
+      |> p.then(p.int())
+      |> p.map2(with: SetMem),
+    )
 `} />
 
 ### Low discoverability
