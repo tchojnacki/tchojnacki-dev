@@ -1,16 +1,16 @@
 {
   "name": "tchojnacki.dev",
-  "description": "Website acting as my portfolio and blog.",
-  "image": "~/assets/projects/tchojnacki-dev.png",
+  "description": "A personal portfolio and blog website built with Astro. It presents my projects, skills, and relevant social links. A variety of interactive posts on interesting topics are available in the blog section.",
+  "image": "~/assets/projects/tchojnacki-dev.jpg",
   "tags": ["personal"],
   "links": [
     {
-      "type": "deploy",
+      "type": "livedemo",
       "href": "https://tchojnacki.dev"
     },
     {
-      "type": "github",
-      "repo": "tchojnacki-dev"
+      "type": "repository",
+      "href": "https://github.com/tchojnacki/tchojnacki-dev"
     }
   ],
   "parts": [
@@ -20,7 +20,7 @@
     },
     {
       "name": "Tools",
-      "skillIds": ["vitest", "github-actions", "figma", "jest"]
+      "skillIds": ["vitest", "github-actions", "figma"]
     }
   ]
 }

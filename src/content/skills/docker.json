@@ -1,5 +1,4 @@
 {
-  "type": "tool",
   "icon": "siDocker",
   "description": "Docker is a platform for running and managing container."
 }

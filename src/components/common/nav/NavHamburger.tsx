@@ -1,5 +1,5 @@
+import { IconMenu2, IconX } from '@tabler/icons-react'
 import clsx from 'clsx'
-import { Menu2, X } from 'tabler-icons-react'
 
 interface NavHamburgerProps {
   menuOpen: boolean
@@ -8,7 +8,7 @@ interface NavHamburgerProps {
 }
 
 export default function NavHamburger({ menuOpen, toggle, className }: NavHamburgerProps) {
-  const Icon = menuOpen ? X : Menu2
+  const Icon = menuOpen ? IconX : IconMenu2
   return (
     <button
       className={clsx('group block px-3 py-1', className)}
@@ -18,8 +18,7 @@ export default function NavHamburger({ menuOpen, toggle, className }: NavHamburg
     >
       <Icon
         role="presentation"
-        className="stroke-neutral-600 group-hover:stroke-neutral-900
-          dark:stroke-neutral-400 dark:group-hover:stroke-neutral-100 duration-200"
+        className="stroke-neutral-600 duration-200 group-hover:stroke-neutral-900 dark:stroke-neutral-400 dark:group-hover:stroke-neutral-100"
       />
     </button>
   )

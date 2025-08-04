@@ -1,12 +1,12 @@
-import { useRef, useState, type PropsWithChildren, Fragment } from 'react'
+import { Fragment, useRef, useState, type PropsWithChildren } from 'react'
 import ObjectTree from '~/components/blog/ObjectTree'
 import PromptBlock from '~/components/blog/PromptBlock'
-import { lerp } from '~/utils/math'
+import { lerp } from '~/lib/math'
+import { cpuBoundLoop } from '~/lib/perf'
+import Button from './Button'
+import DiffCanvases from './DiffCanvases'
 import { Network } from './domain'
 import LossFigure from './LossFigure'
-import DiffCanvases from './DiffCanvases'
-import Select from './Select'
-import Button from './Button'
 import {
   batchOptions,
   defaultBatch,
@@ -15,7 +15,7 @@ import {
   etaOptions,
   layerOptions,
 } from './params'
-import { cpuBoundLoop } from '~/utils/perf'
+import Select from './Select'
 
 export default function Experiment({ children }: PropsWithChildren) {
   const [layers, setLayers] = useState(defaultLayer)
@@ -59,7 +59,7 @@ export default function Experiment({ children }: PropsWithChildren) {
         <Select
           options={layerOptions}
           current={layers}
-          setCurrent={setLayers}
+          setCurrent={l => setLayers(l)}
           serialize={JSON.stringify}
           deserialize={JSON.parse}
           display={l => `[${l.join(', ')}]`}

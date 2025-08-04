@@ -1,6 +1,6 @@
+import { IconCaretDownFilled, IconCaretRightFilled } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { useState } from 'react'
-import { CaretRight, CaretDown } from 'tabler-icons-react'
 
 interface PropertyNodeProps {
   name: string | null
@@ -111,11 +111,11 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
       return <span className="mr-1 inline-block h-3 w-3"></span>
     }
 
-    const Caret = open ? CaretDown : CaretRight
+    const Caret = open ? IconCaretDownFilled : IconCaretRightFilled
 
     return (
       <span className="inline-flex items-center">
-        <Caret fill="currentColor" className="mr-1" width={12} height={12} />
+        <Caret className="mr-1" size={12} />
       </span>
     )
   })()
@@ -145,7 +145,7 @@ interface ObjectTreeProps {
 
 export default function ObjectTree({ name, value }: ObjectTreeProps) {
   return (
-    <figure className="overflow-x-auto whitespace-nowrap py-5 font-mono">
+    <figure className="overflow-x-auto py-5 font-mono whitespace-nowrap">
       <ul>
         <PropertyNode name={name} value={value} />
       </ul>

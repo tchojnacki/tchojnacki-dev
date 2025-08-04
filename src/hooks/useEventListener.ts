@@ -1,7 +1,7 @@
 import { useEffect, type RefObject } from 'react'
 
 export function useEventListener<K extends keyof HTMLElementEventMap>(
-  targetRef: RefObject<HTMLElement>,
+  targetRef: RefObject<HTMLElement | null>,
   eventName: K,
   eventHandler: (e: HTMLElementEventMap[K]) => void,
 ) {

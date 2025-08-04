@@ -1,30 +1,22 @@
 ---
-import Wave from '~/components/common/Wave.astro'
 import SectionHeader from '~/components/common/SectionHeader.astro'
-import Link from '~/components/common/Link'
+import Wave from '~/components/common/Wave.astro'
 ---
 
-<main class="bg-indigo-100 px-8 dark:bg-indigo-925">
+<main class="dark:bg-indigo-925 bg-indigo-100 px-4">
   <SectionHeader text="About me" />
-  <div class="flex justify-center py-8 text-neutral-800 dark:text-neutral-200">
-    <ul class="ml-8 list-disc">
-      <li>Software developer based in Wrocław, Poland.</li>
-      <li>
-        Student of Applied Computer Science at <Link
-          title="Wrocław University of Science and Technology"
-          href="https://pwr.edu.pl/en/"
-          children="WUST"
-        />.
-      </li>
-      <li>
-        Interested in:
-        <ul class="ml-8 list-disc">
-          <li>full stack web development,</li>
-          <li>developer tooling and DX,</li>
-          <li>language and compiler design.</li>
-        </ul>
-      </li>
-    </ul>
+  <div class="flex justify-center text-neutral-800 dark:text-neutral-200">
+    <p class="max-w-reading py-4 text-justify">
+      I&nbsp;am a&nbsp;software engineer with strong front-end expertise in modern web technologies,
+      particularly React and TypeScript, complemented by experience in Python, Rust, Node.js,
+      machine learning, databases, and DevOps. I&nbsp;hold both a&nbsp;BSc and an&nbsp;MSc degree in
+      Applied Computer Science with a&nbsp;specialization in Software Engineering from Wrocław
+      University of Science and Technology, where I&nbsp;graduated with top honors and was actively
+      involved in scientific research. During my internship at Atlassian, I&nbsp;contributed to
+      Jira's Forge platform by shipping production features, fixing bugs, and improving internal
+      monitoring. My experience spans the design and development of a&nbsp;wide range of personal,
+      academic, and real-world software systems.
+    </p>
   </div>
 </main>
 <Wave inverted />

@@ -1,10 +1,9 @@
 ---
 import Link from '~/components/common/Link'
-import { getSkills } from '~/utils/content'
+import { getSkills } from '~/content'
 import Listing from '~/layouts/Listing.astro'
-import { keyComparator } from '~/utils/sorting'
 
-const skills = Object.values(await getSkills()).sort(keyComparator(s => s.name))
+const skills = await getSkills()
 ---
 
 <Listing name="Skills" description="List of all skills from the Tomasz Chojnacki's projects.">

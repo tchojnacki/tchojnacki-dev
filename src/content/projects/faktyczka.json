@@ -1,0 +1,38 @@
+{
+  "name": "Faktyczka",
+  "description": "A browser extension that notifies you about fake news. Upon visiting a web page, various fact-checkers are queried to see if the content is factual. Created during the 24-hour Hack-a-Troll Hackathon in 2022.",
+  "image": "~/assets/projects/faktyczka.jpg",
+  "tags": ["bootcamp", "group"],
+  "links": [
+    {
+      "type": "livedemo",
+      "href": "https://faktyczka.vercel.app"
+    },
+    {
+      "type": "repository",
+      "href": "https://github.com/CodersCamp2021-HK/CodersCamp2021.Hackathon"
+    },
+    {
+      "type": "download",
+      "href": "https://github.com/CodersCamp2021-HK/CodersCamp2021.Hackathon/releases/latest"
+    }
+  ],
+  "parts": [
+    {
+      "name": "Extension",
+      "skillIds": ["react", "typescript", "emotion"]
+    },
+    {
+      "name": "Website",
+      "skillIds": ["nextjs", "react", "typescript", "css"]
+    },
+    {
+      "name": "Server",
+      "skillIds": ["nestjs", "typescript", "mongodb", "rxjs", "lodash", "jest", "express"]
+    },
+    {
+      "name": "Tools",
+      "skillIds": ["openapi", "docker", "github-actions", "figma"]
+    }
+  ]
+}

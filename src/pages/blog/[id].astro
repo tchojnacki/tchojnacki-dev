@@ -1,0 +1,57 @@
+---
+import { render } from 'astro:content'
+import 'katex/dist/katex.min.css'
+import PostFooter from '~/components/blog/PostFooter.astro'
+import PostHeader from '~/components/blog/PostHeader.astro'
+import { typography } from '~/components/blog/typography'
+import { getPosts, pathsFrom, type Post } from '~/content'
+import Layout from '~/layouts/Layout.astro'
+
+export const getStaticPaths = pathsFrom(getPosts, post => ({
+  params: { id: post.id },
+  props: { post },
+}))
+
+interface Props {
+  post: Post
+}
+
+const { post } = Astro.props
+const {
+  Content,
+  remarkPluginFrontmatter: { readingTime },
+} = await render(post)
+---
+
+<Layout name={post.data.title} description={post.data.abstract}>
+  <main class="min-h-screen">
+    <article>
+      <PostHeader {post} {readingTime} />
+      <section class="post-content">
+        <Content components={{ ...typography }} />
+      </section>
+      <PostFooter id={post.id} />
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .post-content {
+    display: grid;
+    grid-template-columns: 1fr min(var(--spacing-reading), calc(100% - 2rem)) 1fr;
+    grid-column-gap: 1rem;
+  }
+
+  .post-content > :global(*) {
+    grid-column: 2;
+  }
+
+  .post-content > :global(astro-island) {
+    display: block;
+  }
+
+  .post-content > :global(.post-full-bleed) {
+    width: 100%;
+    grid-column: 1 / -1;
+  }
+</style>

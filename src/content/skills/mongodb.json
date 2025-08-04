@@ -1,5 +1,4 @@
 {
-  "type": "tool",
   "icon": "siMongodb",
   "description": "MongoDB is a modern document-oriented database management system."
 }

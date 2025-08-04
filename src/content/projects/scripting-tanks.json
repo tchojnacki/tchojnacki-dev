@@ -1,18 +1,9 @@
 {
-  "name": "Tanks",
-  "description": "Online real-time multiplayer game powered by WebSockets. Final project for the Script Languages university course.",
-  "image": "~/assets/projects/scripting-tanks.png",
-  "tags": ["university"],
-  "links": [
-    {
-      "type": "deploy",
-      "href": "https://scripting-tanks.fly.dev"
-    },
-    {
-      "type": "github",
-      "repo": "scripting-tanks"
-    }
-  ],
+  "name": "Scripting Tanks",
+  "description": "An online three-dimensional real-time multiplayer game powered by WebSockets. Designed and implemented for the Script Languages university course. Later rewritten from Python to C#.",
+  "image": "~/assets/projects/scripting-tanks.jpg",
+  "tags": ["academic"],
+  "links": [{ "type": "repository", "href": "https://github.com/tchojnacki/scripting-tanks" }],
   "parts": [
     {
       "name": "Front end",
@@ -20,16 +11,11 @@
     },
     {
       "name": "Back end",
-      "skillIds": ["csharp", "aspnet", "dotnet", "mediatr", "fluent-validation"]
+      "skillIds": ["aspnet", "csharp", "mediatr", "xunitnet"]
     },
     {
       "name": "Tools",
-      "skillIds": ["xunitnet", "docker", "github-actions", "fluent-assertions", "nsubstitute"]
-    },
-    {
-      "name": "Legacy back end",
-      "skillIds": ["python", "fastapi"],
-      "tags": ["deprecated"]
+      "skillIds": ["docker", "github-actions", "uml"]
     }
   ]
 }

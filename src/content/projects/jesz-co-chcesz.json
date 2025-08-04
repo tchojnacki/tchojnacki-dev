@@ -1,0 +1,34 @@
+{
+  "name": "JeszCoChcesz",
+  "description": "A full-stack web application, an online food delivery system connecting restaurants with health-conscious users. Supports both partner and customer workflows, such as searching, ordering, and dish management. Built during the CodersCamp 2021 web development bootcamp.",
+  "image": "~/assets/projects/jesz-co-chcesz.jpg",
+  "tags": ["bootcamp", "group"],
+  "links": [
+    {
+      "type": "repository",
+      "href": "https://github.com/CodersCamp2021-HK/CodersCamp2021.Project.Fullstack"
+    }
+  ],
+  "parts": [
+    {
+      "name": "Front end",
+      "skillIds": [
+        "react",
+        "typescript",
+        "mui",
+        "testing-library",
+        "immer",
+        "react-router",
+        "lodash"
+      ]
+    },
+    {
+      "name": "Back end",
+      "skillIds": ["nestjs", "typescript", "mongodb", "passport", "rxjs", "express"]
+    },
+    {
+      "name": "Tools",
+      "skillIds": ["storybook", "docker", "openapi", "jest", "github-actions", "figma"]
+    }
+  ]
+}

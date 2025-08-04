@@ -1,0 +1,21 @@
+{
+  "name": "Steam Engine",
+  "description": "A powerful full-text search engine for PC games. It offers advanced filtering, sorting, and recommendation capabilities, allowing users to easily find games that match their preferences. Designed and implemented for the Information Retrieval Systems university course.",
+  "image": "~/assets/projects/steam-engine.jpg",
+  "tags": ["academic", "group"],
+  "links": [{ "type": "repository", "href": "https://github.com/tchojnacki/SteamEngine" }],
+  "parts": [
+    {
+      "name": "Front end",
+      "skillIds": ["react", "typescript", "react-router", "css"]
+    },
+    {
+      "name": "Back end",
+      "skillIds": ["meilisearch", "fastapi", "python", "postgres"]
+    },
+    {
+      "name": "Tools",
+      "skillIds": ["docker", "figma", "latex", "matplotlib", "bash"]
+    }
+  ]
+}

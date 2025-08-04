@@ -1,0 +1,32 @@
+{
+  "name": "nodewikiaapi",
+  "description": "A JavaScript wrapper for Fandom's Wikia API V1.",
+  "image": "~/assets/projects/nodewikiaapi.jpg",
+  "tags": ["personal", "deprecated"],
+  "links": [
+    {
+      "type": "documentation",
+      "href": "https://tchojnacki.github.io/nodewikiaapi"
+    },
+    {
+      "type": "download",
+      "href": "https://www.npmjs.com/package/nodewikiaapi"
+    },
+    {
+      "type": "repository",
+      "href": "https://github.com/tchojnacki/nodewikiaapi"
+    }
+  ],
+  "parts": [
+    {
+      "name": "Package",
+      "skillIds": ["javascript"],
+      "small": true
+    },
+    {
+      "name": "Tools",
+      "skillIds": ["jest", "github-actions"],
+      "small": true
+    }
+  ]
+}

@@ -1,13 +1,15 @@
 ---
+import PostList from '~/components/blog/PostList.astro'
 import LinkButton from '~/components/common/LinkButton'
 import SectionHeader from '~/components/common/SectionHeader.astro'
-import PostList from '~/components/blog/PostList.astro'
 ---
 
 <section>
   <SectionHeader text="Recent posts" />
-  <div class="flex justify-center py-8">
-    <PostList heading={3} length={3} />
+  <div class="flex justify-center py-4">
+    <div>
+      <PostList heading={3} length={3} />
+    </div>
   </div>
   <div class="flex justify-center">
     <LinkButton href="/blog">View all posts</LinkButton>

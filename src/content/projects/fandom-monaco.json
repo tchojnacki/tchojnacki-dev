@@ -1,7 +1,7 @@
 {
   "name": "FANDOM-Monaco",
-  "description": "Browser extension that integrates the Monaco Editor with Fandom.",
-  "image": "~/assets/projects/fandom-monaco.png",
+  "description": "A browser extension that integrates Monaco Editor with Fandom.",
+  "image": "~/assets/projects/fandom-monaco.jpg",
   "tags": ["personal", "deprecated"],
   "links": [
     {
@@ -9,8 +9,8 @@
       "href": "https://github.com/tchojnacki/FANDOM-Monaco/releases/latest"
     },
     {
-      "type": "github",
-      "repo": "FANDOM-Monaco"
+      "type": "repository",
+      "href": "https://github.com/tchojnacki/FANDOM-Monaco"
     }
   ],
   "parts": [

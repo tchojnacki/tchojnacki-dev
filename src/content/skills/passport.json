@@ -1,5 +1,4 @@
 {
-  "type": "library",
   "icon": "siPassport",
   "description": "Passport is an authentication middleware for Node.js."
 }

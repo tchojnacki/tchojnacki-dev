@@ -1,39 +1,41 @@
 ---
-import type { GetStaticPaths } from 'astro'
-import { calculateRelatedSkills } from '~/logic/relatedSkills'
+import PostList from '~/components/blog/PostList.astro'
 import SectionHeader from '~/components/common/SectionHeader.astro'
 import Wave from '~/components/common/Wave.astro'
-import SkillCard from '~/components/projects/skills/SkillCard.astro'
-import SkillCardWrapper from '~/components/projects/skills/SkillCardWrapper.astro'
 import ProjectList from '~/components/projects/ProjectList.astro'
+import SkillCard from '~/components/skills/SkillCard.astro'
+import SkillCardWrapper from '~/components/skills/SkillCardWrapper.astro'
+import SkillIcon from '~/components/skills/SkillIcon'
+import { getProjects, getSkillById, getSkills, pathsFrom } from '~/content'
 import Layout from '~/layouts/Layout.astro'
-import { getProjects, getSkills, type SkillId } from '~/utils/content'
-import PostList from '~/components/blog/PostList.astro'
+import { calculateRelatedSkills } from '~/lib/relatedSkills'
 
-export const getStaticPaths = (async () =>
-  Object.keys(await getSkills()).map(id => ({ params: { id } }))) satisfies GetStaticPaths
+export const getStaticPaths = pathsFrom(getSkills, ({ id }) => ({ params: { id } }))
 
-const skillEntries = await getSkills()
-const projectEntries = await getProjects()
+const skillList = await getSkills()
+const projectList = await getProjects()
 
-const skill = skillEntries[Astro.params.id as SkillId]
-const relatedSkills = calculateRelatedSkills(skillEntries, projectEntries)
+const skill = await getSkillById(Astro.params.id)
+const relatedSkills = calculateRelatedSkills(skillList, projectList)
 ---
 
 <Layout name={`${skill.name} - Skills`} description={skill.description}>
   <main class="min-h-screen">
     <header class="centered-header">
-      <h1 class="pb-4 text-3xl sm:text-4xl">{skill.name}</h1>
+      <h1 class="flex items-center gap-4 pb-4 text-3xl sm:text-4xl">
+        {skill.name}
+        <SkillIcon {skill} className="h-[0.75em]" decoration />
+      </h1>
       <p>{skill.description}</p>
     </header>
-    <section class="mx-auto max-w-[calc(70ch+2rem)]">
+    <section class="mx-auto max-w-[calc(var(--spacing-reading)+2rem)]">
       <PostList heading={3} filter={p => p.data.skills.some(s => s.id === skill.id)} />
     </section>
     <Wave />
-    <section class="bg-indigo-100 dark:bg-indigo-925">
+    <section class="dark:bg-indigo-925 bg-indigo-100">
       <SectionHeader text="Related skills" />
       <SkillCardWrapper>
-        {relatedSkills[skill.id].map(skillId => <SkillCard {skillId} />)}
+        {relatedSkills[skill.id]!.map(skillId => <SkillCard {skillId} />)}
       </SkillCardWrapper>
     </section>
     <Wave inverted />

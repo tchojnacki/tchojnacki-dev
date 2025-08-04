@@ -1,5 +1,4 @@
 {
-  "type": "language",
-  "name": "F#",
+  "icon": "siFsharp",
   "description": "F# is a universal programming language for writing succint and robust code."
 }

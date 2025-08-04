@@ -1,0 +1,157 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter);
+}
+
+@theme {
+  --color-*: initial;
+  --color-neutral-0: #ffffff;
+  /* --color-neutral-50: #fafafa; */
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  /* --color-neutral-500: #737373; */
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+  /* --color-neutral-950: #0a0a0a; */
+  --color-neutral-1000: #000000;
+  /* --color-indigo-50: #eef2ff; */
+  /* --color-indigo-75: #e7edff; */
+  --color-indigo-100: #e0e7ff;
+  /* --color-indigo-200: #c7d2fe; */
+  --color-indigo-300: #a5b4fc;
+  /* --color-indigo-400: #818cf8; */
+  --color-indigo-500: #6366f1;
+  --color-indigo-600: #4f46e5;
+  --color-indigo-700: #4338ca;
+  /* --color-indigo-800: #3730a3; */
+  /* --color-indigo-900: #312e81; */
+  --color-indigo-925: #282566;
+  /* --color-indigo-950: #1e1b4b; */
+  --color-neudigo-50: #f7f9ff;
+  --color-neudigo-950: #14122b;
+  --color-purple-300: #d8b4fe;
+  --color-purple-700: #7e22ce;
+  --color-amber-500: #f59e0b;
+  --color-sky-500: #0ea5e9;
+
+  --font-weight-*: initial;
+  --font-weight-normal: 400;
+  --font-weight-bold: 600;
+
+  --spacing-nav-height: 4rem;
+  --spacing-reading: 70ch;
+
+  --animate-errshake: errshake 200ms 600ms;
+  --animate-emojiwave: emojiwave 1s ease-in-out;
+  --animate-enteronload: enteronload 500ms ease-out;
+  --animate-scrollprojectimage: scrollprojectimage 5s ease-in-out alternate infinite;
+
+  @keyframes errshake {
+    from,
+    to {
+      transform: none;
+    }
+    25% {
+      transform: rotate(-10deg);
+    }
+    75% {
+      transform: rotate(10deg);
+    }
+  }
+
+  @keyframes emojiwave {
+    from,
+    to {
+      transform: none;
+    }
+    25% {
+      transform: rotate(-30deg);
+    }
+    75% {
+      transform: rotate(30deg);
+    }
+  }
+
+  @keyframes enteronload {
+    from {
+      opacity: 0;
+      transform: var(--enter-transform, none);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes scrollprojectimage {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(var(--max-image-scroll, 0));
+    }
+  }
+}
+
+@utility onenter-fromleft {
+  --enter-transform: translateX(-50px);
+}
+
+@utility onenter-fromtop {
+  --enter-transform: translateY(-50px);
+}
+
+@utility onenter-fromright {
+  --enter-transform: translateX(50px);
+}
+
+@utility onenter-scaling {
+  --enter-transform: scale(0.75);
+}
+
+@utility centered-header {
+  box-sizing: content-box;
+  max-width: var(--spacing-reading);
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+@utility social-link {
+  & svg {
+    transform: scale(1.25);
+  }
+  & path {
+    transition-duration: 200ms;
+    stroke: var(--color-neutral-600);
+  }
+  &:hover path {
+    stroke: var(--color-neutral-900);
+  }
+  @variant dark {
+    & path {
+      stroke: var(--color-neutral-400);
+    }
+    &:hover path {
+      stroke: var(--color-neutral-100);
+    }
+  }
+}
+
+@layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+
+  /* https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}

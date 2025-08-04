@@ -1,0 +1,18 @@
+{
+  "name": "Script Languages Coursework",
+  "description": "Exercises for the Script Languages university course, which I took during my 4th semester. The project concluding the course is described in the Scripting Tanks project.",
+  "image": "~/assets/projects/script-languages.jpg",
+  "tags": ["academic"],
+  "links": [
+    {
+      "type": "repository",
+      "href": "https://github.com/tchojnacki/uni-sem-4-script-languages"
+    }
+  ],
+  "parts": [
+    {
+      "name": "Exercises",
+      "skillIds": ["python", "rust", "bash"]
+    }
+  ]
+}

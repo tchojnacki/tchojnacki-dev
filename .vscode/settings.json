@@ -1,7 +1,8 @@
 {
   "editor.tabSize": 2,
   "prettier.documentSelectors": ["**/*.astro"],
-  "[astro]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "[astro]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "files.associations": {
+    "global.css": "tailwindcss"
   }
 }

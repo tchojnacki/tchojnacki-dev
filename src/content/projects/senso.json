@@ -1,35 +1,33 @@
 {
   "name": "Senso",
-  "description": "Group project built for my BSc thesis.",
-  "image": "~/assets/projects/senso.png",
-  "tags": ["university", "group"],
+  "description": "A group project built for my engineering thesis. A mobile application that aids the elderly in their daily life, including features such as medication reminders, emergency contacts, and an SOS button.",
+  "image": "~/assets/projects/senso.jpg",
+  "tags": ["academic", "group"],
   "links": [
-    { "type": "github", "repo": "senso-frontend", "owner": "zpi-2023", "part": "App" },
-    { "type": "github", "repo": "SensoBackend", "owner": "zpi-2023", "part": "Server" },
-    { "type": "paper", "href": "https://tchojnacki.dev/static/senso.pdf" }
-  ],
-  "parts": [
-    { "name": "Mobile app", "skillIds": ["react-native", "typescript", "react"] },
+    { "type": "publication", "href": "/senso.pdf" },
     {
-      "name": "Server",
-      "skillIds": [
-        "csharp",
-        "aspnet",
-        "postgres",
-        "entity-framework",
-        "mediatr",
-        "mapster",
-        "fluent-validation",
-        "dotnet"
-      ]
+      "type": "repository",
+      "href": "https://github.com/zpi-2023/senso-frontend",
+      "part": "Mobile"
     },
     {
-      "name": "Testing",
-      "skillIds": ["xunitnet", "jest", "testing-library", "nsubstitute", "fluent-assertions"]
+      "type": "repository",
+      "href": "https://github.com/zpi-2023/SensoBackend",
+      "part": "Server"
+    }
+  ],
+  "parts": [
+    {
+      "name": "Mobile",
+      "skillIds": ["react-native", "typescript", "react", "testing-library", "jest", "css"]
+    },
+    {
+      "name": "Server",
+      "skillIds": ["aspnet", "csharp", "postgres", "entity-framework", "mediatr", "xunitnet"]
     },
     {
       "name": "Tools",
-      "skillIds": ["docker", "swagger", "latex", "github-actions", "figma", "bash"]
+      "skillIds": ["docker", "openapi", "latex", "uml", "github-actions", "figma", "bash"]
     }
   ]
 }

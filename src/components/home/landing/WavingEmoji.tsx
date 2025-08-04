@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import Emoji from '~/components/common/Emoji'
 import { useEventListener } from '~/hooks'
@@ -28,10 +28,10 @@ export default function WavingEmoji() {
       onClick={startPlaying}
       className={clsx(
         'inline-block origin-[75%_75%] cursor-pointer',
-        isPlaying && 'animate-emojiwave motion-reduce:animate-none',
+        isPlaying && 'motion-safe:animate-emojiwave',
       )}
     >
-      <Emoji size={24} text="👋" />
+      <Emoji size={22} text="👋" />
     </button>
   )
 }

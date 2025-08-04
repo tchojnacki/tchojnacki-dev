@@ -1,14 +1,14 @@
 ---
-import { routes } from '~/utils/routes'
 import Link from '~/components/common/Link'
+import { routes } from '~/consts/routes'
+import { getPosts, getSkills, getTags } from '~/content'
 import Listing from '~/layouts/Listing.astro'
-import { getPosts, getSkills, getTags } from '~/utils/content'
 
 const listClass = 'list-disc pl-8'
 
 const postList = await getPosts()
 const tagList = await getTags()
-const skillList = Object.values(await getSkills())
+const skillList = await getSkills()
 
 const { about, projects, blog, tags, skills } = routes
 ---
@@ -24,7 +24,7 @@ const { about, projects, blog, tags, skills } = routes
           {
             postList.map(p => (
               <li>
-                <Link href={`/blog/${p.slug}`}>"{p.data.title}"</Link>
+                <Link href={`/blog/${p.id}`}>"{p.data.title}"</Link>
               </li>
             ))
           }
@@ -53,7 +53,7 @@ const { about, projects, blog, tags, skills } = routes
         </ul>
       </li>
     </ul>
-    <hr class="border-t-1 my-8 w-1/2 border-t-neutral-900 dark:border-t-neutral-100" />
+    <hr class="my-8 w-1/2 border-t border-t-neutral-900 dark:border-t-neutral-100" />
     <ul class={listClass}>
       <li><Link href="/rss.xml">/rss.xml</Link></li>
       <li><Link href="/sitemap-index.xml">/sitemap-index.xml</Link></li>

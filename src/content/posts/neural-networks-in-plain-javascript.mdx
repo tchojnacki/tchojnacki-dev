@@ -76,23 +76,23 @@ The basic building block of the entire system is the `Scalar` class, which repre
 Its initial form is just a wrapper around a JavaScript `number`:
 
 <JsdocSyntax typed={`
-class Scalar {
-  /** @type {number} */
-  value;
+  class Scalar {
+    /** @type {number} */
+    value;
 
-  /** @param {number} value */
-  constructor(value) {
-    this.value = value;
+    /** @param {number} value */
+    constructor(value) {
+      this.value = value;
+    }
   }
-}
 `} untyped={`
-class Scalar {
-  value;
+  class Scalar {
+    value;
 
-  constructor(value) {
-    this.value = value;
+    constructor(value) {
+      this.value = value;
+    }
   }
-}
 `} />
 
 As mentioned before, we want to build huge mathematical expressions from these numbers, and to do that,
@@ -101,49 +101,49 @@ we want to be able to compose them using different operations. For instance, we 
 private property called `#children`, which is a list of scalars used as its subexpressions:
 
 <JsdocSyntax typed={`
-class Scalar {
-  /**
-  * @param {Scalar} other
-  * @returns {Scalar}
-  */
-  add(other) {
-    const out = new Scalar(this.value + other.value);
-    out.#children = [this, other];
-    return out;
-  }
+  class Scalar {
+    /**
+    * @param {Scalar} other
+    * @returns {Scalar}
+    */
+    add(other) {
+      const out = new Scalar(this.value + other.value);
+      out.#children = [this, other];
+      return out;
+    }
 
-  /**
-  * @param {Scalar} other
-  * @returns {Scalar}
-  */
-  mul(other) {
-    const out = new Scalar(this.value * other.value);
-    out.#children = [this, other];
-    return out;
+    /**
+    * @param {Scalar} other
+    * @returns {Scalar}
+    */
+    mul(other) {
+      const out = new Scalar(this.value * other.value);
+      out.#children = [this, other];
+      return out;
+    }
   }
-}
 `} untyped={`
-class Scalar {
-  add(other) {
-    const out = new Scalar(this.value + other.value);
-    out.#children = [this, other];
-    return out;
-  }
+  class Scalar {
+    add(other) {
+      const out = new Scalar(this.value + other.value);
+      out.#children = [this, other];
+      return out;
+    }
 
-  mul(other) {
-    const out = new Scalar(this.value * other.value);
-    out.#children = [this, other];
-    return out;
+    mul(other) {
+      const out = new Scalar(this.value * other.value);
+      out.#children = [this, other];
+      return out;
+    }
   }
-}
 `} />
 
 This lets us build some simple expressions, like:
 <Syntax lang="javascript" code={`
-const x = new Scalar(3);
-const y = new Scalar(4);
-const z = new Scalar(5);
-console.log(x.add(y).mul(z));
+  const x = new Scalar(3);
+  const y = new Scalar(4);
+  const z = new Scalar(5);
+  console.log(x.add(y).mul(z));
 `} />
 
 <SimpleScalarExample client:idle />
@@ -180,33 +180,33 @@ derivative, and `#propagate`, which is a function responsible for updating the d
 children, based on the derivative of the current node. We can rewrite the `add` method as:
 
 <JsdocSyntax typed={`
-class Scalar {
-  /**
-    * @param {Scalar} other
-    * @returns {Scalar}
-    */
-  add(other) {
-    const out = new Scalar(this.value + other.value);
-    out.#children = [this, other];
-    out.#propagate = () => {
-      this.partial += out.partial;
-      other.partial += out.partial;
-    };
-    return out;
+  class Scalar {
+    /**
+      * @param {Scalar} other
+      * @returns {Scalar}
+      */
+    add(other) {
+      const out = new Scalar(this.value + other.value);
+      out.#children = [this, other];
+      out.#propagate = () => {
+        this.partial += out.partial;
+        other.partial += out.partial;
+      };
+      return out;
+    }
   }
-}
 `} untyped={`
-class Scalar {
-  add(other) {
-    const out = new Scalar(this.value + other.value);
-    out.#children = [this, other];
-    out.#propagate = () => {
-      this.partial += out.partial;
-      other.partial += out.partial;
-    };
-    return out;
+  class Scalar {
+    add(other) {
+      const out = new Scalar(this.value + other.value);
+      out.#children = [this, other];
+      out.#propagate = () => {
+        this.partial += out.partial;
+        other.partial += out.partial;
+      };
+      return out;
+    }
   }
-}
 `} />
 
 For reference, <Math latex="\frac{\partial}{\partial x} (x + y) = 1" />, or in other words, any
@@ -215,140 +215,140 @@ change in either addend results in the same change in the sum. This should expla
 which is a factory for composed scalars, and rewrite the `add` method:
 
 <JsdocSyntax typed={`
-class Scalar {
-  /**
-    * @param {Scalar[]} children
-    * @param {number} value
-    * @param {(out: Scalar) => void} propagate
+  class Scalar {
+    /**
+      * @param {Scalar[]} children
+      * @param {number} value
+      * @param {(out: Scalar) => void} propagate
+      * @returns {Scalar}
+      */
+    static #op(children, value, propagate) {
+      const out = new Scalar(value);
+      out.#children = children;
+      out.#propagate = () => propagate(out);
+      return out;
+    }
+
+    /**
+    * @param {Scalar} other
     * @returns {Scalar}
     */
-  static #op(children, value, propagate) {
-    const out = new Scalar(value);
-    out.#children = children;
-    out.#propagate = () => propagate(out);
-    return out;
+    add(other) {
+      return Scalar.#op([this, other], this.value + other.value, out => {
+        this.partial += out.partial;
+        other.partial += out.partial;
+      });
+    }
   }
-
-  /**
-   * @param {Scalar} other
-   * @returns {Scalar}
-   */
-  add(other) {
-    return Scalar.#op([this, other], this.value + other.value, out => {
-      this.partial += out.partial;
-      other.partial += out.partial;
-    });
-  }
-}
 `} untyped={`
-class Scalar {
-  static #op(children, value, propagate) {
-    const out = new Scalar(value);
-    out.#children = children;
-    out.#propagate = () => propagate(out);
-    return out;
-  }
+  class Scalar {
+    static #op(children, value, propagate) {
+      const out = new Scalar(value);
+      out.#children = children;
+      out.#propagate = () => propagate(out);
+      return out;
+    }
 
-  add(other) {
-    return Scalar.#op([this, other], this.value + other.value, out => {
-      this.partial += out.partial;
-      other.partial += out.partial;
-    });
+    add(other) {
+      return Scalar.#op([this, other], this.value + other.value, out => {
+        this.partial += out.partial;
+        other.partial += out.partial;
+      });
+    }
   }
-}
 `} />
 
 We can now define arbitrary operations on the `Scalar` instances, as long as we know how to calculate
 their result and how to propagate their derivatives. Here are some useful ones, namely: summation,
 multiplication, exponentiation, subtraction, and division:
 <JsdocSyntax typed={`
-class Scalar {
-  /**
-   * @param {Scalar[]} scalars
-   * @returns {Scalar}
-   */
-  static sum(scalars) {
-    return Scalar.#op(
-      scalars,
-      scalars.reduce((acc, s) => acc + s.value, 0),
-      out =>
-        scalars.forEach(s => {
-          s.partial += out.partial;
-        })
-    );
-  }
+  class Scalar {
+    /**
+    * @param {Scalar[]} scalars
+    * @returns {Scalar}
+    */
+    static sum(scalars) {
+      return Scalar.#op(
+        scalars,
+        scalars.reduce((acc, s) => acc + s.value, 0),
+        out =>
+          scalars.forEach(s => {
+            s.partial += out.partial;
+          })
+      );
+    }
 
-  /**
-   * @param {Scalar} other
-   * @returns {Scalar}
-   */
-  mul(other) {
-    return Scalar.#op([this, other], this.value * other.value, out => {
-      this.partial += other.value * out.partial;
-      other.partial += this.value * out.partial;
-    });
-  }
+    /**
+    * @param {Scalar} other
+    * @returns {Scalar}
+    */
+    mul(other) {
+      return Scalar.#op([this, other], this.value * other.value, out => {
+        this.partial += other.value * out.partial;
+        other.partial += this.value * out.partial;
+      });
+    }
 
-  /**
-   * @param {number} n
-   * @returns {Scalar}
-   */
-  pow(n) {
-    return Scalar.#op([this], this.value ** n, out => {
-      this.partial += n * this.value ** (n - 1) * out.partial;
-    });
-  }
+    /**
+    * @param {number} n
+    * @returns {Scalar}
+    */
+    pow(n) {
+      return Scalar.#op([this], this.value ** n, out => {
+        this.partial += n * this.value ** (n - 1) * out.partial;
+      });
+    }
 
-  /**
-   * @param {Scalar} other
-   * @returns {Scalar}
-   */
-  sub(other) {
-    return this.add(other.mul(new Scalar(-1)));
-  }
+    /**
+    * @param {Scalar} other
+    * @returns {Scalar}
+    */
+    sub(other) {
+      return this.add(other.mul(new Scalar(-1)));
+    }
 
-  /**
-   * @param {Scalar} other
-   * @returns {Scalar}
-   */
-  div(other) {
-    return this.mul(other.pow(-1));
+    /**
+    * @param {Scalar} other
+    * @returns {Scalar}
+    */
+    div(other) {
+      return this.mul(other.pow(-1));
+    }
   }
-}
 `} untyped={`
-class Scalar {
-  static sum(scalars) {
-    return Scalar.#op(
-      scalars,
-      scalars.reduce((acc, s) => acc + s.value, 0),
-      out =>
-        scalars.forEach(s => {
-          s.partial += out.partial;
-        })
-    );
-  }
+  class Scalar {
+    static sum(scalars) {
+      return Scalar.#op(
+        scalars,
+        scalars.reduce((acc, s) => acc + s.value, 0),
+        out =>
+          scalars.forEach(s => {
+            s.partial += out.partial;
+          })
+      );
+    }
 
-  mul(other) {
-    return Scalar.#op([this, other], this.value * other.value, out => {
-      this.partial += other.value * out.partial;
-      other.partial += this.value * out.partial;
-    });
-  }
+    mul(other) {
+      return Scalar.#op([this, other], this.value * other.value, out => {
+        this.partial += other.value * out.partial;
+        other.partial += this.value * out.partial;
+      });
+    }
 
-  pow(n) {
-    return Scalar.#op([this], this.value ** n, out => {
-      this.partial += n * this.value ** (n - 1) * out.partial;
-    });
-  }
+    pow(n) {
+      return Scalar.#op([this], this.value ** n, out => {
+        this.partial += n * this.value ** (n - 1) * out.partial;
+      });
+    }
 
-  sub(other) {
-    return this.add(other.mul(new Scalar(-1)));
-  }
+    sub(other) {
+      return this.add(other.mul(new Scalar(-1)));
+    }
 
-  div(other) {
-    return this.mul(other.pow(-1));
+    div(other) {
+      return this.mul(other.pow(-1));
+    }
   }
-}
 `} />
 
 The final piece of the puzzle, which makes the `Scalar` class pretty much feature-complete, is the
@@ -374,37 +374,37 @@ reverse order implicitly produces the topological ordering.
 
 These three requirements lead us directly to the algorithm presented below:
 <JsdocSyntax typed={`
-class Scalar {
-  derive() {
-    const order = topologicalSort(this, s => s.#children);
+  class Scalar {
+    derive() {
+      const order = topologicalSort(this, s => s.#children);
 
-    for (const s of order) {
-      s.partial = 0;
-    }
+      for (const s of order) {
+        s.partial = 0;
+      }
 
-    this.partial = 1;
+      this.partial = 1;
 
-    for (const s of order) {
-      s.#propagate();
+      for (const s of order) {
+        s.#propagate();
+      }
     }
   }
-}
 `} untyped={`
-class Scalar {
-  derive() {
-    const order = topologicalSort(this, s => s.#children);
+  class Scalar {
+    derive() {
+      const order = topologicalSort(this, s => s.#children);
 
-    for (const s of order) {
-      s.partial = 0;
-    }
+      for (const s of order) {
+        s.partial = 0;
+      }
 
-    this.partial = 1;
+      this.partial = 1;
 
-    for (const s of order) {
-      s.#propagate();
+      for (const s of order) {
+        s.#propagate();
+      }
     }
   }
-}
 `} />
 
 This is the core of the `Scalar` class. We can extend it to add more operations, or some utility
@@ -413,21 +413,21 @@ methods, but the current form is enough to build some models and optimize them.
 Let's consolidate our current knowledge with an example:
 <Math block latex="f = \frac{2x - 3}{x^3 + x^2 - x}" />
 <JsdocSyntax typed={`
-const x = new Scalar(1);
-const numerator = new Scalar(2).mul(x).sub(new Scalar(3)); // 2x - 3
-const denominator = x.pow(3).add(x.pow(2)).sub(x); // x^3 + x^2 - x
-const f = numerator.div(denominator);
-f.derive();
-console.log(x.partial); // => 6
-console.log(f);
+  const x = new Scalar(1);
+  const numerator = new Scalar(2).mul(x).sub(new Scalar(3)); // 2x - 3
+  const denominator = x.pow(3).add(x.pow(2)).sub(x); // x^3 + x^2 - x
+  const f = numerator.div(denominator);
+  f.derive();
+  console.log(x.partial); // => 6
+  console.log(f);
 `} untyped={`
-const x = new Scalar(1);
-const numerator = new Scalar(2).mul(x).sub(new Scalar(3)); // 2x - 3
-const denominator = x.pow(3).add(x.pow(2)).sub(x); // x^3 + x^2 - x
-const f = numerator.div(denominator);
-f.derive();
-console.log(x.partial); // => 6
-console.log(f);
+  const x = new Scalar(1);
+  const numerator = new Scalar(2).mul(x).sub(new Scalar(3)); // 2x - 3
+  const denominator = x.pow(3).add(x.pow(2)).sub(x); // x^3 + x^2 - x
+  const f = numerator.div(denominator);
+  f.derive();
+  console.log(x.partial); // => 6
+  console.log(f);
 `} />
 <RationalExprExample client:idle />
 
@@ -441,40 +441,40 @@ We can define an abstract `Model` class, which we can later extend to create spe
 `Scalar.wrap` function used inside `predict` transforms an array of numbers into an array of `Scalar` instances.
 
 <JsdocSyntax typed={`
-/** @abstract */
-class Model {
-  /** @type {Scalar[]} */
-  get parameters() {
-    throw new TypeError("Getter \`parameters\` must be implemented!");
-  }
+  /** @abstract */
+  class Model {
+    /** @type {Scalar[]} */
+    get parameters() {
+      throw new TypeError("Getter \`parameters\` must be implemented!");
+    }
 
-  /**
-   * @param {Scalar[]} x
-   * @returns {Scalar}
-   */
-  evaluate(x) {
-    throw new TypeError("Method \`evaluate\` must be implemented!");
-  }
+    /**
+    * @param {Scalar[]} x
+    * @returns {Scalar}
+    */
+    evaluate(x) {
+      throw new TypeError("Method \`evaluate\` must be implemented!");
+    }
 
-  /** @param {number[]} x  */
-  predict(x) {
-    return this.evaluate(Scalar.wrap(x)).value;
+    /** @param {number[]} x  */
+    predict(x) {
+      return this.evaluate(Scalar.wrap(x)).value;
+    }
   }
-}
 `} untyped={`
-class Model {
-  get parameters() {
-    throw new TypeError("Getter \`parameters\` must be implemented!");
-  }
+  class Model {
+    get parameters() {
+      throw new TypeError("Getter \`parameters\` must be implemented!");
+    }
 
-  evaluate(x) {
-    throw new TypeError("Method \`evaluate\` must be implemented!");
-  }
+    evaluate(x) {
+      throw new TypeError("Method \`evaluate\` must be implemented!");
+    }
 
-  predict(x) {
-    return this.evaluate(Scalar.wrap(x)).value;
+    predict(x) {
+      return this.evaluate(Scalar.wrap(x)).value;
+    }
   }
-}
 `} />
 
 The core of the class is the `#loss` method showcased below, which calculates how much the predicted
@@ -487,55 +487,55 @@ of squared differences between the predicted and real values. The `#loss` method
 for instance by adding [regularization](https://developers.google.com/machine-learning/glossary#regularization).
 
 <JsdocSyntax typed={`
-/** @abstract */
-class Model {
-  /**
-   * @param {number[][]} X
-   * @param {number[]} y
-   * @returns {Scalar}
-   */
-  #loss(X, y) {
-    const inputs = Scalar.wrap(X);
-    const outputs = Scalar.wrap(y);
-    const guesses = inputs.map((x) => this.evaluate(x));
-    const errors = guesses.map((g, i) => g.sub(outputs[i]).pow(2));
-    return Scalar.sum(errors).div(new Scalar(errors.length));
-  }
-
-  /**
-   * @param {number[][]} X
-   * @param {number[]} y
-   * @param {number} eta
-   * @returns {number}
-   */
-  fit(X, y, eta) {
-    const loss = this.#loss(X, y);
-    loss.derive();
-    for (const p of this.parameters) {
-      p.value -= eta * p.partial;
+  /** @abstract */
+  class Model {
+    /**
+    * @param {number[][]} X
+    * @param {number[]} y
+    * @returns {Scalar}
+    */
+    #loss(X, y) {
+      const inputs = Scalar.wrap(X);
+      const outputs = Scalar.wrap(y);
+      const guesses = inputs.map((x) => this.evaluate(x));
+      const errors = guesses.map((g, i) => g.sub(outputs[i]).pow(2));
+      return Scalar.sum(errors).div(new Scalar(errors.length));
     }
-    return loss.value;
+
+    /**
+    * @param {number[][]} X
+    * @param {number[]} y
+    * @param {number} eta
+    * @returns {number}
+    */
+    fit(X, y, eta) {
+      const loss = this.#loss(X, y);
+      loss.derive();
+      for (const p of this.parameters) {
+        p.value -= eta * p.partial;
+      }
+      return loss.value;
+    }
   }
-}
 `} untyped={`
-class Model {
-  #loss(X, y) {
-    const inputs = Scalar.wrap(X);
-    const outputs = Scalar.wrap(y);
-    const guesses = inputs.map((x) => this.evaluate(x));
-    const errors = guesses.map((g, i) => g.sub(outputs[i]).pow(2));
-    return Scalar.sum(errors).div(new Scalar(errors.length));
-  }
-
-  fit(X, y, eta) {
-    const loss = this.#loss(X, y);
-    loss.derive();
-    for (const p of this.parameters) {
-      p.value -= eta * p.partial;
+  class Model {
+    #loss(X, y) {
+      const inputs = Scalar.wrap(X);
+      const outputs = Scalar.wrap(y);
+      const guesses = inputs.map((x) => this.evaluate(x));
+      const errors = guesses.map((g, i) => g.sub(outputs[i]).pow(2));
+      return Scalar.sum(errors).div(new Scalar(errors.length));
     }
-    return loss.value;
+
+    fit(X, y, eta) {
+      const loss = this.#loss(X, y);
+      loss.derive();
+      for (const p of this.parameters) {
+        p.value -= eta * p.partial;
+      }
+      return loss.value;
+    }
   }
-}
 `} />
 
 The `fit` method is what we'd call the **training**. The `eta` (<Math latex="\eta" />) parameter is the learning rate, which
@@ -555,51 +555,51 @@ single input into a single output, according to the following formula:
 Since we previously assumed that models take many inputs, here we only take the first array element
 and ignore the rest. The subclass looks as follows:
 <JsdocSyntax typed={`
-class Linear extends Model {
-  /** @type {Scalar} */
-  #a;
-  /** @type {Scalar} */
-  #b;
+  class Linear extends Model {
+    /** @type {Scalar} */
+    #a;
+    /** @type {Scalar} */
+    #b;
 
-  constructor() {
-    super();
-    this.#a = new Scalar(0);
-    this.#b = new Scalar(0);
-  }
+    constructor() {
+      super();
+      this.#a = new Scalar(0);
+      this.#b = new Scalar(0);
+    }
 
-  /**
-   * @override
-   * @type {Scalar[]}
-   */
-  get parameters() {
-    return [this.#a, this.#b];
-  }
+    /**
+    * @override
+    * @type {Scalar[]}
+    */
+    get parameters() {
+      return [this.#a, this.#b];
+    }
 
-  /**
-   * @override
-   * @param {Scalar[]} x
-   * @returns {Scalar}
-   */
-  evaluate(x) {
-    return this.#a.mul(x[0]).add(this.#b);
+    /**
+    * @override
+    * @param {Scalar[]} x
+    * @returns {Scalar}
+    */
+    evaluate(x) {
+      return this.#a.mul(x[0]).add(this.#b);
+    }
   }
-}
 `} untyped={`
-class Linear extends Model {
-  constructor() {
-    super();
-    this.#a = new Scalar(0);
-    this.#b = new Scalar(0);
-  }
+  class Linear extends Model {
+    constructor() {
+      super();
+      this.#a = new Scalar(0);
+      this.#b = new Scalar(0);
+    }
 
-  get parameters() {
-    return [this.#a, this.#b];
-  }
+    get parameters() {
+      return [this.#a, this.#b];
+    }
 
-  evaluate(x) {
-    return this.#a.mul(x[0]).add(this.#b);
+    evaluate(x) {
+      return this.#a.mul(x[0]).add(this.#b);
+    }
   }
-}
 `} />
 
 Let's say our dataset consists of the following data points: <br />
@@ -607,23 +607,23 @@ Let's say our dataset consists of the following data points: <br />
 
 We can train our model as follows:
 <JsdocSyntax typed={`
-const linear = new Linear();
-const X = [[3.1], [-0.1], [4], [-2.1]];
-const y = [-0.6, -1.9, 0, -3];
-for (let k = 0; k < 100; k++) {
-  linear.fit(X, y, 0.1);
-}
-console.log(linear.predict([1])); // => -1.48
-console.log(linear);
+  const linear = new Linear();
+  const X = [[3.1], [-0.1], [4], [-2.1]];
+  const y = [-0.6, -1.9, 0, -3];
+  for (let k = 0; k < 100; k++) {
+    linear.fit(X, y, 0.1);
+  }
+  console.log(linear.predict([1])); // => -1.48
+  console.log(linear);
 `} untyped={`
-const linear = new Linear();
-const X = [[3.1], [-0.1], [4], [-2.1]];
-const y = [-0.6, -1.9, 0, -3];
-for (let k = 0; k < 100; k++) {
-  linear.fit(X, y, 0.1);
-}
-console.log(linear.predict([1])); // => -1.48
-console.log(linear);
+  const linear = new Linear();
+  const X = [[3.1], [-0.1], [4], [-2.1]];
+  const y = [-0.6, -1.9, 0, -3];
+  for (let k = 0; k < 100; k++) {
+    linear.fit(X, y, 0.1);
+  }
+  console.log(linear.predict([1])); // => -1.48
+  console.log(linear);
 `} />
 <LinearExample client:idle />
 
@@ -658,63 +658,63 @@ Mathematically, it can be expressed as:
 Our class is fairly straightforward. We initialize the weights randomly from the <Math latex="[-1, 1]" />,
 range and set the bias to zero. Then we implement the abstract methods from `Model`:
 <JsdocSyntax typed={`
-class Neuron extends Model {
-  /** @type {Scalar[]} */
-  #w;
-  /** @type {Scalar} */
-  #b;
-  /** @type {'linear' | 'relu'} */
-  #activation;
+  class Neuron extends Model {
+    /** @type {Scalar[]} */
+    #w;
+    /** @type {Scalar} */
+    #b;
+    /** @type {'linear' | 'relu'} */
+    #activation;
 
-  /**
-   * @param {number} inputCount
-   * @param {'linear' | 'relu'} activation
-   */
-  constructor(inputCount, activation = "relu") {
-    super();
-    this.#w = Array.from(
-      { length: inputCount },
-      () => new Scalar(Math.random() * 2 - 1)
-    );
-    this.#b = new Scalar(0);
-    this.#activation = activation;
+    /**
+    * @param {number} inputCount
+    * @param {'linear' | 'relu'} activation
+    */
+    constructor(inputCount, activation = "relu") {
+      super();
+      this.#w = Array.from(
+        { length: inputCount },
+        () => new Scalar(Math.random() * 2 - 1)
+      );
+      this.#b = new Scalar(0);
+      this.#activation = activation;
+    }
+
+    /**
+    * @override
+    * @type {Scalar[]}
+    */
+    get parameters() { return [...this.#w, this.#b]; }
+
+    /**
+    * @override
+    * @param {Scalar[]} x
+    * @returns {Scalar}
+    */
+    evaluate(x) {
+      return Scalar.sum(this.#w.map((wi, i) => wi.mul(x[i])))
+        .add(this.#b)[this.#activation]();
+    }
   }
-
-  /**
-   * @override
-   * @type {Scalar[]}
-   */
-  get parameters() { return [...this.#w, this.#b]; }
-
-  /**
-   * @override
-   * @param {Scalar[]} x
-   * @returns {Scalar}
-   */
-  evaluate(x) {
-    return Scalar.sum(this.#w.map((wi, i) => wi.mul(x[i])))
-      .add(this.#b)[this.#activation]();
-  }
-}
 `} untyped={`
-class Neuron extends Model {
-  constructor(inputCount, activation = "relu") {
-    super();
-    this.#w = Array.from(
-      { length: inputCount },
-      () => new Scalar(Math.random() * 2 - 1)
-    );
-    this.#b = new Scalar(0);
-    this.#activation = activation;
-  }
+  class Neuron extends Model {
+    constructor(inputCount, activation = "relu") {
+      super();
+      this.#w = Array.from(
+        { length: inputCount },
+        () => new Scalar(Math.random() * 2 - 1)
+      );
+      this.#b = new Scalar(0);
+      this.#activation = activation;
+    }
 
-  get parameters() { return [...this.#w, this.#b]; }
+    get parameters() { return [...this.#w, this.#b]; }
 
-  evaluate(x) {
-    return Scalar.sum(this.#w.map((wi, i) => wi.mul(x[i])))
-      .add(this.#b)[this.#activation]();
+    evaluate(x) {
+      return Scalar.sum(this.#w.map((wi, i) => wi.mul(x[i])))
+        .add(this.#b)[this.#activation]();
+    }
   }
-}
 `} />
 
 You might notice, that this addition requires us to implement the activation functions in the `Scalar`
@@ -729,101 +729,101 @@ our model to produce multiple outputs instead.
 
 Regardless, we can implement the standalone `parameters` and `evaluate` methods:
 <JsdocSyntax typed={`
-class Layer {
-  /** @type {Neuron[]} */
-  #neurons;
+  class Layer {
+    /** @type {Neuron[]} */
+    #neurons;
 
-  /**
-   * @param {number} inputCount
-   * @param {number} outputCount
-   * @param {'linear' | 'relu'} activation
-   */
-  constructor(inputCount, outputCount, activation) {
-    this.#neurons = Array.from(
-      { length: outputCount },
-      () => new Neuron(inputCount, activation)
-    );
+    /**
+    * @param {number} inputCount
+    * @param {number} outputCount
+    * @param {'linear' | 'relu'} activation
+    */
+    constructor(inputCount, outputCount, activation) {
+      this.#neurons = Array.from(
+        { length: outputCount },
+        () => new Neuron(inputCount, activation)
+      );
+    }
+
+    /** @type {Scalar[]} */
+    get parameters() { return this.#neurons.flatMap((n) => n.parameters); }
+
+    /**
+    * @param {Scalar[]} x
+    * @returns {Scalar[]}
+    */
+    evaluate(x) { return this.#neurons.map((n) => n.evaluate(x)); }
   }
-
-  /** @type {Scalar[]} */
-  get parameters() { return this.#neurons.flatMap((n) => n.parameters); }
-
-  /**
-   * @param {Scalar[]} x
-   * @returns {Scalar[]}
-   */
-  evaluate(x) { return this.#neurons.map((n) => n.evaluate(x)); }
-}
 `} untyped={`
-class Layer {
-  constructor(inputCount, outputCount, activation) {
-    this.#neurons = Array.from(
-      { length: outputCount },
-      () => new Neuron(inputCount, activation)
-    );
+  class Layer {
+    constructor(inputCount, outputCount, activation) {
+      this.#neurons = Array.from(
+        { length: outputCount },
+        () => new Neuron(inputCount, activation)
+      );
+    }
+
+    get parameters() { return this.#neurons.flatMap((n) => n.parameters); }
+
+    evaluate(x) { return this.#neurons.map((n) => n.evaluate(x)); }
   }
-
-  get parameters() { return this.#neurons.flatMap((n) => n.parameters); }
-
-  evaluate(x) { return this.#neurons.map((n) => n.evaluate(x)); }
-}
 `} />
 
 Finally, we define the `Network` as:
 <JsdocSyntax typed={`
-class Network extends Model {
-  /** @type {Layer[]} */
-  #layers;
+  class Network extends Model {
+    /** @type {Layer[]} */
+    #layers;
 
-  /**
-   * @param {number} inputCount
-   * @param {number[]} layers
-   */
-  constructor(inputCount, layers = []) {
-    super();
-    const sizes = [inputCount, ...layers];
-    this.#layers = [
-      ...layers.map((_, i) => new Layer(sizes[i], sizes[i + 1], "relu")),
-      new Layer(sizes[sizes.length - 1], 1, "linear"),
-    ];
-  }
+    /**
+    * @param {number} inputCount
+    * @param {number[]} layers
+    */
+    constructor(inputCount, layers = []) {
+      super();
+      const sizes = [inputCount, ...layers];
+      this.#layers = [
+        ...layers.map((_, i) => new Layer(sizes[i], sizes[i + 1], "relu")),
+        new Layer(sizes[sizes.length - 1], 1, "linear"),
+      ];
+    }
 
-  /**
-   * @override
-   * @returns {Scalar[]}
-   */
-  get parameters() {
-    return this.#layers.flatMap((l) => l.parameters);
-  }
+    /**
+    * @override
+    * @returns {Scalar[]}
+    */
+    get parameters() {
+      return this.#layers.flatMap((l) => l.parameters);
+    }
 
-  /**
-   * @override
-   * @param {Scalar[]} x
-   * @returns {Scalar}
-   */
-  evaluate(x) {
-    return this.#layers.reduce((acc, l) => l.evaluate(acc), x)[0];
+    /**
+    * @override
+    * @param {Scalar[]} x
+    * @returns {Scalar}
+    */
+    evaluate(x) {
+      return this.#layers.reduce((acc, l) => l.evaluate(acc), x)[0];
+    }
   }
-}
 `} untyped={`
-class Network extends Model {
-  constructor(inputCount, layers = []) {
-    super();
-    const sizes = [inputCount, ...layers];
-    this.#layers = [
-      ...layers.map((_, i) => new Layer(sizes[i], sizes[i + 1], "relu")),
-      new Layer(sizes[sizes.length - 1], 1, "linear"),
-    ];
-  }
+  class Network extends Model {
+    constructor(inputCount, layers = []) {
+      super();
+      const sizes = [inputCount, ...layers];
+      this.#layers = [
+        ...layers.map((_, i) => new Layer(sizes[i], sizes[i + 1], "relu")),
+        new Layer(sizes[sizes.length - 1], 1, "linear"),
+      ];
+    }
 
-  get parameters() {
-    return this.#layers.flatMap((l) => l.parameters);
-  }
+    get parameters() {
+      return this.#layers.flatMap((l) => l.parameters);
+    }
 
-  evaluate(x) {
-    return this.#layers.reduce((acc, l) => l.evaluate(acc), x)[0];
+    evaluate(x) {
+      return this.#layers.reduce((acc, l) => l.evaluate(acc), x)[0];
+    }
   }
-}
 `} />
 
 Notice how simple it is to combine smaller models into larger ones.
@@ -839,35 +839,35 @@ for a circle. Note that this can be easily calculated by just plugging our input
 task we'll pretend that this formula is unknown. You can run the experiment below:
 <Experiment client:idle>
 <JsdocSyntax typed={`
-/**
- * @param {number} batch
- * @param {number} eta
- */
-function learn(batch, eta) {
-  /** @type {number[][]} */
-  const X = [];
-  /** @type {number[]} */
-  const y = [];
-  for (let i = 0; i < batch; i++) {
-    const x0 = Math.random() * 2 - 1;
-    const x1 = Math.random() * 2 - 1;
-    X.push([x0, x1]);
-    y.push(Math.sqrt(x0 * x0 + x1 * x1) - 0.5);
+  /**
+  * @param {number} batch
+  * @param {number} eta
+  */
+  function learn(batch, eta) {
+    /** @type {number[][]} */
+    const X = [];
+    /** @type {number[]} */
+    const y = [];
+    for (let i = 0; i < batch; i++) {
+      const x0 = Math.random() * 2 - 1;
+      const x1 = Math.random() * 2 - 1;
+      X.push([x0, x1]);
+      y.push(Math.sqrt(x0 * x0 + x1 * x1) - 0.5);
+    }
+    model.fit(X, y, eta);
   }
-  model.fit(X, y, eta);
-}
 `} untyped={`
-function learn(batch, eta) {
-  const X = [];
-  const y = [];
-  for (let i = 0; i < batch; i++) {
-    const x0 = Math.random() * 2 - 1;
-    const x1 = Math.random() * 2 - 1;
-    X.push([x0, x1]);
-    y.push(Math.sqrt(x0 ** 2 + x1 ** 2) - 0.5);
+  function learn(batch, eta) {
+    const X = [];
+    const y = [];
+    for (let i = 0; i < batch; i++) {
+      const x0 = Math.random() * 2 - 1;
+      const x1 = Math.random() * 2 - 1;
+      X.push([x0, x1]);
+      y.push(Math.sqrt(x0 ** 2 + x1 ** 2) - 0.5);
+    }
+    model.fit(X, y, eta);
   }
-  model.fit(X, y, eta);
-}
 `} />
 </Experiment>
 

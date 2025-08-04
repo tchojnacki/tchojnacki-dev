@@ -1,6 +1,6 @@
-import type { APIContext } from 'astro'
 import rss from '@astrojs/rss'
-import { getPosts } from '~/utils/content'
+import type { APIContext } from 'astro'
+import { getPosts } from '~/content'
 
 const posts = await getPosts()
 
@@ -15,7 +15,7 @@ export function GET(context: APIContext) {
       title: p.data.title,
       pubDate: p.data.date,
       description: p.data.abstract,
-      link: `/blog/${p.slug}`,
+      link: `/blog/${p.id}`,
     })),
   })
 }

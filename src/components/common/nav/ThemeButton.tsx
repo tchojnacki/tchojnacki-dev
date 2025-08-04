@@ -1,4 +1,4 @@
-import { Moon, Sun } from 'tabler-icons-react'
+import { IconMoon, IconSun } from '@tabler/icons-react'
 import { useIsMounted, useTheme } from '~/hooks'
 
 export default function ThemeButton() {
@@ -9,7 +9,7 @@ export default function ThemeButton() {
     return <div className="h-8 w-12" />
   }
 
-  const ThemeIcon = theme === 'dark' ? Sun : Moon
+  const ThemeIcon = theme === 'dark' ? IconSun : IconMoon
 
   return (
     <button
@@ -19,8 +19,7 @@ export default function ThemeButton() {
     >
       <ThemeIcon
         role="presentation"
-        className="stroke-neutral-600 group-hover:stroke-neutral-900 dark:stroke-neutral-400
-        dark:group-hover:stroke-neutral-100 animate-enteronload duration-200 onenter-scaling motion-reduce:animate-none"
+        className="motion-safe:animate-enteronload onenter-scaling stroke-neutral-600 duration-200 group-hover:stroke-neutral-900 dark:stroke-neutral-400 dark:group-hover:stroke-neutral-100"
       />
     </button>
   )

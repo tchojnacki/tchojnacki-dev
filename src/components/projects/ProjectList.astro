@@ -1,5 +1,5 @@
 ---
-import { getProjects, type Project, projectImportanceOrder } from '~/utils/content'
+import { getProjects, type Project } from '~/content'
 import ProjectCard from './ProjectCard.astro'
 
 interface Props {
@@ -10,11 +10,10 @@ interface Props {
 
 const { heading = 1, length = Infinity, filter } = Astro.props
 
-const projectData = await getProjects()
-const projects = projectImportanceOrder.map(id => projectData[id]).filter(p => !filter || filter(p))
+const projects = (await getProjects()).filter(p => !filter || filter(p))
 ---
 
-<ul class="flex flex-col items-center gap-16 px-4 py-8 lg:px-16">
+<ul class="flex flex-col items-center gap-8 px-4 py-8 sm:gap-16 lg:px-16">
   {
     projects
       .slice(0, length)

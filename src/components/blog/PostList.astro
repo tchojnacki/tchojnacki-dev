@@ -1,5 +1,5 @@
 ---
-import { getPosts, type Post } from '~/utils/content'
+import { getPosts, type Post } from '~/content'
 import PostEntry from './PostEntry.astro'
 
 interface Props {
@@ -12,11 +12,9 @@ const posts = await getPosts()
 const { heading, length = Infinity, filter } = Astro.props
 ---
 
-<div>
-  {
-    posts
-      .filter(p => !filter || filter(p))
-      .slice(0, length)
-      .map(post => <PostEntry {heading} {post} />)
-  }
-</div>
+{
+  posts
+    .filter(p => !filter || filter(p))
+    .slice(0, length)
+    .map(post => <PostEntry {heading} {post} />)
+}

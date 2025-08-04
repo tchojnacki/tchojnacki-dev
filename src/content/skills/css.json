@@ -1,6 +1,5 @@
 {
-  "type": "language",
-  "icon": "siCss3",
+  "icon": "siCss",
   "name": "CSS",
   "description": "CSS is a language used for describing the presentation of HTML documents."
 }

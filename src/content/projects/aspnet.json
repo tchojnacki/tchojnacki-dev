@@ -1,0 +1,22 @@
+{
+  "name": "ASP.NET Coursework",
+  "description": "Exercises for the Developing Web Applications with .NET university course, which I took during my 5th semester. The course consisted of numerous assignments ranging from basic HTML up to building a full web application using ASP.NET, Entity Framework, and PostgreSQL.",
+  "image": "~/assets/projects/aspnet.jpg",
+  "tags": ["academic", "deprecated"],
+  "links": [{ "type": "repository", "href": "https://github.com/tchojnacki/uni-sem-5-dotnet" }],
+  "parts": [
+    {
+      "name": "Exercises",
+      "skillIds": [
+        "csharp",
+        "aspnet",
+        "javascript",
+        "entity-framework",
+        "postgres",
+        "openapi",
+        "html",
+        "css"
+      ]
+    }
+  ]
+}

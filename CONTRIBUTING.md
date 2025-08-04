@@ -23,7 +23,7 @@ The commit message should be structured as follows:
   - `docs` - changes to documentation (README, CONTRIBUTING, etc.)
   - `build` - changes to the build system (npm, etc.), or deployment (CI/CD)
 - The `scope` should be one of the following, and generally refers to [a milestone](https://github.com/tchojnacki/tchojnacki-dev/milestones):
-  - none (and parentheses omitted) if the commit refers to multiple scopes, to no particular scope, or the _General_* milestone
+  - none (and parentheses omitted) if the commit refers to multiple scopes, to no particular scope, or the *General* milestone
   - `home` - *Home* milestone
   - `projects` - *Projects* milestone
   - `experience` - *Experience* milestone

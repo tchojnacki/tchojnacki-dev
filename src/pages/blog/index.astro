@@ -1,9 +1,10 @@
 ---
+import { IconWritingSign } from '@tabler/icons-react'
+import { fromPairs, sortBy } from 'lodash-es'
 import PostList from '~/components/blog/PostList.astro'
 import Link from '~/components/common/Link'
+import { getPosts } from '~/content'
 import Layout from '~/layouts/Layout.astro'
-import { getPosts } from '~/utils/content'
-import { keyComparator } from '~/utils/sorting'
 
 const posts = await getPosts()
 
@@ -15,40 +16,56 @@ const allTags = [
     ]),
   ),
 ]
-const tagCounts = Object.fromEntries(
+const tagCounts = fromPairs(
   allTags.map(({ tag }) => [
     tag,
     posts.filter(p => p.data.tags.includes(tag) || p.data.skills.some(({ id }) => id == tag))
       .length,
   ]),
 )
-const popularTags = [...allTags].sort(keyComparator(({ tag }) => tagCounts[tag], true))
+const popularTags = sortBy(
+  allTags,
+  ({ tag }) => -tagCounts[tag]!, // SAFETY: tagCounts is derived from allTags
+  ({ tag }) => tag,
+)
 ---
 
 <Layout name="Blog" description="List of all posts from the Tomasz Chojnacki's blog.">
-  <main
-    class="grid min-h-screen grid-cols-1 grid-rows-[repeat(3,auto)] grid-areas-blog-mobile md:grid-cols-[2fr,1fr] md:grid-rows-[auto,1fr] md:p-4 md:grid-areas-blog-desktop"
-  >
-    <header class="px-4 py-8 grid-in-header">
-      <h1 class="text-3xl font-bold text-neutral-1000 dark:text-neutral-0">Blog</h1>
+  <main class="min-h-screen">
+    <header class="centered-header">
+      <h1 class="flex items-center justify-center gap-4 pb-4 text-3xl sm:justify-start sm:text-4xl">
+        Tomasz's Blog <IconWritingSign role="presentation" className="h-[1em]" size="" />
+      </h1>
     </header>
-    <section class="py-4 grid-in-posts">
-      <h2 class="px-4 text-2xl text-neutral-1000 dark:text-neutral-0">Recent posts</h2>
-      <PostList heading={3} />
-    </section>
-    <aside class="p-4 grid-in-tags">
-      <h2 class="pb-3 text-2xl text-neutral-1000 dark:text-neutral-0">Popular tags</h2>
-      <nav>
-        <ul>
-          {
-            popularTags.map(({ tag, href }) => (
-              <li class="py-1">
-                <Link {href}>#{tag}</Link>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-    </aside>
+    <div
+      class="grid grid-cols-[calc(50%-var(--spacing-reading)/2-1rem)_min(var(--container-xl),100%)_1fr] [grid-template-areas:'._posts_.''._tags_.'] lg:[grid-template-areas:'._posts_tags']"
+    >
+      <section class="py-4 [grid-area:posts]">
+        <h2
+          class="text-neutral-1000 dark:text-neutral-0 px-4 text-center text-2xl font-bold sm:text-left"
+        >
+          Recent posts
+        </h2>
+        <PostList heading={3} />
+      </section>
+      <aside class="p-4 [grid-area:tags] lg:justify-self-center">
+        <h2
+          class="text-neutral-1000 dark:text-neutral-0 pb-3 text-center text-2xl font-bold sm:text-left"
+        >
+          Popular tags
+        </h2>
+        <nav>
+          <ul>
+            {
+              popularTags.map(({ tag, href }) => (
+                <li class="py-1">
+                  <Link {href}>#{tag}</Link>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </aside>
+    </div>
   </main>
 </Layout>

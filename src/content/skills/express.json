@@ -1,5 +1,4 @@
 {
-  "type": "library",
   "icon": "siExpress",
   "description": "Express is a fast, unopinionated, minimalist web framework for Node.js."
 }

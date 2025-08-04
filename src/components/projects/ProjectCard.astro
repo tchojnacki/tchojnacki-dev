@@ -1,5 +1,5 @@
 ---
-import type { Project } from '~/utils/content'
+import type { Project } from '~/content'
 import ProjectCardInternal from './ProjectCardInternal'
 
 interface Props {
@@ -9,11 +9,15 @@ interface Props {
 }
 
 const { project, flipped, heading } = Astro.props
+const isDeprecated = project.tags.includes('deprecated')
 ---
 
 <li
-  class="grid w-full max-w-[64rem] items-center rounded-3xl
-    shadow-lg shadow-indigo-925/10 dark:shadow-indigo-100/10 lg:grid-cols-8 lg:grid-rows-1 lg:shadow-none"
+  id={project.id}
+  class:list={[
+    'shadow-indigo-925/10 grid w-full max-w-5xl items-center rounded-3xl shadow-lg lg:grid-cols-8 lg:grid-rows-1 lg:shadow-none dark:shadow-indigo-100/10',
+    isDeprecated && 'opacity-50',
+  ]}
 >
   <ProjectCardInternal client:visible {project} {flipped} {heading} />
 </li>

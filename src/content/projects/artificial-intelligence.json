@@ -1,0 +1,20 @@
+{
+  "name": "Artificial Intelligence Coursework",
+  "description": "Exercises for the Artificial Intelligence and Knowledge Engineering university course, which I took during my 6th semester. The scope included pathfinding algorithms, game theory, genetic algorithms, and supervised machine learning.",
+  "image": "~/assets/projects/artificial-intelligence.jpg",
+  "tags": ["academic"],
+  "links": [
+    { "type": "documentation", "href": "/static/si.pdf" },
+    { "type": "repository", "href": "https://github.com/tchojnacki/uni-sem-6-ai" }
+  ],
+  "parts": [
+    {
+      "name": "Exercises",
+      "skillIds": ["rust", "python", "scikit-learn", "numpy", "pandas"]
+    },
+    {
+      "name": "Documentation",
+      "skillIds": ["latex", "matplotlib"]
+    }
+  ]
+}

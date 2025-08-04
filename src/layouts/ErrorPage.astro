@@ -9,10 +9,10 @@ const { code } = Astro.props
 ---
 
 <Layout name={code.toString()}>
-  <main class="mt-[calc(-1*theme(spacing.nav-height))] grid min-h-[100vh] place-items-center p-4">
-    <header class="animate-enteronload text-center onenter-scaling motion-reduce:animate-none">
+  <main class="mt-[calc(-1*var(--spacing-nav-height))] grid min-h-screen place-items-center p-4">
+    <header class="motion-safe:animate-enteronload onenter-scaling text-center">
       <h1
-        class="text-indigo-700 dark:text-indigo-300 mb-4 animate-errshake text-6xl font-bold motion-reduce:animate-none"
+        class="motion-safe:animate-errshake mb-4 text-6xl font-bold text-indigo-700 dark:text-indigo-300"
       >
         {code}
       </h1>

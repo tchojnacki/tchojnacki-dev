@@ -1,0 +1,22 @@
+---
+import SkillIcon from '~/components/skills/SkillIcon'
+import { getSkillById } from '~/content'
+
+interface Props {
+  skillId: string
+}
+
+const skill = await getSkillById(Astro.props.skillId)
+---
+
+<li>
+  <a
+    href={`/skills/${skill.id}`}
+    class="shadow-indigo-925/25 dark:bg-neudigo-950 bg-neudigo-50 flex h-full flex-col items-center gap-3 rounded-xl p-3 pt-4 shadow-md hover:scale-105 hover:shadow-lg hover:brightness-95 dark:shadow-indigo-100/10 hover:dark:brightness-125"
+  >
+    <SkillIcon {skill} className="h-full" decoration />
+    <h3 class="h-6 w-full overflow-hidden text-center leading-none text-ellipsis whitespace-nowrap">
+      {skill.name}
+    </h3>
+  </a>
+</li>
