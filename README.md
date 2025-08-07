@@ -8,7 +8,7 @@
 
 </div>
 
-![The landing page of the website.](./.github/docs/landing.png)
+![The landing page of the website.](./public/static/open-graph.png)
 
 ## Technology 🔧
 - Astro

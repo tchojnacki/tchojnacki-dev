@@ -16,7 +16,7 @@ interface Props {
 
 const { name, description = DEFAULT_DESCRIPTION } = Astro.props
 const title = name ? `${name} - ${DEFAULT_TITLE}` : DEFAULT_TITLE
-const image = new URL('/static/img/open-graph.png', Astro.site).toString()
+const image = new URL('/static/open-graph.png', Astro.site).toString()
 const canonical = canonize(Astro.url.href)
 ---
 
