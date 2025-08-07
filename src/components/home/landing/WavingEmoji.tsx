@@ -12,7 +12,7 @@ export default function WavingEmoji() {
   const stopPlaying = useCallback(() => setIsPlaying(false), [])
 
   const ref = useRef<HTMLButtonElement>(null)
-  useEventListener(ref, 'animationend', stopPlaying)
+  useEventListener(ref, 'animationend', stopPlaying, { passive: true })
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {

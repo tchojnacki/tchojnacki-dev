@@ -16,16 +16,26 @@ export function useDialog() {
     }
   }
 
-  useEventListener(dialogRef, 'close', () => {
-    setIsOpen(false)
-    document.body.classList.remove('overflow-hidden')
-  })
+  useEventListener(
+    dialogRef,
+    'close',
+    () => {
+      setIsOpen(false)
+      document.body.classList.remove('overflow-hidden')
+    },
+    { passive: true },
+  )
 
-  useEventListener(dialogRef, 'click', e => {
-    if (e.target === e.currentTarget || e.target instanceof HTMLAnchorElement) {
-      dialogRef.current?.close()
-    }
-  })
+  useEventListener(
+    dialogRef,
+    'click',
+    e => {
+      if (e.target === e.currentTarget || e.target instanceof HTMLAnchorElement) {
+        dialogRef.current?.close()
+      }
+    },
+    { passive: true },
+  )
 
   return { isOpen, dialogRef, toggleDialog }
 }

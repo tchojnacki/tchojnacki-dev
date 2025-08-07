@@ -91,25 +91,30 @@ export default function TechSphere({ skillNames }: TechSphereProps) {
     }
   })
 
-  useEventListener(canvasRef, 'pointermove', (event: PointerEvent) => {
-    const now = Date.now()
-    const deltaTime = now - lastMoveTimeStampRef.current
-    lastMoveTimeStampRef.current = now
+  useEventListener(
+    canvasRef,
+    'pointermove',
+    (event: PointerEvent) => {
+      const now = Date.now()
+      const deltaTime = now - lastMoveTimeStampRef.current
+      lastMoveTimeStampRef.current = now
 
-    dragPixelsPerMsRef.current = {
-      x: (event.offsetX - hoverPosRef.current.x) / deltaTime,
-      y: (event.offsetY - hoverPosRef.current.y) / deltaTime,
-    }
+      dragPixelsPerMsRef.current = {
+        x: (event.offsetX - hoverPosRef.current.x) / deltaTime,
+        y: (event.offsetY - hoverPosRef.current.y) / deltaTime,
+      }
 
-    hoverPosRef.current = { x: event.offsetX, y: event.offsetY }
+      hoverPosRef.current = { x: event.offsetX, y: event.offsetY }
 
-    if (dragStartPosRef.current) {
-      const end = pointerToSpherePoint(hoverPosRef.current, sphereRadius, projection)
-      const { axis, theta } = findRotation(dragStartPosRef.current, end)
-      axisRef.current = axis
-      thetaRef.current = theta
-    }
-  })
+      if (dragStartPosRef.current) {
+        const end = pointerToSpherePoint(hoverPosRef.current, sphereRadius, projection)
+        const { axis, theta } = findRotation(dragStartPosRef.current, end)
+        axisRef.current = axis
+        thetaRef.current = theta
+      }
+    },
+    { passive: true },
+  )
 
   useAnimationFrame(deltaTime => {
     let epsilon: number
