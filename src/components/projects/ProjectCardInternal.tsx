@@ -11,12 +11,17 @@ import {
   IconZoomIn,
 } from '@tabler/icons-react'
 import clsx from 'clsx'
-import { useReducer, type CSSProperties } from 'react'
+import { useReducer, type CSSProperties, type ImgHTMLAttributes } from 'react'
 
 import LinkButton from '~/components/common/LinkButton'
 import SkillIcon from '~/components/skills/SkillIcon'
 import type { Project, ProjectLink, ProjectTag } from '~/content'
 import { useIsMounted } from '~/hooks'
+
+export type ProjectImage = ImgHTMLAttributes<HTMLImageElement> & {
+  width: number
+  height: number
+}
 
 interface TagProps {
   tag: ProjectTag
@@ -29,9 +34,10 @@ interface LinkProps {
 }
 
 interface ProjectCardInternalProps {
-  project: Project
+  project: Omit<Project, 'image'>
   flipped: boolean
   heading: number
+  image: ProjectImage
 }
 
 function Tag({ tag, small }: TagProps) {
@@ -86,12 +92,12 @@ export default function ProjectCardInternal({
   project,
   flipped,
   heading,
+  image,
 }: ProjectCardInternalProps) {
   const [isActive, toggleActive] = useReducer(prev => !prev, false)
   const isMounted = useIsMounted()
 
-  const { width, height } = project.image
-  const maxImageScroll = Math.floor(100 - (75 * width) / height)
+  const maxImageScroll = Math.floor(100 - (75 * image.width) / image.height)
   const imageScrollDuration = Math.round(maxImageScroll * 100)
 
   const activeIcon = maxImageScroll !== 0 ? IconPlayerPause : IconZoomCancel
@@ -114,8 +120,7 @@ export default function ProjectCardInternal({
         )}
       >
         <img
-          alt={project.name}
-          src={project.image.src}
+          {...image}
           className={clsx(
             'animate-scrollprojectimage absolute h-auto w-full',
             isActive ? '[animation-play-state:running]' : '[animation-play-state:paused]',

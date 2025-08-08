@@ -1,6 +1,7 @@
 ---
+import { getImage } from 'astro:assets'
 import type { Project } from '~/content'
-import ProjectCardInternal from './ProjectCardInternal'
+import ProjectCardInternal, { type ProjectImage } from './ProjectCardInternal'
 
 interface Props {
   project: Project
@@ -10,6 +11,21 @@ interface Props {
 
 const { project, flipped, heading } = Astro.props
 const isDeprecated = project.tags.includes('deprecated')
+
+const image = await getImage({ src: project.image, layout: 'constrained' }).then(
+  r =>
+    ({
+      src: r.src,
+      alt: project.name,
+      width: project.image.width,
+      height: project.image.height,
+      srcSet: r.srcSet.attribute,
+      sizes: r.attributes.sizes,
+      loading: 'lazy',
+      decoding: 'async',
+      fetchPriority: 'auto',
+    }) satisfies ProjectImage,
+)
 ---
 
 <li
@@ -19,5 +35,5 @@ const isDeprecated = project.tags.includes('deprecated')
     isDeprecated && 'opacity-50',
   ]}
 >
-  <ProjectCardInternal client:visible {project} {flipped} {heading} />
+  <ProjectCardInternal client:visible {project} {flipped} {heading} {image} />
 </li>
