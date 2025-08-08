@@ -1,7 +1,7 @@
-import ObjectTree from '~/components/blog/ObjectTree'
+import ObjectTree from "~/components/blog/ObjectTree"
 
 class Scalar {
-  static name = 'Scalar'
+  static name = "Scalar"
 
   value: number
   $children: Scalar[] = []

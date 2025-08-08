@@ -1,14 +1,23 @@
 ---
-import PostList from '~/components/blog/PostList.astro'
-import LinkButton from '~/components/common/LinkButton'
-import SectionHeader from '~/components/common/SectionHeader.astro'
+import PostList from "~/components/blog/PostList.astro"
+import LinkButton from "~/components/common/LinkButton"
+import SectionHeader from "~/components/common/SectionHeader.astro"
+import type { Post } from "~/content"
+
+const FEATURED_POSTS = [
+  "neural-networks-in-plain-javascript",
+  "evaluating-gleam-with-aoc",
+  "hello-world",
+]
+
+const filter = (post: Post) => FEATURED_POSTS.includes(post.id)
 ---
 
 <section>
-  <SectionHeader text="Recent posts" />
+  <SectionHeader text="Featured posts" />
   <div class="flex justify-center py-4">
     <div>
-      <PostList heading={3} length={3} />
+      <PostList heading={3} {filter} />
     </div>
   </div>
   <div class="flex justify-center">

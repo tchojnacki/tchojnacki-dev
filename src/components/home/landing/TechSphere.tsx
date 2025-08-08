@@ -1,6 +1,6 @@
-import clsx from 'clsx'
-import { clamp } from 'lodash-es'
-import { useEffect, useMemo, useRef } from 'react'
+import clsx from "clsx"
+import { clamp } from "lodash-es"
+import { useEffect, useMemo, useRef } from "react"
 
 import {
   useAnimationFrame,
@@ -10,13 +10,12 @@ import {
   usePointerStart,
   usePointerStop,
   usePrefersReducedMotion,
-} from '~/hooks'
+} from "~/hooks"
 import {
   DAMPING_FACTOR,
+  findRotation,
   INITIAL_ROTATION_AXIS,
   INITIAL_ROTATION_SPEED,
-  type Vec3D,
-  findRotation,
   initialPositionsOf,
   pointerToSpherePoint,
   rotateAroundUnitVector,
@@ -25,7 +24,8 @@ import {
   v2sub,
   v3scale,
   worldToCamera,
-} from '~/lib/techSphere'
+  type Vec3D,
+} from "~/lib/techSphere"
 
 const FONT_SCALE = 0.05
 
@@ -43,13 +43,13 @@ export default function TechSphere({ skillNames }: TechSphereProps) {
   const sphereRadius = canvasSize * 0.35
   const pointsRef = useRef(initialPositionsOf(skillNames))
 
-  const ctx = canvasRef.current?.getContext('2d')
+  const ctx = canvasRef.current?.getContext("2d")
 
   const hoverPosRef = useRef({ x: 0, y: 0 })
   const lastMoveTimeStampRef = useRef(Date.now())
   const dragStartPosRef = useRef<Vec3D | null>(null)
   const dragPixelsPerMsRef = useRef({ x: 0, y: 0 })
-  const movementStateRef = useRef<'STABLE' | 'DAMPING'>('STABLE')
+  const movementStateRef = useRef<"STABLE" | "DAMPING">("STABLE")
 
   const omegaRef = useRef(0)
   const thetaRef = useRef(0)
@@ -87,35 +87,40 @@ export default function TechSphere({ skillNames }: TechSphereProps) {
 
       const { theta } = findRotation(before, after)
       omegaRef.current = theta * 1000
-      movementStateRef.current = 'DAMPING'
+      movementStateRef.current = "DAMPING"
     }
   })
 
-  useEventListener(canvasRef, 'pointermove', (event: PointerEvent) => {
-    const now = Date.now()
-    const deltaTime = now - lastMoveTimeStampRef.current
-    lastMoveTimeStampRef.current = now
+  useEventListener(
+    canvasRef,
+    "pointermove",
+    (event: PointerEvent) => {
+      const now = Date.now()
+      const deltaTime = now - lastMoveTimeStampRef.current
+      lastMoveTimeStampRef.current = now
 
-    dragPixelsPerMsRef.current = {
-      x: (event.offsetX - hoverPosRef.current.x) / deltaTime,
-      y: (event.offsetY - hoverPosRef.current.y) / deltaTime,
-    }
+      dragPixelsPerMsRef.current = {
+        x: (event.offsetX - hoverPosRef.current.x) / deltaTime,
+        y: (event.offsetY - hoverPosRef.current.y) / deltaTime,
+      }
 
-    hoverPosRef.current = { x: event.offsetX, y: event.offsetY }
+      hoverPosRef.current = { x: event.offsetX, y: event.offsetY }
 
-    if (dragStartPosRef.current) {
-      const end = pointerToSpherePoint(hoverPosRef.current, sphereRadius, projection)
-      const { axis, theta } = findRotation(dragStartPosRef.current, end)
-      axisRef.current = axis
-      thetaRef.current = theta
-    }
-  })
+      if (dragStartPosRef.current) {
+        const end = pointerToSpherePoint(hoverPosRef.current, sphereRadius, projection)
+        const { axis, theta } = findRotation(dragStartPosRef.current, end)
+        axisRef.current = axis
+        thetaRef.current = theta
+      }
+    },
+    { passive: true },
+  )
 
   useAnimationFrame(deltaTime => {
     let epsilon: number
-    if (movementStateRef.current === 'STABLE') {
+    if (movementStateRef.current === "STABLE") {
       epsilon = 0
-    } else if (movementStateRef.current === 'DAMPING') {
+    } else if (movementStateRef.current === "DAMPING") {
       epsilon = -DAMPING_FACTOR * omegaRef.current
 
       if (Math.abs(omegaRef.current) < 0.01) {
@@ -128,10 +133,10 @@ export default function TechSphere({ skillNames }: TechSphereProps) {
         omegaRef.current = INITIAL_ROTATION_SPEED
         epsilon = 0
 
-        movementStateRef.current = 'STABLE'
+        movementStateRef.current = "STABLE"
       }
     } else {
-      throw new Error('Unreachable state!')
+      throw new Error("Unreachable state!")
     }
 
     omegaRef.current += epsilon * deltaTime
@@ -141,8 +146,8 @@ export default function TechSphere({ skillNames }: TechSphereProps) {
       ctx.clearRect(0, 0, canvasSize, canvasSize)
 
       ctx.fillStyle = getComputedStyle(canvasRef.current).color
-      ctx.textAlign = 'center'
-      ctx.textBaseline = 'middle'
+      ctx.textAlign = "center"
+      ctx.textBaseline = "middle"
       ctx.font = `${Math.ceil(canvasSize * FONT_SCALE)}px sans-serif`
 
       for (const { item, position } of pointsRef.current) {
@@ -164,8 +169,8 @@ export default function TechSphere({ skillNames }: TechSphereProps) {
     <canvas
       role="presentation"
       className={clsx(
-        'cursor-grab touch-none select-none active:cursor-grabbing',
-        isMounted ? 'motion-safe:animate-enteronload onenter-fromright opacity-100' : 'opacity-0',
+        "cursor-grab touch-none select-none active:cursor-grabbing",
+        isMounted ? "motion-safe:animate-enteronload onenter-fromright opacity-100" : "opacity-0",
       )}
       ref={canvasRef}
       width={canvasSize}

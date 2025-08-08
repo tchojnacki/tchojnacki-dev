@@ -1,10 +1,11 @@
 ---
-import { IconWritingSign } from '@tabler/icons-react'
-import { fromPairs, sortBy } from 'lodash-es'
-import PostList from '~/components/blog/PostList.astro'
-import Link from '~/components/common/Link'
-import { getPosts } from '~/content'
-import Layout from '~/layouts/Layout.astro'
+import { IconWritingSign } from "@tabler/icons-react"
+import { fromPairs, sortBy } from "lodash-es"
+
+import PostList from "~/components/blog/PostList.astro"
+import Link from "~/components/common/Link"
+import { getPosts } from "~/content"
+import Layout from "~/layouts/Layout.astro"
 
 const posts = await getPosts()
 
@@ -30,11 +31,11 @@ const popularTags = sortBy(
 )
 ---
 
-<Layout name="Blog" description="List of all posts from the Tomasz Chojnacki's blog.">
+<Layout name="Blog" description="List of all posts from Tomasz Chojnacki's blog.">
   <main class="min-h-screen">
     <header class="centered-header">
       <h1 class="flex items-center justify-center gap-4 pb-4 text-3xl sm:justify-start sm:text-4xl">
-        Tomasz's Blog <IconWritingSign role="presentation" className="h-[1em]" size="" />
+        Tomasz's Blog <IconWritingSign role="presentation" className="h-[1em] w-auto" />
       </h1>
     </header>
     <div

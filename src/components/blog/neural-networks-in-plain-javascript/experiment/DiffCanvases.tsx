@@ -1,6 +1,8 @@
-import { useEffect, useRef } from 'react'
-import { lerp } from '~/lib/math'
-import type { Model } from './domain'
+import { useEffect, useRef } from "react"
+
+import { lerp } from "~/lib/math"
+
+import type { Model } from "./domain"
 
 type DiffCanvasesProps = { model: Model; losses: number[] }
 
@@ -10,9 +12,9 @@ export default function DiffCanvases({ model, losses }: DiffCanvasesProps) {
   const lossCanvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    const realCtx = realCanvasRef.current!.getContext('2d')!
-    const predCtx = predCanvasRef.current!.getContext('2d')!
-    const lossCtx = lossCanvasRef.current!.getContext('2d')!
+    const realCtx = realCanvasRef.current!.getContext("2d")!
+    const predCtx = predCanvasRef.current!.getContext("2d")!
+    const lossCtx = lossCanvasRef.current!.getContext("2d")!
 
     for (let px = 0; px < 100; px++) {
       for (let py = 0; py < 100; py++) {

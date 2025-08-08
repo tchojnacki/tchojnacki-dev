@@ -1,26 +1,26 @@
 export const routes = {
   about: {
-    href: '/',
-    label: 'About',
+    href: "/",
+    label: "About",
   },
   projects: {
-    href: '/projects',
-    label: 'Projects',
+    href: "/projects",
+    label: "Projects",
   },
   blog: {
-    href: '/blog',
-    label: 'Blog',
+    href: "/blog",
+    label: "Blog",
   },
   tags: {
-    href: '/tags',
-    label: 'Tags',
+    href: "/tags",
+    label: "Tags",
   },
   skills: {
-    href: '/skills',
-    label: 'Skills',
+    href: "/skills",
+    label: "Skills",
   },
   sitemap: {
-    href: '/sitemap',
-    label: 'Sitemap',
+    href: "/sitemap",
+    label: "Sitemap",
   },
 }

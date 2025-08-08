@@ -1,8 +1,8 @@
-import clsx from 'clsx'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import clsx from "clsx"
+import { useCallback, useEffect, useRef, useState } from "react"
 
-import Emoji from '~/components/common/Emoji'
-import { useEventListener } from '~/hooks'
+import Emoji from "~/components/common/Emoji"
+import { useEventListener } from "~/hooks"
 
 const WAVING_DELAY = 1000
 
@@ -12,7 +12,7 @@ export default function WavingEmoji() {
   const stopPlaying = useCallback(() => setIsPlaying(false), [])
 
   const ref = useRef<HTMLButtonElement>(null)
-  useEventListener(ref, 'animationend', stopPlaying)
+  useEventListener(ref, "animationend", stopPlaying, { passive: true })
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -27,8 +27,8 @@ export default function WavingEmoji() {
       ref={ref}
       onClick={startPlaying}
       className={clsx(
-        'inline-block origin-[75%_75%] cursor-pointer',
-        isPlaying && 'motion-safe:animate-emojiwave',
+        "inline-block origin-[75%_75%] cursor-pointer",
+        isPlaying && "motion-safe:animate-emojiwave",
       )}
     >
       <Emoji size={22} text="👋" />

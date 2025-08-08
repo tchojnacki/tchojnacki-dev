@@ -1,4 +1,4 @@
-import { useDebugValue, useEffect, useRef, useState } from 'react'
+import { useDebugValue, useEffect, useRef, useState } from "react"
 
 export function useParentSize<ChildElem extends HTMLElement>() {
   const [size, setSize] = useState({ inlineSize: 0, blockSize: 0 })
@@ -7,7 +7,7 @@ export function useParentSize<ChildElem extends HTMLElement>() {
 
   useEffect(() => {
     let parent = childRef.current?.parentElement
-    while (parent && getComputedStyle(parent).display === 'contents') {
+    while (parent && getComputedStyle(parent).display === "contents") {
       parent = parent.parentElement
     }
 

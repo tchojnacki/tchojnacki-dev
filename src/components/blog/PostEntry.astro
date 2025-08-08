@@ -1,7 +1,8 @@
 ---
-import { IconArrowRight } from '@tabler/icons-react'
-import { render } from 'astro:content'
-import type { Post } from '~/content'
+import { IconArrowRight } from "@tabler/icons-react"
+import { render } from "astro:content"
+
+import type { Post } from "~/content"
 
 interface Props {
   heading: number
@@ -13,7 +14,7 @@ const {
   remarkPluginFrontmatter: { readingTime },
 } = await render(post)
 
-const H = `h${heading}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+const H = `h${heading}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
 ---
 
 <article>
@@ -24,13 +25,13 @@ const H = `h${heading}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
       {post.data.title}
     </H>
     <span class="text-sm"
-      ><time datetime={post.data.date.toISOString().split('T')[0]}
+      ><time datetime={post.data.date.toISOString().split("T")[0]}
         >{
-          post.data.date.toLocaleDateString('en-US', {
+          post.data.date.toLocaleDateString("en-US", {
             weekday: undefined,
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric',
+            day: "numeric",
+            month: "short",
+            year: "numeric",
           })
         }</time
       > &bull; {readingTime} min read</span

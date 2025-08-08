@@ -7,11 +7,14 @@
     "test": "astro check && vitest run --coverage",
     "build": "astro build",
     "preview": "astro preview",
+    "format": "prettier --write .",
     "prepare": "husky install"
   },
   "dependencies": {
     "@nanostores/react": "^1.0.0",
     "@tabler/icons-react": "^3.34.1",
+    "@vercel/analytics": "^1.5.0",
+    "@vercel/speed-insights": "^1.2.0",
     "astro": "^5.12.3",
     "clsx": "^2.1.1",
     "katex": "^0.16.22",
@@ -30,6 +33,7 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@commitlint/types": "^19.8.1",
+    "@ianvs/prettier-plugin-sort-imports": "^4.6.0",
     "@tailwindcss/vite": "^4.1.11",
     "@types/katex": "^0.16.7",
     "@types/lodash-es": "^4.17.12",

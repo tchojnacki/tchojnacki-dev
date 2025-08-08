@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -126,6 +126,8 @@
 @utility social-link {
   & svg {
     transform: scale(1.25);
+    height: 100%;
+    width: auto;
   }
   & path {
     transition-duration: 200ms;
@@ -151,7 +153,7 @@
 
   /* https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor */
   button:not(:disabled),
-  [role='button']:not(:disabled) {
+  [role="button"]:not(:disabled) {
     cursor: pointer;
   }
 }

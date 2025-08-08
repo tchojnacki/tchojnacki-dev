@@ -1,4 +1,4 @@
-import type { Skill } from '~/content'
+import type { Skill } from "~/content"
 
 interface SkillIconProps {
   skill: Skill
@@ -14,12 +14,12 @@ export default function SkillIcon({
   return (
     <svg
       className={className}
-      role={decoration ? 'presentation' : 'img'}
+      role={decoration ? "presentation" : "img"}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
       {decoration ? null : <title>{name}</title>}
-      {typeof icon === 'string' ? (
+      {typeof icon === "string" ? (
         <text
           x="50%"
           y="50%"

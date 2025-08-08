@@ -1,30 +1,32 @@
 ---
-import { IconBrandGithub, IconBrandLinkedin, IconFileCv } from '@tabler/icons-react'
-import Wave from '~/components/common/Wave.astro'
-import { github, linkedin, resume } from '~/consts/socials'
-import { getSkillById } from '~/content'
-import SocialLink from './SocialLink.astro'
-import TechSphere from './TechSphere'
-import WavingEmoji from './WavingEmoji'
+import { IconBrandGithub, IconBrandLinkedin, IconFileCv } from "@tabler/icons-react"
+
+import Wave from "~/components/common/Wave.astro"
+import { github, linkedin, resume } from "~/consts/socials"
+import { getSkillById } from "~/content"
+
+import SocialLink from "./SocialLink.astro"
+import TechSphere from "./TechSphere"
+import WavingEmoji from "./WavingEmoji"
 
 const skillIds = [
-  'react',
-  'typescript',
-  'python',
-  'rust',
-  'astro',
-  'nextjs',
-  'tailwind-css',
-  'postgres',
-  'mongodb',
-  'docker',
-  'nestjs',
-  'angular',
-  'csharp',
-  'java',
-  'aws',
-  'web-assembly',
-  'latex',
+  "react",
+  "typescript",
+  "python",
+  "rust",
+  "astro",
+  "nextjs",
+  "tailwind-css",
+  "postgres",
+  "mongodb",
+  "docker",
+  "nestjs",
+  "angular",
+  "csharp",
+  "java",
+  "aws",
+  "web-assembly",
+  "latex",
 ]
 
 const skillNames = await Promise.all(skillIds.map(id => getSkillById(id).then(s => s.name)))
@@ -47,20 +49,20 @@ const skillNames = await Promise.all(skillIds.map(id => getSkillById(id).then(s 
     </p>
     <nav class="flex items-center justify-center gap-8 lg:justify-start">
       <SocialLink {...github}>
-        <IconBrandGithub title={github.label} size="" />
+        <IconBrandGithub title={github.label} />
       </SocialLink>
       <SocialLink {...linkedin}>
-        <IconBrandLinkedin title={linkedin.label} size="" />
+        <IconBrandLinkedin title={linkedin.label} />
       </SocialLink>
       <SocialLink {...resume}>
-        <IconFileCv title={resume.label} size="" />
+        <IconFileCv title={resume.label} />
       </SocialLink>
     </nav>
   </section>
   <section
     class="motion-safe:animate-enteronload onenter-fromright grid h-full min-h-[75vw] w-full items-center justify-items-center overflow-hidden p-8 [grid-area:sphere] lg:min-h-full lg:items-end"
   >
-    <TechSphere client:load {skillNames} />
+    <TechSphere client:idle {skillNames} />
   </section>
   <div class="bottom-0 flex h-full w-full flex-col justify-end lg:absolute lg:h-[20vh]">
     <Wave full />

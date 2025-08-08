@@ -1,12 +1,12 @@
 ---
-import Link from '~/components/common/Link'
-import { getTags } from '~/content'
-import Listing from '~/layouts/Listing.astro'
+import Link from "~/components/common/Link"
+import { getTags } from "~/content"
+import Listing from "~/layouts/Listing.astro"
 
 const tags = await getTags()
 ---
 
-<Listing name="Tags" description="List of all tags from the Tomasz Chojnacki's blog.">
+<Listing name="Tags" description="List of all tags from Tomasz Chojnacki's blog.">
   <ul>
     {
       tags.map(t => (

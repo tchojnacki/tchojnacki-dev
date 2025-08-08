@@ -1,28 +1,28 @@
-import { Fragment } from 'react'
+import { Fragment } from "react"
 
-type SeriesColor = 'orange' | 'blue'
+type SeriesColor = "orange" | "blue"
 
 const fillColors = {
-  orange: 'fill-[#FE5B1F] stroke-none',
-  blue: 'fill-[#0074D9] stroke-none',
+  orange: "fill-[#FE5B1F] stroke-none",
+  blue: "fill-[#0074D9] stroke-none",
 }
 
 const strokeColors = {
-  orange: 'stroke-[#FE5B1F] fill-none',
-  blue: 'stroke-[#0074D9] fill-none',
+  orange: "stroke-[#FE5B1F] fill-none",
+  blue: "stroke-[#0074D9] fill-none",
 }
 
 type ChartElement =
-  | { type: 'axes'; tickSize?: number; lineWidth?: number }
-  | { type: 'scatter'; color: SeriesColor; data?: [number, number][]; radius?: number }
+  | { type: "axes"; tickSize?: number; lineWidth?: number }
+  | { type: "scatter"; color: SeriesColor; data?: [number, number][]; radius?: number }
   | {
-      type: 'line'
+      type: "line"
       color: SeriesColor
       start: [number, number]
       end: [number, number]
       lineWidth?: number
     }
-  | { type: 'path'; color: SeriesColor; data?: [number, number][]; lineWidth?: number }
+  | { type: "path"; color: SeriesColor; data?: [number, number][]; lineWidth?: number }
 
 type ChartProps = {
   xMin?: number
@@ -53,10 +53,10 @@ export default function Chart({
     >
       {elements.map((element, fi) => {
         switch (element.type) {
-          case 'axes': {
+          case "axes": {
             const { tickSize = 0, lineWidth = defaultLineWidth } = element
             const props = {
-              className: 'stroke-[#555555] dark:stroke-[#666666] fill-none',
+              className: "stroke-[#555555] dark:stroke-[#666666] fill-none",
               strokeWidth: String(lineWidth),
             }
             return (
@@ -74,7 +74,7 @@ export default function Chart({
               </Fragment>
             )
           }
-          case 'scatter': {
+          case "scatter": {
             const { color, data = [], radius = defaultRadius } = element
             return (
               <Fragment key={fi}>
@@ -90,7 +90,7 @@ export default function Chart({
               </Fragment>
             )
           }
-          case 'line': {
+          case "line": {
             const { color, start, end, lineWidth = defaultLineWidth } = element
             const [x1, y1] = start
             const [x2, y2] = end
@@ -106,12 +106,12 @@ export default function Chart({
               />
             )
           }
-          case 'path': {
+          case "path": {
             const { color, data = [], lineWidth = defaultLineWidth } = element
             return (
               <path
                 key={fi}
-                d={`M ${data.map(([x, y]) => `${x} ${y}`).join(' L ')}`}
+                d={`M ${data.map(([x, y]) => `${x} ${y}`).join(" L ")}`}
                 strokeWidth={lineWidth}
                 className={strokeColors[color]}
               />

@@ -4,7 +4,7 @@
   "image": "~/assets/projects/tcp.jpg",
   "tags": ["academic"],
   "links": [
-    { "type": "publication", "href": "/tcp.pdf" },
+    { "type": "publication", "href": "/static/tcp.pdf" },
     { "type": "repository", "href": "https://github.com/LechMadeyski/MSc25TomaszChojnacki" }
   ],
   "parts": [

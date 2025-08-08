@@ -1,4 +1,4 @@
-import ObjectTree from '~/components/blog/ObjectTree'
+import ObjectTree from "~/components/blog/ObjectTree"
 
 function topologicalSort<Node>(start: Node, neighbors: (node: Node) => Node[]): Node[] {
   const acc: Node[] = []
@@ -20,7 +20,7 @@ function topologicalSort<Node>(start: Node, neighbors: (node: Node) => Node[]): 
 }
 
 class Scalar {
-  static name = 'Scalar'
+  static name = "Scalar"
   value: number
   partial: number = 0
   $children: this[] = []
@@ -95,7 +95,7 @@ class Scalar {
 }
 
 abstract class Model {
-  static name = 'Model'
+  static name = "Model"
   abstract get parameters(): Scalar[]
   abstract evaluate(x: Scalar[]): Scalar
 
@@ -121,7 +121,7 @@ abstract class Model {
 }
 
 class Linear extends Model {
-  static override name = 'Linear'
+  static override name = "Linear"
   $a: Scalar
   $b: Scalar
 

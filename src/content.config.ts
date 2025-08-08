@@ -1,18 +1,18 @@
-import { glob } from 'astro/loaders'
-import { defineCollection, reference, z } from 'astro:content'
+import { defineCollection, reference, z } from "astro:content"
+import { glob } from "astro/loaders"
 
 const projectTag = z.enum([
-  'personal',
-  'academic',
-  'freelance',
-  'bootcamp',
-  'group',
-  'wip',
-  'deprecated',
+  "personal",
+  "academic",
+  "freelance",
+  "bootcamp",
+  "group",
+  "wip",
+  "deprecated",
 ])
 
 const projects = defineCollection({
-  loader: glob({ pattern: '**/*.json', base: './src/content/projects' }),
+  loader: glob({ pattern: "**/*.json", base: "./src/content/projects" }),
   schema: ({ image }) =>
     z.object({
       name: z.string(),
@@ -22,12 +22,12 @@ const projects = defineCollection({
       links: z.array(
         z.object({
           type: z.enum([
-            'repository',
-            'livedemo',
-            'documentation',
-            'download',
-            'publication',
-            'blogpost',
+            "repository",
+            "livedemo",
+            "documentation",
+            "download",
+            "publication",
+            "blogpost",
           ]),
           href: z.string(),
           part: z.string().optional(),
@@ -36,7 +36,7 @@ const projects = defineCollection({
       parts: z.array(
         z.object({
           name: z.string(),
-          skillIds: z.array(reference('skills')),
+          skillIds: z.array(reference("skills")),
           tags: z.array(projectTag).optional(),
           small: z.boolean().default(false),
         }),
@@ -45,7 +45,7 @@ const projects = defineCollection({
 })
 
 const skills = defineCollection({
-  loader: glob({ pattern: '**/*.json', base: './src/content/skills' }),
+  loader: glob({ pattern: "**/*.json", base: "./src/content/skills" }),
   schema: z.intersection(
     z.union([
       z.object({
@@ -63,13 +63,13 @@ const skills = defineCollection({
 })
 
 const posts = defineCollection({
-  loader: glob({ pattern: '**/*.mdx', base: './src/content/posts' }),
+  loader: glob({ pattern: "**/*.mdx", base: "./src/content/posts" }),
   schema: z.object({
     title: z.string(),
     author: z.string(),
     date: z.date(),
     abstract: z.string(),
-    skills: z.array(reference('skills')),
+    skills: z.array(reference("skills")),
     tags: z.array(z.string().regex(/^[a-z-]+$/)),
   }),
 })

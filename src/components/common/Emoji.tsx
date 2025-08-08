@@ -1,20 +1,20 @@
-import eyes from '~/assets/emojis/eyes.svg'
-import wave from '~/assets/emojis/wave.svg'
-
-interface EmojiProps {
-  text: string
-  size?: number
-}
+import eyes from "~/assets/emojis/eyes.svg"
+import wave from "~/assets/emojis/wave.svg"
 
 function source(text: string): string {
   switch (text) {
-    case '👀':
+    case "👀":
       return eyes.src
-    case '👋':
+    case "👋":
       return wave.src
     default:
       throw new Error(`Unsupported emoji: ${text}`)
   }
+}
+
+interface EmojiProps {
+  text: string
+  size?: number
 }
 
 export default function Emoji({ text, size }: EmojiProps) {

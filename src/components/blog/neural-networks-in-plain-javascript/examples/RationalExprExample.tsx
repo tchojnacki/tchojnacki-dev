@@ -1,4 +1,4 @@
-import ObjectTree from '~/components/blog/ObjectTree'
+import ObjectTree from "~/components/blog/ObjectTree"
 
 function topologicalSort<Node>(start: Node, neighbors: (node: Node) => Node[]): Node[] {
   const acc: Node[] = []
@@ -20,7 +20,7 @@ function topologicalSort<Node>(start: Node, neighbors: (node: Node) => Node[]): 
 }
 
 class Scalar {
-  static name = 'Scalar'
+  static name = "Scalar"
   value: number
   partial: number = 0
   $children: this[] = []

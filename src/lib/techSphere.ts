@@ -2,7 +2,7 @@ const { sin, asin, cos, acos, PI } = Math
 
 const GOLDEN_RATIO = (1 + Math.sqrt(5)) / 2
 
-interface Vec2D {
+type Vec2D = {
   x: number
   y: number
 }
@@ -13,7 +13,7 @@ export const v2sub = (v: Vec2D, w: Vec2D): Vec2D => ({ x: v.x - w.x, y: v.y - w.
 
 export const v2add = (v: Vec2D, w: Vec2D): Vec2D => ({ x: v.x + w.x, y: v.y + w.y })
 
-export interface Vec3D {
+export type Vec3D = {
   x: number
   y: number
   z: number
@@ -35,7 +35,7 @@ export const v3add = (v: Vec3D, w: Vec3D): Vec3D => ({ x: v.x + w.x, y: v.y + w.
 
 export const v3sub = (v: Vec3D, w: Vec3D): Vec3D => ({ x: v.x - w.x, y: v.y - w.y, z: v.z - w.z })
 
-interface Projection {
+type Projection = {
   cameraZ: number
   canvasSize: number
 }

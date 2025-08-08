@@ -1,18 +1,18 @@
-import { IconCaretDownFilled, IconCaretRightFilled } from '@tabler/icons-react'
-import clsx from 'clsx'
-import { useState } from 'react'
-
-interface PropertyNodeProps {
-  name: string | null
-  value: any
-}
+import { IconCaretDownFilled, IconCaretRightFilled } from "@tabler/icons-react"
+import clsx from "clsx"
+import { useState } from "react"
 
 const propertiesOf = (instance: any): [string, any][] => {
   const fields = Object.entries(instance)
   const getters = Object.entries(Object.getOwnPropertyDescriptors(Reflect.getPrototypeOf(instance)))
-    .filter(e => typeof e[1].get === 'function' && e[0] !== '__proto__')
+    .filter(e => typeof e[1].get === "function" && e[0] !== "__proto__")
     .map(([name]) => [name, instance[name]] as [string, any])
   return [...fields, ...getters]
+}
+
+interface PropertyNodeProps {
+  name: string | null
+  value: any
 }
 
 function PropertyNode({ name, value }: PropertyNodeProps) {
@@ -22,11 +22,11 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
     if (!name) {
       return <></>
     }
-    const formatted = name.replace('$', '#')
+    const formatted = name.replace("$", "#")
     const isIndex = !isNaN(parseInt(name))
     return (
       <>
-        <span className={isIndex ? 'opacity-50' : ''}>{formatted}</span>
+        <span className={isIndex ? "opacity-50" : ""}>{formatted}</span>
         <span className="opacity-50">:&nbsp;</span>
       </>
     )
@@ -40,13 +40,13 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
         </span>
       )
     }
-    if (typeof value === 'object') {
+    if (typeof value === "object") {
       const constr = Reflect.getPrototypeOf(value)?.constructor.name
       return (
         <span
           className={clsx(
-            constr !== 'Object' && 'font-bold',
-            'text-purple-700 opacity-50 dark:text-purple-300',
+            constr !== "Object" && "font-bold",
+            "text-purple-700 opacity-50 dark:text-purple-300",
           )}
         >
           {constr}
@@ -59,10 +59,10 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
   const childrenFrag = (() => {
     if (Array.isArray(value)) {
       if (value.length === 0) {
-        return ' = []'
+        return " = []"
       }
       if (!open) {
-        return ' = [ ... ]'
+        return " = [ ... ]"
       }
       return (
         <ol>
@@ -72,12 +72,12 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
         </ol>
       )
     }
-    if (typeof value === 'object') {
+    if (typeof value === "object") {
       if (propertiesOf(value).length === 0) {
-        return ' = {}'
+        return " = {}"
       }
       if (!open) {
-        return ' = { ... }'
+        return " = { ... }"
       }
       return (
         <ul>
@@ -87,10 +87,10 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
         </ul>
       )
     }
-    if (typeof value === 'function') {
-      return ''
+    if (typeof value === "function") {
+      return ""
     }
-    if (typeof value === 'string') {
+    if (typeof value === "string") {
       return ` = "${value}"`
     }
     return ` = ${value}`
@@ -100,7 +100,7 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
     if (Array.isArray(value)) {
       return value.length > 0
     }
-    if (typeof value === 'object') {
+    if (typeof value === "object") {
       return propertiesOf(value).length > 0
     }
     return false
