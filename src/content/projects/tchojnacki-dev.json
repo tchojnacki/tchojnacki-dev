@@ -16,7 +16,7 @@
   "parts": [
     {
       "name": "Website",
-      "skillIds": ["astro", "react", "tailwind-css", "typescript", "lodash"]
+      "skillIds": ["astro", "react", "tailwind-css", "typescript", "mdx", "lodash"]
     },
     {
       "name": "Tools",

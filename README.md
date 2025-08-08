@@ -1,10 +1,16 @@
-# [tchojnacki.dev](https://tchojnacki.dev) - a personal website 🧑‍💻
+# [tchojnacki.dev](https://tchojnacki.dev) – a personal website 🧑‍💻
 <div align="center">
 
 [![vercel](https://img.shields.io/github/deployments/tchojnacki/tchojnacki-dev/Production?label=vercel&logo=vercel)](https://tchojnacki.dev)
 [![checks](https://img.shields.io/github/checks-status/tchojnacki/tchojnacki-dev/main)](https://github.com/tchojnacki/tchojnacki-dev/actions)
 [![codecov](https://codecov.io/gh/tchojnacki/tchojnacki-dev/branch/main/graph/badge.svg?token=XUHWAY4YYO)](https://codecov.io/gh/tchojnacki/tchojnacki-dev)
 [![issues](https://img.shields.io/github/issues/tchojnacki/tchojnacki-dev)](https://github.com/tchojnacki/tchojnacki-dev/issues)
+
+![Astro](https://img.shields.io/badge/Astro-BC52EE?logo=astro&logoColor=fff)
+![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff)
+![MDX](https://img.shields.io/badge/MDX-1B1F24?logo=mdx&logoColor=fff)
 
 </div>
 
@@ -20,6 +26,9 @@
 - Lodash
 - Prettier
 - Git
+- GitHub Actions
+- Vercel
+- Figma
 
 ## Deployment 🚀
 ### Production 🌐
