@@ -5,6 +5,7 @@ import { useReducer, type CSSProperties, type ImgHTMLAttributes } from 'react'
 import SkillIcon from '~/components/skills/SkillIcon'
 import type { Project } from '~/content'
 import { useIsMounted } from '~/hooks'
+
 import ProjectCardLink from './ProjectCardLink'
 import ProjectCardTag from './ProjectCardTag'
 

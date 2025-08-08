@@ -1,4 +1,5 @@
 // Adapted from: https://www.joshwcomeau.com/react/prefers-reduced-motion
+
 import { useDebugValue, useEffect, useState } from 'react'
 
 const QUERY = '(prefers-reduced-motion: no-preference)'

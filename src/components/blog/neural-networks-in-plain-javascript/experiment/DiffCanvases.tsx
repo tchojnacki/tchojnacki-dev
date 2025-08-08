@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react'
+
 import { lerp } from '~/lib/math'
+
 import type { Model } from './domain'
 
 type DiffCanvasesProps = { model: Model; losses: number[] }

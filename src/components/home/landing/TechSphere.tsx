@@ -13,10 +13,9 @@ import {
 } from '~/hooks'
 import {
   DAMPING_FACTOR,
+  findRotation,
   INITIAL_ROTATION_AXIS,
   INITIAL_ROTATION_SPEED,
-  type Vec3D,
-  findRotation,
   initialPositionsOf,
   pointerToSpherePoint,
   rotateAroundUnitVector,
@@ -25,6 +24,7 @@ import {
   v2sub,
   v3scale,
   worldToCamera,
+  type Vec3D,
 } from '~/lib/techSphere'
 
 const FONT_SCALE = 0.05

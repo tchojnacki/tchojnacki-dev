@@ -1,4 +1,5 @@
 import { fromPairs, sortBy } from 'lodash-es'
+
 import { type Project, type Skill } from '~/content'
 
 export function jaccard(a: string, b: string, list: string[][]) {

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { getReadingTimeMinutes, remarkReadingTime } from '~/lib/readingTime'
 
 describe(getReadingTimeMinutes, () => {

@@ -21,7 +21,7 @@ export default function Select<T>({
 }: ParamSelectProps<T>) {
   return (
     <select
-      className="rounded-md bg-neutral-600 px-2 py-0.5 text-neutral-0 disabled:opacity-50"
+      className="text-neutral-0 rounded-md bg-neutral-600 px-2 py-0.5 disabled:opacity-50"
       autoComplete="off"
       value={serialize(current)}
       onChange={e => {

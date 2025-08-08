@@ -1,8 +1,10 @@
 import { Fragment, useRef, useState, type PropsWithChildren } from 'react'
+
 import ObjectTree from '~/components/blog/ObjectTree'
 import PromptBlock from '~/components/blog/PromptBlock'
 import { lerp } from '~/lib/math'
 import { cpuBoundLoop } from '~/lib/perf'
+
 import Button from './Button'
 import DiffCanvases from './DiffCanvases'
 import { Network } from './domain'

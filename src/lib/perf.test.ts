@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { cpuBoundLoop } from '~/lib/perf'
 
 describe(cpuBoundLoop, () => {

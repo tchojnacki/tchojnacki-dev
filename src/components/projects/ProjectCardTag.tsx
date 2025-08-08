@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+
 import type { ProjectTag } from '~/content'
 
 interface ProjectCardTagProps {

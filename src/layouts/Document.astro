@@ -1,11 +1,14 @@
 ---
 // @ts-ignore
-import { SEO } from 'astro-seo'
-import { Font } from 'astro:assets'
+
 import Analytics from '@vercel/analytics/astro'
 import SpeedInsights from '@vercel/speed-insights/astro'
-import '~/global.css'
+import { SEO } from 'astro-seo'
+import { Font } from 'astro:assets'
+
 import { canonize } from '~/lib/format'
+
+import '~/global.css'
 
 const DEFAULT_TITLE = 'Tomasz Chojnacki'
 const DEFAULT_DESCRIPTION =

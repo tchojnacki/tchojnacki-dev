@@ -1,4 +1,5 @@
 # [tchojnacki.dev](https://tchojnacki.dev) – a personal website 🧑‍💻
+
 <div align="center">
 
 [![vercel](https://img.shields.io/github/deployments/tchojnacki/tchojnacki-dev/Production?label=vercel&logo=vercel)](https://tchojnacki.dev)
@@ -17,6 +18,7 @@
 ![The landing page of the website.](./public/static/open-graph.png)
 
 ## Technology 🔧
+
 - Astro
 - React
 - Tailwind CSS
@@ -31,26 +33,35 @@
 - Figma
 
 ## Deployment 🚀
+
 ### Production 🌐
+
 The website is available online at [tchojnacki.dev](https://tchojnacki.dev), deployed through [Vercel](https://vercel.com/home).
 
 ### Development 🏗
+
 Run the development server:
+
 ```bash
 npm run dev
 ```
+
 Open [http://localhost:4321](http://localhost:4321) with your browser to see the result.
 
 You can build the project and preview an optimized version using:
+
 ```bash
 npm run build
 npm run preview
 ```
 
 ### Testing 🧪
+
 Enter the following command:
+
 ```bash
 npm run test
 ```
+
 Test results will be printed alongside a coverage report. The tests are also run as part of the CI/CD process
 on every pull request. Note that only the logic is tested - there are no visual tests.

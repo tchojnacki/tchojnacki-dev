@@ -1,0 +1,13 @@
+{
+  "printWidth": 100,
+  "semi": false,
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "importOrder": ["", "<THIRD_PARTY_MODULES>", "", "^~", "", "^\\."],
+  "plugins": [
+    "prettier-plugin-astro",
+    "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "overrides": [{ "files": "*.astro", "options": { "parser": "astro" } }]
+}

@@ -1,4 +1,5 @@
 import { IconMoon, IconSun } from '@tabler/icons-react'
+
 import { useIsMounted, useTheme } from '~/hooks'
 
 export default function ThemeButton() {

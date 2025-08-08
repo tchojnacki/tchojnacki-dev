@@ -1,9 +1,10 @@
 import type { ComponentProps } from 'react'
+
 import Link from '../common/Link'
 
 function H1({ children, id }: ComponentProps<'h1'>) {
   return (
-    <h2 id={id} className="mb-3 mt-6 text-2xl font-bold text-neutral-1000 dark:text-neutral-0">
+    <h2 id={id} className="text-neutral-1000 dark:text-neutral-0 mt-6 mb-3 text-2xl font-bold">
       <a href={`#${id}`}>{children}</a>
     </h2>
   )
@@ -11,7 +12,7 @@ function H1({ children, id }: ComponentProps<'h1'>) {
 
 function H2({ children, id }: ComponentProps<'h2'>) {
   return (
-    <h3 id={id} className="mb-2.5 mt-5 text-xl font-bold text-neutral-1000 dark:text-neutral-0">
+    <h3 id={id} className="text-neutral-1000 dark:text-neutral-0 mt-5 mb-2.5 text-xl font-bold">
       <a href={`#${id}`}>{children}</a>
     </h3>
   )
@@ -19,7 +20,7 @@ function H2({ children, id }: ComponentProps<'h2'>) {
 
 function H3({ children, id }: ComponentProps<'h3'>) {
   return (
-    <h4 id={id} className="mb-2 mt-4 text-lg font-bold text-neutral-1000 dark:text-neutral-0">
+    <h4 id={id} className="text-neutral-1000 dark:text-neutral-0 mt-4 mb-2 text-lg font-bold">
       <a href={`#${id}`}>{children}</a>
     </h4>
   )
@@ -27,7 +28,7 @@ function H3({ children, id }: ComponentProps<'h3'>) {
 
 function H4({ children, id }: ComponentProps<'h4'>) {
   return (
-    <h5 id={id} className="mb-1.5 mt-3 text-base font-bold text-neutral-1000 dark:text-neutral-0">
+    <h5 id={id} className="text-neutral-1000 dark:text-neutral-0 mt-3 mb-1.5 text-base font-bold">
       <a href={`#${id}`}>{children}</a>
     </h5>
   )

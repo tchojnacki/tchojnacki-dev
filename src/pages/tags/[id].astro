@@ -1,6 +1,7 @@
 ---
 import PostList from '~/components/blog/PostList.astro'
 import { getTags, pathsFrom } from '~/content'
+
 import Layout from '../../layouts/Layout.astro'
 
 export const getStaticPaths = pathsFrom(getTags, id => ({ params: { id } }))

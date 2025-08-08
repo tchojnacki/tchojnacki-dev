@@ -1,5 +1,6 @@
 import rss from '@astrojs/rss'
 import type { APIContext } from 'astro'
+
 import { getPosts } from '~/content'
 
 const posts = await getPosts()
