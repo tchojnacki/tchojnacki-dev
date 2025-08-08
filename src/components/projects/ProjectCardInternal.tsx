@@ -1,36 +1,16 @@
-import {
-  IconBrandGithub,
-  IconDownload,
-  IconExternalLink,
-  IconFileTypePdf,
-  IconMessageStar,
-  IconNotebook,
-  IconPlayerPause,
-  IconPlayerPlay,
-  IconZoomCancel,
-  IconZoomIn,
-} from '@tabler/icons-react'
+import { IconPlayerPause, IconPlayerPlay, IconZoomCancel, IconZoomIn } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { useReducer, type CSSProperties, type ImgHTMLAttributes } from 'react'
 
-import LinkButton from '~/components/common/LinkButton'
 import SkillIcon from '~/components/skills/SkillIcon'
-import type { Project, ProjectLink, ProjectTag } from '~/content'
+import type { Project } from '~/content'
 import { useIsMounted } from '~/hooks'
+import ProjectCardLink from './ProjectCardLink'
+import ProjectCardTag from './ProjectCardTag'
 
 export type ProjectImage = ImgHTMLAttributes<HTMLImageElement> & {
   width: number
   height: number
-}
-
-interface TagProps {
-  tag: ProjectTag
-  small?: boolean
-}
-
-interface LinkProps {
-  link: ProjectLink
-  isActive: boolean
 }
 
 interface ProjectCardInternalProps {
@@ -38,54 +18,6 @@ interface ProjectCardInternalProps {
   flipped: boolean
   heading: number
   image: ProjectImage
-}
-
-function Tag({ tag, small }: TagProps) {
-  const { label, backgroundColor } = {
-    personal: { label: 'Personal', backgroundColor: '#115e59' },
-    academic: { label: 'Academic', backgroundColor: '#115e59' },
-    freelance: { label: 'Freelance', backgroundColor: '#115e59' },
-    bootcamp: { label: 'Bootcamp', backgroundColor: '#115e59' },
-    group: { label: 'Group', backgroundColor: '#6b21a8' },
-    wip: { label: 'WIP', backgroundColor: '#854d0e' },
-    deprecated: { label: 'DEPRECATED', backgroundColor: '#9f1239' },
-  }[tag]
-
-  return (
-    <li
-      style={{ backgroundColor }}
-      className={clsx(
-        'block rounded-full whitespace-nowrap text-neutral-100',
-        small ? 'px-2 text-sm' : 'px-3',
-      )}
-    >
-      {label}
-    </li>
-  )
-}
-
-function Link({ link: { type, href, part }, isActive }: LinkProps) {
-  const { label, Icon } = {
-    repository: { label: 'Repository', Icon: IconBrandGithub },
-    livedemo: { label: 'Live Demo', Icon: IconExternalLink },
-    documentation: { label: 'Documentation', Icon: IconNotebook },
-    download: { label: 'Download', Icon: IconDownload },
-    publication: { label: 'Publication', Icon: IconFileTypePdf },
-    blogpost: { label: 'Blog Post', Icon: IconMessageStar },
-  }[type]
-
-  return (
-    <li>
-      <LinkButton
-        external
-        href={href}
-        size="small"
-        className={clsx('flex! items-center gap-2', isActive && 'opacity-10 hover:opacity-100')}
-      >
-        <Icon role="presentation" /> {label + (part ? ` – ${part}` : '')}
-      </LinkButton>
-    </li>
-  )
 }
 
 export default function ProjectCardInternal({
@@ -161,7 +93,7 @@ export default function ProjectCardInternal({
           {project.links.length > 0 ? (
             <ul className="z-2 m-4 inline-flex h-min flex-col gap-2 [grid-area:buttons]">
               {project.links.map(link => (
-                <Link
+                <ProjectCardLink
                   key={`${link.type}-${link.href}-${link.part}`}
                   link={link}
                   isActive={isActive}
@@ -193,7 +125,7 @@ export default function ProjectCardInternal({
           {project.tags.length > 0 ? (
             <ul itemProp="keywords" className="flex gap-2">
               {project.tags.map(tag => (
-                <Tag key={tag} tag={tag} />
+                <ProjectCardTag key={tag} tag={tag} />
               ))}
             </ul>
           ) : null}
@@ -208,7 +140,7 @@ export default function ProjectCardInternal({
               {part.tags.length > 0 ? (
                 <ul className="flex gap-2">
                   {part.tags.map(tag => (
-                    <Tag key={tag} tag={tag} small />
+                    <ProjectCardTag key={tag} tag={tag} small />
                   ))}
                 </ul>
               ) : null}

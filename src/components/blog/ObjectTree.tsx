@@ -2,17 +2,17 @@ import { IconCaretDownFilled, IconCaretRightFilled } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { useState } from 'react'
 
-interface PropertyNodeProps {
-  name: string | null
-  value: any
-}
-
 const propertiesOf = (instance: any): [string, any][] => {
   const fields = Object.entries(instance)
   const getters = Object.entries(Object.getOwnPropertyDescriptors(Reflect.getPrototypeOf(instance)))
     .filter(e => typeof e[1].get === 'function' && e[0] !== '__proto__')
     .map(([name]) => [name, instance[name]] as [string, any])
   return [...fields, ...getters]
+}
+
+interface PropertyNodeProps {
+  name: string | null
+  value: any
 }
 
 function PropertyNode({ name, value }: PropertyNodeProps) {
