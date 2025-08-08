@@ -1,18 +1,18 @@
 ---
 // @ts-ignore
 
-import Analytics from '@vercel/analytics/astro'
-import SpeedInsights from '@vercel/speed-insights/astro'
-import { SEO } from 'astro-seo'
-import { Font } from 'astro:assets'
+import Analytics from "@vercel/analytics/astro"
+import SpeedInsights from "@vercel/speed-insights/astro"
+import { SEO } from "astro-seo"
+import { Font } from "astro:assets"
 
-import { canonize } from '~/lib/format'
+import { canonize } from "~/lib/format"
 
-import '~/global.css'
+import "~/global.css"
 
-const DEFAULT_TITLE = 'Tomasz Chojnacki'
+const DEFAULT_TITLE = "Tomasz Chojnacki"
 const DEFAULT_DESCRIPTION =
-  'Personal website of Tomasz Chojnacki, a graduate software engineer based in Wrocław.'
+  "Personal website of Tomasz Chojnacki, a graduate software engineer based in Wrocław."
 
 interface Props {
   name?: string
@@ -21,7 +21,7 @@ interface Props {
 
 const { name, description = DEFAULT_DESCRIPTION } = Astro.props
 const title = name ? `${name} - ${DEFAULT_TITLE}` : DEFAULT_TITLE
-const image = new URL('/static/open-graph.png', Astro.site).toString()
+const image = new URL("/static/open-graph.png", Astro.site).toString()
 const canonical = canonize(Astro.url.href)
 ---
 
@@ -36,23 +36,23 @@ const canonical = canonize(Astro.url.href)
       openGraph={{
         basic: {
           title,
-          type: 'website',
+          type: "website",
           image,
           url: canonical,
         },
         optional: {
           description,
           siteName: DEFAULT_TITLE,
-          locale: 'en_US',
+          locale: "en_US",
         },
         image: {
           url: image,
           width: 1280,
           height: 720,
-          alt: 'Image of the website.',
+          alt: "Image of the website.",
         },
       }}
-      twitter={{ card: 'summary' }}
+      twitter={{ card: "summary" }}
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/static/favicon.ico" />
@@ -61,19 +61,19 @@ const canonical = canonize(Astro.url.href)
     <Font cssVariable="--font-inter" preload />
     <script is:inline>
       const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          const local = localStorage.getItem('theme')
-          if (local === 'dark' || local === 'light') {
+        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+          const local = localStorage.getItem("theme")
+          if (local === "dark" || local === "light") {
             return local
           }
         }
-        return 'dark'
+        return "dark"
       })()
 
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark')
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark")
       } else {
-        document.documentElement.classList.remove('dark')
+        document.documentElement.classList.remove("dark")
       }
     </script>
   </head>

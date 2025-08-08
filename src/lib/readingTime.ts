@@ -1,4 +1,4 @@
-import { toString } from 'mdast-util-to-string'
+import { toString } from "mdast-util-to-string"
 
 const WPM = 200
 

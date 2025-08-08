@@ -19,7 +19,7 @@ function topologicalSort<Node>(start: Node, neighbors: (node: Node) => Node[]): 
 }
 
 class Scalar {
-  static name = 'Scalar'
+  static name = "Scalar"
   value: number
   partial: number = 0
   $children: this[] = []
@@ -104,7 +104,7 @@ class Scalar {
 }
 
 export abstract class Model {
-  static name = 'Model'
+  static name = "Model"
   abstract get parameters(): Scalar[]
   abstract evaluate(x: Scalar[]): Scalar
 
@@ -137,12 +137,12 @@ export abstract class Model {
 }
 
 class Neuron extends Model {
-  static override name = 'Neuron'
+  static override name = "Neuron"
   $w: Scalar[]
   $b: Scalar
-  $activation: 'linear' | 'relu'
+  $activation: "linear" | "relu"
 
-  constructor(inputCount: number, activation: 'linear' | 'relu' = 'relu') {
+  constructor(inputCount: number, activation: "linear" | "relu" = "relu") {
     super()
     this.$w = Array.from({ length: inputCount }, () => new Scalar(Math.random() * 2 - 1))
     this.$b = new Scalar(0)
@@ -161,10 +161,10 @@ class Neuron extends Model {
 }
 
 class Layer {
-  static name = 'Layer'
+  static name = "Layer"
   $neurons: Neuron[]
 
-  constructor(inputCount: number, outputCount: number, activation: 'linear' | 'relu') {
+  constructor(inputCount: number, outputCount: number, activation: "linear" | "relu") {
     this.$neurons = Array.from({ length: outputCount }, () => new Neuron(inputCount, activation))
   }
 
@@ -178,15 +178,15 @@ class Layer {
 }
 
 export class Network extends Model {
-  static override name = 'Network'
+  static override name = "Network"
   $layers: Layer[]
 
   constructor(inputCount: number, layers: number[] = []) {
     super()
     const sizes = [inputCount, ...layers]
     this.$layers = [
-      ...layers.map((_, i) => new Layer(sizes[i]!, sizes[i + 1]!, 'relu')),
-      new Layer(sizes[sizes.length - 1]!, 1, 'linear'),
+      ...layers.map((_, i) => new Layer(sizes[i]!, sizes[i + 1]!, "relu")),
+      new Layer(sizes[sizes.length - 1]!, 1, "linear"),
     ]
   }
 

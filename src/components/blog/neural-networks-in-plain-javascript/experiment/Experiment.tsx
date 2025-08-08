@@ -1,14 +1,14 @@
-import { Fragment, useRef, useState, type PropsWithChildren } from 'react'
+import { Fragment, useRef, useState, type PropsWithChildren } from "react"
 
-import ObjectTree from '~/components/blog/ObjectTree'
-import PromptBlock from '~/components/blog/PromptBlock'
-import { lerp } from '~/lib/math'
-import { cpuBoundLoop } from '~/lib/perf'
+import ObjectTree from "~/components/blog/ObjectTree"
+import PromptBlock from "~/components/blog/PromptBlock"
+import { lerp } from "~/lib/math"
+import { cpuBoundLoop } from "~/lib/perf"
 
-import Button from './Button'
-import DiffCanvases from './DiffCanvases'
-import { Network } from './domain'
-import LossFigure from './LossFigure'
+import Button from "./Button"
+import DiffCanvases from "./DiffCanvases"
+import { Network } from "./domain"
+import LossFigure from "./LossFigure"
 import {
   batchOptions,
   defaultBatch,
@@ -16,8 +16,8 @@ import {
   defaultLayer,
   etaOptions,
   layerOptions,
-} from './params'
-import Select from './Select'
+} from "./params"
+import Select from "./Select"
 
 export default function Experiment({ children }: PropsWithChildren) {
   const [layers, setLayers] = useState(defaultLayer)
@@ -57,14 +57,14 @@ export default function Experiment({ children }: PropsWithChildren) {
   return (
     <figure>
       <PromptBlock>
-        const model = new Network(2,{' '}
+        const model = new Network(2,{" "}
         <Select
           options={layerOptions}
           current={layers}
           setCurrent={l => setLayers(l)}
           serialize={JSON.stringify}
           deserialize={JSON.parse}
-          display={l => `[${l.join(', ')}]`}
+          display={l => `[${l.join(", ")}]`}
           onChange={l => {
             modelRef.current = new Network(2, l)
             setLosses([])
@@ -86,7 +86,7 @@ export default function Experiment({ children }: PropsWithChildren) {
           deserialize={parseInt}
           disabled={disabled}
         />
-        ,{' '}
+        ,{" "}
         <Select
           options={etaOptions}
           current={eta}
@@ -100,7 +100,7 @@ export default function Experiment({ children }: PropsWithChildren) {
         <br className="mb-2 sm:hidden" />
         {[1, 10, 100].map(n => (
           <Fragment key={n}>
-            {' '}
+            {" "}
             <Button text={`RUN x${n}`} onClick={() => run(n)} disabled={disabled} />
           </Fragment>
         ))}

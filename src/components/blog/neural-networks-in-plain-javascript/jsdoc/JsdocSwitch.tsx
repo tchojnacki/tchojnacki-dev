@@ -1,7 +1,7 @@
-import { useStore } from '@nanostores/react'
-import { useId } from 'react'
+import { useStore } from "@nanostores/react"
+import { useId } from "react"
 
-import { isJsdocShown } from '~/components/blog/neural-networks-in-plain-javascript/jsdoc/store'
+import { isJsdocShown } from "~/components/blog/neural-networks-in-plain-javascript/jsdoc/store"
 
 export default function JsdocSwitch() {
   const id = useId()

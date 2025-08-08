@@ -1,6 +1,6 @@
-import { routes } from '~/consts/routes'
+import { routes } from "~/consts/routes"
 
-import NavLink from './NavLink'
+import NavLink from "./NavLink"
 
 const entries = [routes.about, routes.projects, routes.blog]
 

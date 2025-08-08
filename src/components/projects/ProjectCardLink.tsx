@@ -5,12 +5,12 @@ import {
   IconFileTypePdf,
   IconMessageStar,
   IconNotebook,
-} from '@tabler/icons-react'
-import clsx from 'clsx'
+} from "@tabler/icons-react"
+import clsx from "clsx"
 
-import type { ProjectLink } from '~/content'
+import type { ProjectLink } from "~/content"
 
-import LinkButton from '../common/LinkButton'
+import LinkButton from "../common/LinkButton"
 
 interface ProjectCardLinkProps {
   link: ProjectLink
@@ -22,12 +22,12 @@ export default function ProjectCardLink({
   isActive,
 }: ProjectCardLinkProps) {
   const { label, Icon } = {
-    repository: { label: 'Repository', Icon: IconBrandGithub },
-    livedemo: { label: 'Live Demo', Icon: IconExternalLink },
-    documentation: { label: 'Documentation', Icon: IconNotebook },
-    download: { label: 'Download', Icon: IconDownload },
-    publication: { label: 'Publication', Icon: IconFileTypePdf },
-    blogpost: { label: 'Blog Post', Icon: IconMessageStar },
+    repository: { label: "Repository", Icon: IconBrandGithub },
+    livedemo: { label: "Live Demo", Icon: IconExternalLink },
+    documentation: { label: "Documentation", Icon: IconNotebook },
+    download: { label: "Download", Icon: IconDownload },
+    publication: { label: "Publication", Icon: IconFileTypePdf },
+    blogpost: { label: "Blog Post", Icon: IconMessageStar },
   }[type]
 
   return (
@@ -36,9 +36,9 @@ export default function ProjectCardLink({
         external
         href={href}
         size="small"
-        className={clsx('flex! items-center gap-2', isActive && 'opacity-10 hover:opacity-100')}
+        className={clsx("flex! items-center gap-2", isActive && "opacity-10 hover:opacity-100")}
       >
-        <Icon role="presentation" /> {label + (part ? ` – ${part}` : '')}
+        <Icon role="presentation" /> {label + (part ? ` – ${part}` : "")}
       </LinkButton>
     </li>
   )

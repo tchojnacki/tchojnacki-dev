@@ -7,9 +7,9 @@ import {
   IconBrandYcombinator,
   IconLetterL,
   IconRss,
-} from '@tabler/icons-react'
+} from "@tabler/icons-react"
 
-import Link from '~/components/common/Link'
+import Link from "~/components/common/Link"
 
 interface Props {
   id: string
@@ -22,28 +22,28 @@ const url = new URL(`/blog/${id}`, Astro.site).toString()
 const socials = [
   {
     Icon: IconBrandTwitter,
-    name: 'Twitter / X',
+    name: "Twitter / X",
     href: `https://x.com/intent/tweet?url=${url}`,
   },
   {
     Icon: IconBrandLinkedin,
-    name: 'LinkedIn',
+    name: "LinkedIn",
     href: `https://www.linkedin.com/sharing/share-offsite?url=${url}`,
   },
   {
     Icon: IconBrandReddit,
-    name: 'Reddit',
+    name: "Reddit",
     href: `https://www.reddit.com/submit?url=${url}`,
   },
   {
     Icon: IconBrandYcombinator,
-    name: 'Hacker News',
+    name: "Hacker News",
     href: `https://news.ycombinator.com/submitlink?u=${url}`,
   },
   {
     Icon: IconLetterL,
-    name: 'Lobsters',
-    href: 'https://lobste.rs',
+    name: "Lobsters",
+    href: "https://lobste.rs",
   },
 ]
 ---

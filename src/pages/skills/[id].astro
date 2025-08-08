@@ -1,14 +1,14 @@
 ---
-import PostList from '~/components/blog/PostList.astro'
-import SectionHeader from '~/components/common/SectionHeader.astro'
-import Wave from '~/components/common/Wave.astro'
-import ProjectList from '~/components/projects/ProjectList.astro'
-import SkillCard from '~/components/skills/SkillCard.astro'
-import SkillCardWrapper from '~/components/skills/SkillCardWrapper.astro'
-import SkillIcon from '~/components/skills/SkillIcon'
-import { getProjects, getSkillById, getSkills, pathsFrom } from '~/content'
-import Layout from '~/layouts/Layout.astro'
-import { calculateRelatedSkills } from '~/lib/relatedSkills'
+import PostList from "~/components/blog/PostList.astro"
+import SectionHeader from "~/components/common/SectionHeader.astro"
+import Wave from "~/components/common/Wave.astro"
+import ProjectList from "~/components/projects/ProjectList.astro"
+import SkillCard from "~/components/skills/SkillCard.astro"
+import SkillCardWrapper from "~/components/skills/SkillCardWrapper.astro"
+import SkillIcon from "~/components/skills/SkillIcon"
+import { getProjects, getSkillById, getSkills, pathsFrom } from "~/content"
+import Layout from "~/layouts/Layout.astro"
+import { calculateRelatedSkills } from "~/lib/relatedSkills"
 
 export const getStaticPaths = pathsFrom(getSkills, ({ id }) => ({ params: { id } }))
 

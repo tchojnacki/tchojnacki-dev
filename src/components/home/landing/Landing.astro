@@ -1,32 +1,32 @@
 ---
-import { IconBrandGithub, IconBrandLinkedin, IconFileCv } from '@tabler/icons-react'
+import { IconBrandGithub, IconBrandLinkedin, IconFileCv } from "@tabler/icons-react"
 
-import Wave from '~/components/common/Wave.astro'
-import { github, linkedin, resume } from '~/consts/socials'
-import { getSkillById } from '~/content'
+import Wave from "~/components/common/Wave.astro"
+import { github, linkedin, resume } from "~/consts/socials"
+import { getSkillById } from "~/content"
 
-import SocialLink from './SocialLink.astro'
-import TechSphere from './TechSphere'
-import WavingEmoji from './WavingEmoji'
+import SocialLink from "./SocialLink.astro"
+import TechSphere from "./TechSphere"
+import WavingEmoji from "./WavingEmoji"
 
 const skillIds = [
-  'react',
-  'typescript',
-  'python',
-  'rust',
-  'astro',
-  'nextjs',
-  'tailwind-css',
-  'postgres',
-  'mongodb',
-  'docker',
-  'nestjs',
-  'angular',
-  'csharp',
-  'java',
-  'aws',
-  'web-assembly',
-  'latex',
+  "react",
+  "typescript",
+  "python",
+  "rust",
+  "astro",
+  "nextjs",
+  "tailwind-css",
+  "postgres",
+  "mongodb",
+  "docker",
+  "nestjs",
+  "angular",
+  "csharp",
+  "java",
+  "aws",
+  "web-assembly",
+  "latex",
 ]
 
 const skillNames = await Promise.all(skillIds.map(id => getSkillById(id).then(s => s.name)))

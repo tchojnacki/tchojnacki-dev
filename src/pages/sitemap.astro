@@ -1,10 +1,10 @@
 ---
-import Link from '~/components/common/Link'
-import { routes } from '~/consts/routes'
-import { getPosts, getSkills, getTags } from '~/content'
-import Listing from '~/layouts/Listing.astro'
+import Link from "~/components/common/Link"
+import { routes } from "~/consts/routes"
+import { getPosts, getSkills, getTags } from "~/content"
+import Listing from "~/layouts/Listing.astro"
 
-const listClass = 'list-disc pl-8'
+const listClass = "list-disc pl-8"
 
 const postList = await getPosts()
 const tagList = await getTags()

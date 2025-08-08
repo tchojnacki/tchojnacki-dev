@@ -1,6 +1,6 @@
-import { fromPairs, sortBy } from 'lodash-es'
+import { fromPairs, sortBy } from "lodash-es"
 
-import { type Project, type Skill } from '~/content'
+import { type Project, type Skill } from "~/content"
 
 export function jaccard(a: string, b: string, list: string[][]) {
   const aSize = list.filter(p => p.includes(a)).length

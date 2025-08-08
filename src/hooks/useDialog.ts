@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react'
+import { useRef, useState } from "react"
 
-import { useEventListener } from './useEventListener'
+import { useEventListener } from "./useEventListener"
 
 export function useDialog() {
   const [isOpen, setIsOpen] = useState(false)
@@ -11,7 +11,7 @@ export function useDialog() {
     if (!isOpen) {
       dialogRef.current?.showModal()
       setIsOpen(true)
-      document.body.classList.add('overflow-hidden')
+      document.body.classList.add("overflow-hidden")
     } else {
       dialogRef.current?.close()
     }
@@ -19,17 +19,17 @@ export function useDialog() {
 
   useEventListener(
     dialogRef,
-    'close',
+    "close",
     () => {
       setIsOpen(false)
-      document.body.classList.remove('overflow-hidden')
+      document.body.classList.remove("overflow-hidden")
     },
     { passive: true },
   )
 
   useEventListener(
     dialogRef,
-    'click',
+    "click",
     e => {
       if (e.target === e.currentTarget || e.target instanceof HTMLAnchorElement) {
         dialogRef.current?.close()

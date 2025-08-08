@@ -1,7 +1,7 @@
-import { clamp } from 'lodash-es'
+import { clamp } from "lodash-es"
 
-import Chart from '~/components/blog/Chart'
-import { lerp } from '~/lib/math'
+import Chart from "~/components/blog/Chart"
+import { lerp } from "~/lib/math"
 
 type LossFigureProps = { losses: number[] }
 
@@ -18,8 +18,8 @@ export default function LossFigure({ losses }: LossFigureProps) {
     <figure>
       <Chart
         elements={[
-          { type: 'axes', lineWidth: 0.02 },
-          { type: 'path', color: 'orange', data },
+          { type: "axes", lineWidth: 0.02 },
+          { type: "path", color: "orange", data },
         ]}
       />
       <figcaption className="text-center">Loss{loss ? ` = ${loss.toFixed(5)}` : null}</figcaption>

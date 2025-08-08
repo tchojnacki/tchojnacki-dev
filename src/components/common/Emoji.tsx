@@ -1,11 +1,11 @@
-import eyes from '~/assets/emojis/eyes.svg'
-import wave from '~/assets/emojis/wave.svg'
+import eyes from "~/assets/emojis/eyes.svg"
+import wave from "~/assets/emojis/wave.svg"
 
 function source(text: string): string {
   switch (text) {
-    case '👀':
+    case "👀":
       return eyes.src
-    case '👋':
+    case "👋":
       return wave.src
     default:
       throw new Error(`Unsupported emoji: ${text}`)

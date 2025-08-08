@@ -1,13 +1,13 @@
-import { IconPlayerPause, IconPlayerPlay, IconZoomCancel, IconZoomIn } from '@tabler/icons-react'
-import clsx from 'clsx'
-import { useReducer, type CSSProperties, type ImgHTMLAttributes } from 'react'
+import { IconPlayerPause, IconPlayerPlay, IconZoomCancel, IconZoomIn } from "@tabler/icons-react"
+import clsx from "clsx"
+import { useReducer, type CSSProperties, type ImgHTMLAttributes } from "react"
 
-import SkillIcon from '~/components/skills/SkillIcon'
-import type { Project } from '~/content'
-import { useIsMounted } from '~/hooks'
+import SkillIcon from "~/components/skills/SkillIcon"
+import type { Project } from "~/content"
+import { useIsMounted } from "~/hooks"
 
-import ProjectCardLink from './ProjectCardLink'
-import ProjectCardTag from './ProjectCardTag'
+import ProjectCardLink from "./ProjectCardLink"
+import ProjectCardTag from "./ProjectCardTag"
 
 export type ProjectImage = ImgHTMLAttributes<HTMLImageElement> & {
   width: number
@@ -15,7 +15,7 @@ export type ProjectImage = ImgHTMLAttributes<HTMLImageElement> & {
 }
 
 interface ProjectCardInternalProps {
-  project: Omit<Project, 'image'>
+  project: Omit<Project, "image">
   flipped: boolean
   heading: number
   image: ProjectImage
@@ -36,38 +36,38 @@ export default function ProjectCardInternal({
   const activeIcon = maxImageScroll !== 0 ? IconPlayerPause : IconZoomCancel
   const inactiveIcon = maxImageScroll !== 0 ? IconPlayerPlay : IconZoomIn
   const ZoomIcon = isActive ? activeIcon : inactiveIcon
-  const H1 = `h${heading}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
-  const H2 = `h${heading + 1}` as 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  const H1 = `h${heading}` as "h1" | "h2" | "h3" | "h4" | "h5"
+  const H2 = `h${heading + 1}` as "h2" | "h3" | "h4" | "h5" | "h6"
 
   return (
     <>
       <div
         className={clsx(
-          'relative aspect-4/3',
-          flipped ? 'lg:onenter-fromright lg:col-start-4' : 'lg:onenter-fromleft lg:col-start-1',
-          'overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl',
-          'lg:shadow-indigo-925/25 shadow-none lg:shadow-md dark:lg:shadow-indigo-100/10',
-          'scale-100 duration-200 ease-in',
-          isActive && 'lg:scale-105',
-          isMounted ? 'motion-safe:animate-enteronload opacity-100' : 'opacity-0',
+          "relative aspect-4/3",
+          flipped ? "lg:onenter-fromright lg:col-start-4" : "lg:onenter-fromleft lg:col-start-1",
+          "overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl",
+          "lg:shadow-indigo-925/25 shadow-none lg:shadow-md dark:lg:shadow-indigo-100/10",
+          "scale-100 duration-200 ease-in",
+          isActive && "lg:scale-105",
+          isMounted ? "motion-safe:animate-enteronload opacity-100" : "opacity-0",
         )}
       >
         <img
           {...image}
           className={clsx(
-            'animate-scrollprojectimage absolute h-auto w-full',
-            isActive ? '[animation-play-state:running]' : '[animation-play-state:paused]',
+            "animate-scrollprojectimage absolute h-auto w-full",
+            isActive ? "[animation-play-state:running]" : "[animation-play-state:paused]",
           )}
           style={
             {
-              '--max-image-scroll': `-${maxImageScroll}%`,
+              "--max-image-scroll": `-${maxImageScroll}%`,
               animationDuration: `${imageScrollDuration}ms`,
             } as CSSProperties
           }
         />
         <div
           className={clsx(
-            'absolute top-0 left-0 grid h-full w-full grid-rows-[1fr] text-neutral-100',
+            "absolute top-0 left-0 grid h-full w-full grid-rows-[1fr] text-neutral-100",
             flipped
               ? "grid-cols-[1fr_auto] [grid-template-areas:'._buttons']"
               : "grid-cols-[auto_1fr] [grid-template-areas:'buttons_.']",
@@ -76,17 +76,17 @@ export default function ProjectCardInternal({
           <button
             aria-label="Zoom"
             className={clsx(
-              'z-1 col-start-1 col-end-[-1] row-start-1 row-end-[-1]',
-              'group flex items-center justify-center duration-200',
-              !isActive && 'bg-neutral-1000/25',
+              "z-1 col-start-1 col-end-[-1] row-start-1 row-end-[-1]",
+              "group flex items-center justify-center duration-200",
+              !isActive && "bg-neutral-1000/25",
             )}
             onClick={toggleActive}
           >
             <ZoomIcon
               role="presentation"
               className={clsx(
-                'duration-200',
-                isActive ? 'opacity-0 group-hover:opacity-25' : 'opacity-25 group-hover:opacity-75',
+                "duration-200",
+                isActive ? "opacity-0 group-hover:opacity-25" : "opacity-25 group-hover:opacity-75",
               )}
               size={64}
             />
@@ -109,14 +109,14 @@ export default function ProjectCardInternal({
         itemType="https://schema.org/SoftwareApplication"
         className={clsx(
           flipped
-            ? 'lg:onenter-fromleft bg-linear-to-l lg:col-start-1 lg:rounded-tr-3xl lg:rounded-bl-none'
-            : 'lg:onenter-fromright bg-linear-to-r lg:col-start-4 lg:rounded-tl-3xl lg:rounded-br-none',
-          'z-1 rounded-b-3xl p-4 sm:p-8 lg:col-span-5 lg:row-span-full',
-          'lg:to-neudigo-50 from-indigo-100 to-indigo-100',
-          'dark:from-indigo-925 dark:to-indigo-925 dark:lg:to-neudigo-950',
-          'translate-x-0 transition-[translate] duration-200 ease-in',
-          isActive && (flipped ? 'lg:-translate-x-1/3' : 'lg:translate-x-1/3'),
-          isMounted ? 'motion-safe:animate-enteronload opacity-100' : 'opacity-0',
+            ? "lg:onenter-fromleft bg-linear-to-l lg:col-start-1 lg:rounded-tr-3xl lg:rounded-bl-none"
+            : "lg:onenter-fromright bg-linear-to-r lg:col-start-4 lg:rounded-tl-3xl lg:rounded-br-none",
+          "z-1 rounded-b-3xl p-4 sm:p-8 lg:col-span-5 lg:row-span-full",
+          "lg:to-neudigo-50 from-indigo-100 to-indigo-100",
+          "dark:from-indigo-925 dark:to-indigo-925 dark:lg:to-neudigo-950",
+          "translate-x-0 transition-[translate] duration-200 ease-in",
+          isActive && (flipped ? "lg:-translate-x-1/3" : "lg:translate-x-1/3"),
+          isMounted ? "motion-safe:animate-enteronload opacity-100" : "opacity-0",
         )}
       >
         <H1 className="mb-2 flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-4">
@@ -135,7 +135,7 @@ export default function ProjectCardInternal({
           {project.description}
         </p>
         {project.parts.map(part => (
-          <section key={part.name} className={clsx(part.small ? 'lg:inline-block lg:w-1/2' : null)}>
+          <section key={part.name} className={clsx(part.small ? "lg:inline-block lg:w-1/2" : null)}>
             <H2 className="mt-4 mb-1 flex flex-col gap-2 lg:flex-row lg:items-center">
               <span className="mr-auto text-xl">{part.name}</span>
               {part.tags.length > 0 ? (

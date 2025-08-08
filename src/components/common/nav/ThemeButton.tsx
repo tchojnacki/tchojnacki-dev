@@ -1,6 +1,6 @@
-import { IconMoon, IconSun } from '@tabler/icons-react'
+import { IconMoon, IconSun } from "@tabler/icons-react"
 
-import { useIsMounted, useTheme } from '~/hooks'
+import { useIsMounted, useTheme } from "~/hooks"
 
 export default function ThemeButton() {
   const isMounted = useIsMounted()
@@ -10,12 +10,12 @@ export default function ThemeButton() {
     return <div className="h-8 w-12" />
   }
 
-  const ThemeIcon = theme === 'dark' ? IconSun : IconMoon
+  const ThemeIcon = theme === "dark" ? IconSun : IconMoon
 
   return (
     <button
       className="group px-3 py-1"
-      aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
       onClick={toggleTheme}
     >
       <ThemeIcon

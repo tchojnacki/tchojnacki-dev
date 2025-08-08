@@ -1,12 +1,12 @@
-import type { RefObject } from 'react'
+import type { RefObject } from "react"
 
-import { useEventListener } from './useEventListener'
+import { useEventListener } from "./useEventListener"
 
 export function usePointerStart(target: RefObject<HTMLElement | null>, handler: () => any) {
-  useEventListener(target, 'mousedown', handler, { passive: true })
+  useEventListener(target, "mousedown", handler, { passive: true })
   useEventListener(
     target,
-    'touchstart',
+    "touchstart",
     event => {
       event.preventDefault()
       handler()
@@ -16,6 +16,6 @@ export function usePointerStart(target: RefObject<HTMLElement | null>, handler: 
 }
 
 export function usePointerStop(target: RefObject<HTMLElement | null>, handler: () => any) {
-  useEventListener(target, 'pointerup', handler, { passive: true })
-  useEventListener(target, 'pointerleave', handler, { passive: true })
+  useEventListener(target, "pointerup", handler, { passive: true })
+  useEventListener(target, "pointerleave", handler, { passive: true })
 }
