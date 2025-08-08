@@ -47,20 +47,20 @@ const skillNames = await Promise.all(skillIds.map(id => getSkillById(id).then(s 
     </p>
     <nav class="flex items-center justify-center gap-8 lg:justify-start">
       <SocialLink {...github}>
-        <IconBrandGithub title={github.label} size="100%" />
+        <IconBrandGithub title={github.label} />
       </SocialLink>
       <SocialLink {...linkedin}>
-        <IconBrandLinkedin title={linkedin.label} size="100%" />
+        <IconBrandLinkedin title={linkedin.label} />
       </SocialLink>
       <SocialLink {...resume}>
-        <IconFileCv title={resume.label} size="100%" />
+        <IconFileCv title={resume.label} />
       </SocialLink>
     </nav>
   </section>
   <section
     class="motion-safe:animate-enteronload onenter-fromright grid h-full min-h-[75vw] w-full items-center justify-items-center overflow-hidden p-8 [grid-area:sphere] lg:min-h-full lg:items-end"
   >
-    <TechSphere client:load {skillNames} />
+    <TechSphere client:idle {skillNames} />
   </section>
   <div class="bottom-0 flex h-full w-full flex-col justify-end lg:absolute lg:h-[20vh]">
     <Wave full />

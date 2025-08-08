@@ -1,18 +1,16 @@
 ---
-import Nav from '~/components/common/nav/Nav'
 import Footer from '~/components/common/Footer.astro'
+import Nav from '~/components/common/nav/Nav.astro'
 import Document from './Document.astro'
 
 interface Props {
   name?: string
   description?: string
 }
-
-const { pathname } = Astro.url
 ---
 
 <Document {...Astro.props}>
-  <Nav {pathname} client:load />
+  <Nav />
   <slot />
   <Footer />
 </Document>

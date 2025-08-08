@@ -126,6 +126,8 @@
 @utility social-link {
   & svg {
     transform: scale(1.25);
+    height: 100%;
+    width: auto;
   }
   & path {
     transition-duration: 200ms;
