@@ -1,9 +1,11 @@
 ---
 // @ts-ignore
 import { SEO } from 'astro-seo'
-import { canonize } from '~/lib/format'
 import { Font } from 'astro:assets'
+import Analytics from '@vercel/analytics/astro'
+import SpeedInsights from '@vercel/speed-insights/astro'
 import '~/global.css'
+import { canonize } from '~/lib/format'
 
 const DEFAULT_TITLE = 'Tomasz Chojnacki'
 const DEFAULT_DESCRIPTION =
@@ -76,5 +78,7 @@ const canonical = canonize(Astro.url.href)
     class="bg-neudigo-50 dark:bg-neudigo-950 overflow-x-hidden text-neutral-900 dark:text-neutral-100"
   >
     <slot />
+    <Analytics />
+    <SpeedInsights />
   </body>
 </html>
