@@ -1,0 +1,75 @@
+---
+title: "Image optimization tips for web pages"
+author: "Tomasz Chojnacki"
+date: 2025-08-09
+abstract: "I recently reduced the total image transfer size for the entire Projects subpage by 93% and the initial-load image transfer size by over 99%. While this site is built with Astro, the used techniques are applicable for most website-building technologies and can provide sizeable performance improvements."
+skills: ["astro", "html"]
+tags: []
+---
+import Cite from "~/components/blog/Cite.astro"
+import Sources from "~/components/blog/Sources.astro"
+import SizeChart from "~/components/blog/image-optimization-tips-for-web-pages/SizeChart.astro"
+
+I recently reduced the total image transfer size for the entire [Projects](/projects) subpage by 93%
+(36&nbsp;MB to 2.5&nbsp;MB) and the initial-load image transfer size by over 99% (36&nbsp;MB to 0.2&nbsp;MB).
+While this site is built with [Astro]([Astro](https://astro.build)), the used techniques are applicable for
+most website-building technologies and can provide sizeable performance improvements.
+
+<SizeChart />
+
+# Optimization techniques
+
+In this section, we go over the techniques I used to achieve the aforementioned results. We start with simple
+steps and then move on to more modern and advanced, yet still simple and well-supported, techniques. Although
+each section is independent, I recommend at least skimming through all of them.
+
+## Better formats
+
+Among the most popular image formats, we have to mention JPEG and PNG. They can be used similarly but feature
+different strengths and weaknesses. JPEG is a lossy format, and it sacrifices some quality for a smaller file size.
+On the other hand, PNG is lossless and retains all the image quality but results in larger files. It also supports
+transparency, which JPEG does not. Clearly, if we want to optimize for size, JPEG emerges as the better choice.
+However, it is not always the best option; for instance, PNG is much better for pixel art or fancy logos.
+
+Thankfully, nowadays, we have even better alternatives, namely **WebP** and **AVIF**. They both provide almost 2x smaller
+files <Cite ordinal={1} />, while being supported for circa 95% of users <Cite ordinal={2} />. If you must support
+older browsers, you can also use the [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/picture)
+element to provide a fallback image in a uniformly supported format, such as JPEG. Unlike their predecessors, WebP
+and AVIF support both lossy and lossless compression, and I'd generally recommend lossy for photographs or screenshots.
+
+In the case of the project page, I used WebP, as it is slightly better supported and is also the default for Astro's image
+utilities. For instance, converting the image for the first project from JPEG to a high-quality WebP, the file size
+went down from 975&nbsp;KB to 150&nbsp;KB, an 85% reduction, with no visible quality loss.
+
+It has to be noted that if you can use vector graphics, you should instead use SVG, which makes sure that the image is
+sharp at any resolution and also has a tiny file size. This includes icons, logos, and illustrations. For instance, the
+wave effects on the [About](/) page are a perfect fit, as well as the skill icons on project cards.
+
+## Correct sizing
+
+{/* width & height, know your constraints, content shift */}
+
+## Responsive images
+
+{/* srcset+sizes / picture */}
+
+## Other attributes
+
+{/* fetchpriority=auto, decoding=async, loading=lazy */}
+
+# Conclusion
+
+{/* accessibility (alt, role)
+
+no caching & CDN
+
+astro
+
+why the images were unoptimized
+
+about website */}
+
+<Sources sources={[
+  { title: "Media – The Web Almanac by HTTP Archive", href: "https://almanac.httparchive.org/en/2024/media" },
+  { title: "Can I use... Support Tables", href: "https://caniuse.com" }
+]} />

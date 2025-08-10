@@ -112,10 +112,11 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
     }
 
     const Caret = open ? IconCaretDownFilled : IconCaretRightFilled
+    const ariaLabel = open ? "Collapse" : "Expand"
 
     return (
       <span className="inline-flex items-center">
-        <Caret className="mr-1" size={12} />
+        <Caret className="mr-1" aria-label={ariaLabel} size={12} />
       </span>
     )
   })()
@@ -127,6 +128,8 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
         e.stopPropagation()
         setOpen(o => !o)
       }}
+      role="button"
+      tabIndex={0}
     >
       <span className="inline-flex items-center">
         {caretFrag}
@@ -145,7 +148,10 @@ interface ObjectTreeProps {
 
 export default function ObjectTree({ name, value }: ObjectTreeProps) {
   return (
-    <figure className="overflow-x-auto py-5 font-mono whitespace-nowrap">
+    <figure
+      className="overflow-x-auto py-5 font-mono whitespace-nowrap"
+      aria-label="An object tree."
+    >
       <ul>
         <PropertyNode name={name} value={value} />
       </ul>

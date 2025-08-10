@@ -3,8 +3,9 @@ const objectClass = "stroke-[currentColor] fill-none stroke-[0.5]"
 const textClass = "fill-[currentColor] [text-anchor:middle] [dominant-baseline:middle]"
 ---
 
-<figure class="my-2">
-  <svg viewBox="-100 -50 200 100">
+<figure class="my-2" aria-labelledby="neuron-diagram-title">
+  <svg viewBox="-100 -50 200 100" role="img" aria-labelledby="neuron-diagram-title">
+    <title id="neuron-diagram-title">A diagram of an artificial neuron.</title>
     <circle cx="0" cy="0" r="10" class={objectClass}></circle>
     <text
       x="0"

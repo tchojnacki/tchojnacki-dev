@@ -1,24 +1,24 @@
 ---
-title: 'Neural networks in plain JavaScript'
-author: 'Tomasz Chojnacki'
+title: "Neural networks in plain JavaScript"
+author: "Tomasz Chojnacki"
 date: 2024-02-17
 abstract: "Artificial neural networks can be thought of as a certain class of huge mathematical expressions. This thought is explored in this post, where we build a simple multi-layer perceptron in plain JavaScript, using a custom scalar automatic differentiation engine."
-skills: ['javascript']
-tags: ['machine-learning']
+skills: ["javascript"]
+tags: ["machine-learning"]
 ---
-import Banner from '~/components/blog/Banner.astro'
-import Cite from '~/components/blog/Cite.astro'
-import Math from '~/components/blog/Math.astro'
-import Sources from '~/components/blog/Sources.astro'
-import Syntax from '~/components/blog/Syntax.astro'
-import JsdocSwitch from '~/components/blog/neural-networks-in-plain-javascript/jsdoc/JsdocSwitch'
-import JsdocSyntax from '~/components/blog/neural-networks-in-plain-javascript/jsdoc/JsdocSyntax.astro'
-import SimpleScalarExample from '~/components/blog/neural-networks-in-plain-javascript/examples/SimpleScalarExample'
-import RationalExprExample from '~/components/blog/neural-networks-in-plain-javascript/examples/RationalExprExample'
-import LinearExample from '~/components/blog/neural-networks-in-plain-javascript/examples/LinearExample'
-import Chart from '~/components/blog/Chart'
-import NeuronDiagram from '~/components/blog/neural-networks-in-plain-javascript/NeuronDiagram.astro'
-import Experiment from '~/components/blog/neural-networks-in-plain-javascript/experiment/Experiment'
+import Banner from "~/components/blog/Banner.astro"
+import Cite from "~/components/blog/Cite.astro"
+import Math from "~/components/blog/Math.astro"
+import Sources from "~/components/blog/Sources.astro"
+import Syntax from "~/components/blog/Syntax.astro"
+import JsdocSwitch from "~/components/blog/neural-networks-in-plain-javascript/jsdoc/JsdocSwitch"
+import JsdocSyntax from "~/components/blog/neural-networks-in-plain-javascript/jsdoc/JsdocSyntax.astro"
+import SimpleScalarExample from "~/components/blog/neural-networks-in-plain-javascript/examples/SimpleScalarExample"
+import RationalExprExample from "~/components/blog/neural-networks-in-plain-javascript/examples/RationalExprExample"
+import LinearExample from "~/components/blog/neural-networks-in-plain-javascript/examples/LinearExample"
+import Chart from "~/components/blog/Chart"
+import NeuronDiagram from "~/components/blog/neural-networks-in-plain-javascript/NeuronDiagram.astro"
+import Experiment from "~/components/blog/neural-networks-in-plain-javascript/experiment/Experiment"
 
 # Introduction
 
@@ -628,12 +628,12 @@ We can train our model as follows:
 <LinearExample client:idle />
 
 Here's how our model predicts (orange) based on the training data (blue):
-<figure class="my-2 overflow-hidden rounded-md">
+<figure class="my-2 overflow-hidden rounded-md" aria-label="Graph of the linear regression model.">
   <Chart xMin={-3} xMax={5} yMin={-4} yMax={1} defaultLineWidth={0.02} defaultRadius={0.05} elements={[
-    { type: 'axes', tickSize: 0.05 },
-    { type: 'line', color: 'orange', start: [-3, -3.374], end: [5, 0.411] },
-    { type: 'scatter', color: 'orange', data: [[1, -1.48]] },
-    { type: 'scatter', color: 'blue', data: [[3.1, -0.6], [-0.1, -1.9], [4, 0], [-2.1, -3]] },
+    { type: "axes", tickSize: 0.05 },
+    { type: "line", color: "orange", start: [-3, -3.374], end: [5, 0.411] },
+    { type: "scatter", color: "orange", data: [[1, -1.48]] },
+    { type: "scatter", color: "blue", data: [[3.1, -0.6], [-0.1, -1.9], [4, 0], [-2.1, -3]] },
   ]} />
 </figure>
 
@@ -898,7 +898,7 @@ to every single input and parameter.
 </Banner>
 
 <Sources sources={[
-  { title: 'Artificial neural network – Wikipedia', href: 'https://en.wikipedia.org/wiki/Artificial_neural_network' },
-  { title: 'Reverse accumulation – Automatic differentiation – Wikipedia', href: 'https://en.wikipedia.org/wiki/Automatic_differentiation#Reverse_accumulation' },
-  { title: 'Backpropagation – Introduction to Machine Learning – Matt Gormley', href: 'http://www.cs.cmu.edu/~mgormley/courses/10601bd-f18/slides/lecture12-backprop.pdf' }
+  { title: "Artificial neural network – Wikipedia", href: "https://en.wikipedia.org/wiki/Artificial_neural_network" },
+  { title: "Reverse accumulation – Automatic differentiation – Wikipedia", href: "https://en.wikipedia.org/wiki/Automatic_differentiation#Reverse_accumulation" },
+  { title: "Backpropagation – Introduction to Machine Learning – Matt Gormley", href: "http://www.cs.cmu.edu/~mgormley/courses/10601bd-f18/slides/lecture12-backprop.pdf" }
 ]} />

@@ -4,6 +4,7 @@ type ParamSelectProps<T> = {
   setCurrent: (t: T) => void
   serialize: (t: T) => string
   deserialize: (s: string) => T
+  label: string
   display?: (t: T) => string
   onChange?: (t: T) => void
   disabled?: boolean
@@ -15,6 +16,7 @@ export default function Select<T>({
   setCurrent,
   serialize,
   deserialize,
+  label,
   display = serialize,
   onChange,
   disabled = false,
@@ -30,6 +32,7 @@ export default function Select<T>({
         setCurrent(value)
       }}
       disabled={disabled}
+      aria-label={label}
     >
       {options.map(o => (
         <option key={serialize(o)} value={serialize(o)}>

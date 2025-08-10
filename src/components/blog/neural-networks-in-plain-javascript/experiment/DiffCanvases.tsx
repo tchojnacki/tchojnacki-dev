@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useId, useRef } from "react"
 
 import { lerp } from "~/lib/math"
 
@@ -10,6 +10,10 @@ export default function DiffCanvases({ model, losses }: DiffCanvasesProps) {
   const realCanvasRef = useRef<HTMLCanvasElement>(null)
   const predCanvasRef = useRef<HTMLCanvasElement>(null)
   const lossCanvasRef = useRef<HTMLCanvasElement>(null)
+
+  const realId = useId()
+  const predId = useId()
+  const lossId = useId()
 
   useEffect(() => {
     const realCtx = realCanvasRef.current!.getContext("2d")!
@@ -40,16 +44,40 @@ export default function DiffCanvases({ model, losses }: DiffCanvasesProps) {
   return (
     <>
       <figure>
-        <canvas width="100" height="100" className="w-full" ref={realCanvasRef} />
-        <figcaption className="text-center">Real</figcaption>
+        <canvas
+          width="100"
+          height="100"
+          className="w-full"
+          ref={realCanvasRef}
+          aria-labelledby={realId}
+        />
+        <figcaption className="text-center" id={realId}>
+          Real
+        </figcaption>
       </figure>
       <figure>
-        <canvas width="100" height="100" className="w-full" ref={predCanvasRef} />
-        <figcaption className="text-center">Predicted</figcaption>
+        <canvas
+          width="100"
+          height="100"
+          className="w-full"
+          ref={predCanvasRef}
+          aria-labelledby={predId}
+        />
+        <figcaption className="text-center" id={predId}>
+          Predicted
+        </figcaption>
       </figure>
       <figure>
-        <canvas width="100" height="100" className="w-full" ref={lossCanvasRef} />
-        <figcaption className="text-center">Difference</figcaption>
+        <canvas
+          width="100"
+          height="100"
+          className="w-full"
+          ref={lossCanvasRef}
+          aria-labelledby={lossId}
+        />
+        <figcaption className="text-center" id={lossId}>
+          Difference
+        </figcaption>
       </figure>
     </>
   )

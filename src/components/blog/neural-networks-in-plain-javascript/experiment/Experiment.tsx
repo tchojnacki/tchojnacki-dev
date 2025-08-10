@@ -55,7 +55,7 @@ export default function Experiment({ children }: PropsWithChildren) {
   }
 
   return (
-    <figure>
+    <figure aria-label="The interactive neural network experiment.">
       <PromptBlock>
         const model = new Network(2,{" "}
         <Select
@@ -64,6 +64,7 @@ export default function Experiment({ children }: PropsWithChildren) {
           setCurrent={l => setLayers(l)}
           serialize={JSON.stringify}
           deserialize={JSON.parse}
+          label="Network layer structure."
           display={l => `[${l.join(", ")}]`}
           onChange={l => {
             modelRef.current = new Network(2, l)
@@ -84,6 +85,7 @@ export default function Experiment({ children }: PropsWithChildren) {
           setCurrent={setBatch}
           serialize={String}
           deserialize={parseInt}
+          label="Batch size for training."
           disabled={disabled}
         />
         ,{" "}
@@ -93,6 +95,7 @@ export default function Experiment({ children }: PropsWithChildren) {
           setCurrent={setEta}
           serialize={e => e.toFixed(3)}
           deserialize={parseFloat}
+          label="Learning rate for training."
           display={String}
           disabled={disabled}
         />
@@ -105,7 +108,12 @@ export default function Experiment({ children }: PropsWithChildren) {
           </Fragment>
         ))}
       </PromptBlock>
-      <progress value={progress ?? 1} max={1} className="w-full rounded-md" />
+      <progress
+        value={progress ?? 1}
+        max={1}
+        className="w-full rounded-md"
+        aria-label="Network training progress."
+      />
       <div className="my-2 grid grid-cols-2 gap-4 *:w-full sm:grid-cols-4 sm:gap-2">
         <DiffCanvases model={modelRef.current} losses={losses} />
         <LossFigure losses={losses} />

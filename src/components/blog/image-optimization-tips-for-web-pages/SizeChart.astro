@@ -1,0 +1,35 @@
+---
+const text = "fill-[currentColor]"
+const line = "stroke-[currentColor] fill-none opacity-25"
+const orange = "fill-chart-orange"
+const blue = "fill-chart-blue"
+---
+
+<figure class="my-2" aria-labelledby="size-chart-title">
+  <svg viewBox="0 0 800 380" role="img" aria-labelledby="size-chart-title">
+    <title id="size-chart-title">Size chart for image optimization.</title>
+    <path d="M 60 10 L 790 10" class={line}></path>
+    <path d="M 60 90 L 790 90" class={line}></path>
+    <path d="M 60 169 L 790 169" class={line}></path>
+    <path d="M 60 248 L 790 248" class={line}></path>
+    <path d="M 60 327 L 790 327" class="fill-none stroke-[currentColor]"></path>
+    <text x="23" y="168" text-anchor="middle" transform="rotate(270 23 168)" class={text}
+      >Size [MB]</text
+    >
+    <rect x="155" y="43" width="66" height="284" class={orange}></rect>
+    <rect x="520" y="307" width="66" height="20" class={orange}></rect>
+    <rect x="264" y="43" width="66" height="284" class={blue}></rect>
+    <rect x="629" y="324" width="66" height="3" class={blue}></rect>
+    <text x="266" y="377" class={text}>Total image size</text>
+    <rect x="247" y="366" width="12" height="12" rx="6" ry="6" class={orange}></rect>
+    <text x="424" y="377" class={text}>Initial-load image size</text>
+    <rect x="405" y="366" width="12" height="12" rx="6" ry="6" class={blue}></rect>
+    <text x="243" y="345" text-anchor="middle" class={text}>Before</text>
+    <text x="608" y="345" text-anchor="middle" class={text}>After</text>
+    <text x="55" y="330" text-anchor="end" class={text}>0</text>
+    <text x="55" y="251" text-anchor="end" class={text}>10</text>
+    <text x="55" y="172" text-anchor="end" class={text}>20</text>
+    <text x="55" y="93" text-anchor="end" class={text}>30</text>
+    <text x="55" y="14" text-anchor="end" class={text}>40</text>
+  </svg>
+</figure>
