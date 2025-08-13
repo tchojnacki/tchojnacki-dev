@@ -12,7 +12,7 @@ const html = katex.renderToString(latex, { throwOnError: false, displayMode: blo
 
 {
   block ? (
-    <figure class="my-2 flex justify-center">
+    <figure class="my-2 flex justify-center" aria-label={`Math: ${latex}`}>
       <span set:html={html} />
     </figure>
   ) : (

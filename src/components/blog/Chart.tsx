@@ -3,13 +3,13 @@ import { Fragment } from "react"
 type SeriesColor = "orange" | "blue"
 
 const fillColors = {
-  orange: "fill-[#FE5B1F] stroke-none",
-  blue: "fill-[#0074D9] stroke-none",
+  orange: "fill-chart-orange stroke-none",
+  blue: "fill-chart-blue stroke-none",
 }
 
 const strokeColors = {
-  orange: "stroke-[#FE5B1F] fill-none",
-  blue: "stroke-[#0074D9] fill-none",
+  orange: "stroke-chart-orange fill-none",
+  blue: "stroke-chart-blue fill-none",
 }
 
 type ChartElement =
@@ -51,6 +51,7 @@ export default function Chart({
       viewBox={`${xMin} ${yMin} ${xSpan} ${ySpan}`}
       className="-scale-y-100 bg-[#EEEEEE] dark:bg-[#222222]"
     >
+      <title>A line chart.</title>
       {elements.map((element, fi) => {
         switch (element.type) {
           case "axes": {
