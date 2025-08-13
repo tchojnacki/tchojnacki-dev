@@ -6,9 +6,11 @@ abstract: "I recently reduced the total image transfer size for the entire Proje
 skills: ["astro", "html"]
 tags: []
 ---
+import Banner from '~/components/blog/Banner.astro'
 import Cite from "~/components/blog/Cite.astro"
 import Sources from "~/components/blog/Sources.astro"
 import SizeChart from "~/components/blog/image-optimization-tips-for-web-pages/SizeChart.astro"
+import Syntax from "~/components/blog/Syntax.astro"
 
 I recently reduced the total image transfer size for the entire [Projects](/projects) subpage by 93%
 (36&nbsp;MB to 2.5&nbsp;MB) and the initial-load image transfer size by over 99% (36&nbsp;MB to 0.2&nbsp;MB).
@@ -17,11 +19,11 @@ most website-building technologies and can provide sizeable performance improvem
 
 <SizeChart />
 
-# Optimization techniques
+# Optimization methods
 
 In this section, we go over the techniques I used to achieve the aforementioned results. We start with simple
-steps and then move on to more modern and advanced, yet still simple and well-supported, techniques. Although
-each section is independent, I recommend at least skimming through all of them.
+steps and then move on to more modern and advanced, yet still simple and well-supported, approaches. Although
+each subsection is independent, I recommend at least skimming through all of them.
 
 ## Better formats
 
@@ -32,7 +34,7 @@ transparency, which JPEG does not. Clearly, if we want to optimize for size, JPE
 However, it is not always the best option; for instance, PNG is much better for pixel art or fancy logos.
 
 Thankfully, nowadays, we have even better alternatives, namely **WebP** and **AVIF**. They both provide almost 2x smaller
-files <Cite ordinal={1} />, while being supported for circa 95% of users <Cite ordinal={2} />. If you must support
+files<Cite ordinal={1} />, while being supported for circa 95% of users<Cite ordinal={2} />. If you must support
 older browsers, you can also use the [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/picture)
 element to provide a fallback image in a uniformly supported format, such as JPEG. Unlike their predecessors, WebP
 and AVIF support both lossy and lossless compression, and I'd generally recommend lossy for photographs or screenshots.
@@ -47,29 +49,148 @@ wave effects on the [About](/) page are a perfect fit, as well as the skill icon
 
 ## Correct sizing
 
-{/* width & height, know your constraints, content shift */}
+Knowing the dimensions of the image, both rendered and original, is crucial for optimization. Firstly, it doesn't
+make sense to use a 2000&nbsp;px wide image if it is never displayed larger than 500&nbsp;px. For the portfolio, the
+project cards are bound to at most 1024&nbsp;px across, while the image files had a width of 1200&nbsp;px. Downscaling
+the images to 1024&nbsp;px reduced the file size by 15% to 30%, depending on the project.
+
+Secondly, the `width` and `height` attributes allow the browser to reserve space for the image before it is loaded. This
+prevents content shift, which can be jarring for users and is a negative factor for the [Core Web Vitals](https://web.dev/articles/vitals).
+This can be beneficial even if the image is scaled using CSS<Cite ordinal={3} />. Explicit dimensions do not speed up the loading of the image
+but make the experience smoother regardless.
 
 ## Responsive images
 
-{/* srcset+sizes / picture */}
+Unless our images are small icons, they are likely to be displayed at different sizes on different devices. For instance,
+a full-width landing image on a desktop is several times larger than the same image on a mobile device. The widely
+supported<Cite ordinal={2} /> [`srcset`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/srcset) and
+[`sizes`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes) attributes allow us to provide multiple
+versions of the same asset, each optimized for a specific screen. We refer to this concept as **responsive images**.
+
+The `srcset` attribute lists available image files and their widths, while the `sizes` attribute describes how big the image
+will be in different contexts. The browser can then combine these values to select the best image for the current viewport.
+
+In the simplest case, we want to display a full-width image on each device but do not want to load a huge image on mobile.
+We can use the `srcset` attribute to provide different versions of the image and set the `sizes` attribute to `100vw` (which
+is also the default value). This signals that the image will always take the full viewport width. The full example looks like this:
+<Syntax lang="html" code={`
+  <img
+    src="hero-1536.webp"
+    alt="Hero image of the amazing website."
+    width="1536"
+    height="864"
+    srcset="hero-640.webp 640w,
+            hero-768.webp 768w,
+            hero-1024.webp 1024w,
+            hero-1280.webp 1280w,
+            hero-1536.webp 1536w"
+    sizes="100vw"
+  />
+`} />
+
+Additionally, the [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) element can be used to
+provide different images for different screen sizes but also to provide fallbacks for browsers that do not support modern formats.
+
+<Banner kind="info">
+  Here are some extra resources on responsive images:
+  - [Using responsive images in HTML &ndash; MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images)
+  - [Responsive images &ndash; web.dev](https://web.dev/learn/design/responsive-images)
+</Banner>
 
 ## Other attributes
 
-{/* fetchpriority=auto, decoding=async, loading=lazy */}
+There are three other attributes that should be covered. They do not reduce transferred sizes but optimize the loading
+and rendering of the images, improving user experience and Core Web Vitals performance. They are:
+- [`fetchpriority`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img#fetchpriority) &ndash; either
+  `high`, `low`, or `auto`. You can set it to `high` for critical images, which are large and immediately visible on the page,
+  and can be left as `auto` for others.
+- [`decoding`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img#decoding) &ndash; either `sync` or
+  `async`. For `sync`, the browser decodes the image synchronously, while `async` allows for other rendering while the image is
+  being decoded.
+- [`loading`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img#loading) &ndash; either `eager` or `lazy`.
+  For `eager`, the image is loaded immediately, while `lazy` defers loading until the image is close to being visible. This is
+  useful for images below the fold, which do not have to be ready straight away.
+
+# Combining everything in Astro
+
+Some modern static site generators provide built-in image optimization features, streamlining the process of format conversion,
+compression, and responsive images. For instance, we have Next.js's [`Image`](https://nextjs.org/docs/pages/api-reference/components/image),
+Nuxt's [`NuxtImage`](https://image.nuxt.com/usage/nuxt-img), and Astro's [`Image`](https://docs.astro.build/en/reference/modules/astro-assets/#image-).
+
+For a long time, this Astro component was not used on the project page, as each project card forms a React
+[island](https://docs.astro.build/en/concepts/islands) to allow for interactivity. While Astro components can use React components,
+the other way around is not possible (outside using slots), meaning that `Image` could not be used for the project showcase.
+
+However, there is also a [`getImage`](https://docs.astro.build/en/reference/modules/astro-assets/#getimage) function that can generate
+images for use outside Astro components. This includes React, as `getImage` simply returns an object with the HTML attributes for the
+picture. The only caveat is that the function must be used in a server-only context, so we have to call it in Astro and propagate the result
+using props.
+
+To do this, I renamed the `ProjectCard` React component responsible for displaying a single project to `ProjectCardInner` and made a new
+`ProjectCard` Astro file for a server-side wrapper. The shortened version of the code looks as follows:
+
+<Syntax lang="astro" code={`
+  ---
+  // ProjectCard.astro
+
+  import { getImage } from "astro:assets"
+  import ProjectCardInternal from "./ProjectCardInternal"
+
+  const { project } = Astro.props
+  const image = await getImage({ src: project.image, layout: "constrained" })
+  ---
+
+  <ProjectCardInternal client:visible {project} {image} />
+`} />
+
+The `image` prop undergoes some basic processing; for instance, Astro produces `fetchpriority`, while React expects `fetchPriority` (with
+a capital `P`), so we rename the attribute. We also add the `alt` attribute for proper accessibility. Afterwards, the attribute dictionary
+can be simply spread into the `<img>` tag in the React component:
+
+<Syntax lang="tsx" code={`
+  // ProjectCardInternal.jsx
+
+  export default function ProjectCardInternal({ project, image }) {
+    // we can implement any client-side logic here
+    return <img {...image} />
+  }
+`} />
+
+When visiting the rendered page, we notice that the images now use WebP, are correctly sized and responsive, and have the additional
+attributes. Astro automatically handled the conversion and quality optimization and correctly emitted differently sized images into
+the build bundle. The images on the project page have roughly the following HTML:
+
+<Syntax lang="html" code={`
+  <img
+    src="/_astro/tchojnacki-dev.UpSx2R8V_Z10mK3R.webp"
+    alt="tchojnacki.dev"
+    width="1024"
+    height="4007"
+    srcset="/_astro/tchojnacki-dev.UpSx2R8V_ZttQAw.webp 640w,
+            /_astro/tchojnacki-dev.UpSx2R8V_Z1rk4CS.webp 750w,
+            /_astro/tchojnacki-dev.UpSx2R8V_mtAaJ.webp 828w,
+            /_astro/tchojnacki-dev.UpSx2R8V_Z10mK3R.webp 1024w"
+    sizes="(min-width: 1024px) 1024px, 100vw"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+  />
+`} />
+
 
 # Conclusion
 
-{/* accessibility (alt, role)
+Proper usage of modern HTML image features can significantly reduce the loading time, transfer size, and Core Web Vitals
+compliance of your website. The described techniques are well-supported in both the frameworks and browsers, and if you
+require high backwards compatibility, the `<picture>` element can be used to provide fallbacks.
 
-no caching & CDN
-
-astro
-
-why the images were unoptimized
-
-about website */}
+I purposefully covered only the HTML features to ensure the universal applicability of the techniques. However, if you have
+higher control over your back end and deployment stack, you can also look into caching, CDN, and server-side image optimization.
+At the same time, the accessibility of images should not be overlooked. Make sure to follow at least the guidelines outlined by
+[the web.dev guide](https://web.dev/learn/accessibility/images).
 
 <Sources sources={[
   { title: "Media – The Web Almanac by HTTP Archive", href: "https://almanac.httparchive.org/en/2024/media" },
-  { title: "Can I use... Support Tables", href: "https://caniuse.com" }
+  { title: "Can I use... Support Tables", href: "https://caniuse.com" },
+  { title: "Optimize Cumulative Layout Shift – web.dev", href: "https://web.dev/articles/optimize-cls#images-without-dimensions" }
 ]} />

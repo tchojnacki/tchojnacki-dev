@@ -54,6 +54,10 @@ function Blockquote({ children }: ComponentProps<"blockquote">) {
   )
 }
 
+function Ul({ children }: ComponentProps<"ul">) {
+  return <ul className="list-disc pl-4 text-justify *:my-1.5">{children}</ul>
+}
+
 export const typography = {
   h1: H1,
   h2: H2,
@@ -63,4 +67,5 @@ export const typography = {
   a: Link,
   code: Code,
   blockquote: Blockquote,
+  ul: Ul,
 }
