@@ -3,9 +3,13 @@ import { render } from "astro:content"
 
 import "katex/dist/katex.min.css"
 
+import Banner from "~/components/blog/Banner.astro"
 import PostFooter from "~/components/blog/PostFooter.astro"
 import PostHeader from "~/components/blog/PostHeader.astro"
 import { typography } from "~/components/blog/typography"
+import Link from "~/components/common/Link"
+import { lookingForJob } from "~/consts/hiring"
+import { linkedin, resume } from "~/consts/socials"
 import { getPosts, pathsFrom, type Post } from "~/content"
 import Layout from "~/layouts/Layout.astro"
 
@@ -31,6 +35,24 @@ const {
       <PostHeader {post} {readingTime} />
       <section class="post-content">
         <Content components={{ ...typography }} />
+        <div class:list={["mt-8 text-justify", lookingForJob ? null : "opacity-50"]}>
+          <Banner kind="info">
+            {
+              // prettier-ignore
+              lookingForJob ? (
+                <>
+                  I am currently seeking employment in <strong>front-end</strong> or
+                  <strong>full-stack</strong> engineer roles (junior/mid-level), ideally in a
+                  <strong>remote</strong> setting within EMEA or in a hybrid setup near Wrocław,
+                  Poland. If you enjoyed this post or think my skills could be a good fit, I would
+                  love for you to <strong><Link href={resume.href}>check out my resume</Link></strong>
+                  or <strong><Link href={linkedin.href}>connect with me on LinkedIn</Link></strong>.
+                </>
+              )
+                : "The views expressed in this post are my own and do not reflect those of my employer."
+            }
+          </Banner>
+        </div>
       </section>
       <PostFooter id={post.id} />
     </article>

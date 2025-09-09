@@ -1,7 +1,9 @@
 ---
-import { IconBrandGithub, IconBrandLinkedin, IconFileCv } from "@tabler/icons-react"
+import { IconArrowRight, IconBrandGithub, IconBrandLinkedin, IconFileCv } from "@tabler/icons-react"
 
+import LinkButton from "~/components/common/LinkButton"
 import Wave from "~/components/common/Wave.astro"
+import { lookingForJob } from "~/consts/hiring"
 import { github, linkedin, resume } from "~/consts/socials"
 import { getSkillById } from "~/content"
 
@@ -57,6 +59,13 @@ const skillNames = await Promise.all(skillIds.map(id => getSkillById(id).then(s 
       <SocialLink {...resume}>
         <IconFileCv title={resume.label} />
       </SocialLink>
+      {
+        lookingForJob ? (
+          <LinkButton href={linkedin.href}>
+            Hire me <IconArrowRight role="presentation" className="inline-block" size="16" />
+          </LinkButton>
+        ) : null
+      }
     </nav>
   </section>
   <section
