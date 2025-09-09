@@ -122,7 +122,7 @@
   box-sizing: content-box;
   max-width: var(--spacing-reading);
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2rem 1.5rem;
 }
 
 @utility social-link {

@@ -24,6 +24,7 @@ const tagCounts = fromPairs(
       .length,
   ]),
 )
+
 const popularTags = sortBy(
   allTags,
   ({ tag }) => -tagCounts[tag]!, // SAFETY: tagCounts is derived from allTags
@@ -39,22 +40,18 @@ const popularTags = sortBy(
       </h1>
     </header>
     <div
-      class="grid grid-cols-[calc(50%-var(--spacing-reading)/2-1rem)_min(var(--container-xl),100%)_1fr] [grid-template-areas:'._posts_.''._tags_.'] lg:[grid-template-areas:'._posts_tags']"
+      class="grid grid-cols-[calc(50%-var(--spacing-reading)/2-1.5rem)_min(var(--container-xl),100%)_1fr] [grid-template-areas:'._posts_.''._tags_.'] lg:[grid-template-areas:'._posts_tags']"
     >
       <section class="py-4 [grid-area:posts]">
         <h2
-          class="text-neutral-1000 dark:text-neutral-0 px-4 text-center text-2xl font-bold sm:text-left"
+          class="text-neutral-1000 dark:text-neutral-0 px-6 text-center text-2xl font-bold sm:text-left"
         >
           Recent posts
         </h2>
         <PostList heading={3} />
       </section>
-      <aside class="p-4 [grid-area:tags] lg:justify-self-center">
-        <h2
-          class="text-neutral-1000 dark:text-neutral-0 pb-3 text-center text-2xl font-bold sm:text-left"
-        >
-          Popular tags
-        </h2>
+      <aside class="px-6 py-4 text-center [grid-area:tags] sm:text-left lg:justify-self-center">
+        <h2 class="text-neutral-1000 dark:text-neutral-0 pb-3 text-2xl font-bold">Popular tags</h2>
         <nav>
           <ul>
             {
