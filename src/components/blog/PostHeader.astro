@@ -24,7 +24,9 @@ const tags = sortBy(
 <header class="centered-header flex flex-col gap-3 text-center sm:text-left">
   <h1 class="text-neutral-1000 dark:text-neutral-0 text-3xl sm:text-4xl">{post.data.title}</h1>
   <div class="text-neutral-800 dark:text-neutral-200">
-    by&nbsp;<address class="text-neutral-1000 dark:text-neutral-0 inline font-bold not-italic">
+    by&nbsp;<address
+      class="text-neutral-1000 dark:text-neutral-0 inline-block font-bold not-italic"
+    >
       {post.data.author}
     </address>
     <Bullet />on&nbsp;<time
@@ -34,7 +36,7 @@ const tags = sortBy(
         post.data.date.toLocaleDateString("en-US", {
           weekday: undefined,
           day: "numeric",
-          month: "short",
+          month: "long",
           year: "numeric",
         })
       }</time
