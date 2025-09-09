@@ -27,8 +27,8 @@ const tags = [...post.data.skills.map(s => s.id), ...post.data.tags].toSorted()
     <H class="text-xl font-bold text-purple-700 group-hover:underline dark:text-purple-300">
       {post.data.title}
     </H>
-    <div class="flex flex-col gap-2 sm:flex-row sm:justify-between">
-      <span class="text-sm"
+    <div class="flex flex-col gap-2 text-sm sm:flex-row sm:justify-between">
+      <span
         ><time datetime={post.data.date.toISOString().split("T")[0]}
           >{
             post.data.date.toLocaleDateString("en-US", {
@@ -40,7 +40,7 @@ const tags = [...post.data.skills.map(s => s.id), ...post.data.tags].toSorted()
           }</time
         > &bull; {readingTime} min read</span
       >
-      <ul class="flex gap-2 text-sm text-purple-700 dark:text-purple-300">
+      <ul class="flex gap-2 text-purple-700 dark:text-purple-300">
         {tags.map(t => <li>#{t}</li>)}
       </ul>
     </div>

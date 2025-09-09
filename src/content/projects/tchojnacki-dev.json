@@ -11,6 +11,11 @@
     {
       "type": "repository",
       "href": "https://github.com/tchojnacki/tchojnacki-dev"
+    },
+    {
+      "type": "blogpost",
+      "href": "/blog/evaluating-gleam-with-aoc",
+      "part": "Images"
     }
   ],
   "parts": [
