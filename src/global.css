@@ -103,18 +103,22 @@
 }
 
 @utility onenter-fromleft {
+  will-change: transform;
   --enter-transform: translateX(-50px);
 }
 
 @utility onenter-fromtop {
+  will-change: transform;
   --enter-transform: translateY(-50px);
 }
 
 @utility onenter-fromright {
+  will-change: transform;
   --enter-transform: translateX(50px);
 }
 
 @utility onenter-scaling {
+  will-change: transform;
   --enter-transform: scale(0.75);
 }
 
@@ -122,7 +126,7 @@
   box-sizing: content-box;
   max-width: var(--spacing-reading);
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2rem 1.5rem;
 }
 
 @utility social-link {

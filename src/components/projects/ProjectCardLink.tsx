@@ -27,7 +27,7 @@ export default function ProjectCardLink({
     documentation: { label: "Documentation", Icon: IconNotebook },
     download: { label: "Download", Icon: IconDownload },
     publication: { label: "Publication", Icon: IconFileTypePdf },
-    blogpost: { label: "Blog Post", Icon: IconMessageStar },
+    blogpost: { label: "Blog", Icon: IconMessageStar },
   }[type]
 
   return (

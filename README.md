@@ -1,5 +1,9 @@
 # [tchojnacki.dev](https://tchojnacki.dev) – a personal website 🧑‍💻
 
+<p align="justify">
+<strong>tchojnacki.dev</strong> is a modern personal portfolio and blog that highlights my projects, skills, and social links. It features interactive blog posts, a responsive design with multiple themes, and fast-loading pages. It receives around 50-100 unique monthly visitors (mainly from Google) through SEO-optimized and engaging content and has been maintained and actively updated since 2021. Furthermore, it achieves top-tier performance, with 100s across Google PageSpeed Insights and a 100 RES in Vercel Speed Insights. The main technologies used in the website comprise Astro, React, TypeScript, and Tailwind CSS. Additionally, a custom blog framework built on top of MDX enables the creation of interactive posts on various technical topics.
+</p>
+
 <div align="center">
 
 [![vercel](https://img.shields.io/github/deployments/tchojnacki/tchojnacki-dev/Production?label=vercel&logo=vercel)](https://tchojnacki.dev)
@@ -19,18 +23,31 @@
 
 ## Technology 🔧
 
-- Astro
-- React
-- Tailwind CSS
-- TypeScript
-- MDX
-- Vitest
-- Lodash
-- Prettier
-- Git
-- GitHub Actions
-- Vercel
-- Figma
+- **Core:** Astro, React, TypeScript
+- **Design:** Tailwind CSS, Tabler Icons, Simple Icons, Figma
+- **Blog:** MDX, KaTeX, nanostores
+- **Helpers:** Lodash, clsx
+- **Tools:** Vite, Vitest, Git
+- **CI/CD:** GitHub Actions, Codecov
+- **Formatting:** Prettier, commitlint, Husky
+- **Platforms:** Vercel, Squarespace
+
+## Repository 🗃️
+
+- [/.github](./.github) - GitHub Actions workflows and Codecov configuration
+- [/src](./src) - project source code
+  - [/assets](./src/assets) - emojis, images, and other bundled assets
+  - [/components](./src/components) - reusable UI components
+  - [/consts](./src/consts) - various configuration flags used across the project
+  - [/content](./src/content) - Astro content definitions
+    - [/posts](./src/content/posts) - blog posts written in MDX
+    - [/projects](./src/content/projects) - projects from my portfolio
+    - [/skills](./src/content/skills) - short technology definitions
+  - [/hooks](./src/hooks) - custom, reusable React hooks
+  - [/layouts](./src/layouts) - page layouts
+  - [/lib](./src/lib) - domain logic and utilities
+  - [/pages](./src/pages) - routes used by Astro for static site generation
+- [/CONTRIBUTING.md](./CONTRIBUTING.md) - guidelines for external contributors
 
 ## Deployment 🚀
 

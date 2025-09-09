@@ -43,10 +43,9 @@ export default function ProjectCardInternal({
     <>
       <div
         className={clsx(
-          "relative aspect-4/3",
+          "relative aspect-4/3 will-change-transform",
           flipped ? "lg:onenter-fromright lg:col-start-4" : "lg:onenter-fromleft lg:col-start-1",
           "overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl",
-          "lg:shadow-indigo-925/25 shadow-none lg:shadow-md dark:lg:shadow-indigo-100/10",
           "scale-100 duration-200 ease-in",
           isActive && "lg:scale-105",
           isMounted ? "motion-safe:animate-enteronload opacity-100" : "opacity-0",
@@ -55,7 +54,7 @@ export default function ProjectCardInternal({
         <img
           {...image}
           className={clsx(
-            "animate-scrollprojectimage absolute h-auto w-full",
+            "animate-scrollprojectimage absolute h-auto w-full will-change-transform",
             isActive ? "[animation-play-state:running]" : "[animation-play-state:paused]",
           )}
           style={
@@ -114,7 +113,7 @@ export default function ProjectCardInternal({
           "z-1 rounded-b-3xl p-4 sm:p-8 lg:col-span-5 lg:row-span-full",
           "lg:to-neudigo-50 from-indigo-100 to-indigo-100",
           "dark:from-indigo-925 dark:to-indigo-925 dark:lg:to-neudigo-950",
-          "translate-x-0 transition-[translate] duration-200 ease-in",
+          "translate-x-0 transition-[translate] duration-200 ease-in will-change-transform",
           isActive && (flipped ? "lg:-translate-x-1/3" : "lg:translate-x-1/3"),
           isMounted ? "motion-safe:animate-enteronload opacity-100" : "opacity-0",
         )}

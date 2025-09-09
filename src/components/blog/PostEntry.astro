@@ -15,30 +15,36 @@ const {
 } = await render(post)
 
 const H = `h${heading}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+
+const tags = [...post.data.skills.map(s => s.id), ...post.data.tags].toSorted()
 ---
 
 <article>
-  <a class="group block max-w-xl p-4" href={`/blog/${post.id}`}>
-    <H
-      class="group-hover:text-neutral-1000 dark:group-hover:text-neutral-0 text-xl font-bold text-purple-700 duration-200 group-hover:underline dark:text-purple-300"
-    >
+  <a
+    class="group hover:**:text-neutral-1000! dark:hover:**:text-neutral-0! flex max-w-xl flex-col gap-2 p-6 **:duration-200"
+    href={`/blog/${post.id}`}
+  >
+    <H class="text-xl font-bold text-purple-700 group-hover:underline dark:text-purple-300">
       {post.data.title}
     </H>
-    <span class="text-sm"
-      ><time datetime={post.data.date.toISOString().split("T")[0]}
-        >{
-          post.data.date.toLocaleDateString("en-US", {
-            weekday: undefined,
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-          })
-        }</time
-      > &bull; {readingTime} min read</span
-    >
-    <p
-      class="my-2 text-justify text-sm text-neutral-700 duration-200 group-hover:text-neutral-900 dark:text-neutral-300 dark:group-hover:text-neutral-100"
-    >
+    <div class="flex flex-col gap-2 text-sm sm:flex-row sm:justify-between">
+      <span
+        ><time datetime={post.data.date.toISOString().split("T")[0]}
+          >{
+            post.data.date.toLocaleDateString("en-US", {
+              weekday: undefined,
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            })
+          }</time
+        > &bull; {readingTime} min read</span
+      >
+      <ul class="flex gap-2 text-purple-700 dark:text-purple-300">
+        {tags.map(t => <li>#{t}</li>)}
+      </ul>
+    </div>
+    <p class="text-justify text-sm text-neutral-700 dark:text-neutral-300">
       {post.data.abstract}
     </p>
     <div
@@ -46,7 +52,7 @@ const H = `h${heading}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
     >
       Read more <IconArrowRight
         role="presentation"
-        className="stroke-neutral-1000 dark:stroke-neutral-0 inline-block opacity-0 duration-200 group-hover:opacity-100"
+        className="stroke-neutral-1000 dark:stroke-neutral-0 inline-block opacity-0 group-hover:opacity-100"
         size="16"
       />
     </div>
