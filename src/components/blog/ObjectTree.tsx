@@ -6,7 +6,7 @@ const propertiesOf = (instance: object): [string, unknown][] => {
   const fields = Object.entries(instance)
   const getters = Object.entries(Object.getOwnPropertyDescriptors(Reflect.getPrototypeOf(instance)))
     .filter(e => typeof e[1].get === "function" && e[0] !== "__proto__")
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- name is definitely in instance
     .map(([name]) => [name, name in (instance as any)[name]] as [string, unknown])
   return [...fields, ...getters]
 }

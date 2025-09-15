@@ -35,7 +35,7 @@ export function useTechSphere({ skillNames, prefersReducedMotion = false }: UseT
   const pointsRef = useRef(initialPositionsOf(skillNames))
 
   const hoverPosRef = useRef({ x: 0, y: 0 })
-  const lastMoveTimeStampRef = useRef(Date.now())
+  const lastMoveTimeStampRef = useRef(0)
   const dragStartPosRef = useRef<Vec3D | null>(null)
   const dragPixelsPerMsRef = useRef({ x: 0, y: 0 })
   const movementStateRef = useRef<"STABLE" | "DAMPING">("STABLE")
@@ -48,6 +48,7 @@ export function useTechSphere({ skillNames, prefersReducedMotion = false }: UseT
     omegaRef.current = prefersReducedMotion ? 0 : INITIAL_ROTATION_SPEED
   }, [prefersReducedMotion])
 
+  // eslint-disable-next-line react-hooks/immutability -- false positive
   useAnimationFrame(dt => {
     let epsilon: number
     switch (movementStateRef.current) {
