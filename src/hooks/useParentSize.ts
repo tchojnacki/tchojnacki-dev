@@ -10,16 +10,11 @@ export function useParentSize<ChildElem extends HTMLElement>() {
     while (parent && getComputedStyle(parent).display === "contents") {
       parent = parent.parentElement
     }
-
-    if (!parent) {
-      return
-    }
+    if (!parent) return
 
     const resizeObserver = new ResizeObserver(event => setSize(event[0]!.contentBoxSize[0]!))
-
     resizeObserver.observe(parent)
-
-    return () => resizeObserver.unobserve(parent as HTMLElement)
+    return () => resizeObserver.unobserve(parent)
   }, [])
 
   useDebugValue(`${size.inlineSize} x ${size.blockSize}`)
