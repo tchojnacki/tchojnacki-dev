@@ -2,7 +2,7 @@ import ObjectTree from "~/components/blog/ObjectTree"
 
 function topologicalSort<Node>(start: Node, neighbors: (node: Node) => Node[]): Node[] {
   const acc: Node[] = []
-  const visited: Set<Node> = new Set()
+  const visited = new Set<Node>()
 
   const visit = (n: Node) => {
     if (visited.has(n)) {
@@ -22,7 +22,7 @@ function topologicalSort<Node>(start: Node, neighbors: (node: Node) => Node[]): 
 class Scalar {
   static name = "Scalar"
   value: number
-  partial: number = 0
+  partial = 0
   $children: this[] = []
   $propagate: () => void = () => {}
 

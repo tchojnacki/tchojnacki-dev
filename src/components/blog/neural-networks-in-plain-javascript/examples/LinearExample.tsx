@@ -22,7 +22,7 @@ function topologicalSort<Node>(start: Node, neighbors: (node: Node) => Node[]): 
 class Scalar {
   static name = "Scalar"
   value: number
-  partial: number = 0
+  partial = 0
   $children: this[] = []
   $propagate: () => void = () => {}
 

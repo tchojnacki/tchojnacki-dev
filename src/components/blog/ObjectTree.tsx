@@ -2,17 +2,18 @@ import { IconCaretDownFilled, IconCaretRightFilled } from "@tabler/icons-react"
 import clsx from "clsx"
 import { useState } from "react"
 
-const propertiesOf = (instance: any): [string, any][] => {
+const propertiesOf = (instance: object): [string, unknown][] => {
   const fields = Object.entries(instance)
   const getters = Object.entries(Object.getOwnPropertyDescriptors(Reflect.getPrototypeOf(instance)))
     .filter(e => typeof e[1].get === "function" && e[0] !== "__proto__")
-    .map(([name]) => [name, instance[name]] as [string, any])
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    .map(([name]) => [name, name in (instance as any)[name]] as [string, unknown])
   return [...fields, ...getters]
 }
 
 interface PropertyNodeProps {
   name: string | null
-  value: any
+  value: unknown
 }
 
 function PropertyNode({ name, value }: PropertyNodeProps) {
@@ -40,7 +41,7 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
         </span>
       )
     }
-    if (typeof value === "object") {
+    if (typeof value === "object" && value !== null) {
       const constr = Reflect.getPrototypeOf(value)?.constructor.name
       return (
         <span
@@ -72,7 +73,7 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
         </ol>
       )
     }
-    if (typeof value === "object") {
+    if (typeof value === "object" && value !== null) {
       if (propertiesOf(value).length === 0) {
         return " = {}"
       }
@@ -100,7 +101,7 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
     if (Array.isArray(value)) {
       return value.length > 0
     }
-    if (typeof value === "object") {
+    if (typeof value === "object" && value !== null) {
       return propertiesOf(value).length > 0
     }
     return false
@@ -143,7 +144,7 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
 
 interface ObjectTreeProps {
   name: string | null
-  value: any
+  value: unknown
 }
 
 export default function ObjectTree({ name, value }: ObjectTreeProps) {

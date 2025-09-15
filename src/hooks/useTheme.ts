@@ -8,8 +8,8 @@ function initialTheme() {
 }
 
 function adjustHtmlBackground(theme: string) {
-  var scroll = document.body.scrollTop || document.documentElement.scrollTop
-  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight
+  const scroll = document.body.scrollTop || document.documentElement.scrollTop
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
 
   const backgroundColor =
     scroll / height > 0.5

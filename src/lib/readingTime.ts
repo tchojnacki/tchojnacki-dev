@@ -5,8 +5,7 @@ const WPM = 200
 export function getReadingTimeMinutes(text: string): number {
   let insideWord = false
   let count = 0
-  for (let i = 0; i < text.length; i++) {
-    const char = text[i]! // SAFETY: 0 <= i < text.length
+  for (const char of text) {
     if (/\s/.test(char)) {
       insideWord = false
     } else if (!insideWord) {
@@ -19,6 +18,7 @@ export function getReadingTimeMinutes(text: string): number {
 }
 
 export function remarkReadingTime() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (tree: unknown, { data }: { data: any }) => {
     data.astro.frontmatter.readingTime = getReadingTimeMinutes(toString(tree))
   }
