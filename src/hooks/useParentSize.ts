@@ -1,11 +1,11 @@
-import { useDebugValue, useEffect, useRef, useState } from "react"
+import { useDebugValue, useLayoutEffect, useRef, useState } from "react"
 
 export function useParentSize<ChildElem extends HTMLElement>() {
   const [size, setSize] = useState({ inlineSize: 0, blockSize: 0 })
 
   const childRef = useRef<ChildElem>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let parent = childRef.current?.parentElement
     while (parent && getComputedStyle(parent).display === "contents") {
       parent = parent.parentElement
