@@ -1,25 +1,20 @@
-import { useDebugValue, useEffect, useRef, useState } from "react"
+import { useDebugValue, useLayoutEffect, useRef, useState } from "react"
 
 export function useParentSize<ChildElem extends HTMLElement>() {
   const [size, setSize] = useState({ inlineSize: 0, blockSize: 0 })
 
   const childRef = useRef<ChildElem>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let parent = childRef.current?.parentElement
     while (parent && getComputedStyle(parent).display === "contents") {
       parent = parent.parentElement
     }
-
-    if (!parent) {
-      return
-    }
+    if (!parent) return
 
     const resizeObserver = new ResizeObserver(event => setSize(event[0]!.contentBoxSize[0]!))
-
     resizeObserver.observe(parent)
-
-    return () => resizeObserver.unobserve(parent as HTMLElement)
+    return () => resizeObserver.unobserve(parent)
   }, [])
 
   useDebugValue(`${size.inlineSize} x ${size.blockSize}`)

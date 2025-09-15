@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState, type PropsWithChildren } from "react"
+import { Fragment, useState, type PropsWithChildren } from "react"
 
 import ObjectTree from "~/components/blog/ObjectTree"
 import PromptBlock from "~/components/blog/PromptBlock"
@@ -23,11 +23,10 @@ export default function Experiment({ children }: PropsWithChildren) {
   const [layers, setLayers] = useState(defaultLayer)
   const [batch, setBatch] = useState(defaultBatch)
   const [eta, setEta] = useState(defaultEta)
+  const [model, setModel] = useState(() => new Network(2, layers))
 
   const [losses, setLosses] = useState<number[]>([])
   const [progress, setProgress] = useState<number | null>(null)
-
-  const modelRef = useRef(new Network(2, layers))
 
   const disabled = progress !== null
 
@@ -42,14 +41,14 @@ export default function Experiment({ children }: PropsWithChildren) {
         X.push([x0, x1])
         y.push(Math.sqrt(x0 * x0 + x1 * x1) - 0.5)
       }
-      const loss = modelRef.current.fit(X, y, eta)
+      const loss = model.fit(X, y, eta)
       setLosses(l => [...l, loss])
       setProgress(lerp(t + 1, [0, times], [0, 1]))
     }).then(() => setProgress(null))
   }
 
   const reset = () => {
-    modelRef.current = new Network(2, layers)
+    setModel(new Network(2, layers))
     setLosses([])
     setProgress(null)
   }
@@ -67,7 +66,7 @@ export default function Experiment({ children }: PropsWithChildren) {
           label="Network layer structure."
           display={l => `[${l.join(", ")}]`}
           onChange={l => {
-            modelRef.current = new Network(2, l)
+            setModel(new Network(2, l))
             setLosses([])
           }}
           disabled={disabled}
@@ -75,7 +74,7 @@ export default function Experiment({ children }: PropsWithChildren) {
         ); <br className="mb-2 sm:hidden" />
         <Button text="RESET" onClick={reset} disabled={disabled} />
       </PromptBlock>
-      <ObjectTree name="model" value={modelRef.current} />
+      <ObjectTree name="model" value={model} />
       {children}
       <PromptBlock>
         learn(
@@ -115,7 +114,7 @@ export default function Experiment({ children }: PropsWithChildren) {
         aria-label="Network training progress."
       />
       <div className="my-2 grid grid-cols-2 gap-4 *:w-full sm:grid-cols-4 sm:gap-2">
-        <DiffCanvases model={modelRef.current} losses={losses} />
+        <DiffCanvases model={model} losses={losses} />
         <LossFigure losses={losses} />
       </div>
     </figure>

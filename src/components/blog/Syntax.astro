@@ -1,4 +1,5 @@
 ---
+import type { CodeLanguage } from "astro"
 import { Code } from "astro:components"
 
 import gleam from "~/assets/langs/gleam.tmLanguage.json" with { type: "json" }
@@ -12,14 +13,14 @@ const { code: rawCode, lang: rawLang } = Astro.props
 
 const code = rawCode.replace(/(^\n+)|(\n+$)/, "")
 
-const lang: any = (() => {
+const lang = (() => {
   switch (rawLang) {
     case "gleam":
       return gleam
     default:
       return rawLang
   }
-})()
+})() as CodeLanguage
 ---
 
 <div class="my-2 rounded-md bg-[#24292e] p-2"><Code {code} {lang} /></div>

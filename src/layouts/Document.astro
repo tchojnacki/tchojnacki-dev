@@ -1,6 +1,4 @@
 ---
-// @ts-ignore
-
 import Analytics from "@vercel/analytics/astro"
 import SpeedInsights from "@vercel/speed-insights/astro"
 import { SEO } from "astro-seo"
@@ -55,18 +53,15 @@ const canonical = canonize(Astro.url.href)
       twitter={{ card: "summary" }}
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f9ff" />
     <link rel="icon" href="/static/favicon.ico" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternative" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
     <Font cssVariable="--font-inter" preload />
     <script is:inline>
       const theme = (() => {
-        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-          const local = localStorage.getItem("theme")
-          if (local === "dark" || local === "light") {
-            return local
-          }
-        }
+        const local = localStorage.getItem("theme")
+        if (local === "dark" || local === "light") return local
         return "dark"
       })()
 

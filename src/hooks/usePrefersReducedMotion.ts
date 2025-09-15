@@ -1,6 +1,6 @@
 // Adapted from: https://www.joshwcomeau.com/react/prefers-reduced-motion
 
-import { useDebugValue, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 const QUERY = "(prefers-reduced-motion: no-preference)"
 
@@ -9,9 +9,10 @@ export function usePrefersReducedMotion() {
 
   useEffect(() => {
     const mediaQueryList = window.matchMedia(QUERY)
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- this is intended
     setPrefersReducedMotion(!mediaQueryList.matches)
 
-    const listener = (event: MediaQueryListEvent) => {
+    function listener(event: MediaQueryListEvent) {
       setPrefersReducedMotion(!event.matches)
     }
 
@@ -19,8 +20,6 @@ export function usePrefersReducedMotion() {
 
     return () => mediaQueryList.removeEventListener("change", listener)
   }, [])
-
-  useDebugValue(prefersReducedMotion)
 
   return prefersReducedMotion
 }

@@ -3,18 +3,18 @@ import clsx from "clsx"
 
 interface NavHamburgerProps {
   menuOpen: boolean
-  toggle: () => void
+  onClick: () => void
   className?: string
 }
 
-export default function NavHamburger({ menuOpen, toggle, className }: NavHamburgerProps) {
+export default function NavHamburger({ menuOpen, onClick, className }: NavHamburgerProps) {
   const Icon = menuOpen ? IconX : IconMenu2
   return (
     <button
       className={clsx("group block px-3 py-1", className)}
       aria-expanded={menuOpen}
       aria-label={menuOpen ? "Close menu" : "Open menu"}
-      onClick={toggle}
+      onClick={onClick}
     >
       <Icon
         role="presentation"
