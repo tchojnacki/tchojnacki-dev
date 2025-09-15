@@ -14,7 +14,13 @@ import { remarkReadingTime } from "./src/lib/readingTime"
 export default defineConfig({
   site: "https://tchojnacki.dev",
   trailingSlash: "never",
-  integrations: [react(), mdx(), sitemap(), robotsTxt(), compress({ HTML: false })],
+  integrations: [
+    react({ babel: { plugins: ["babel-plugin-react-compiler"] } }),
+    mdx(),
+    sitemap(),
+    robotsTxt(),
+    compress({ HTML: false }),
+  ],
   markdown: { remarkPlugins: [remarkReadingTime] },
   vite: { plugins: [tailwindcss()] },
   experimental: {
