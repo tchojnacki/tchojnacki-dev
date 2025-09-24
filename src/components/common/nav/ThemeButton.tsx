@@ -20,7 +20,7 @@ export default function ThemeButton() {
     >
       <ThemeIcon
         role="presentation"
-        className="motion-safe:animate-enteronload onenter-scaling stroke-neutral-600 duration-200 group-hover:stroke-neutral-900 dark:stroke-neutral-400 dark:group-hover:stroke-neutral-100"
+        className="motion-safe:animate-themeload stroke-neutral-600 duration-200 will-change-[scale,_opacity] group-hover:stroke-neutral-900 dark:stroke-neutral-400 dark:group-hover:stroke-neutral-100"
       />
     </button>
   )

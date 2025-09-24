@@ -8,7 +8,7 @@ function initialTheme() {
 }
 
 export function useTheme() {
-  const [theme, setTheme] = useState(initialTheme)
+  const [theme, setTheme] = useState<"dark" | "light">(initialTheme)
 
   useEffect(() => {
     if (theme === "dark") {

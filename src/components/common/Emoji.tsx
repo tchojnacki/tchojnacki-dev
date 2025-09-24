@@ -25,7 +25,7 @@ export default function Emoji({ text, size }: EmojiProps) {
       width={size}
       height={size}
       draggable="false"
-      className="inline-block h-[1em] align-[-0.125em]"
+      className="inline-block h-[1em] w-[1em] align-[-0.125em]"
     />
   )
 }

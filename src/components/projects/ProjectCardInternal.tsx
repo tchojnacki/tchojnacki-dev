@@ -43,12 +43,11 @@ export default function ProjectCardInternal({
     <>
       <div
         className={clsx(
-          "relative aspect-4/3 will-change-transform",
-          flipped ? "lg:onenter-fromright lg:col-start-4" : "lg:onenter-fromleft lg:col-start-1",
-          "overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl",
-          "scale-100 duration-200 ease-in",
+          "relative aspect-4/3 overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl",
+          flipped ? "lg:col-start-4" : "lg:col-start-1",
+          "scale-75 opacity-0 duration-200 ease-in will-change-[opacity,_scale]",
+          isMounted && "scale-100 opacity-100",
           isActive && "lg:scale-105",
-          isMounted ? "motion-safe:animate-enteronload opacity-100" : "opacity-0",
         )}
       >
         <img
@@ -108,14 +107,13 @@ export default function ProjectCardInternal({
         itemType="https://schema.org/SoftwareApplication"
         className={clsx(
           flipped
-            ? "lg:onenter-fromleft bg-linear-to-l lg:col-start-1 lg:rounded-tr-3xl lg:rounded-bl-none"
-            : "lg:onenter-fromright bg-linear-to-r lg:col-start-4 lg:rounded-tl-3xl lg:rounded-br-none",
+            ? "bg-linear-to-l lg:col-start-1 lg:rounded-tr-3xl lg:rounded-bl-none"
+            : "bg-linear-to-r lg:col-start-4 lg:rounded-tl-3xl lg:rounded-br-none",
           "z-1 rounded-b-3xl p-4 sm:p-8 lg:col-span-5 lg:row-span-full",
           "lg:to-neudigo-50 from-indigo-100 to-indigo-100",
           "dark:from-indigo-925 dark:to-indigo-925 dark:lg:to-neudigo-950",
           "translate-x-0 transition-[translate] duration-200 ease-in will-change-transform",
           isActive && (flipped ? "lg:-translate-x-1/3" : "lg:translate-x-1/3"),
-          isMounted ? "motion-safe:animate-enteronload opacity-100" : "opacity-0",
         )}
       >
         <H1 className="mb-2 flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-4">
