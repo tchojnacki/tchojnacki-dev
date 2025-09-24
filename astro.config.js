@@ -5,6 +5,7 @@ import react from "@astrojs/react"
 import sitemap from "@astrojs/sitemap"
 import tailwindcss from "@tailwindcss/vite"
 import compress from "astro-compress"
+import expressiveCode from "astro-expressive-code"
 import robotsTxt from "astro-robots-txt"
 import { defineConfig, fontProviders } from "astro/config"
 
@@ -16,6 +17,7 @@ export default defineConfig({
   trailingSlash: "never",
   integrations: [
     react({ babel: { plugins: ["babel-plugin-react-compiler"] } }),
+    expressiveCode(),
     mdx(),
     sitemap(),
     robotsTxt(),

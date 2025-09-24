@@ -7,42 +7,43 @@ function initialTheme() {
   return local
 }
 
-function adjustHtmlBackground(theme: string) {
-  const scroll = document.body.scrollTop || document.documentElement.scrollTop
-  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
-
-  const backgroundColor =
-    scroll / height > 0.5
-      ? theme === "dark"
-        ? "#282566"
-        : "#e0e7ff"
-      : theme === "dark"
-        ? "#14122b"
-        : "#f7f9ff"
-  const themeColor = theme === "dark" ? "#14122b" : "#f7f9ff"
-
-  document.documentElement.style.setProperty("background-color", backgroundColor)
-  document.querySelector("meta[name=theme-color]")?.setAttribute("content", themeColor)
-}
-
 export function useTheme() {
   const [theme, setTheme] = useState(initialTheme)
 
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark")
+      document.documentElement.dataset.theme = "github-dark"
     } else {
       document.documentElement.classList.remove("dark")
+      document.documentElement.dataset.theme = "github-light"
     }
 
     localStorage.setItem("theme", theme)
-    adjustHtmlBackground(theme)
+  }, [theme])
 
-    function listener() {
-      adjustHtmlBackground(theme)
+  useEffect(() => {
+    function adjustHtmlBackground() {
+      const scroll = document.body.scrollTop || document.documentElement.scrollTop
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
+
+      const backgroundColor =
+        scroll / height > 0.5
+          ? theme === "dark"
+            ? "#282566"
+            : "#e0e7ff"
+          : theme === "dark"
+            ? "#14122b"
+            : "#f7f9ff"
+      const themeColor = theme === "dark" ? "#14122b" : "#f7f9ff"
+
+      document.documentElement.style.setProperty("background-color", backgroundColor)
+      document.querySelector("meta[name=theme-color]")?.setAttribute("content", themeColor)
     }
-    document.addEventListener("scroll", listener)
-    return () => document.removeEventListener("scroll", listener)
+
+    adjustHtmlBackground()
+    document.addEventListener("scroll", adjustHtmlBackground)
+    return () => document.removeEventListener("scroll", adjustHtmlBackground)
   }, [theme])
 
   function toggleTheme() {

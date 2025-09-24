@@ -1,19 +1,14 @@
 ---
-import Syntax from "~/components/blog/Syntax.astro"
-
 import JsdocCond from "./JsdocCond"
 
-interface Props {
-  typed: string
-  untyped: string
+if (!Astro.slots.has("typed") || !Astro.slots.has("untyped")) {
+  throw new Error("JsdocSyntax requires both 'typed' and 'untyped' slots to be provided.")
 }
-
-const { typed, untyped } = Astro.props
 ---
 
 <JsdocCond when={true} client:idle>
-  <Syntax lang="javascript" code={typed} />
+  <slot name="typed" />
 </JsdocCond>
 <JsdocCond when={false} client:idle>
-  <Syntax lang="javascript" code={untyped} />
+  <slot name="untyped" />
 </JsdocCond>

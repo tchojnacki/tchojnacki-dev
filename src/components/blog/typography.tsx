@@ -40,7 +40,7 @@ function P({ children }: ComponentProps<"p">) {
 
 function Code({ children }: ComponentProps<"code">) {
   return (
-    <code className="-my-0.5 rounded-md bg-neutral-300 px-1 py-0.5 dark:bg-neutral-700">
+    <code className="bg-ghl-background outline-ghl-border dark:bg-ghd-background dark:outline-ghd-border -my-0.5 rounded-md px-1 py-0.5 outline-1">
       {children}
     </code>
   )

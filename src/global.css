@@ -42,6 +42,10 @@
   --color-sky-500: #0ea5e9;
   --color-chart-orange: #fe5b1f;
   --color-chart-blue: #0074d9;
+  --color-ghd-background: #24292e;
+  --color-ghd-border: #1b1f23;
+  --color-ghl-background: #ffffff;
+  --color-ghl-border: #e1e4e8;
 
   --font-weight-*: initial;
   --font-weight-normal: 400;

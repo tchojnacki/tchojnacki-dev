@@ -6,11 +6,11 @@ abstract: "Artificial neural networks can be thought of as a certain class of hu
 skills: ["javascript"]
 tags: ["machine-learning"]
 ---
+import { Code } from "astro-expressive-code/components"
 import Banner from "~/components/blog/Banner.astro"
 import Cite from "~/components/blog/Cite.astro"
 import Math from "~/components/blog/Math.astro"
 import Sources from "~/components/blog/Sources.astro"
-import Syntax from "~/components/blog/Syntax.astro"
 import JsdocSwitch from "~/components/blog/neural-networks-in-plain-javascript/jsdoc/JsdocSwitch"
 import JsdocSyntax from "~/components/blog/neural-networks-in-plain-javascript/jsdoc/JsdocSyntax.astro"
 import SimpleScalarExample from "~/components/blog/neural-networks-in-plain-javascript/examples/SimpleScalarExample"
@@ -64,6 +64,7 @@ file instead.
 
 If you prefer to read typed code, you can use the following switch to enable
 [JSDoc](https://jsdoc.app) type annotations in all the code snippets:
+
 <JsdocSwitch client:idle />
 
 # Basics of scalar automatic differentiation
@@ -75,7 +76,8 @@ operates on **tensors**, is much more common, and way faster, but also more comp
 The basic building block of the entire system is the `Scalar` class, which represents a single number.
 Its initial form is just a wrapper around a JavaScript `number`:
 
-<JsdocSyntax typed={`
+<JsdocSyntax>
+<Code slot="typed" lang="javascript" code={`
   class Scalar {
     /** @type {number} */
     value;
@@ -85,7 +87,8 @@ Its initial form is just a wrapper around a JavaScript `number`:
       this.value = value;
     }
   }
-`} untyped={`
+`} />
+<Code slot="untyped" lang="javascript" code={`
   class Scalar {
     value;
 
@@ -94,13 +97,15 @@ Its initial form is just a wrapper around a JavaScript `number`:
     }
   }
 `} />
+</JsdocSyntax>
 
 As mentioned before, we want to build huge mathematical expressions from these numbers, and to do that,
 we want to be able to compose them using different operations. For instance, we can implement
 `add` and `mul`, responsible for addition and multiplication. Our `Scalar` will hold an additional
 private property called `#children`, which is a list of scalars used as its subexpressions:
 
-<JsdocSyntax typed={`
+<JsdocSyntax>
+<Code slot="typed" lang="javascript" code={`
   class Scalar {
     /**
     * @param {Scalar} other
@@ -122,7 +127,8 @@ private property called `#children`, which is a list of scalars used as its sube
       return out;
     }
   }
-`} untyped={`
+`} />
+<Code slot="untyped" lang="javascript" code={`
   class Scalar {
     add(other) {
       const out = new Scalar(this.value + other.value);
@@ -137,14 +143,16 @@ private property called `#children`, which is a list of scalars used as its sube
     }
   }
 `} />
+</JsdocSyntax>
 
 This lets us build some simple expressions, like:
-<Syntax lang="javascript" code={`
-  const x = new Scalar(3);
-  const y = new Scalar(4);
-  const z = new Scalar(5);
-  console.log(x.add(y).mul(z));
-`} />
+
+```javascript
+const x = new Scalar(3);
+const y = new Scalar(4);
+const z = new Scalar(5);
+console.log(x.add(y).mul(z));
+```
 
 <SimpleScalarExample client:idle />
 
@@ -168,6 +176,7 @@ we get <Math latex="\frac{\partial y}{\partial p} = 1" />, which means that incr
 In our system, the automatic differentiation can be achieved using **backpropagation**. This method
 is an application of the chain rule, which goes backwards from the result towards the inputs, and
 calculates the partial derivatives along the way. Mathematically, this is the relevant substitution<Cite ordinal={2} />:
+
 <Math block latex="\frac{\partial y}{\partial x} = \frac{\partial y}{\partial w_1}\frac{\partial w_1}{\partial x} = \frac{\partial y}{\partial w_1}\frac{\partial w_1}{\partial w_2}\frac{\partial w_2}{\partial x} = \dots" />
 
 I won't go into the details of backpropagation, since it could very well be a topic for a separate
@@ -179,7 +188,8 @@ two new properties: `partial`, initially equal to zero, holding the current valu
 derivative, and `#propagate`, which is a function responsible for updating the derivatives of the
 children, based on the derivative of the current node. We can rewrite the `add` method as:
 
-<JsdocSyntax typed={`
+<JsdocSyntax>
+<Code slot="typed" lang="javascript" ins={{ range: "9-12" }} code={`
   class Scalar {
     /**
       * @param {Scalar} other
@@ -195,7 +205,8 @@ children, based on the derivative of the current node. We can rewrite the `add` 
       return out;
     }
   }
-`} untyped={`
+`} />
+<Code slot="untyped" lang="javascript" ins={{ range: "5-8" }} code={`
   class Scalar {
     add(other) {
       const out = new Scalar(this.value + other.value);
@@ -208,13 +219,15 @@ children, based on the derivative of the current node. We can rewrite the `add` 
     }
   }
 `} />
+</JsdocSyntax>
 
 For reference, <Math latex="\frac{\partial}{\partial x} (x + y) = 1" />, or in other words, any
 change in either addend results in the same change in the sum. This should explain the body of the
 `#propagate` function. This pattern is so common, that we can create a helper function, called `#op`,
 which is a factory for composed scalars, and rewrite the `add` method:
 
-<JsdocSyntax typed={`
+<JsdocSyntax>
+<Code slot="typed" lang="javascript" code={`
   class Scalar {
     /**
       * @param {Scalar[]} children
@@ -240,7 +253,8 @@ which is a factory for composed scalars, and rewrite the `add` method:
       });
     }
   }
-`} untyped={`
+`} />
+<Code slot="untyped" lang="javascript" code={`
   class Scalar {
     static #op(children, value, propagate) {
       const out = new Scalar(value);
@@ -257,11 +271,14 @@ which is a factory for composed scalars, and rewrite the `add` method:
     }
   }
 `} />
+</JsdocSyntax>
 
 We can now define arbitrary operations on the `Scalar` instances, as long as we know how to calculate
 their result and how to propagate their derivatives. Here are some useful ones, namely: summation,
 multiplication, exponentiation, subtraction, and division:
-<JsdocSyntax typed={`
+
+<JsdocSyntax>
+<Code slot="typed" lang="javascript" code={`
   class Scalar {
     /**
     * @param {Scalar[]} scalars
@@ -315,7 +332,8 @@ multiplication, exponentiation, subtraction, and division:
       return this.mul(other.pow(-1));
     }
   }
-`} untyped={`
+`} />
+<Code slot="untyped" lang="javascript" code={`
   class Scalar {
     static sum(scalars) {
       return Scalar.#op(
@@ -350,6 +368,7 @@ multiplication, exponentiation, subtraction, and division:
     }
   }
 `} />
+</JsdocSyntax>
 
 The final piece of the puzzle, which makes the `Scalar` class pretty much feature-complete, is the
 `derive` method, which fills out all the `partial` properties in arbitrarily nested subexpressions.
@@ -373,23 +392,9 @@ reverse order implicitly produces the topological ordering.
 </Banner>
 
 These three requirements lead us directly to the algorithm presented below:
-<JsdocSyntax typed={`
-  class Scalar {
-    derive() {
-      const order = topologicalSort(this, s => s.#children);
 
-      for (const s of order) {
-        s.partial = 0;
-      }
-
-      this.partial = 1;
-
-      for (const s of order) {
-        s.#propagate();
-      }
-    }
-  }
-`} untyped={`
+<JsdocSyntax>
+<Code slot="typed" lang="javascript" code={`
   class Scalar {
     derive() {
       const order = topologicalSort(this, s => s.#children);
@@ -406,21 +411,34 @@ These three requirements lead us directly to the algorithm presented below:
     }
   }
 `} />
+<Code slot="untyped" lang="javascript" code={`
+  class Scalar {
+    derive() {
+      const order = topologicalSort(this, s => s.#children);
+
+      for (const s of order) {
+        s.partial = 0;
+      }
+
+      this.partial = 1;
+
+      for (const s of order) {
+        s.#propagate();
+      }
+    }
+  }
+`} />
+</JsdocSyntax>
 
 This is the core of the `Scalar` class. We can extend it to add more operations, or some utility
 methods, but the current form is enough to build some models and optimize them.
 
 Let's consolidate our current knowledge with an example:
+
 <Math block latex="f = \frac{2x - 3}{x^3 + x^2 - x}" />
-<JsdocSyntax typed={`
-  const x = new Scalar(1);
-  const numerator = new Scalar(2).mul(x).sub(new Scalar(3)); // 2x - 3
-  const denominator = x.pow(3).add(x.pow(2)).sub(x); // x^3 + x^2 - x
-  const f = numerator.div(denominator);
-  f.derive();
-  console.log(x.partial); // => 6
-  console.log(f);
-`} untyped={`
+
+<JsdocSyntax>
+<Code slot="typed" lang="javascript" code={`
   const x = new Scalar(1);
   const numerator = new Scalar(2).mul(x).sub(new Scalar(3)); // 2x - 3
   const denominator = x.pow(3).add(x.pow(2)).sub(x); // x^3 + x^2 - x
@@ -429,6 +447,17 @@ Let's consolidate our current knowledge with an example:
   console.log(x.partial); // => 6
   console.log(f);
 `} />
+<Code slot="untyped" lang="javascript" code={`
+  const x = new Scalar(1);
+  const numerator = new Scalar(2).mul(x).sub(new Scalar(3)); // 2x - 3
+  const denominator = x.pow(3).add(x.pow(2)).sub(x); // x^3 + x^2 - x
+  const f = numerator.div(denominator);
+  f.derive();
+  console.log(x.partial); // => 6
+  console.log(f);
+`} />
+</JsdocSyntax>
+
 <RationalExprExample client:idle />
 
 # A simple linear regression model
@@ -440,7 +469,8 @@ This choice is arbitrary, we could also handle multiple outputs, or single input
 We can define an abstract `Model` class, which we can later extend to create specific models. The
 `Scalar.wrap` function used inside `predict` transforms an array of numbers into an array of `Scalar` instances.
 
-<JsdocSyntax typed={`
+<JsdocSyntax>
+<Code slot="typed" lang="javascript" code={`
   /** @abstract */
   class Model {
     /** @type {Scalar[]} */
@@ -461,7 +491,8 @@ We can define an abstract `Model` class, which we can later extend to create spe
       return this.evaluate(Scalar.wrap(x)).value;
     }
   }
-`} untyped={`
+`} />
+<Code slot="untyped" lang="javascript" code={`
   class Model {
     get parameters() {
       throw new TypeError("Getter \`parameters\` must be implemented!");
@@ -476,6 +507,7 @@ We can define an abstract `Model` class, which we can later extend to create spe
     }
   }
 `} />
+</JsdocSyntax>
 
 The core of the class is the `#loss` method showcased below, which calculates how much the predicted
 value differs from the real result. What's important is that this method returns a `Scalar` instance.
@@ -486,7 +518,8 @@ We are using the mean squared error, which is a pretty simple metric &ndash; it'
 of squared differences between the predicted and real values. The `#loss` method can be improved,
 for instance by adding [regularization](https://developers.google.com/machine-learning/glossary#regularization).
 
-<JsdocSyntax typed={`
+<JsdocSyntax>
+<Code slot="typed" lang="javascript" code={`
   /** @abstract */
   class Model {
     /**
@@ -517,7 +550,8 @@ for instance by adding [regularization](https://developers.google.com/machine-le
       return loss.value;
     }
   }
-`} untyped={`
+`} />
+<Code slot="untyped" lang="javascript" code={`
   class Model {
     #loss(X, y) {
       const inputs = Scalar.wrap(X);
@@ -537,6 +571,7 @@ for instance by adding [regularization](https://developers.google.com/machine-le
     }
   }
 `} />
+</JsdocSyntax>
 
 The `fit` method is what we'd call the **training**. The `eta` (<Math latex="\eta" />) parameter is the learning rate, which
 determines how much we want to update the weights in each step. If set too low, the convergence will
@@ -550,11 +585,14 @@ be slow, and if set too high, we might overshoot while searching.
 
 What we defined above is enough to build a simple linear regression model. The model transforms a
 single input into a single output, according to the following formula:
+
 <Math block latex="y = ax + b" />
 
 Since we previously assumed that models take many inputs, here we only take the first array element
 and ignore the rest. The subclass looks as follows:
-<JsdocSyntax typed={`
+
+<JsdocSyntax>
+<Code slot="typed" lang="javascript" code={`
   class Linear extends Model {
     /** @type {Scalar} */
     #a;
@@ -584,7 +622,8 @@ and ignore the rest. The subclass looks as follows:
       return this.#a.mul(x[0]).add(this.#b);
     }
   }
-`} untyped={`
+`} />
+<Code slot="untyped" lang="javascript" code={`
   class Linear extends Model {
     constructor() {
       super();
@@ -601,21 +640,15 @@ and ignore the rest. The subclass looks as follows:
     }
   }
 `} />
+</JsdocSyntax>
 
 Let's say our dataset consists of the following data points: <br />
 `(3.1, -0.6)`, `(-0.1, -1.9)`, `(4, 0)`, `(-2.1, -3)`.
 
 We can train our model as follows:
-<JsdocSyntax typed={`
-  const linear = new Linear();
-  const X = [[3.1], [-0.1], [4], [-2.1]];
-  const y = [-0.6, -1.9, 0, -3];
-  for (let k = 0; k < 100; k++) {
-    linear.fit(X, y, 0.1);
-  }
-  console.log(linear.predict([1])); // => -1.48
-  console.log(linear);
-`} untyped={`
+
+<JsdocSyntax>
+<Code slot="typed" lang="javascript" code={`
   const linear = new Linear();
   const X = [[3.1], [-0.1], [4], [-2.1]];
   const y = [-0.6, -1.9, 0, -3];
@@ -625,9 +658,22 @@ We can train our model as follows:
   console.log(linear.predict([1])); // => -1.48
   console.log(linear);
 `} />
+<Code slot="untyped" lang="javascript" code={`
+  const linear = new Linear();
+  const X = [[3.1], [-0.1], [4], [-2.1]];
+  const y = [-0.6, -1.9, 0, -3];
+  for (let k = 0; k < 100; k++) {
+    linear.fit(X, y, 0.1);
+  }
+  console.log(linear.predict([1])); // => -1.48
+  console.log(linear);
+`} />
+</JsdocSyntax>
+
 <LinearExample client:idle />
 
 Here's how our model predicts (orange) based on the training data (blue):
+
 <figure class="my-2 overflow-hidden rounded-md" aria-label="Graph of the linear regression model.">
   <Chart xMin={-3} xMax={5} yMin={-4} yMax={1} defaultLineWidth={0.02} defaultRadius={0.05} elements={[
     { type: "axes", tickSize: 0.05 },
@@ -646,7 +692,9 @@ highly structured, we can divide it into layers, and then even further &ndash; i
 Let's build from the bottom up. The `Neuron` class is a `Model`, which takes many inputs, multiplies
 them by their corresponding weights, adds a bias term, and then applies an activation function.
 Mathematically, it can be expressed as:
+
 <Math block latex="y = \sigma\left(\sum_{i=1}^{n} w_i x_i + b\right)" />
+
 <NeuronDiagram />
 
 <Banner kind="warning">
@@ -657,7 +705,9 @@ Mathematically, it can be expressed as:
 
 Our class is fairly straightforward. We initialize the weights randomly from the <Math latex="[-1, 1]" />,
 range and set the bias to zero. Then we implement the abstract methods from `Model`:
-<JsdocSyntax typed={`
+
+<JsdocSyntax>
+<Code slot="typed" lang="javascript" code={`
   class Neuron extends Model {
     /** @type {Scalar[]} */
     #w;
@@ -696,7 +746,8 @@ range and set the bias to zero. Then we implement the abstract methods from `Mod
         .add(this.#b)[this.#activation]();
     }
   }
-`} untyped={`
+`} />
+<Code slot="untyped" lang="javascript" code={`
   class Neuron extends Model {
     constructor(inputCount, activation = "relu") {
       super();
@@ -716,6 +767,7 @@ range and set the bias to zero. Then we implement the abstract methods from `Mod
     }
   }
 `} />
+</JsdocSyntax>
 
 You might notice, that this addition requires us to implement the activation functions in the `Scalar`
 class. The `linear` function is extremely simple, it doesn't change the input at all (`return this;`).
@@ -728,7 +780,9 @@ results with each evaluation (one for each neuron). This part would feel a bit m
 our model to produce multiple outputs instead.
 
 Regardless, we can implement the standalone `parameters` and `evaluate` methods:
-<JsdocSyntax typed={`
+
+<JsdocSyntax>
+<Code slot="typed" lang="javascript" code={`
   class Layer {
     /** @type {Neuron[]} */
     #neurons;
@@ -754,7 +808,8 @@ Regardless, we can implement the standalone `parameters` and `evaluate` methods:
     */
     evaluate(x) { return this.#neurons.map((n) => n.evaluate(x)); }
   }
-`} untyped={`
+`} />
+<Code slot="untyped" lang="javascript" code={`
   class Layer {
     constructor(inputCount, outputCount, activation) {
       this.#neurons = Array.from(
@@ -768,9 +823,12 @@ Regardless, we can implement the standalone `parameters` and `evaluate` methods:
     evaluate(x) { return this.#neurons.map((n) => n.evaluate(x)); }
   }
 `} />
+</JsdocSyntax>
 
 Finally, we define the `Network` as:
-<JsdocSyntax typed={`
+
+<JsdocSyntax>
+<Code slot="typed" lang="javascript" code={`
   class Network extends Model {
     /** @type {Layer[]} */
     #layers;
@@ -805,7 +863,8 @@ Finally, we define the `Network` as:
       return this.#layers.reduce((acc, l) => l.evaluate(acc), x)[0];
     }
   }
-`} untyped={`
+`} />
+<Code slot="untyped" lang="javascript" code={`
   class Network extends Model {
     constructor(inputCount, layers = []) {
       super();
@@ -825,6 +884,7 @@ Finally, we define the `Network` as:
     }
   }
 `} />
+</JsdocSyntax>
 
 Notice how simple it is to combine smaller models into larger ones.
 
@@ -837,8 +897,10 @@ Finally, we can test our network.
 The task at hand is to approximate the [signed distance function](https://en.wikipedia.org/wiki/Signed_distance_function)
 for a circle. Note that this can be easily calculated by just plugging our inputs into a formula, but for this
 task we'll pretend that this formula is unknown. You can run the experiment below:
+
 <Experiment client:idle>
-<JsdocSyntax typed={`
+<JsdocSyntax>
+<Code slot="typed" lang="javascript" code={`
   /**
   * @param {number} batch
   * @param {number} eta
@@ -856,7 +918,8 @@ task we'll pretend that this formula is unknown. You can run the experiment belo
     }
     model.fit(X, y, eta);
   }
-`} untyped={`
+`} />
+<Code slot="untyped" lang="javascript" code={`
   function learn(batch, eta) {
     const X = [];
     const y = [];
@@ -869,6 +932,7 @@ task we'll pretend that this formula is unknown. You can run the experiment belo
     model.fit(X, y, eta);
   }
 `} />
+</JsdocSyntax>
 </Experiment>
 
 <Banner kind="warning">
