@@ -104,7 +104,7 @@ export default function ProjectCardInternal({
       </div>
       <article
         itemScope
-        itemType="https://schema.org/SoftwareApplication"
+        itemType="https://schema.org/CreativeWork"
         className={clsx(
           flipped
             ? "bg-linear-to-l lg:col-start-1 lg:rounded-tr-3xl lg:rounded-bl-none"
@@ -128,7 +128,10 @@ export default function ProjectCardInternal({
             </ul>
           ) : null}
         </H1>
-        <p itemProp="description" className="text-justify text-neutral-600 dark:text-neutral-400">
+        <p
+          itemProp="abstract description"
+          className="text-justify text-neutral-600 dark:text-neutral-400"
+        >
           {project.description}
         </p>
         {project.parts.map(part => (

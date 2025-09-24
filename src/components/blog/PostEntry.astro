@@ -19,17 +19,23 @@ const H = `h${heading}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
 const tags = [...post.data.skills.map(s => s.id), ...post.data.tags].toSorted()
 ---
 
-<article>
+<article itemscope itemtype="https://schema.org/BlogPosting">
   <a
+    itemprop="url"
     class="group hover:**:text-neutral-1000! dark:hover:**:text-neutral-0! flex max-w-xl flex-col gap-2 p-6 **:duration-200"
     href={`/blog/${post.id}`}
   >
-    <H class="text-xl font-bold text-purple-700 group-hover:underline dark:text-purple-300">
+    <H
+      itemprop="name headline"
+      class="text-xl font-bold text-purple-700 group-hover:underline dark:text-purple-300"
+    >
       {post.data.title}
     </H>
     <div class="flex flex-col gap-2 text-sm sm:flex-row sm:justify-between">
       <span
-        ><time datetime={post.data.date.toISOString().split("T")[0]}
+        ><time
+          itemprop="dateCreated dateModified datePublished"
+          datetime={post.data.date.toISOString()}
           >{
             post.data.date.toLocaleDateString("en-US", {
               weekday: undefined,
@@ -38,13 +44,16 @@ const tags = [...post.data.skills.map(s => s.id), ...post.data.tags].toSorted()
               year: "numeric",
             })
           }</time
-        > &bull; {readingTime} min read</span
+        > &bull; <span itemprop="timeRequired">{readingTime} min read</span></span
       >
-      <ul class="flex gap-2 text-purple-700 dark:text-purple-300">
+      <ul itemprop="keywords" class="flex gap-2 text-purple-700 dark:text-purple-300">
         {tags.map(t => <li>#{t}</li>)}
       </ul>
     </div>
-    <p class="text-justify text-sm text-neutral-700 dark:text-neutral-300">
+    <p
+      itemprop="abstract description"
+      class="text-justify text-sm text-neutral-700 dark:text-neutral-300"
+    >
       {post.data.abstract}
     </p>
     <div
