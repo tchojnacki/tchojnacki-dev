@@ -10,7 +10,6 @@ import Banner from '~/components/blog/Banner.astro'
 import Cite from "~/components/blog/Cite.astro"
 import Sources from "~/components/blog/Sources.astro"
 import SizeChart from "~/components/blog/image-optimization-tips-for-web-pages/SizeChart.astro"
-import Syntax from "~/components/blog/Syntax.astro"
 
 I recently reduced the total image transfer size for the entire [Projects](/projects) subpage by 93%
 (36&nbsp;MB to 2.5&nbsp;MB) and the initial-load image transfer size by over 99% (36&nbsp;MB to 0.2&nbsp;MB).
@@ -73,20 +72,20 @@ will be in different contexts. The browser can then combine these values to sele
 In the simplest case, we want to display a full-width image on each device but do not want to load a huge image on mobile.
 We can use the `srcset` attribute to provide different versions of the image and set the `sizes` attribute to `100vw` (which
 is also the default value). This signals that the image will always take the full viewport width. The full example looks like this:
-<Syntax lang="html" code={`
-  <img
-    src="hero-1536.webp"
-    alt="Hero image of the amazing website."
-    width="1536"
-    height="864"
-    srcset="hero-640.webp 640w,
-            hero-768.webp 768w,
-            hero-1024.webp 1024w,
-            hero-1280.webp 1280w,
-            hero-1536.webp 1536w"
-    sizes="100vw"
-  />
-`} />
+```html mark={6-11}
+<img
+  src="hero-1536.webp"
+  alt="Hero image of the amazing website."
+  width="1536"
+  height="864"
+  srcset="hero-640.webp 640w,
+          hero-768.webp 768w,
+          hero-1024.webp 1024w,
+          hero-1280.webp 1280w,
+          hero-1536.webp 1536w"
+  sizes="100vw"
+/>
+```
 
 Additionally, the [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) element can be used to
 provide different images for different screen sizes but also to provide fallbacks for browsers that do not support modern formats.
@@ -129,54 +128,49 @@ using props.
 To do this, I renamed the `ProjectCard` React component responsible for displaying a single project to `ProjectCardInner` and made a new
 `ProjectCard` Astro file for a server-side wrapper. The shortened version of the code looks as follows:
 
-<Syntax lang="astro" code={`
-  ---
-  // ProjectCard.astro
+```astro title="ProjectCard.astro" showLineNumbers
+---
+import { getImage } from "astro:assets"
+import ProjectCardInternal from "./ProjectCardInternal"
 
-  import { getImage } from "astro:assets"
-  import ProjectCardInternal from "./ProjectCardInternal"
+const { project } = Astro.props
+const image = await getImage({ src: project.image, layout: "constrained" })
+---
 
-  const { project } = Astro.props
-  const image = await getImage({ src: project.image, layout: "constrained" })
-  ---
-
-  <ProjectCardInternal client:visible {project} {image} />
-`} />
+<ProjectCardInternal client:visible {project} {image} />
+```
 
 The `image` prop undergoes some basic processing; for instance, Astro produces `fetchpriority`, while React expects `fetchPriority` (with
 a capital `P`), so we rename the attribute. We also add the `alt` attribute for proper accessibility. Afterwards, the attribute dictionary
 can be simply spread into the `<img>` tag in the React component:
 
-<Syntax lang="tsx" code={`
-  // ProjectCardInternal.jsx
-
-  export default function ProjectCardInternal({ project, image }) {
-    // we can implement any client-side logic here
-    return <img {...image} />
-  }
-`} />
+```tsx title="ProjectCardInternal.jsx" showLineNumbers
+export default function ProjectCardInternal({ project, image }) {
+  // we can implement any client-side logic here
+  return <img {...image} />
+}
+```
 
 When visiting the rendered page, we notice that the images now use WebP, are correctly sized and responsive, and have the additional
 attributes. Astro automatically handled the conversion and quality optimization and correctly emitted differently sized images into
 the build bundle. The images on the project page have roughly the following HTML:
 
-<Syntax lang="html" code={`
-  <img
-    src="/_astro/tchojnacki-dev.UpSx2R8V_Z10mK3R.webp"
-    alt="tchojnacki.dev"
-    width="1024"
-    height="4007"
-    srcset="/_astro/tchojnacki-dev.UpSx2R8V_ZttQAw.webp 640w,
-            /_astro/tchojnacki-dev.UpSx2R8V_Z1rk4CS.webp 750w,
-            /_astro/tchojnacki-dev.UpSx2R8V_mtAaJ.webp 828w,
-            /_astro/tchojnacki-dev.UpSx2R8V_Z10mK3R.webp 1024w"
-    sizes="(min-width: 1024px) 1024px, 100vw"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-  />
-`} />
-
+```html
+<img
+  src="/_astro/tchojnacki-dev.UpSx2R8V_Z10mK3R.webp"
+  alt="tchojnacki.dev"
+  width="1024"
+  height="4007"
+  srcset="/_astro/tchojnacki-dev.UpSx2R8V_ZttQAw.webp 640w,
+          /_astro/tchojnacki-dev.UpSx2R8V_Z1rk4CS.webp 750w,
+          /_astro/tchojnacki-dev.UpSx2R8V_mtAaJ.webp 828w,
+          /_astro/tchojnacki-dev.UpSx2R8V_Z10mK3R.webp 1024w"
+  sizes="(min-width: 1024px) 1024px, 100vw"
+  loading="lazy"
+  decoding="async"
+  fetchpriority="auto"
+/>
+```
 
 # Conclusion
 

@@ -67,8 +67,10 @@ const canonical = canonize(Astro.url.href)
 
       if (theme === "dark") {
         document.documentElement.classList.add("dark")
+        document.documentElement.dataset.theme = "github-dark"
       } else {
         document.documentElement.classList.remove("dark")
+        document.documentElement.dataset.theme = "github-light"
       }
     </script>
   </head>
