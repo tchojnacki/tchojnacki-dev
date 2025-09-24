@@ -33,6 +33,8 @@ export default defineConfig({
         cssVariable: "--font-inter",
         weights: ["400 600"],
         subsets: ["latin", "latin-ext"],
+        styles: ["normal"],
+        optimizedFallbacks: false,
       },
     ],
   },
