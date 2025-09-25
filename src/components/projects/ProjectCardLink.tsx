@@ -33,7 +33,6 @@ export default function ProjectCardLink({
   return (
     <li>
       <LinkButton
-        external
         href={href}
         size="small"
         className={clsx("flex! items-center gap-2", isActive && "opacity-10 hover:opacity-100")}

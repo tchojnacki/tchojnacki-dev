@@ -25,7 +25,7 @@ export default function WavingEmoji() {
         isPlaying && "motion-safe:animate-emojiwave",
       )}
     >
-      <Emoji size={22} text="👋" />
+      <Emoji text="👋" />
     </button>
   )
 }
