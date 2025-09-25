@@ -1,7 +1,7 @@
 import type { Skill } from "~/content"
 
 interface SkillIconProps {
-  skill: Skill
+  skill: Pick<Skill, "icon" | "name">
   className?: string
   decoration?: boolean
 }

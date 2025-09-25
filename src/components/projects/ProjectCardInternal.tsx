@@ -45,8 +45,8 @@ export default function ProjectCardInternal({
         className={clsx(
           "relative aspect-4/3 overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl",
           flipped ? "lg:col-start-4" : "lg:col-start-1",
-          "scale-75 opacity-0 duration-200 ease-in will-change-[opacity,_scale]",
-          isMounted && "scale-100 opacity-100",
+          "opacity-0 duration-200 ease-in will-change-[opacity,_scale] lg:scale-75",
+          isMounted && "opacity-100 lg:scale-100",
           isActive && "lg:scale-105",
         )}
       >

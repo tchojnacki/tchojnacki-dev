@@ -1,8 +1,15 @@
 import { IconMoon, IconSun } from "@tabler/icons-react"
 
-import { useIsMounted, useTheme } from "~/hooks"
+import { useIsMounted, useTheme as useThemeImpl } from "~/hooks"
 
-export default function ThemeButton() {
+interface ThemeButtonProps {
+  useTheme?: () => {
+    theme: "dark" | "light"
+    toggleTheme: () => void
+  }
+}
+
+export default function ThemeButton({ useTheme = useThemeImpl }: ThemeButtonProps) {
   const isMounted = useIsMounted()
   const { theme, toggleTheme } = useTheme()
 
