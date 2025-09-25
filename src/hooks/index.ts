@@ -1,5 +1,6 @@
 export * from "./useAnimationFrame"
-export * from "./useIsMounted"
+export * from "./useIsHydrated"
+export * from "./useIsLoaded"
 export * from "./useParentSize"
 export * from "./usePrefersReducedMotion"
 export * from "./useTechSphere"

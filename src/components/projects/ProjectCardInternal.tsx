@@ -4,7 +4,7 @@ import { useReducer, type CSSProperties, type ImgHTMLAttributes } from "react"
 
 import SkillIcon from "~/components/skills/SkillIcon"
 import type { Project } from "~/content"
-import { useIsMounted } from "~/hooks"
+import { useIsLoaded } from "~/hooks"
 
 import ProjectCardLink from "./ProjectCardLink"
 import ProjectCardTag from "./ProjectCardTag"
@@ -28,7 +28,7 @@ export default function ProjectCardInternal({
   image,
 }: ProjectCardInternalProps) {
   const [isActive, toggleActive] = useReducer(prev => !prev, false)
-  const isMounted = useIsMounted()
+  const { isLoaded, imgRef } = useIsLoaded()
 
   const maxImageScroll = Math.floor(100 - (75 * image.width) / image.height)
   const imageScrollDuration = Math.round(maxImageScroll * 100)
@@ -46,7 +46,7 @@ export default function ProjectCardInternal({
           "relative aspect-4/3 overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl",
           flipped ? "lg:col-start-4" : "lg:col-start-1",
           "opacity-0 duration-200 ease-in will-change-[opacity,_scale] lg:scale-75",
-          isMounted && "opacity-100 lg:scale-100",
+          isLoaded && "opacity-100 lg:scale-100",
           isActive && "lg:scale-105",
         )}
       >
@@ -62,6 +62,7 @@ export default function ProjectCardInternal({
               animationDuration: `${imageScrollDuration}ms`,
             } as CSSProperties
           }
+          ref={imgRef}
         />
         <div
           className={clsx(
