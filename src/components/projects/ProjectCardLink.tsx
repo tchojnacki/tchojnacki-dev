@@ -8,9 +8,8 @@ import {
 } from "@tabler/icons-react"
 import clsx from "clsx"
 
+import LinkButton from "~/components/common/LinkButton"
 import type { ProjectLink } from "~/content"
-
-import LinkButton from "../common/LinkButton"
 
 interface ProjectCardLinkProps {
   link: ProjectLink
@@ -27,13 +26,12 @@ export default function ProjectCardLink({
     documentation: { label: "Documentation", Icon: IconNotebook },
     download: { label: "Download", Icon: IconDownload },
     publication: { label: "Publication", Icon: IconFileTypePdf },
-    blogpost: { label: "Blog", Icon: IconMessageStar },
+    blogpost: { label: "Blog Post", Icon: IconMessageStar },
   }[type]
 
   return (
     <li>
       <LinkButton
-        external
         href={href}
         size="small"
         className={clsx("flex! items-center gap-2", isActive && "opacity-10 hover:opacity-100")}

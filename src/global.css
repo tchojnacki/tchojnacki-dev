@@ -56,8 +56,8 @@
 
   --animate-errshake: errshake 200ms 600ms;
   --animate-emojiwave: emojiwave 1s ease-in-out;
-  --animate-enteronload: enteronload 500ms ease-out;
   --animate-scrollprojectimage: scrollprojectimage 5s ease-in-out alternate infinite;
+  --animate-themeload: themeload 200ms ease-out forwards;
 
   @keyframes errshake {
     from,
@@ -85,17 +85,6 @@
     }
   }
 
-  @keyframes enteronload {
-    from {
-      opacity: 0;
-      transform: var(--enter-transform, none);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
   @keyframes scrollprojectimage {
     from {
       transform: translateY(0);
@@ -104,26 +93,17 @@
       transform: translateY(var(--max-image-scroll, 0));
     }
   }
-}
 
-@utility onenter-fromleft {
-  will-change: transform;
-  --enter-transform: translateX(-50px);
-}
-
-@utility onenter-fromtop {
-  will-change: transform;
-  --enter-transform: translateY(-50px);
-}
-
-@utility onenter-fromright {
-  will-change: transform;
-  --enter-transform: translateX(50px);
-}
-
-@utility onenter-scaling {
-  will-change: transform;
-  --enter-transform: scale(0.75);
+  @keyframes themeload {
+    from {
+      opacity: 0;
+      scale: 0;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
 }
 
 @utility centered-header {

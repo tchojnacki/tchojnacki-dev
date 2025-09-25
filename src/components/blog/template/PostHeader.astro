@@ -1,9 +1,10 @@
 ---
 import { sortBy } from "lodash-es"
 
-import Bullet from "~/components/blog/Bullet.astro"
 import Link from "~/components/common/Link"
 import type { Post } from "~/content"
+
+import Bullet from "./Bullet.astro"
 
 interface Props {
   post: Post
@@ -22,15 +23,24 @@ const tags = sortBy(
 ---
 
 <header class="centered-header flex flex-col gap-3 text-center sm:text-left">
-  <h1 class="text-neutral-1000 dark:text-neutral-0 text-3xl sm:text-4xl">{post.data.title}</h1>
+  <h1 itemprop="name headline" class="text-neutral-1000 dark:text-neutral-0 text-3xl sm:text-4xl">
+    {post.data.title}
+  </h1>
   <div class="text-neutral-800 dark:text-neutral-200">
-    by&nbsp;<address
-      class="text-neutral-1000 dark:text-neutral-0 inline-block font-bold not-italic"
+    <span
+      itemprop="author accountablePerson copyrightHolder editor"
+      itemscope
+      itemtype="https://schema.org/Person"
+      >by&nbsp;<address
+        itemprop="name"
+        class="text-neutral-1000 dark:text-neutral-0 inline-block font-bold not-italic"
+      >
+        {post.data.author}
+      </address></span
     >
-      {post.data.author}
-    </address>
     <Bullet />on&nbsp;<time
-      datetime={post.data.date.toISOString().split("T")[0]}
+      itemprop="dateCreated dateModified datePublished"
+      datetime={post.data.date.toISOString()}
       class="text-neutral-1000 dark:text-neutral-0 font-bold"
       >{
         post.data.date.toLocaleDateString("en-US", {
@@ -40,11 +50,11 @@ const tags = sortBy(
           year: "numeric",
         })
       }</time
-    ><Bullet /><span class="text-neutral-1000 dark:text-neutral-0 font-bold"
+    ><Bullet /><span itemprop="timeRequired" class="text-neutral-1000 dark:text-neutral-0 font-bold"
       >{readingTime}&nbsp;min</span
     >&nbsp;read
   </div>
-  <ul class="flex flex-wrap justify-center gap-4 sm:justify-start">
+  <ul itemprop="keywords" class="flex flex-wrap justify-center gap-4 sm:justify-start">
     {
       tags.map(({ tag, href }) => (
         <li>

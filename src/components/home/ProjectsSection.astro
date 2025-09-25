@@ -2,11 +2,15 @@
 import LinkButton from "~/components/common/LinkButton"
 import SectionHeader from "~/components/common/SectionHeader.astro"
 import ProjectList from "~/components/projects/ProjectList.astro"
+import { featuredProjects } from "~/consts/featured"
+import type { Project } from "~/content"
+
+const filter = (project: Project) => featuredProjects.includes(project.id)
 ---
 
 <section>
   <SectionHeader text="Featured projects" />
-  <ProjectList heading={3} length={3} />
+  <ProjectList heading={3} {filter} />
   <div class="mb-4 flex justify-center">
     <LinkButton href="/projects">View all projects</LinkButton>
   </div>

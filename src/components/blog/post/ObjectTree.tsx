@@ -1,6 +1,6 @@
 import { IconCaretDownFilled, IconCaretRightFilled } from "@tabler/icons-react"
 import clsx from "clsx"
-import { useState } from "react"
+import { useReducer } from "react"
 
 const propertiesOf = (instance: object): [string, unknown][] => {
   const fields = Object.entries(instance)
@@ -17,7 +17,7 @@ interface PropertyNodeProps {
 }
 
 function PropertyNode({ name, value }: PropertyNodeProps) {
-  const [open, setOpen] = useState(false)
+  const [open, toggleOpen] = useReducer(prev => !prev, false)
 
   const nameFrag = (() => {
     if (!name) {
@@ -127,7 +127,7 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
       className="pl-5"
       onClick={e => {
         e.stopPropagation()
-        setOpen(o => !o)
+        toggleOpen()
       }}
       role="button"
       tabIndex={0}

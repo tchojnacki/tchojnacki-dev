@@ -1,0 +1,15 @@
+---
+import Chart from "~/components/blog/post/Chart"
+---
+
+<figure class="my-2 overflow-hidden rounded-md" aria-label="Graph of the linear regression model.">
+  {
+    // prettier-ignore
+    (<Chart xMin={-3} xMax={5} yMin={-4} yMax={1} defaultLineWidth={0.02} defaultRadius={0.05} elements={[
+      { type: "axes", tickSize: 0.05 },
+      { type: "line", color: "orange", start: [-3, -3.374], end: [5, 0.411] },
+      { type: "scatter", color: "orange", data: [[1, -1.48]] },
+      { type: "scatter", color: "blue", data: [[3.1, -0.6], [-0.1, -1.9], [4, 0], [-2.1, -3]] },
+    ]} />)
+  }
+</figure>

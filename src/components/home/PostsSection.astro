@@ -1,16 +1,11 @@
 ---
-import PostList from "~/components/blog/PostList.astro"
+import PostList from "~/components/blog/list/PostList.astro"
 import LinkButton from "~/components/common/LinkButton"
 import SectionHeader from "~/components/common/SectionHeader.astro"
+import { featuredPosts } from "~/consts/featured"
 import type { Post } from "~/content"
 
-const FEATURED_POSTS = [
-  "image-optimization-tips-for-web-pages",
-  "neural-networks-in-plain-javascript",
-  "evaluating-gleam-with-aoc",
-]
-
-const filter = (post: Post) => FEATURED_POSTS.includes(post.id)
+const filter = (post: Post) => featuredPosts.includes(post.id)
 ---
 
 <section>

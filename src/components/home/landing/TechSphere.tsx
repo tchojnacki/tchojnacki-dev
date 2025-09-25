@@ -1,13 +1,13 @@
 import clsx from "clsx"
 
-import { useIsMounted, usePrefersReducedMotion, useTechSphere } from "~/hooks"
+import { useIsHydrated, usePrefersReducedMotion, useTechSphere } from "~/hooks"
 
 interface TechSphereProps {
   skillNames: string[]
 }
 
 export default function TechSphere({ skillNames }: TechSphereProps) {
-  const isMounted = useIsMounted()
+  const isHydrated = useIsHydrated()
   const prefersReducedMotion = usePrefersReducedMotion()
 
   const { canvasRef, canvasSize, handlers } = useTechSphere({ skillNames, prefersReducedMotion })
@@ -17,7 +17,8 @@ export default function TechSphere({ skillNames }: TechSphereProps) {
       role="presentation"
       className={clsx(
         "cursor-grab touch-none select-none active:cursor-grabbing",
-        isMounted ? "motion-safe:animate-enteronload onenter-fromright opacity-100" : "opacity-0",
+        "transition-[scale,_opacity] ease-out will-change-[scale,_opacity] motion-safe:duration-500",
+        isHydrated ? "scale-100 opacity-100" : "scale-0 opacity-0",
       )}
       ref={canvasRef}
       width={canvasSize}

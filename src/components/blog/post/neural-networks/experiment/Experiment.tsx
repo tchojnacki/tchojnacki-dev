@@ -1,7 +1,6 @@
 import { Fragment, useState, type PropsWithChildren } from "react"
 
-import ObjectTree from "~/components/blog/ObjectTree"
-import PromptBlock from "~/components/blog/PromptBlock"
+import ObjectTree from "~/components/blog/post/ObjectTree"
 import { lerp } from "~/lib/math"
 import { cpuBoundLoop } from "~/lib/perf"
 
@@ -17,6 +16,7 @@ import {
   etaOptions,
   layerOptions,
 } from "./params"
+import PromptBlock from "./PromptBlock"
 import Select from "./Select"
 
 export default function Experiment({ children }: PropsWithChildren) {

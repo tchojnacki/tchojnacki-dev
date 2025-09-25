@@ -14,7 +14,7 @@
     },
     {
       "type": "blogpost",
-      "href": "/blog/evaluating-gleam-with-aoc",
+      "href": "/blog/image-optimization-tips-for-web-pages",
       "part": "Images"
     }
   ],
@@ -25,7 +25,7 @@
     },
     {
       "name": "Tools",
-      "skillIds": ["vitest", "github-actions", "figma"]
+      "skillIds": ["vitest", "storybook", "github-actions", "figma"]
     }
   ]
 }

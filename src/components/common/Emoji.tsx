@@ -1,31 +1,37 @@
-import eyes from "~/assets/emojis/eyes.svg"
-import wave from "~/assets/emojis/wave.svg"
+import type { ImageMetadata } from "astro"
 
-function source(text: string): string {
+import eyes from "~/assets/emojis/eyes.svg?no-inline"
+import wave from "~/assets/emojis/wave.svg?no-inline"
+
+function asset(text: string): ImageMetadata | string {
   switch (text) {
     case "👀":
-      return eyes.src
+      return eyes
     case "👋":
-      return wave.src
+      return wave
     default:
       throw new Error(`Unsupported emoji: ${text}`)
   }
 }
 
-interface EmojiProps {
-  text: string
-  size?: number
+// Makes assets work in both Astro and Vite contexts
+function source(asset: ImageMetadata | string): string {
+  if (typeof asset === "string") return asset
+  return asset.src
 }
 
-export default function Emoji({ text, size }: EmojiProps) {
+interface EmojiProps {
+  text: string
+}
+
+export default function Emoji({ text }: EmojiProps) {
+  console.log(eyes)
   return (
     <img
-      src={source(text)}
+      src={source(asset(text))}
       alt={text}
-      width={size}
-      height={size}
       draggable="false"
-      className="inline-block h-[1em] align-[-0.125em]"
+      className="inline-block h-[1em] w-[1em] align-[-0.125em]"
     />
   )
 }

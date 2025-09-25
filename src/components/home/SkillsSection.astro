@@ -3,16 +3,14 @@ import SectionHeader from "~/components/common/SectionHeader.astro"
 import Wave from "~/components/common/Wave.astro"
 import SkillCard from "~/components/skills/SkillCard.astro"
 import SkillCardWrapper from "~/components/skills/SkillCardWrapper.astro"
+import { featuredSkills } from "~/consts/featured"
 ---
 
 <Wave />
 <section class="dark:bg-indigo-925 bg-indigo-100 px-6">
   <SectionHeader text="Featured skills" />
   <SkillCardWrapper>
-    <SkillCard skillId="react" />
-    <SkillCard skillId="typescript" />
-    <SkillCard skillId="python" />
-    <SkillCard skillId="rust" />
+    {featuredSkills.map(skill => <SkillCard skillId={skill} />)}
   </SkillCardWrapper>
 </section>
 <Wave inverted />

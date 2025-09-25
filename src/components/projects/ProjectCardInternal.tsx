@@ -4,7 +4,7 @@ import { useReducer, type CSSProperties, type ImgHTMLAttributes } from "react"
 
 import SkillIcon from "~/components/skills/SkillIcon"
 import type { Project } from "~/content"
-import { useIsMounted } from "~/hooks"
+import { useIsLoaded } from "~/hooks"
 
 import ProjectCardLink from "./ProjectCardLink"
 import ProjectCardTag from "./ProjectCardTag"
@@ -28,7 +28,7 @@ export default function ProjectCardInternal({
   image,
 }: ProjectCardInternalProps) {
   const [isActive, toggleActive] = useReducer(prev => !prev, false)
-  const isMounted = useIsMounted()
+  const { isLoaded, imgRef } = useIsLoaded()
 
   const maxImageScroll = Math.floor(100 - (75 * image.width) / image.height)
   const imageScrollDuration = Math.round(maxImageScroll * 100)
@@ -43,12 +43,11 @@ export default function ProjectCardInternal({
     <>
       <div
         className={clsx(
-          "relative aspect-4/3 will-change-transform",
-          flipped ? "lg:onenter-fromright lg:col-start-4" : "lg:onenter-fromleft lg:col-start-1",
-          "overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl",
-          "scale-100 duration-200 ease-in",
+          "relative aspect-4/3 overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl",
+          flipped ? "lg:col-start-4" : "lg:col-start-1",
+          "opacity-0 duration-200 ease-in will-change-[opacity,_scale] lg:scale-75",
+          isLoaded && "opacity-100 lg:scale-100",
           isActive && "lg:scale-105",
-          isMounted ? "motion-safe:animate-enteronload opacity-100" : "opacity-0",
         )}
       >
         <img
@@ -63,6 +62,7 @@ export default function ProjectCardInternal({
               animationDuration: `${imageScrollDuration}ms`,
             } as CSSProperties
           }
+          ref={imgRef}
         />
         <div
           className={clsx(
@@ -105,17 +105,16 @@ export default function ProjectCardInternal({
       </div>
       <article
         itemScope
-        itemType="https://schema.org/SoftwareApplication"
+        itemType="https://schema.org/CreativeWork"
         className={clsx(
           flipped
-            ? "lg:onenter-fromleft bg-linear-to-l lg:col-start-1 lg:rounded-tr-3xl lg:rounded-bl-none"
-            : "lg:onenter-fromright bg-linear-to-r lg:col-start-4 lg:rounded-tl-3xl lg:rounded-br-none",
+            ? "bg-linear-to-l lg:col-start-1 lg:rounded-tr-3xl lg:rounded-bl-none"
+            : "bg-linear-to-r lg:col-start-4 lg:rounded-tl-3xl lg:rounded-br-none",
           "z-1 rounded-b-3xl p-4 sm:p-8 lg:col-span-5 lg:row-span-full",
           "lg:to-neudigo-50 from-indigo-100 to-indigo-100",
           "dark:from-indigo-925 dark:to-indigo-925 dark:lg:to-neudigo-950",
           "translate-x-0 transition-[translate] duration-200 ease-in will-change-transform",
           isActive && (flipped ? "lg:-translate-x-1/3" : "lg:translate-x-1/3"),
-          isMounted ? "motion-safe:animate-enteronload opacity-100" : "opacity-0",
         )}
       >
         <H1 className="mb-2 flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-4">
@@ -130,7 +129,10 @@ export default function ProjectCardInternal({
             </ul>
           ) : null}
         </H1>
-        <p itemProp="description" className="text-justify text-neutral-600 dark:text-neutral-400">
+        <p
+          itemProp="abstract description"
+          className="text-justify text-neutral-600 dark:text-neutral-400"
+        >
           {project.description}
         </p>
         {project.parts.map(part => (

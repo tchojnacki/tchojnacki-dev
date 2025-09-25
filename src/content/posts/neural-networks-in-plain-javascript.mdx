@@ -7,18 +7,18 @@ skills: ["javascript"]
 tags: ["machine-learning"]
 ---
 import { Code } from "astro-expressive-code/components"
-import Banner from "~/components/blog/Banner.astro"
-import Cite from "~/components/blog/Cite.astro"
-import Math from "~/components/blog/Math.astro"
-import Sources from "~/components/blog/Sources.astro"
-import JsdocSwitch from "~/components/blog/neural-networks-in-plain-javascript/jsdoc/JsdocSwitch"
-import JsdocSyntax from "~/components/blog/neural-networks-in-plain-javascript/jsdoc/JsdocSyntax.astro"
-import SimpleScalarExample from "~/components/blog/neural-networks-in-plain-javascript/examples/SimpleScalarExample"
-import RationalExprExample from "~/components/blog/neural-networks-in-plain-javascript/examples/RationalExprExample"
-import LinearExample from "~/components/blog/neural-networks-in-plain-javascript/examples/LinearExample"
-import Chart from "~/components/blog/Chart"
-import NeuronDiagram from "~/components/blog/neural-networks-in-plain-javascript/NeuronDiagram.astro"
-import Experiment from "~/components/blog/neural-networks-in-plain-javascript/experiment/Experiment"
+import Banner from "@post/Banner.astro"
+import Cite from "@post/Cite.astro"
+import Math from "@post/Math.astro"
+import Sources from "@post/Sources.astro"
+import JsdocSwitch from "@post/neural-networks/jsdoc/JsdocSwitch"
+import JsdocSyntax from "@post/neural-networks/jsdoc/JsdocSyntax.astro"
+import SimpleScalarExample from "@post/neural-networks/examples/SimpleScalarExample"
+import RationalExprExample from "@post/neural-networks/examples/RationalExprExample"
+import LinearExample from "@post/neural-networks/examples/LinearExample"
+import LinearFigure from "@post/neural-networks/examples/LinearFigure.astro"
+import NeuronDiagram from "@post/neural-networks/NeuronDiagram.astro"
+import Experiment from "@post/neural-networks/experiment/Experiment"
 
 # Introduction
 
@@ -674,14 +674,7 @@ We can train our model as follows:
 
 Here's how our model predicts (orange) based on the training data (blue):
 
-<figure class="my-2 overflow-hidden rounded-md" aria-label="Graph of the linear regression model.">
-  <Chart xMin={-3} xMax={5} yMin={-4} yMax={1} defaultLineWidth={0.02} defaultRadius={0.05} elements={[
-    { type: "axes", tickSize: 0.05 },
-    { type: "line", color: "orange", start: [-3, -3.374], end: [5, 0.411] },
-    { type: "scatter", color: "orange", data: [[1, -1.48]] },
-    { type: "scatter", color: "blue", data: [[3.1, -0.6], [-0.1, -1.9], [4, 0], [-2.1, -3]] },
-  ]} />
-</figure>
+<LinearFigure />
 
 # Gradually building the neural network
 
