@@ -3,10 +3,10 @@ import { render } from "astro:content"
 
 import "katex/dist/katex.min.css"
 
-import HiringBanner from "~/components/blog/HiringBanner.astro"
-import PostFooter from "~/components/blog/PostFooter.astro"
-import PostHeader from "~/components/blog/PostHeader.astro"
-import { typography } from "~/components/blog/typography"
+import HiringBanner from "~/components/blog/template/HiringBanner.astro"
+import PostFooter from "~/components/blog/template/PostFooter.astro"
+import PostHeader from "~/components/blog/template/PostHeader.astro"
+import { typography } from "~/components/blog/template/typography"
 import { getPosts, pathsFrom, type Post } from "~/content"
 import Layout from "~/layouts/Layout.astro"
 

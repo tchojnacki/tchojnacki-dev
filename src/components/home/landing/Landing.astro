@@ -3,6 +3,7 @@ import { IconArrowRight, IconBrandGithub, IconBrandLinkedin, IconFileCv } from "
 
 import LinkButton from "~/components/common/LinkButton"
 import Wave from "~/components/common/Wave.astro"
+import { techSphereSkills } from "~/consts/featured"
 import { lookingForJob } from "~/consts/hiring"
 import { github, linkedin, resume } from "~/consts/socials"
 import { getSkillById } from "~/content"
@@ -11,27 +12,7 @@ import SocialLink from "./SocialLink.astro"
 import TechSphere from "./TechSphere"
 import WavingEmoji from "./WavingEmoji"
 
-const skillIds = [
-  "react",
-  "typescript",
-  "python",
-  "rust",
-  "astro",
-  "nextjs",
-  "tailwind-css",
-  "postgres",
-  "mongodb",
-  "docker",
-  "nestjs",
-  "angular",
-  "csharp",
-  "java",
-  "aws",
-  "web-assembly",
-  "latex",
-]
-
-const skillNames = await Promise.all(skillIds.map(id => getSkillById(id).then(s => s.name)))
+const skillNames = await Promise.all(techSphereSkills.map(id => getSkillById(id).then(s => s.name)))
 ---
 
 <header

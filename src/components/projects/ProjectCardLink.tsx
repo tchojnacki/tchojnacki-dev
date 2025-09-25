@@ -8,9 +8,8 @@ import {
 } from "@tabler/icons-react"
 import clsx from "clsx"
 
+import LinkButton from "~/components/common/LinkButton"
 import type { ProjectLink } from "~/content"
-
-import LinkButton from "../common/LinkButton"
 
 interface ProjectCardLinkProps {
   link: ProjectLink

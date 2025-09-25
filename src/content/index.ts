@@ -3,6 +3,8 @@ import { getCollection, getEntry, type CollectionEntry } from "astro:content"
 import { keyBy, sortBy, uniq } from "lodash-es"
 import * as ICONS from "simple-icons"
 
+import { projectImportanceOrder } from "~/consts/featured"
+
 export type Skill = {
   id: string
   icon: ICONS.SimpleIcon | string
@@ -77,30 +79,3 @@ export function pathsFrom<C, R extends GetStaticPathsItem>(
 ): () => Promise<R[]> {
   return () => getContent().then(c => c.map(mapper))
 }
-
-const projectImportanceOrder = [
-  "tchojnacki-dev",
-  "senso",
-  "jak-przyjade",
-  "attorney-site",
-  "tcp",
-  "artificial-intelligence",
-  "jesz-co-chcesz",
-  "esolangs",
-  "advent-of-code",
-  "logic-circuit-boards",
-  "online-city-tickets",
-  "image-steganography",
-  "king-and-pigs",
-  "rick-and-morty",
-  "faktyczka",
-  "scripting-tanks",
-  "steam-engine",
-  "spotify-mosaic",
-  "script-languages",
-  "cloud",
-  "aspnet",
-  "nodewikiaapi",
-  "fandom-monaco",
-  "ocaml-scala-run",
-]

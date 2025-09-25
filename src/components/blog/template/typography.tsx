@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react"
 
-import Link from "../common/Link"
+import Link from "~/components/common/Link"
 
 function H1({ children, id }: ComponentProps<"h1">) {
   return (

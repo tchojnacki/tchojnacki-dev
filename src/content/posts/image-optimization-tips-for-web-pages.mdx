@@ -6,17 +6,17 @@ abstract: "I recently reduced the total image transfer size for the entire Proje
 skills: ["astro", "html"]
 tags: []
 ---
-import Banner from '~/components/blog/Banner.astro'
-import Cite from "~/components/blog/Cite.astro"
-import Sources from "~/components/blog/Sources.astro"
-import SizeChart from "~/components/blog/image-optimization-tips-for-web-pages/SizeChart.astro"
+import Banner from '@post/Banner.astro'
+import Cite from "@post/Cite.astro"
+import Sources from "@post/Sources.astro"
+import SizeFigure from "@post/image-optimization/SizeFigure.astro"
 
 I recently reduced the total image transfer size for the entire [Projects](/projects) subpage by 93%
 (36&nbsp;MB to 2.5&nbsp;MB) and the initial-load image transfer size by over 99% (36&nbsp;MB to 0.2&nbsp;MB).
 While this site is built with [Astro](https://astro.build), the used techniques are applicable for
 most website-building technologies and can provide sizeable performance improvements.
 
-<SizeChart />
+<SizeFigure />
 
 # Optimization methods
 

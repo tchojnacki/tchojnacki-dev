@@ -1,4 +1,4 @@
-import ObjectTree from "~/components/blog/ObjectTree"
+import ObjectTree from "~/components/blog/post/ObjectTree"
 
 class Scalar {
   static name = "Scalar"
