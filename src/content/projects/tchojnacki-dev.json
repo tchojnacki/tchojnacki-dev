@@ -25,7 +25,7 @@
     },
     {
       "name": "Tools",
-      "skillIds": ["vitest", "github-actions", "figma"]
+      "skillIds": ["vitest", "storybook", "github-actions", "figma"]
     }
   ]
 }

@@ -27,7 +27,7 @@
 - **Design:** Tailwind CSS, Tabler Icons, Simple Icons, Figma
 - **Blog:** MDX, KaTeX, nanostores
 - **Helpers:** Lodash, clsx
-- **Tools:** Vite, Vitest, Git
+- **Tools:** Vitest, Storybook, Vite, Git
 - **CI/CD:** GitHub Actions, Codecov
 - **Formatting:** Prettier, commitlint, Husky
 - **Platforms:** Vercel, Squarespace
@@ -82,3 +82,13 @@ npm run test
 
 Test results will be printed alongside a coverage report. The tests are also run as part of the CI/CD process
 on every pull request. Note that only the logic is tested - there are no visual tests.
+
+## Storybook 📚
+
+Storybook documents the components written in React (due to [technical limitations](https://github.com/storybookjs/storybook/issues/18356), Astro components cannot be documented). To run Storybook locally, use:
+
+```bash
+npm run storybook
+```
+
+![Storybook showing the TechSphere component.](./.github/storybook.png)
