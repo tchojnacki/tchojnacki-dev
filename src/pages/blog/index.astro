@@ -1,9 +1,9 @@
 ---
 import { IconWritingSign } from "@tabler/icons-react"
-import { fromPairs, sortBy, uniqBy } from "lodash-es"
+import { countBy, sortBy, uniqBy } from "lodash-es"
 
 import PostList from "~/components/blog/list/PostList.astro"
-import Link from "~/components/common/Link"
+import TagLink from "~/components/blog/list/TagLink.astro"
 import { getPosts } from "~/content"
 import Layout from "~/layouts/Layout.astro"
 
@@ -17,12 +17,8 @@ const allTags = uniqBy(
   "href",
 )
 
-const tagCounts = fromPairs(
-  allTags.map(({ tag }) => [
-    tag,
-    posts.filter(p => p.data.tags.includes(tag) || p.data.skills.some(({ id }) => id == tag))
-      .length,
-  ]),
+const tagCounts = countBy(
+  posts.flatMap(p => [...p.data.tags, ...p.data.skills.map(({ id }) => id)]),
 )
 
 const popularTags = sortBy(
@@ -57,7 +53,7 @@ const popularTags = sortBy(
             {
               popularTags.map(({ tag, href }) => (
                 <li class="py-1">
-                  <Link {href}>#{tag}</Link>
+                  <TagLink {tag} {href} count={tagCounts[tag]!} />
                 </li>
               ))
             }
