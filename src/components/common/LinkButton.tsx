@@ -19,9 +19,10 @@ export default function LinkButton({
   return (
     <a
       href={href}
+      draggable={false}
       {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
       className={clsx(
-        "text-neutral-0 inline-block rounded-xl bg-indigo-600 leading-none duration-200 hover:bg-indigo-500",
+        "text-neutral-0 inline-block rounded-xl bg-indigo-600 leading-none duration-200 select-none hover:bg-indigo-500 active:scale-95",
         size === "normal" ? "px-6 py-3" : "px-4 py-2",
         className,
       )}

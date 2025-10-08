@@ -13,7 +13,8 @@ const skill = await getSkillById(Astro.props.skillId)
 <li>
   <a
     href={`/skills/${skill.id}`}
-    class="dark:bg-neudigo-950 bg-neudigo-50 flex h-full flex-col items-center gap-3 rounded-xl p-3 pt-4 hover:scale-105 hover:brightness-95 hover:dark:brightness-125"
+    draggable={false}
+    class="dark:bg-neudigo-950 bg-neudigo-50 flex h-full flex-col items-center gap-3 rounded-xl p-3 pt-4 duration-200 select-none hover:brightness-95 not-active:hover:scale-105 hover:dark:brightness-125"
   >
     <SkillIcon {skill} className="h-full" decoration />
     <h3 class="h-6 w-full overflow-hidden text-center leading-none text-ellipsis whitespace-nowrap">

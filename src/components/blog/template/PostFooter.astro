@@ -49,9 +49,16 @@ const socials = [
         const title = `Share on ${name}...`
         return (
           <li>
-            <Link {href} {title}>
-              <Icon size={32} aria-label={title} />
-            </Link>
+            <a
+              {href}
+              {title}
+              draggable={false}
+              target="_blank"
+              rel="noreferrer"
+              class="hover:text-neutral-1000 dark:hover:text-neutral-0 group text-purple-700 duration-200 dark:text-purple-300"
+            >
+              <Icon className="group-active:scale-95 duration-200" size={32} aria-label={title} />
+            </a>
           </li>
         )
       })

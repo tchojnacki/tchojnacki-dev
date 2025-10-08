@@ -22,7 +22,7 @@ export default function ProjectCardTag({ tag, small }: ProjectCardTagProps) {
     <li
       style={{ backgroundColor }}
       className={clsx(
-        "block rounded-full whitespace-nowrap text-neutral-100",
+        "block rounded-full whitespace-nowrap text-neutral-100 select-none",
         small ? "px-2 text-sm" : "px-3",
       )}
     >

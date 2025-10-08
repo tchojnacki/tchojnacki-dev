@@ -13,9 +13,10 @@ export default function NavLink({ href, children, pathname, className }: NavLink
   return (
     <a
       href={href}
+      draggable={false}
       className={clsx(
         className,
-        "block duration-200",
+        "block duration-200 select-none active:scale-95",
         pathsMatch(href, pathname)
           ? "font-bold text-neutral-900 dark:text-neutral-100"
           : "text-neutral-600 dark:text-neutral-400",

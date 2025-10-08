@@ -11,7 +11,7 @@ export default function NavHamburger({ menuOpen, onClick, className }: NavHambur
   const Icon = menuOpen ? IconX : IconMenu2
   return (
     <button
-      className={clsx("group block px-3 py-1", className)}
+      className={clsx("group block px-3 py-1 duration-200 active:scale-95", className)}
       aria-expanded={menuOpen}
       aria-label={menuOpen ? "Close menu" : "Open menu"}
       onClick={onClick}

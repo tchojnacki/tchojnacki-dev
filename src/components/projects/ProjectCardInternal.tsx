@@ -154,7 +154,8 @@ export default function ProjectCardInternal({
                     <a
                       title={skill.name}
                       href={`/skills/${skill.id}`}
-                      className="flex flex-1 items-center justify-center gap-1 rounded-full bg-neutral-900/10 px-3 whitespace-nowrap duration-200 hover:bg-neutral-900/20 dark:bg-neutral-100/10 hover:dark:bg-neutral-100/20"
+                      draggable={false}
+                      className="flex flex-1 items-center justify-center gap-1 rounded-full bg-neutral-900/10 px-3 whitespace-nowrap duration-200 select-none hover:bg-neutral-900/20 active:scale-95 dark:bg-neutral-100/10 hover:dark:bg-neutral-100/20"
                     >
                       <SkillIcon skill={skill} className="my-1 h-[1em]" decoration={i < 3} />
                       {i < 3 && <span>{skill.name}</span>}

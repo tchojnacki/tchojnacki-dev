@@ -9,11 +9,12 @@ const { label, href } = Astro.props
 
 <a
   {href}
+  draggable="false"
   target="_blank"
   rel="noreferrer"
   title={label}
   aria-label={label}
-  class="social-link inline-block h-8 w-8"
+  class="social-link inline-block h-8 w-8 duration-200 active:scale-95"
 >
   <slot />
 </a>
