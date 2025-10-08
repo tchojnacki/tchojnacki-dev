@@ -25,7 +25,6 @@ interface EmojiProps {
 }
 
 export default function Emoji({ text }: EmojiProps) {
-  console.log(eyes)
   return (
     <img
       src={source(asset(text))}
