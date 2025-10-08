@@ -12,7 +12,7 @@ export default defineEcConfig({
   },
   plugins: [pluginLineNumbers()],
   styleOverrides: {
-    codeFontSize: "0.9rem",
+    codeFontSize: "0.875rem",
     codePaddingBlock: "0.5rem",
     codePaddingInline: "0.5rem",
     frames: {
