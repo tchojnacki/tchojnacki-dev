@@ -35,7 +35,7 @@ export default function NavInternal({ pathname, blobDarkUrl, blobLightUrl }: Nav
           />
         </nav>
       </Dialog>
-      <nav className="flex h-[var(--spacing-nav-height)] items-center justify-end p-[calc(var(--spacing-nav-height)/4)] leading-none">
+      <nav className="flex h-(--spacing-nav-height) items-center justify-end p-[calc(var(--spacing-nav-height)/4)] leading-none">
         <NavLinkList
           listClassName="hidden sm:flex gap-16 mx-auto"
           itemClassName="px-4 py-[calc(var(--spacing-nav-height)/8)] rounded-lg
