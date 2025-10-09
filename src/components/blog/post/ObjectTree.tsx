@@ -1,6 +1,7 @@
 import { IconCaretDownFilled, IconCaretRightFilled } from "@tabler/icons-react"
-import clsx from "clsx"
 import { useReducer } from "react"
+
+import { cn } from "~/lib/cn"
 
 const propertiesOf = (instance: object): [string, unknown][] => {
   const fields = Object.entries(instance)
@@ -45,7 +46,7 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
       const constr = Reflect.getPrototypeOf(value)?.constructor.name
       return (
         <span
-          className={clsx(
+          className={cn(
             constr !== "Object" && "font-bold",
             "text-purple-700 opacity-50 dark:text-purple-300",
           )}

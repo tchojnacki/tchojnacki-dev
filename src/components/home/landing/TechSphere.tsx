@@ -1,6 +1,5 @@
-import clsx from "clsx"
-
 import { useIsHydrated, usePrefersReducedMotion, useTechSphere } from "~/hooks"
+import { cn } from "~/lib/cn"
 
 interface TechSphereProps {
   skillNames: string[]
@@ -15,7 +14,7 @@ export default function TechSphere({ skillNames }: TechSphereProps) {
   return (
     <canvas
       role="presentation"
-      className={clsx(
+      className={cn(
         "cursor-grab touch-none select-none active:cursor-grabbing",
         "transition-[opacity,_scale] ease-out will-change-[opacity,_scale] motion-safe:duration-500",
         isHydrated ? "scale-100 opacity-100" : "scale-0 opacity-0",

@@ -1,5 +1,6 @@
 import { IconMenu2, IconX } from "@tabler/icons-react"
-import clsx from "clsx"
+
+import { cn } from "~/lib/cn"
 
 interface NavHamburgerProps {
   menuOpen: boolean
@@ -11,7 +12,7 @@ export default function NavHamburger({ menuOpen, onClick, className }: NavHambur
   const Icon = menuOpen ? IconX : IconMenu2
   return (
     <button
-      className={clsx("group block px-3 py-1 duration-200 active:scale-95", className)}
+      className={cn("group block px-3 py-1 duration-200 active:scale-95", className)}
       aria-expanded={menuOpen}
       aria-label={menuOpen ? "Close menu" : "Open menu"}
       onClick={onClick}

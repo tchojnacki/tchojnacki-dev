@@ -1,5 +1,4 @@
-import clsx from "clsx"
-
+import { cn } from "~/lib/cn"
 import { canonize } from "~/lib/format"
 
 interface NavLinkProps {
@@ -14,7 +13,7 @@ export default function NavLink({ href, children, pathname, className }: NavLink
     <a
       href={href}
       draggable={false}
-      className={clsx(
+      className={cn(
         className,
         "block duration-200 select-none active:scale-95",
         pathsMatch(href, pathname)
@@ -30,10 +29,5 @@ export default function NavLink({ href, children, pathname, className }: NavLink
 function pathsMatch(t: string, c: string): boolean {
   const target = canonize(t)
   const current = canonize(c)
-
-  if (target === "") {
-    return current === target
-  }
-
-  return current.startsWith(target)
+  return target === "" ? current === "" : current.startsWith(target)
 }

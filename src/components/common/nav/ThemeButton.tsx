@@ -1,6 +1,7 @@
 import { IconMoon, IconSun } from "@tabler/icons-react"
 
 import { useIsHydrated, useTheme as useThemeImpl } from "~/hooks"
+import { cn } from "~/lib/cn"
 
 interface ThemeButtonProps {
   useTheme?: () => {
@@ -25,7 +26,11 @@ export default function ThemeButton({ useTheme = useThemeImpl }: ThemeButtonProp
     >
       <ThemeIcon
         role="presentation"
-        className="motion-safe:animate-themeload stroke-neutral-600 duration-200 group-hover:stroke-neutral-900 dark:stroke-neutral-400 dark:group-hover:stroke-neutral-100"
+        className={cn(
+          "motion-safe:animate-themeload duration-200",
+          "stroke-neutral-600 group-hover:stroke-neutral-900",
+          "dark:stroke-neutral-400 dark:group-hover:stroke-neutral-100",
+        )}
       />
     </button>
   )

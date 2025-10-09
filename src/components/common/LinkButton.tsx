@@ -1,5 +1,6 @@
-import clsx from "clsx"
 import type { ReactNode } from "react"
+
+import { cn } from "~/lib/cn"
 
 interface LinkButtonProps {
   children: ReactNode
@@ -21,7 +22,7 @@ export default function LinkButton({
       href={href}
       draggable={false}
       {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
-      className={clsx(
+      className={cn(
         "text-neutral-0 inline-block rounded-xl bg-indigo-600 leading-none duration-200 select-none hover:bg-indigo-500 active:scale-95",
         size === "normal" ? "px-6 py-3" : "px-4 py-2",
         className,

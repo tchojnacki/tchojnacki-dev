@@ -6,10 +6,10 @@ import {
   IconMessageStar,
   IconNotebook,
 } from "@tabler/icons-react"
-import clsx from "clsx"
 
 import LinkButton from "~/components/common/LinkButton"
 import type { ProjectLink } from "~/content"
+import { cn } from "~/lib/cn"
 
 interface ProjectCardLinkProps {
   link: ProjectLink
@@ -34,7 +34,7 @@ export default function ProjectCardLink({
       <LinkButton
         href={href}
         size="small"
-        className={clsx("flex! items-center gap-2", isActive && "opacity-10 hover:opacity-100")}
+        className={cn("flex! items-center gap-2", isActive && "opacity-10 hover:opacity-100")}
       >
         <Icon role="presentation" /> {label + (part ? ` – ${part}` : "")}
       </LinkButton>
