@@ -6,7 +6,8 @@
   "links": [
     {
       "type": "repository",
-      "href": "https://github.com/CodersCamp2021-HK/CodersCamp2021.Project.Fullstack"
+      "href": "https://github.com/CodersCamp2021-HK/CodersCamp2021.Project.Fullstack",
+      "polish": true
     }
   ],
   "parts": [

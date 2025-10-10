@@ -31,6 +31,7 @@ const projects = defineCollection({
           ]),
           href: z.string(),
           part: z.string().optional(),
+          polish: z.boolean().default(false),
         }),
       ),
       parts: z.array(

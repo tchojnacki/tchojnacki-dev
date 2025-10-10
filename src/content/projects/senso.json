@@ -4,7 +4,7 @@
   "image": "~/assets/projects/senso.jpg",
   "tags": ["academic", "group"],
   "links": [
-    { "type": "publication", "href": "/static/senso.pdf" },
+    { "type": "publication", "href": "/static/senso.pdf", "polish": true },
     {
       "type": "repository",
       "href": "https://github.com/zpi-2023/senso-frontend",
