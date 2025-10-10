@@ -131,7 +131,7 @@ export default function ProjectCardInternal({
         </H1>
         <p
           itemProp="abstract description"
-          className="text-justify text-neutral-600 dark:text-neutral-400"
+          className="text-neutral-600 sm:text-justify sm:hyphens-auto dark:text-neutral-400"
         >
           {project.description}
         </p>

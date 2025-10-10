@@ -7,7 +7,7 @@ import { linkedin, resume } from "~/consts/socials"
 const MAIL = `mailto:tomaszchojnacki2001@gmail.com?subject=${encodeURIComponent("Quick chat?")}`
 ---
 
-<div class:list={["mt-8 text-justify", lookingForJob ? null : "opacity-50"]}>
+<div class:list={["mt-8 sm:text-justify sm:hyphens-auto", lookingForJob ? null : "opacity-50"]}>
   <Banner kind="info">
     {
       // prettier-ignore
