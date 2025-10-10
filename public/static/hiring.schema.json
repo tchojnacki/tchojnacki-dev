@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tchojnacki.dev/static/hiring.schema.json",
+  "title": "Hiring",
+  "type": "object",
+  "properties": {
+    "openToWork": { "type": "boolean" },
+    "statement": { "$ref": "https://tchojnacki.dev/static/brt.schema.json" }
+  },
+  "required": ["openToWork", "statement"],
+  "additionalProperties": false
+}

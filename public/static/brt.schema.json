@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tchojnacki.dev/static/brt.schema.json",
+  "title": "Brt",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "t": { "type": "string" },
+      "b": { "type": "boolean" },
+      "a": { "type": "string" }
+    },
+    "required": ["t"],
+    "additionalProperties": false
+  }
+}

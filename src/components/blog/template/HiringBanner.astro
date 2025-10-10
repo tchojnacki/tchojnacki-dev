@@ -1,28 +1,24 @@
 ---
 import Banner from "~/components/blog/post/Banner.astro"
 import Link from "~/components/common/Link"
-import { lookingForJob } from "~/consts/hiring"
-import { linkedin, resume } from "~/consts/socials"
+import { openToWork, statement } from "~/consts/hiring"
 
-const MAIL = `mailto:tomaszchojnacki2001@gmail.com?subject=${encodeURIComponent("Quick chat?")}`
+const s = "font-bold text-neutral-1000 dark:text-neutral-0"
 ---
 
-<div class:list={["mt-8 sm:text-justify sm:hyphens-auto", lookingForJob ? null : "opacity-50"]}>
+<div class:list={["mt-8 sm:text-justify sm:hyphens-auto", openToWork ? null : "opacity-50"]}>
   <Banner kind="info">
     {
-      // prettier-ignore
-      lookingForJob ? (
-        <>
-          I am currently seeking employment in <strong>front-end</strong> or
-          <strong>full-stack</strong> engineer roles (junior/mid-level), ideally in a
-          <strong>remote</strong> setting within EMEA or in a hybrid setup near Wrocław,
-          Poland. If you enjoyed this post or think my skills could be a good fit, I would
-          love for you to <strong><Link href={resume.href}>check out my resume</Link></strong>,
-          <strong><Link href={MAIL}>send me an email</Link></strong>, or
-          <strong><Link href={linkedin.href}>connect with me on LinkedIn</Link></strong>.
-        </>
+      openToWork ? (
+        statement.map(p => {
+          let node = p.t
+          if (p.a) node = <Link href={p.a}>{node}</Link>
+          if (p.b) node = <strong class={s}>{node}</strong>
+          return node
+        })
+      ) : (
+        <>The views expressed in this post are my own and do not reflect those of my employer.</>
       )
-        : <>The views expressed in this post are my own and do not reflect those of my employer.</>
     }
   </Banner>
 </div>
