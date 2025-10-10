@@ -14,12 +14,13 @@ interface NavInternalProps {
 }
 
 export default function NavInternal({ pathname, blobDarkUrl, blobLightUrl }: NavInternalProps) {
-  const [open, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
       <Dialog
-        open={open}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
         style={
           {
             "--blob-dark-url": blobDarkUrl,
@@ -36,7 +37,7 @@ export default function NavInternal({ pathname, blobDarkUrl, blobLightUrl }: Nav
         )}
       >
         <nav className="p-[calc(var(--spacing-nav-height)/4)]">
-          <NavHamburger menuOpen={open} onClick={() => setOpen(false)} className="ml-auto" />
+          <NavHamburger menuOpen={isOpen} onClick={() => setIsOpen(false)} className="ml-auto" />
           <NavLinkList
             listClassName="mt-2"
             itemClassName="px-4 py-2 text-xl text-right"
@@ -56,7 +57,7 @@ export default function NavInternal({ pathname, blobDarkUrl, blobLightUrl }: Nav
             <ThemeButton />
           </li>
           <li>
-            <NavHamburger menuOpen={open} onClick={() => setOpen(true)} className="sm:hidden" />
+            <NavHamburger menuOpen={isOpen} onClick={() => setIsOpen(true)} className="sm:hidden" />
           </li>
         </ul>
       </nav>
