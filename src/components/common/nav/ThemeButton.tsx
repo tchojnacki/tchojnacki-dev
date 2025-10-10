@@ -20,6 +20,7 @@ export default function ThemeButton({ useTheme = useThemeImpl }: ThemeButtonProp
 
   return (
     <button
+      type="button"
       className="group px-3 py-1 duration-200 active:scale-95"
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
       onClick={toggleTheme}

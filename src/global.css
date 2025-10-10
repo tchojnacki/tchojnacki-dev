@@ -146,4 +146,8 @@
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+
+  body:has(dialog[open]) {
+    overflow: hidden;
+  }
 }

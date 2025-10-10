@@ -1,7 +1,6 @@
 ---
 import { IconBrandGithub, IconBrandLinkedin, IconFileCv } from "@tabler/icons-react"
 
-import CtaButton from "~/components/common/CtaButton"
 import Wave from "~/components/common/Wave.astro"
 import { techSphereSkills } from "~/consts/featured"
 import { openToWork } from "~/consts/hiring"
@@ -9,6 +8,7 @@ import { github, linkedin, resume } from "~/consts/socials"
 import { getSkillById } from "~/content"
 import { cn } from "~/lib/cn"
 
+import HiringDialog from "./HiringDialog"
 import SocialLink from "./SocialLink.astro"
 import TechSphere from "./TechSphere"
 import WavingEmoji from "./WavingEmoji"
@@ -42,7 +42,7 @@ const skillNames = await Promise.all(techSphereSkills.map(id => getSkillById(id)
       <SocialLink {...resume}>
         <IconFileCv title={resume.label} />
       </SocialLink>
-      {openToWork ? <CtaButton label="Hire me" action={linkedin.href} /> : null}
+      {openToWork ? <HiringDialog client:idle /> : null}
     </nav>
   </section>
   <section
