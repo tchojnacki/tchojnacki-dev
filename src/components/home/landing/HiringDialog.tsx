@@ -28,7 +28,7 @@ export default function HiringDialog() {
       >
         <header
           className={cn(
-            "text-neutral-1000 dark:text-neutral-0 dark:bg-indigo-925 flex justify-between bg-indigo-100 text-xl font-bold",
+            "text-neutral-1000 dark:text-neutral-0 flex justify-between bg-indigo-100 text-xl font-bold dark:bg-indigo-900",
             "p-4 sm:px-6",
           )}
         >

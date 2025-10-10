@@ -32,7 +32,7 @@ const relatedSkills = calculateRelatedSkills(skillList, projectList)
       <PostList heading={3} filter={p => p.data.skills.some(s => s.id === skill.id)} />
     </section>
     <Wave />
-    <section class="dark:bg-indigo-925 bg-indigo-100">
+    <section class="dark:bg-indigo-900 bg-indigo-100">
       <SectionHeader text="Related skills" />
       <SkillCardWrapper>
         {relatedSkills[skill.id]!.map(skillId => <SkillCard {skillId} />)}

@@ -112,7 +112,7 @@ export default function ProjectCardInternal({
             : "bg-linear-to-r lg:col-start-4 lg:rounded-tl-3xl lg:rounded-br-none",
           "z-1 rounded-b-3xl p-4 sm:p-8 lg:col-span-5 lg:row-span-full",
           "lg:to-neudigo-50 from-indigo-100 to-indigo-100",
-          "dark:from-indigo-925 dark:to-indigo-925 dark:lg:to-neudigo-950",
+          "dark:lg:to-neudigo-950 dark:from-indigo-900 dark:to-indigo-900",
           "translate-x-0 transition-[translate] duration-200 ease-in",
           isActive && (flipped ? "lg:-translate-x-1/3" : "lg:translate-x-1/3"),
         )}
