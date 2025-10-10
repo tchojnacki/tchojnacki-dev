@@ -1,7 +1,7 @@
 ---
-import { IconArrowRight, IconBrandGithub, IconBrandLinkedin, IconFileCv } from "@tabler/icons-react"
+import { IconBrandGithub, IconBrandLinkedin, IconFileCv } from "@tabler/icons-react"
 
-import LinkButton from "~/components/common/LinkButton"
+import CtaButton from "~/components/common/CtaButton"
 import Wave from "~/components/common/Wave.astro"
 import { techSphereSkills } from "~/consts/featured"
 import { lookingForJob } from "~/consts/hiring"
@@ -42,13 +42,7 @@ const skillNames = await Promise.all(techSphereSkills.map(id => getSkillById(id)
       <SocialLink {...resume}>
         <IconFileCv title={resume.label} />
       </SocialLink>
-      {
-        lookingForJob ? (
-          <LinkButton href={linkedin.href}>
-            Hire me <IconArrowRight role="presentation" className="inline-block" size="16" />
-          </LinkButton>
-        ) : null
-      }
+      {lookingForJob ? <CtaButton label="Hire me" action={linkedin.href} /> : null}
     </nav>
   </section>
   <section

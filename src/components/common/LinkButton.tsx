@@ -1,34 +1,36 @@
-import type { ReactNode } from "react"
+import type { PropsWithChildren } from "react"
 
 import { cn } from "~/lib/cn"
 
-interface LinkButtonProps {
-  children: ReactNode
-  href: string
+type LinkButtonProps = PropsWithChildren<{
   className?: string
-  size?: "small" | "normal"
-}
+  action: string | (() => void)
+}>
 
-export default function LinkButton({
-  children,
-  href,
-  className,
-  size = "normal",
-}: LinkButtonProps) {
-  const external = href && !href.startsWith("/") && !href.startsWith("#")
-
-  return (
-    <a
-      href={href}
-      draggable={false}
-      {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
-      className={cn(
-        "text-neutral-0 inline-block rounded-xl bg-indigo-600 leading-none duration-200 select-none hover:bg-indigo-500 active:scale-95",
-        size === "normal" ? "px-6 py-3" : "px-4 py-2",
-        className,
-      )}
-    >
-      {children}
-    </a>
+export default function LinkButton({ children, className, action }: LinkButtonProps) {
+  className = cn(
+    "inline-flex items-center rounded-xl px-6 py-3 leading-none duration-200 select-none active:scale-95",
+    "text-neutral-0 bg-indigo-600 hover:bg-indigo-500",
+    className,
   )
+
+  if (typeof action === "string") {
+    const external = !action.startsWith("/") && !action.startsWith("#")
+    return (
+      <a
+        href={action}
+        {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+        draggable={false}
+        className={className}
+      >
+        {children}
+      </a>
+    )
+  } else {
+    return (
+      <button type="button" onClick={action} className={className}>
+        {children}
+      </button>
+    )
+  }
 }

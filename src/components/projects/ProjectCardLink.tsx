@@ -32,9 +32,8 @@ export default function ProjectCardLink({
   return (
     <li>
       <LinkButton
-        href={href}
-        size="small"
-        className={cn("flex! items-center gap-2", isActive && "opacity-10 hover:opacity-100")}
+        action={href}
+        className={cn("w-full gap-2 px-4 py-2", isActive && "opacity-10 hover:opacity-100")}
       >
         <Icon role="presentation" /> {label + (part ? ` – ${part}` : "")}
       </LinkButton>
