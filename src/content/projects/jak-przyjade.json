@@ -4,7 +4,12 @@
   "image": "~/assets/projects/jak-przyjade.jpg",
   "tags": ["academic", "group"],
   "links": [
-    { "type": "repository", "href": "https://github.com/PWR-ACS-SE-24/SoftwareSystemDesign" }
+    { "type": "repository", "href": "https://github.com/PWR-ACS-SE-24/SoftwareSystemDesign" },
+    {
+      "type": "documentation",
+      "href": "https://github.com/PWR-ACS-SE-24/SoftwareSystemDesign/tree/main/documentation/course#readme",
+      "polish": true
+    }
   ],
   "parts": [
     {

@@ -1,5 +1,5 @@
 ---
-import LinkButton from "~/components/common/LinkButton"
+import CtaButton from "~/components/common/CtaButton"
 import SectionHeader from "~/components/common/SectionHeader.astro"
 import ProjectList from "~/components/projects/ProjectList.astro"
 import { featuredProjects } from "~/consts/featured"
@@ -12,6 +12,6 @@ const filter = (project: Project) => featuredProjects.includes(project.id)
   <SectionHeader text="Featured projects" />
   <ProjectList heading={3} {filter} />
   <div class="mb-4 flex justify-center">
-    <LinkButton href="/projects">View all projects</LinkButton>
+    <CtaButton label="View all projects" action="/blog" />
   </div>
 </section>

@@ -1,13 +1,14 @@
 ---
-import { IconArrowRight, IconBrandGithub, IconBrandLinkedin, IconFileCv } from "@tabler/icons-react"
+import { IconBrandGithub, IconBrandLinkedin, IconFileCv } from "@tabler/icons-react"
 
-import LinkButton from "~/components/common/LinkButton"
 import Wave from "~/components/common/Wave.astro"
 import { techSphereSkills } from "~/consts/featured"
-import { lookingForJob } from "~/consts/hiring"
+import { openToWork } from "~/consts/hiring"
 import { github, linkedin, resume } from "~/consts/socials"
 import { getSkillById } from "~/content"
+import { cn } from "~/lib/cn"
 
+import HiringDialog from "./HiringDialog"
 import SocialLink from "./SocialLink.astro"
 import TechSphere from "./TechSphere"
 import WavingEmoji from "./WavingEmoji"
@@ -16,7 +17,10 @@ const skillNames = await Promise.all(techSphereSkills.map(id => getSkillById(id)
 ---
 
 <header
-  class="relative grid min-h-[calc(min(100vh,64rem)-var(--spacing-nav-height))] grid-cols-1 grid-rows-[repeat(3,auto)] place-items-center [grid-template-areas:'text''sphere''.'] lg:grid-cols-[minmax(0,1fr)_repeat(2,minmax(0,48rem))_minmax(0,1fr)] lg:grid-rows-[1fr_repeat(2,10vh)] lg:[grid-template-areas:'._text_sphere_.''._._sphere_.''._._._.']"
+  class={cn(
+    "relative grid min-h-[calc(min(100vh,64rem)-var(--spacing-nav-height))] grid-cols-1 grid-rows-[repeat(3,auto)] place-items-center [grid-template-areas:'text''sphere''.']",
+    "lg:grid-cols-[minmax(0,1fr)_repeat(2,minmax(0,48rem))_minmax(0,1fr)] lg:grid-rows-[1fr_repeat(2,10vh)] lg:[grid-template-areas:'._text_sphere_.''._._sphere_.''._._._.']",
+  )}
 >
   <section class="place-self-center p-6 text-center [grid-area:text] lg:text-left">
     <p class="text-2xl font-bold">
@@ -28,7 +32,7 @@ const skillNames = await Promise.all(techSphereSkills.map(id => getSkillById(id)
     <p class="mt-6 mb-12 inline-block text-2xl text-neutral-600 dark:text-neutral-400">
       I am a graduate software engineer.
     </p>
-    <nav class="flex items-center justify-center gap-8 lg:justify-start">
+    <nav class="flex flex-wrap items-center justify-center gap-8 lg:justify-start">
       <SocialLink {...github}>
         <IconBrandGithub title={github.label} />
       </SocialLink>
@@ -38,13 +42,7 @@ const skillNames = await Promise.all(techSphereSkills.map(id => getSkillById(id)
       <SocialLink {...resume}>
         <IconFileCv title={resume.label} />
       </SocialLink>
-      {
-        lookingForJob ? (
-          <LinkButton href={linkedin.href}>
-            Hire me <IconArrowRight role="presentation" className="inline-block" size="16" />
-          </LinkButton>
-        ) : null
-      }
+      {openToWork ? <HiringDialog client:idle /> : null}
     </nav>
   </section>
   <section

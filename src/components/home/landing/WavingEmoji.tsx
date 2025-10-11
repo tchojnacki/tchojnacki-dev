@@ -1,7 +1,7 @@
-import clsx from "clsx"
 import { useEffect, useState } from "react"
 
 import Emoji from "~/components/common/Emoji"
+import { cn } from "~/lib/cn"
 
 const WAVING_DELAY = 1000
 
@@ -20,7 +20,7 @@ export default function WavingEmoji() {
     <button
       onClick={() => setIsPlaying(true)}
       onAnimationEnd={() => setIsPlaying(false)}
-      className={clsx(
+      className={cn(
         "inline-block origin-[75%_75%] cursor-pointer",
         isPlaying && "motion-safe:animate-emojiwave",
       )}

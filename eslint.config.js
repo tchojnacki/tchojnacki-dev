@@ -20,6 +20,7 @@ export default defineConfig([
   storybook.configs["flat/recommended"],
   {
     rules: {
+      "no-console": "warn",
       "@typescript-eslint/triple-slash-reference": "off",
       "@typescript-eslint/consistent-type-definitions": "off",
       "@typescript-eslint/no-empty-function": "off",

@@ -10,7 +10,8 @@
     },
     {
       "type": "repository",
-      "href": "https://github.com/CodersCamp2021-HK/CodersCamp2021.Project.React"
+      "href": "https://github.com/CodersCamp2021-HK/CodersCamp2021.Project.React",
+      "polish": true
     }
   ],
   "parts": [

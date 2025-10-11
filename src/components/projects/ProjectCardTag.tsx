@@ -1,6 +1,5 @@
-import clsx from "clsx"
-
 import type { ProjectTag } from "~/content"
+import { cn } from "~/lib/cn"
 
 interface ProjectCardTagProps {
   tag: ProjectTag
@@ -21,8 +20,8 @@ export default function ProjectCardTag({ tag, small }: ProjectCardTagProps) {
   return (
     <li
       style={{ backgroundColor }}
-      className={clsx(
-        "block rounded-full whitespace-nowrap text-neutral-100",
+      className={cn(
+        "block rounded-full whitespace-nowrap text-neutral-100 select-none",
         small ? "px-2 text-sm" : "px-3",
       )}
     >

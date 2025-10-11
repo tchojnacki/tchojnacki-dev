@@ -6,7 +6,8 @@
   "links": [
     {
       "type": "livedemo",
-      "href": "https://faktyczka.vercel.app"
+      "href": "https://faktyczka.vercel.app",
+      "polish": true
     },
     {
       "type": "repository",

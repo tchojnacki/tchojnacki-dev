@@ -1,0 +1,19 @@
+---
+interface Props {
+  tag: string
+  count: number
+  href?: string
+}
+
+const { tag, count, href = `/tags/${tag}` } = Astro.props
+---
+
+<a
+  {href}
+  class="hover:text-neutral-1000 dark:hover:text-neutral-0 group text-purple-700 duration-200 dark:text-purple-300"
+>
+  <span class="group-hover:underline">#{tag}</span>
+  <span class="text-sm text-neutral-900 opacity-50 dark:text-neutral-100">
+    ({count})
+  </span>
+</a>

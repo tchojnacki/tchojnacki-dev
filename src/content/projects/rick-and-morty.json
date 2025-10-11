@@ -6,11 +6,13 @@
   "links": [
     {
       "type": "livedemo",
-      "href": "https://coderscamp2021-hk.github.io/CodersCamp2021.Project.JavaScript"
+      "href": "https://coderscamp2021-hk.github.io/CodersCamp2021.Project.JavaScript",
+      "polish": true
     },
     {
       "type": "repository",
-      "href": "https://github.com/CodersCamp2021-HK/CodersCamp2021.Project.JavaScript"
+      "href": "https://github.com/CodersCamp2021-HK/CodersCamp2021.Project.JavaScript",
+      "polish": true
     }
   ],
   "parts": [

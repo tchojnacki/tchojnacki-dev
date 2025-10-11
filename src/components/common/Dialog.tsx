@@ -1,20 +1,22 @@
-import { useLayoutEffect, useRef, type DialogHTMLAttributes, type PropsWithChildren } from "react"
+import { useLayoutEffect, useRef, type HTMLAttributes } from "react"
 
-type DialogProps = PropsWithChildren<DialogHTMLAttributes<HTMLDialogElement> & { open?: boolean }>
+type DialogProps = Omit<HTMLAttributes<HTMLDialogElement>, "open"> & {
+  isOpen: boolean
+  setIsOpen: (isOpen: boolean) => void
+}
 
-export default function Dialog({ open = false, children, ...props }: DialogProps) {
+export default function Dialog({ isOpen, setIsOpen, children, ...props }: DialogProps) {
   const ref = useRef<HTMLDialogElement>(null)
-
   useLayoutEffect(() => {
-    if (open) {
+    if (isOpen) {
       ref.current?.showModal()
     } else {
       ref.current?.close()
     }
-  }, [open])
+  }, [isOpen])
 
   return (
-    <dialog ref={ref} {...props}>
+    <dialog ref={ref} onCancel={() => setIsOpen(false)} {...props}>
       {children}
     </dialog>
   )

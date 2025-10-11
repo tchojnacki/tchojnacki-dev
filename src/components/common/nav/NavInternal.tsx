@@ -1,5 +1,7 @@
 import { useState, type CSSProperties } from "react"
 
+import { cn } from "~/lib/cn"
+
 import Dialog from "../Dialog"
 import NavHamburger from "./NavHamburger"
 import NavLinkList from "./NavLinkList"
@@ -12,22 +14,30 @@ interface NavInternalProps {
 }
 
 export default function NavInternal({ pathname, blobDarkUrl, blobLightUrl }: NavInternalProps) {
-  const [open, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
       <Dialog
-        open={open}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
         style={
           {
             "--blob-dark-url": blobDarkUrl,
             "--blob-light-url": blobLightUrl,
           } as CSSProperties
         }
-        className="bg-neutral-1000/0 backdrop:bg-neutral-1000/50 invisible z-10 mt-0 mr-0 mb-auto ml-auto flex h-[min(100vmin,30rem)] max-h-16 w-[min(100vmin,30rem)] max-w-16 flex-col items-end justify-start overflow-hidden rounded-bl-[50%] bg-(image:--blob-light-url) bg-contain bg-top-right bg-no-repeat p-0 opacity-0 duration-500 open:visible open:max-h-full open:max-w-full open:rounded-none open:opacity-100 dark:bg-(image:--blob-dark-url)"
+        className={cn(
+          "z-10 mt-0 mr-0 mb-auto ml-auto h-[min(100vmin,30rem)] w-[min(100vmin,30rem)] overflow-hidden p-0",
+          "flex flex-col items-end justify-start",
+          "bg-neutral-1000/0 backdrop:bg-neutral-1000/50 bg-contain bg-top-right bg-no-repeat",
+          "bg-(image:--blob-light-url) dark:bg-(image:--blob-dark-url)",
+          "invisible max-h-16 max-w-16 rounded-bl-[50%] opacity-0 duration-500",
+          "open:visible open:max-h-full open:max-w-full open:rounded-none open:opacity-100",
+        )}
       >
         <nav className="p-[calc(var(--spacing-nav-height)/4)]">
-          <NavHamburger menuOpen={open} onClick={() => setOpen(false)} className="ml-auto" />
+          <NavHamburger menuOpen={isOpen} onClick={() => setIsOpen(false)} className="ml-auto" />
           <NavLinkList
             listClassName="mt-2"
             itemClassName="px-4 py-2 text-xl text-right"
@@ -35,7 +45,7 @@ export default function NavInternal({ pathname, blobDarkUrl, blobLightUrl }: Nav
           />
         </nav>
       </Dialog>
-      <nav className="flex h-[var(--spacing-nav-height)] items-center justify-end p-[calc(var(--spacing-nav-height)/4)] leading-none">
+      <nav className="flex h-(--spacing-nav-height) items-center justify-end p-[calc(var(--spacing-nav-height)/4)] leading-none">
         <NavLinkList
           listClassName="hidden sm:flex gap-16 mx-auto"
           itemClassName="px-4 py-[calc(var(--spacing-nav-height)/8)] rounded-lg
@@ -47,7 +57,7 @@ export default function NavInternal({ pathname, blobDarkUrl, blobLightUrl }: Nav
             <ThemeButton />
           </li>
           <li>
-            <NavHamburger menuOpen={open} onClick={() => setOpen(true)} className="sm:hidden" />
+            <NavHamburger menuOpen={isOpen} onClick={() => setIsOpen(true)} className="sm:hidden" />
           </li>
         </ul>
       </nav>

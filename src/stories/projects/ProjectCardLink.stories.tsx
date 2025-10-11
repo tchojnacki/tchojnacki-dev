@@ -26,6 +26,7 @@ export const Repository: Story = {
     link: {
       type: "repository",
       href: "",
+      polish: false,
     },
   },
 }
@@ -35,6 +36,7 @@ export const LiveDemo: Story = {
     link: {
       type: "livedemo",
       href: "",
+      polish: false,
     },
   },
 }
@@ -44,6 +46,7 @@ export const Documentation: Story = {
     link: {
       type: "documentation",
       href: "",
+      polish: false,
     },
   },
 }
@@ -53,6 +56,7 @@ export const Download: Story = {
     link: {
       type: "download",
       href: "",
+      polish: false,
     },
   },
 }
@@ -62,6 +66,7 @@ export const Publication: Story = {
     link: {
       type: "publication",
       href: "",
+      polish: false,
     },
   },
 }
@@ -71,6 +76,7 @@ export const BlogPost: Story = {
     link: {
       type: "blogpost",
       href: "",
+      polish: false,
     },
   },
 }

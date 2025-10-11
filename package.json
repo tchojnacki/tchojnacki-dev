@@ -25,7 +25,8 @@
     "nanostores": "^1.0.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "simple-icons": "^15.8.0"
+    "simple-icons": "^15.8.0",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",

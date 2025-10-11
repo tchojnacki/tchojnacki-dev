@@ -1,23 +1,58 @@
 ---
 import SectionHeader from "~/components/common/SectionHeader.astro"
 import Wave from "~/components/common/Wave.astro"
+import { getPosts, getProjects } from "~/content"
+
+const metrics = [
+  {
+    value: new Date().getFullYear() - 2016,
+    label: ["years", "coding"],
+  },
+  {
+    value: (await getProjects()).length,
+    label: ["finished", "projects"],
+  },
+  {
+    value: (await getPosts()).length,
+    label: ["posts", "written"],
+  },
+] as const
+
+const s = "font-bold text-neutral-1000 dark:text-neutral-0"
 ---
 
-<main class="dark:bg-indigo-925 bg-indigo-100 px-6">
+<main class="bg-indigo-100 px-6 dark:bg-indigo-900">
   <SectionHeader text="About me" />
-  <div class="flex justify-center text-neutral-800 dark:text-neutral-200">
-    <p class="max-w-reading py-4 text-justify">
-      I&nbsp;am a&nbsp;software engineer with strong front-end expertise in modern web technologies,
-      particularly <strong>React</strong> and <strong>TypeScript</strong>, complemented by
-      experience in <strong>Python</strong>, <strong>Rust</strong>, Node.js, machine learning,
-      databases, and DevOps. I&nbsp;hold both a&nbsp;BSc and an&nbsp;MSc degree in
-      <strong>Applied Computer Science</strong> with a&nbsp;specialization in Software Engineering from
-      <strong>Wrocław University of Science and Technology</strong>, where I&nbsp;graduated with top
-      honors and was actively involved in scientific research. During my internship at
-      <strong>Atlassian</strong>, I&nbsp;contributed to Jira's Forge platform by shipping production
-      features, fixing bugs, and improving internal monitoring. My experience spans the design and
-      development of a&nbsp;wide range of personal, academic, and real-world software systems.
+  <div class="flex flex-col items-center text-neutral-600 dark:text-neutral-400">
+    <p class="max-w-reading py-4 brightness-75 sm:text-justify sm:hyphens-auto dark:brightness-125">
+      {
+        /* prettier-ignore */
+        (<>
+          I'm a&nbsp;graduate software engineer with a&nbsp;strong focus on front-end development in
+          <strong class={s}>React and TypeScript</strong>, backed by full-stack experience in Python, Rust, Node.js, databases,
+          DevOps, and AI. I&nbsp;hold both a&nbsp;bachelor's and a&nbsp;<strong class={s}>master's degree in applied
+          computer science</strong> from Wrocław University of Science and Technology, where I&nbsp;graduated top
+          of my class and conducted scientific research. During my <strong class={s}>internship at Atlassian</strong>,
+          I&nbsp;shipped production features to Jira, helping improve an app used by 300&#8239;000 teams worldwide.
+          As a&nbsp;<strong class={s}>freelance developer</strong>, I&nbsp;collaborated directly with clients to design,
+          build, and deploy websites that attract over 1&#8239;000 monthly users. Let's build something great together.
+        </>)
+      }
     </p>
+    <ul class="grid grid-cols-3 gap-8 py-4 sm:gap-12">
+      {
+        metrics.map(({ value, label }) => (
+          <li class="text-center">
+            <div class="text-2xl font-bold text-indigo-700 dark:text-indigo-300">{value}</div>
+            <div class="text-sm text-neutral-900 dark:text-neutral-100">
+              {label[0]}
+              <br />
+              {label[1]}
+            </div>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </main>
 <Wave inverted />

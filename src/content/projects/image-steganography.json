@@ -4,7 +4,7 @@
   "image": "~/assets/projects/image-steganography.jpg",
   "tags": ["academic", "group"],
   "links": [
-    { "type": "livedemo", "href": "https://pwr-acs-se-24.github.io/EoSaKAfDaD/#/" },
+    { "type": "livedemo", "href": "https://pwr-acs-se-24.github.io/EoSaKAfDaD/#/", "polish": true },
     { "type": "repository", "href": "https://github.com/PWR-ACS-SE-24/EoSaKAfDaD" }
   ],
   "parts": [

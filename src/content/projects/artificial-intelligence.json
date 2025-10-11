@@ -4,8 +4,8 @@
   "image": "~/assets/projects/artificial-intelligence.jpg",
   "tags": ["academic"],
   "links": [
-    { "type": "documentation", "href": "/static/si.pdf" },
-    { "type": "repository", "href": "https://github.com/tchojnacki/uni-sem-6-ai" }
+    { "type": "repository", "href": "https://github.com/tchojnacki/uni-sem-6-ai" },
+    { "type": "documentation", "href": "/static/si.pdf", "polish": true }
   ],
   "parts": [
     {

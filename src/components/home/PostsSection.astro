@@ -1,6 +1,6 @@
 ---
 import PostList from "~/components/blog/list/PostList.astro"
-import LinkButton from "~/components/common/LinkButton"
+import CtaButton from "~/components/common/CtaButton"
 import SectionHeader from "~/components/common/SectionHeader.astro"
 import { featuredPosts } from "~/consts/featured"
 import type { Post } from "~/content"
@@ -16,6 +16,6 @@ const filter = (post: Post) => featuredPosts.includes(post.id)
     </div>
   </div>
   <div class="mb-4 flex justify-center">
-    <LinkButton href="/blog">View all posts</LinkButton>
+    <CtaButton label="View all posts" action="/blog" />
   </div>
 </section>

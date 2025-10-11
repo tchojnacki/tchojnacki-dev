@@ -1,10 +1,10 @@
 import { IconPlayerPause, IconPlayerPlay, IconZoomCancel, IconZoomIn } from "@tabler/icons-react"
-import clsx from "clsx"
 import { useReducer, type CSSProperties, type ImgHTMLAttributes } from "react"
 
 import SkillIcon from "~/components/skills/SkillIcon"
 import type { Project } from "~/content"
 import { useIsLoaded } from "~/hooks"
+import { cn } from "~/lib/cn"
 
 import ProjectCardLink from "./ProjectCardLink"
 import ProjectCardTag from "./ProjectCardTag"
@@ -42,7 +42,7 @@ export default function ProjectCardInternal({
   return (
     <>
       <div
-        className={clsx(
+        className={cn(
           "relative aspect-4/3 overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl",
           flipped ? "lg:col-start-4" : "lg:col-start-1",
           "opacity-0 duration-200 ease-in will-change-[opacity,_scale] lg:scale-75",
@@ -52,8 +52,8 @@ export default function ProjectCardInternal({
       >
         <img
           {...image}
-          className={clsx(
-            "animate-scrollprojectimage absolute h-auto w-full will-change-transform",
+          className={cn(
+            "animate-scrollprojectimage absolute h-auto w-full",
             isActive ? "[animation-play-state:running]" : "[animation-play-state:paused]",
           )}
           style={
@@ -65,7 +65,7 @@ export default function ProjectCardInternal({
           ref={imgRef}
         />
         <div
-          className={clsx(
+          className={cn(
             "absolute top-0 left-0 grid h-full w-full grid-rows-[1fr] text-neutral-100",
             flipped
               ? "grid-cols-[1fr_auto] [grid-template-areas:'._buttons']"
@@ -74,7 +74,7 @@ export default function ProjectCardInternal({
         >
           <button
             aria-label="Zoom"
-            className={clsx(
+            className={cn(
               "z-1 col-start-1 col-end-[-1] row-start-1 row-end-[-1]",
               "group flex items-center justify-center duration-200",
               !isActive && "bg-neutral-1000/25",
@@ -83,7 +83,7 @@ export default function ProjectCardInternal({
           >
             <ZoomIcon
               role="presentation"
-              className={clsx(
+              className={cn(
                 "duration-200",
                 isActive ? "opacity-0 group-hover:opacity-25" : "opacity-25 group-hover:opacity-75",
               )}
@@ -106,14 +106,14 @@ export default function ProjectCardInternal({
       <article
         itemScope
         itemType="https://schema.org/CreativeWork"
-        className={clsx(
+        className={cn(
           flipped
             ? "bg-linear-to-l lg:col-start-1 lg:rounded-tr-3xl lg:rounded-bl-none"
             : "bg-linear-to-r lg:col-start-4 lg:rounded-tl-3xl lg:rounded-br-none",
           "z-1 rounded-b-3xl p-4 sm:p-8 lg:col-span-5 lg:row-span-full",
           "lg:to-neudigo-50 from-indigo-100 to-indigo-100",
-          "dark:from-indigo-925 dark:to-indigo-925 dark:lg:to-neudigo-950",
-          "translate-x-0 transition-[translate] duration-200 ease-in will-change-transform",
+          "dark:lg:to-neudigo-950 dark:from-indigo-900 dark:to-indigo-900",
+          "translate-x-0 transition-[translate] duration-200 ease-in",
           isActive && (flipped ? "lg:-translate-x-1/3" : "lg:translate-x-1/3"),
         )}
       >
@@ -131,12 +131,12 @@ export default function ProjectCardInternal({
         </H1>
         <p
           itemProp="abstract description"
-          className="text-justify text-neutral-600 dark:text-neutral-400"
+          className="text-neutral-600 sm:text-justify sm:hyphens-auto dark:text-neutral-400"
         >
           {project.description}
         </p>
         {project.parts.map(part => (
-          <section key={part.name} className={clsx(part.small ? "lg:inline-block lg:w-1/2" : null)}>
+          <section key={part.name} className={cn(part.small ? "lg:inline-block lg:w-1/2" : null)}>
             <H2 className="mt-4 mb-1 flex flex-col gap-2 lg:flex-row lg:items-center">
               <span className="mr-auto text-xl">{part.name}</span>
               {part.tags.length > 0 ? (
@@ -148,13 +148,22 @@ export default function ProjectCardInternal({
               ) : null}
             </H2>
             {part.skills.length > 0 ? (
-              <ul className="flex flex-wrap gap-2 overflow-hidden after:grow-100 lg:flex-nowrap lg:mask-[linear-gradient(90deg,#000_75%,transparent)]">
+              <ul
+                className={cn(
+                  "flex flex-wrap gap-2 overflow-hidden after:grow-100",
+                  "lg:flex-nowrap lg:mask-[linear-gradient(90deg,#000_75%,transparent)]",
+                )}
+              >
                 {part.skills.map((skill, i) => (
                   <li key={skill.id}>
                     <a
                       title={skill.name}
                       href={`/skills/${skill.id}`}
-                      className="flex flex-1 items-center justify-center gap-1 rounded-full bg-neutral-900/10 px-3 whitespace-nowrap duration-200 hover:bg-neutral-900/20 dark:bg-neutral-100/10 hover:dark:bg-neutral-100/20"
+                      draggable={false}
+                      className={cn(
+                        "flex flex-1 items-center justify-center gap-1 rounded-full px-3 whitespace-nowrap duration-200 select-none active:scale-95",
+                        "bg-neutral-900/10 hover:bg-neutral-900/20 dark:bg-neutral-100/10 hover:dark:bg-neutral-100/20",
+                      )}
                     >
                       <SkillIcon skill={skill} className="my-1 h-[1em]" decoration={i < 3} />
                       {i < 3 && <span>{skill.name}</span>}

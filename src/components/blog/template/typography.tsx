@@ -35,7 +35,7 @@ function H4({ children, id }: ComponentProps<"h4">) {
 }
 
 function P({ children }: ComponentProps<"p">) {
-  return <p className="my-1.5 text-justify">{children}</p>
+  return <p className="my-1.5 sm:text-justify sm:hyphens-auto">{children}</p>
 }
 
 function Code({ children }: ComponentProps<"code">) {
@@ -55,7 +55,7 @@ function Blockquote({ children }: ComponentProps<"blockquote">) {
 }
 
 function Ul({ children }: ComponentProps<"ul">) {
-  return <ul className="list-disc pl-4 text-justify *:my-1.5">{children}</ul>
+  return <ul className="list-disc pl-4 *:my-1.5 sm:text-justify sm:hyphens-auto">{children}</ul>
 }
 
 export const typography = {

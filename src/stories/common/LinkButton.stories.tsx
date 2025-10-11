@@ -13,8 +13,7 @@ type Story = StoryObj<typeof meta>
 
 export const LinkButton: Story = {
   args: {
-    href: "",
+    action: "",
     children: "Link Button",
-    size: "normal",
   },
 }

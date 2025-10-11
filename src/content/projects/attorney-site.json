@@ -1,9 +1,15 @@
 {
   "name": "kancelariawalbrzych.pl",
-  "description": "A website commissioned by a local law firm, designed, developed, and deployed solely by me. It attracts hundreds of monthly visitors and showcases the firm’s team, services, and contact information in multiple languages.",
+  "description": "A website commissioned by a local law firm, designed, developed, and deployed solely by me. It attracts over a thousand of monthly visitors and showcases the firm's team, services, and contact information in multiple languages.",
   "image": "~/assets/projects/attorney-site.jpg",
   "tags": ["freelance"],
-  "links": [{ "type": "livedemo", "href": "https://kancelariawalbrzych.pl" }],
+  "links": [
+    {
+      "type": "livedemo",
+      "href": "https://kancelariawalbrzych.pl/katarzyna-koziara/",
+      "polish": true
+    }
+  ],
   "parts": [
     { "name": "Website", "skillIds": ["astro", "svelte", "typescript", "css"] },
     {
