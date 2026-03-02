@@ -48,12 +48,6 @@ export const Group: Story = {
   },
 }
 
-export const WIP: Story = {
-  args: {
-    tag: "wip",
-  },
-}
-
 export const Deprecated: Story = {
   args: {
     tag: "deprecated",

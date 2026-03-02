@@ -13,7 +13,6 @@ export default function ProjectCardTag({ tag, small }: ProjectCardTagProps) {
     freelance: { label: "Freelance", backgroundColor: "#115e59" },
     bootcamp: { label: "Bootcamp", backgroundColor: "#115e59" },
     group: { label: "Group", backgroundColor: "#6b21a8" },
-    wip: { label: "WIP", backgroundColor: "#854d0e" },
     deprecated: { label: "DEPRECATED", backgroundColor: "#9f1239" },
   }[tag]
 
