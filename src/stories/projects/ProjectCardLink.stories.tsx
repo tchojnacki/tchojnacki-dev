@@ -61,10 +61,20 @@ export const Download: Story = {
   },
 }
 
-export const Publication: Story = {
+export const Thesis: Story = {
   args: {
     link: {
-      type: "publication",
+      type: "thesis",
+      href: "",
+      polish: false,
+    },
+  },
+}
+
+export const Research: Story = {
+  args: {
+    link: {
+      type: "research",
       href: "",
       polish: false,
     },
