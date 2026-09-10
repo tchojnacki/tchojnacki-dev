@@ -1,0 +1,56 @@
+---
+const text = "fill-[currentColor]"
+const block = "fill-indigo-100 dark:fill-indigo-900 stroke-[#626264] dark:stroke-[#a7a6ae] stroke-2"
+const combinator =
+  "fill-indigo-300 dark:fill-indigo-700 stroke-[#626264] dark:stroke-[#a7a6ae] stroke-2"
+const edge = "stroke-[#626264] dark:stroke-[#a7a6ae] stroke-2 fill-none"
+const arrowColor = "#626264"
+---
+
+<figure class="my-2 overflow-hidden" aria-labelledby="combinators-title">
+  <svg viewBox="0 0 600 200" role="img" aria-labelledby="combinators-title">
+    <title id="combinators-title">
+      Pipeline diagram showing basic blocks feeding into combinators.
+    </title>
+
+    <defs>
+      <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill={arrowColor}></polygon>
+      </marker>
+    </defs>
+
+    <!-- Edges from void into basic blocks -->
+    <line x1="0" y1="38" x2="50" y2="38" class={edge} marker-end="url(#arrow)"></line>
+    <line x1="0" y1="98" x2="50" y2="98" class={edge} marker-end="url(#arrow)"></line>
+    <line x1="0" y1="158" x2="50" y2="158" class={edge} marker-end="url(#arrow)"></line>
+
+    <!-- Basic blocks: Recentness, Random, LOC -->
+    <rect x="50" y="20" width="100" height="36" rx="4" class={block}></rect>
+    <text x="100" y="43" text-anchor="middle" font-size="13" class={text}>Recentness</text>
+
+    <rect x="50" y="80" width="100" height="36" rx="4" class={block}></rect>
+    <text x="100" y="103" text-anchor="middle" font-size="13" class={text}>Random</text>
+
+    <rect x="50" y="140" width="100" height="36" rx="4" class={block}></rect>
+    <text x="100" y="163" text-anchor="middle" font-size="13" class={text}>LOC</text>
+
+    <!-- Edges: Recentness + Random -> Interpolator -->
+    <line x1="150" y1="38" x2="240" y2="60" class={edge} marker-end="url(#arrow)"></line>
+    <line x1="150" y1="98" x2="240" y2="76" class={edge} marker-end="url(#arrow)"></line>
+
+    <!-- Interpolator -->
+    <rect x="240" y="50" width="120" height="36" rx="4" class={combinator}></rect>
+    <text x="300" y="73" text-anchor="middle" font-size="13" class={text}>Interpolator</text>
+
+    <!-- Edges: Interpolator + LOC -> Mixer -->
+    <line x1="360" y1="68" x2="440" y2="110" class={edge} marker-end="url(#arrow)"></line>
+    <line x1="150" y1="158" x2="440" y2="126" class={edge} marker-end="url(#arrow)"></line>
+
+    <!-- Mixer -->
+    <rect x="440" y="100" width="100" height="36" rx="4" class={combinator}></rect>
+    <text x="490" y="123" text-anchor="middle" font-size="13" class={text}>Mixer</text>
+
+    <!-- Edge: Mixer -> void -->
+    <line x1="540" y1="118" x2="600" y2="118" class={edge} marker-end="url(#arrow)"></line>
+  </svg>
+</figure>

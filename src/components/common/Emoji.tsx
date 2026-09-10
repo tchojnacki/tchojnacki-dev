@@ -5,9 +5,9 @@ import wave from "~/assets/emojis/wave.svg?no-inline"
 
 function asset(text: string): ImageMetadata | string {
   switch (text) {
-    case "👀":
+    case "eyes":
       return eyes
-    case "👋":
+    case "wave":
       return wave
     default:
       throw new Error(`Unsupported emoji: ${text}`)

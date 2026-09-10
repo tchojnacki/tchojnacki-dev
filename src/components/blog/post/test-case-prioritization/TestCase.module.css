@@ -1,0 +1,42 @@
+@keyframes tcp-progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--width);
+  }
+}
+
+.animateTcpProgress {
+  fill: var(--progress-color);
+  width: 0;
+  animation: tcp-progress var(--duration) linear var(--delay) forwards;
+}
+
+@keyframes tcp-pass {
+  from {
+    fill: transparent;
+  }
+  to {
+    fill: var(--pass-color);
+  }
+}
+
+.animateTcpPass {
+  fill: transparent;
+  animation: tcp-pass 300ms ease-in calc(var(--delay) + var(--duration)) forwards;
+}
+
+@keyframes tcp-fail {
+  from {
+    fill: transparent;
+  }
+  to {
+    fill: var(--fail-color);
+  }
+}
+
+.animateTcpFail {
+  fill: transparent;
+  animation: tcp-fail 300ms ease-in calc(var(--delay) + var(--duration)) forwards;
+}

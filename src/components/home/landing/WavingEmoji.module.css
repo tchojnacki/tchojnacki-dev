@@ -1,0 +1,18 @@
+@keyframes emoji-wave {
+  from,
+  to {
+    transform: none;
+  }
+  25% {
+    transform: rotate(-30deg);
+  }
+  75% {
+    transform: rotate(30deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animateEmojiWave {
+    animation: emoji-wave 1s ease-in-out;
+  }
+}

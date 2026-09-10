@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import Emoji from "~/components/common/Emoji"
 import { cn } from "~/lib/cn"
 
+import styles from "./WavingEmoji.module.css"
+
 const WAVING_DELAY = 1000
 
 export default function WavingEmoji() {
@@ -22,10 +24,10 @@ export default function WavingEmoji() {
       onAnimationEnd={() => setIsPlaying(false)}
       className={cn(
         "inline-block origin-[75%_75%] cursor-pointer",
-        isPlaying && "motion-safe:animate-emojiwave",
+        isPlaying && styles.animateEmojiWave,
       )}
     >
-      <Emoji text="👋" />
+      <Emoji text="wave" />
     </button>
   )
 }

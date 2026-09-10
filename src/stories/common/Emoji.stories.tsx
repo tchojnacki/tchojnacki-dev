@@ -13,12 +13,12 @@ type Story = StoryObj<typeof meta>
 
 export const Eyes: Story = {
   args: {
-    text: "👀",
+    text: "eyes",
   },
 }
 
 export const Wave: Story = {
   args: {
-    text: "👋",
+    text: "wave",
   },
 }

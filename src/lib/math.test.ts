@@ -1,7 +1,7 @@
 import { mean } from "lodash-es"
 import { describe, expect, it } from "vitest"
 
-import { lerp, lerpUnbound } from "~/lib/math"
+import { cumSum, lerp, lerpUnbound } from "~/lib/math"
 
 describe(lerpUnbound, () => {
   it.each([-20, -5, -2, 0, 1.5, 3.14, 4.5, 10])(
@@ -59,5 +59,31 @@ describe(lerp, () => {
   it("bounds a larger value to max", () => {
     expect(lerp(11, [0, 10], [0, 100])).toBeCloseTo(100)
     expect(lerp(5, [3, 4], [5, -5])).toBeCloseTo(-5)
+  })
+})
+
+describe(cumSum, () => {
+  it("returns [0] for an empty array", () => {
+    expect(cumSum([])).toEqual([0])
+  })
+
+  it("returns [0] for a single-element array", () => {
+    expect(cumSum([5])).toEqual([0])
+  })
+
+  it("computes cumulative sums for multiple elements", () => {
+    expect(cumSum([1, 2, 3, 4])).toEqual([0, 1, 3, 6])
+  })
+
+  it("handles negative numbers", () => {
+    expect(cumSum([-1, -2, -3])).toEqual([0, -1, -3])
+  })
+
+  it("handles mixed positive and negative numbers", () => {
+    expect(cumSum([3, -1, 2, -4])).toEqual([0, 3, 2, 4])
+  })
+
+  it("handles floats", () => {
+    expect(cumSum([0.1, 0.2, 0.3])).toEqual([0, 0.1, 0.30000000000000004])
   })
 })

@@ -1,0 +1,18 @@
+@keyframes error-shake {
+  from,
+  to {
+    transform: none;
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animateErrorShake {
+    animation: error-shake 200ms 600ms;
+  }
+}

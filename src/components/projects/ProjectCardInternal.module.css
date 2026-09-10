@@ -1,0 +1,12 @@
+@keyframes scroll-project-image {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(var(--max-image-scroll, 0));
+  }
+}
+
+.animateScrollProjectImage {
+  animation: scroll-project-image 5s ease-in-out alternate infinite;
+}

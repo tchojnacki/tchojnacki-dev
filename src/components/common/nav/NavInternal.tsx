@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from "react"
+import { useState } from "react"
 
 import { cn } from "~/lib/cn"
 
@@ -21,12 +21,10 @@ export default function NavInternal({ pathname, blobDarkUrl, blobLightUrl }: Nav
       <Dialog
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        style={
-          {
-            "--blob-dark-url": blobDarkUrl,
-            "--blob-light-url": blobLightUrl,
-          } as CSSProperties
-        }
+        style={{
+          "--blob-dark-url": blobDarkUrl,
+          "--blob-light-url": blobLightUrl,
+        }}
         className={cn(
           "z-10 mt-0 mr-0 mb-auto ml-auto h-[min(100vmin,30rem)] w-[min(100vmin,30rem)] overflow-hidden p-0",
           "flex flex-col items-end justify-start",

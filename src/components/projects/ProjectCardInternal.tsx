@@ -1,11 +1,12 @@
 import { IconPlayerPause, IconPlayerPlay, IconZoomCancel, IconZoomIn } from "@tabler/icons-react"
-import { useReducer, type CSSProperties, type ImgHTMLAttributes } from "react"
+import { useReducer, type ImgHTMLAttributes } from "react"
 
 import SkillIcon from "~/components/skills/SkillIcon"
 import type { Project } from "~/content"
 import { useIsLoaded } from "~/hooks"
 import { cn } from "~/lib/cn"
 
+import styles from "./ProjectCardInternal.module.css"
 import ProjectCardLink from "./ProjectCardLink"
 import ProjectCardTag from "./ProjectCardTag"
 
@@ -53,15 +54,14 @@ export default function ProjectCardInternal({
         <img
           {...image}
           className={cn(
-            "animate-scrollprojectimage absolute h-auto w-full",
-            isActive ? "[animation-play-state:running]" : "[animation-play-state:paused]",
+            "absolute h-auto w-full",
+            styles.animateScrollProjectImage,
+            isActive ? "[animation-play-state:running]!" : "[animation-play-state:paused]!",
           )}
-          style={
-            {
-              "--max-image-scroll": `-${maxImageScroll}%`,
-              animationDuration: `${imageScrollDuration}ms`,
-            } as CSSProperties
-          }
+          style={{
+            "--max-image-scroll": `-${maxImageScroll}%`,
+            animationDuration: `${imageScrollDuration}ms`,
+          }}
           ref={imgRef}
         />
         <div

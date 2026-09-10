@@ -1,4 +1,7 @@
 ---
+import { cn } from "~/lib/cn"
+
+import styles from "./ErrorPage.module.css"
 import Layout from "./Layout.astro"
 
 interface Props {
@@ -12,7 +15,10 @@ const { code } = Astro.props
   <main class="mt-[calc(-1*var(--spacing-nav-height))] grid min-h-screen place-items-center p-6">
     <header class="text-center">
       <h1
-        class="motion-safe:animate-errshake mb-4 text-6xl font-bold text-indigo-700 dark:text-indigo-300"
+        class={cn(
+          "mb-4 text-6xl font-bold text-indigo-700 dark:text-indigo-300",
+          styles.animateErrorShake,
+        )}
       >
         {code}
       </h1>
