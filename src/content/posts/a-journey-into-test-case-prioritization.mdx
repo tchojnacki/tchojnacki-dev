@@ -1,0 +1,106 @@
+---
+title: "A journey into test case prioritization"
+author: "Tomasz Chojnacki"
+date: 2026-04-12
+abstract: "A paper on test case prioritization that I co-authored, titled \"Test case prioritization: A systematic review using snowballing and TCPFramework with approach combinators\", was recently published in the 194th volume of Information and Software Technology."
+skills: []
+tags: ["tcp", "testing", "research"]
+---
+
+import Link from "~/components/common/Link"
+import Cite from "@post/Cite.astro"
+import Sources from "@post/Sources.astro"
+import ApproachCombinators from "@post/test-case-prioritization/ApproachCombinators.astro"
+import DefinitionExample from "@post/test-case-prioritization/DefinitionExample"
+
+
+A paper on test case prioritization that I co-authored was recently published in the 194th volume of
+[Information and Software Technology](https://www.sciencedirect.com/journal/information-and-software-technology).
+The article, titled "_Test case prioritization: A systematic review using snowballing and TCPFramework with approach combinators_",
+builds on my master's thesis, which my supervisor and I refined further over the past few months.
+
+The paper is available through Elsevier or as a preprint on arXiv:
+
+<div className='flex flex-wrap justify-evenly gap-2 py-2'>
+  <Link href="https://doi.org/10.1016/j.infsof.2026.108062">10.1016/j.infsof.2026.108062</Link>
+  <Link href="https://doi.org/10.48550/arXiv.2603.00183">10.48550/arXiv.2603.00183</Link>
+</div>
+
+# What is test case prioritization?
+
+Test case prioritization (TCP) is a technique for optimizing the order in which test cases run. If you always execute the
+entire suite regardless of test outcomes, prioritization offers little benefit. However, in scenarios where all tests
+are expected to pass (such as in CI/CD pipelines), you can save significant time by running the tests most likely to fail first.
+
+This shortens the feedback loop, helping developers fix issues faster. Once a failing test is detected, you can stop
+execution to save resources, or continue running the remaining tests, depending on your workflow.
+
+<DefinitionExample client:idle />
+
+# What did we do?
+
+To start, since most existing research relies on ad-hoc infrastructure for evaluating TCP techniques, we created a Python
+framework called TCPFramework. It provides extensible components that let researchers implement and evaluate new TCP techniques
+without writing boilerplate from scratch.
+
+On top of that, we implemented a few simple, well-known TCP methods, like:
+
+- **random order**, which shuffles the test cases randomly;
+- **LOC order**, which evaluates the longest (lines of code) methods first;
+- **recentness order**, which prioritizes the most recently modified methods;
+- **execution-time order**, which runs the fastest tests first;
+- **history-based order**, which prioritizes tests that have failed in the past.
+
+After running multiple experiments, we noticed a clear pattern: techniques that combine multiple sources of information tend to outperform those
+relying on a single source. Several existing methods capitalize on this. Some use basic machine learning, others use genetic algorithms,
+and some even leverage reinforcement learning or LLMs. This is similar to ensemble learning<Cite ordinal={1} />, where combining multiple models
+tends to yield better performance than any single model alone.
+
+Our approach was different. Since the performance overhead of prioritization is often a concern, we went with the most lightweight option:
+combining existing simple methods into a single prioritization technique. Built correctly, these building blocks are reusable,
+stackable, and infinitely combinable. We call them **approach combinators**.
+
+<ApproachCombinators />
+
+We introduce three types of combinators:
+- **mixers**, which use weighted averages to combine the results of multiple methods;
+- **interpolators**, which adjust the weights of different methods based on cycle index;
+- **tiebreakers**, which resolve conflicts between methods assigning the same priority.
+
+For example, any history-based method requires some warm-up cycles to gather enough data. We can use an **interpolator** to weight it more heavily
+in later cycles. Recentness order, on the other hand, produces multiple ties, since PRs often modify several files at once. We can use a **tiebreaker**
+to resolve these ties with, for example, execution time as a secondary criterion.
+
+Overall, the method is flexible and fast compared to complex machine learning approaches.
+
+# Should I care?
+
+Across the evaluated projects, applying TCP reduced testing time by a few dozen hours, roughly a 3% improvement.
+That number may seem small, but it becomes meaningful at scale: in large projects, even marginal gains
+translate into substantial savings in time and resources. These results are consistent with the current state of the art.
+
+Despite the "_no free lunch_" theorem<Cite ordinal={2} />, these gains are effectively free in practice, even after including all TCP-related
+overhead in the calculations. Of eleven repositories tested, only one experienced a slight regression, with testing time increasing by about 1%.
+The remaining projects all showed measurable improvements.
+
+No single TCP method is universally effective. The approach presented here is one possible implementation. Rather than treating
+it as a silver bullet, use it as an example of how prioritization can work in your projects.
+
+# Should I _really_ care?
+
+It depends.
+
+A three-percent improvement aligns with the current state of the art. For smaller teams or organizations,
+gains at that scale may not justify the effort required to implement and maintain a TCP pipeline.
+
+However, in environments where testing consumes hundreds of hours, even small percentage improvements quickly become
+noticeable, both for your team's productivity and your operational costs.
+
+After spending several months on this topic, I suspect most engineers do not need to actively think about TCP
+in their day-to-day work. Still, it pays to be aware of it: when your test suite starts taking hours instead of minutes,
+execution order starts to matter.
+
+<Sources sources={[
+  { title: "Ensemble learning – Wikipedia", href: "https://en.wikipedia.org/wiki/Ensemble_learning" },
+  { title: "No free lunch theorem – Wikipedia", href: "https://en.wikipedia.org/wiki/No_free_lunch_theorem" }
+]} />

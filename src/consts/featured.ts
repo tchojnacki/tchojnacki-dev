@@ -1,5 +1,5 @@
 export const featuredPosts = [
-  "image-optimization-tips-for-web-pages",
+  "a-journey-into-test-case-prioritization",
   "neural-networks-in-plain-javascript",
   "evaluating-gleam-with-aoc",
 ]
