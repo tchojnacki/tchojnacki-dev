@@ -48,7 +48,6 @@ export function useTechSphere({ skillNames, prefersReducedMotion = false }: UseT
     omegaRef.current = prefersReducedMotion ? 0 : INITIAL_ROTATION_SPEED
   }, [prefersReducedMotion])
 
-  // eslint-disable-next-line react-hooks/immutability -- false positive
   useAnimationFrame(dt => {
     let epsilon: number
     switch (movementStateRef.current) {
