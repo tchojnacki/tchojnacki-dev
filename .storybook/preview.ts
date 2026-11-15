@@ -15,7 +15,7 @@ export default {
     }),
   ],
   parameters: {
-    backgrounds: { disable: true },
+    backgrounds: { disabled: true },
     controls: { disableSaveFromUI: true },
   },
 } satisfies Preview

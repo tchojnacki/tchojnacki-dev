@@ -1,5 +1,6 @@
 // @ts-check
 
+import { unified } from "@astrojs/markdown-remark"
 import mdx from "@astrojs/mdx"
 import react from "@astrojs/react"
 import sitemap from "@astrojs/sitemap"
@@ -15,29 +16,28 @@ import { remarkReadingTime } from "./src/lib/readingTime"
 export default defineConfig({
   site: "https://tchojnacki.dev",
   trailingSlash: "never",
+  compressHTML: true,
   integrations: [
-    react({ babel: { plugins: ["babel-plugin-react-compiler"] } }),
+    react({ compiler: true }),
     expressiveCode(),
     mdx(),
     sitemap(),
     robotsTxt(),
     compress({ HTML: false }),
   ],
-  markdown: { remarkPlugins: [remarkReadingTime] },
+  markdown: { processor: unified({ remarkPlugins: [remarkReadingTime] }) },
   vite: { plugins: [tailwindcss()] },
-  experimental: {
-    fonts: [
-      {
-        provider: fontProviders.google(),
-        name: "Inter",
-        cssVariable: "--font-inter",
-        weights: ["400 600"],
-        subsets: ["latin", "latin-ext"],
-        styles: ["normal"],
-        optimizedFallbacks: false,
-      },
-    ],
-  },
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Inter",
+      cssVariable: "--font-inter",
+      weights: ["400 600"],
+      subsets: ["latin", "latin-ext"],
+      styles: ["normal"],
+      optimizedFallbacks: false,
+    },
+  ],
   prefetch: {
     prefetchAll: true,
   },
