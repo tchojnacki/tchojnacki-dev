@@ -1,5 +1,6 @@
-import { defineCollection, reference, z } from "astro:content"
+import { defineCollection, reference } from "astro:content"
 import { glob } from "astro/loaders"
+import { z } from "astro/zod"
 
 const projectTag = z.enum(["personal", "academic", "freelance", "bootcamp", "group", "deprecated"])
 
