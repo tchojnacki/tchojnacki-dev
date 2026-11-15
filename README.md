@@ -60,7 +60,7 @@ The website is available online at [tchojnacki.dev](https://tchojnacki.dev), dep
 Run the development server:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Open [http://localhost:4321](http://localhost:4321) with your browser to see the result.
@@ -68,8 +68,8 @@ Open [http://localhost:4321](http://localhost:4321) with your browser to see the
 You can build the project and preview an optimized version using:
 
 ```bash
-npm run build
-npm run preview
+pnpm build
+pnpm preview
 ```
 
 ### Testing 🧪
@@ -77,7 +77,7 @@ npm run preview
 Enter the following command:
 
 ```bash
-npm run test
+pnpm test
 ```
 
 Test results will be printed alongside a coverage report. The tests are also run as part of the CI/CD process
@@ -88,7 +88,7 @@ on every pull request. Note that only the logic is tested - there are no visual 
 Storybook documents the components written in React (due to [technical limitations](https://github.com/storybookjs/storybook/issues/18356), Astro components cannot be documented). To run Storybook locally, use:
 
 ```bash
-npm run storybook
+pnpm storybook
 ```
 
 ![Storybook showing the TechSphere component.](./.github/storybook.png)
