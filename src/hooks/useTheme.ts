@@ -6,7 +6,7 @@ const neudigo50 = "#f7f9ff"
 const neudigo950 = "#14122b"
 
 function initialTheme() {
-  if (typeof localStorage === "undefined") return "dark"
+  if (typeof window === "undefined") return "dark"
   const local = localStorage.getItem("theme")
   if (local !== "dark" && local !== "light") return "dark"
   return local
