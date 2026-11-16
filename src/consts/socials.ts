@@ -3,6 +3,11 @@ export const github = {
   href: "https://github.com/tchojnacki",
 }
 
+export const gitlab = {
+  label: "GitLab",
+  href: "https://gitlab.com/tchojnacki",
+}
+
 export const linkedin = {
   label: "LinkedIn",
   href: "https://www.linkedin.com/in/tchojnacki",

@@ -1,10 +1,15 @@
 ---
-import { IconBrandGithub, IconBrandLinkedin, IconFileCv } from "@tabler/icons-react"
+import {
+  IconBrandGithub,
+  IconBrandGitlab,
+  IconBrandLinkedin,
+  IconFileCv,
+} from "@tabler/icons-react"
 
 import Wave from "~/components/common/Wave.astro"
 import { techSphereSkills } from "~/consts/featured"
 import { openToWork } from "~/consts/hiring"
-import { github, linkedin, resume } from "~/consts/socials"
+import { github, gitlab, linkedin, resume } from "~/consts/socials"
 import { getSkillById } from "~/content"
 import { cn } from "~/lib/cn"
 
@@ -36,6 +41,9 @@ const skillNames = await Promise.all(techSphereSkills.map(id => getSkillById(id)
     <nav class="flex flex-wrap items-center justify-center gap-8 lg:justify-start">
       <SocialLink {...github}>
         <IconBrandGithub title={github.label} />
+      </SocialLink>
+      <SocialLink {...gitlab}>
+        <IconBrandGitlab title={gitlab.label} />
       </SocialLink>
       <SocialLink {...linkedin}>
         <IconBrandLinkedin title={linkedin.label} />
