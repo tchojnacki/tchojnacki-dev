@@ -1,6 +1,6 @@
 ---
 import { IconWritingSign } from "@tabler/icons-react"
-import { countBy, sortBy, uniqBy } from "lodash-es"
+import { countBy, sortBy, uniqBy } from "es-toolkit"
 
 import PostList from "~/components/blog/list/PostList.astro"
 import TagLink from "~/components/blog/list/TagLink.astro"
@@ -15,18 +15,18 @@ const allTags = uniqBy(
     ...p.data.tags.map(tag => ({ tag, href: `/tags/${tag}` })),
     ...p.data.skills.map(({ id }) => ({ tag: id, href: `/skills/${id}` })),
   ]),
-  "href",
+  t => t.href,
 )
 
 const tagCounts = countBy(
   posts.flatMap(p => [...p.data.tags, ...p.data.skills.map(({ id }) => id)]),
+  t => t,
 )
 
-const popularTags = sortBy(
-  allTags,
+const popularTags = sortBy(allTags, [
   ({ tag }) => -tagCounts[tag]!, // SAFETY: tagCounts is derived from allTags
   ({ tag }) => tag,
-)
+])
 ---
 
 <Layout name="Blog" description="List of all posts from Tomasz Chojnacki's blog.">

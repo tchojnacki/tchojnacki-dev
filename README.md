@@ -26,7 +26,7 @@
 - **Core:** Astro, React, TypeScript
 - **Design:** Tailwind CSS, Tabler Icons, Simple Icons, Figma
 - **Blog:** MDX, KaTeX, nanostores
-- **Helpers:** Lodash, clsx, tailwind-merge
+- **Helpers:** es-toolkit, clsx, tailwind-merge
 - **Tools:** Vitest, Storybook, Vite, Git
 - **CI/CD:** GitHub Actions, Codecov
 - **Formatting:** Prettier, commitlint, Husky

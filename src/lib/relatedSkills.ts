@@ -1,4 +1,4 @@
-import { fromPairs, sortBy } from "lodash-es"
+import { sortBy } from "es-toolkit"
 
 import { type Project, type Skill } from "~/content"
 
@@ -25,7 +25,12 @@ export function calculateRelatedSkills(
     return a === b ? 0 : 10 * jaccard(a, b, parts) + jaccard(a, b, projects)
   }
 
-  return fromPairs<string[]>(
-    skillIds.map(target => [target, sortBy(skillIds, s => -similarity(target, s)).slice(0, 4)]),
+  return Object.fromEntries(
+    skillIds.map(target => [
+      target,
+      sortBy(skillList, [s => -similarity(target, s.id)])
+        .slice(0, 4)
+        .map(s => s.id),
+    ]),
   )
 }

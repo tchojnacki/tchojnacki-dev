@@ -1,3 +1,5 @@
+import { range } from "es-toolkit"
+
 import { cumSum } from "~/lib/math"
 
 import TestCase, { CASE_PX_PER_S } from "./TestCase"
@@ -22,7 +24,7 @@ export default function TestSuite({
   const firstFailIdx = caseFails.findIndex(Boolean)
   return (
     <g transform={`translate(${x}, ${y})`}>
-      {Array.from({ length: caseCount }).map((_, i) => (
+      {range(caseCount).map(i => (
         <TestCase
           key={i}
           name={caseNames[i]}

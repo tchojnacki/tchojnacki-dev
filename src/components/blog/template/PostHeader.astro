@@ -1,5 +1,5 @@
 ---
-import { sortBy } from "lodash-es"
+import { sortBy } from "es-toolkit"
 
 import Link from "~/components/common/Link"
 import type { Post } from "~/content"
@@ -18,7 +18,7 @@ const tags = sortBy(
     ...post.data.skills.map(s => ({ tag: s.id, href: `/skills/${s.id}` })),
     ...post.data.tags.map(t => ({ tag: t, href: `/tags/${t}` })),
   ],
-  "tag",
+  ["tag"],
 )
 ---
 
