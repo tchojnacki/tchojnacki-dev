@@ -1,4 +1,4 @@
-import { zip } from "lodash-es"
+import { zip } from "es-toolkit"
 import { useId } from "react"
 
 import { cumSum } from "~/lib/math"
@@ -16,16 +16,16 @@ const invertPerm = (perm: number[]) => {
 const computeLines = (oldDurations: number[], perm: number[]) => {
   const oldWidths = oldDurations.map(d => d * CASE_PX_PER_S)
   const oldOffsets = cumSum(oldWidths)
-  const oldCenters = zip(oldOffsets, oldWidths).map(([o, w]) => o! + w! / 2)
+  const oldCenters = zip(oldOffsets, oldWidths).map(([o, w]) => o + w / 2)
 
   const newWidths = perm.map(i => oldWidths[i]!)
   const newOffsets = cumSum(newWidths)
-  const newCenters = zip(newOffsets, newWidths).map(([o, w]) => o! + w! / 2)
+  const newCenters = zip(newOffsets, newWidths).map(([o, w]) => o + w / 2)
 
   const invPerm = invertPerm(perm)
   const unpermutedNewCenters = invPerm.map(i => newCenters[i]!)
 
-  return zip(oldCenters, unpermutedNewCenters).map(([x1, x2]) => ({ x1: x1!, x2: x2! }))
+  return zip(oldCenters, unpermutedNewCenters).map(([x1, x2]) => ({ x1, x2 }))
 }
 
 type PermArrowsProps = {

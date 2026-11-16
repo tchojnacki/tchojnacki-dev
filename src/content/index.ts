@@ -1,6 +1,6 @@
 import type { GetStaticPathsItem, ImageMetadata } from "astro"
 import { getCollection, getEntry, type CollectionEntry } from "astro:content"
-import { keyBy, sortBy, uniq } from "lodash-es"
+import { keyBy, sortBy, uniq } from "es-toolkit"
 import * as ICONS from "simple-icons"
 
 import { projectImportanceOrder } from "~/consts/featured"
@@ -44,11 +44,11 @@ export async function getSkillById(id: string): Promise<Skill> {
 }
 
 export async function getSkills(): Promise<Skill[]> {
-  return sortBy((await getCollection("skills")).map(resolveSkillEntry), "name")
+  return sortBy((await getCollection("skills")).map(resolveSkillEntry), ["name"])
 }
 
 export async function getProjects(): Promise<Project[]> {
-  const skillById = keyBy(await getSkills(), "id")
+  const skillById = keyBy(await getSkills(), s => s.id)
   const projectEntries = await getCollection("projects")
   return sortBy(
     projectEntries.map(({ id, data }) => ({
@@ -61,16 +61,16 @@ export async function getProjects(): Promise<Project[]> {
         small,
       })),
     })),
-    p => projectImportanceOrder.indexOf(p.id),
+    [p => projectImportanceOrder.indexOf(p.id)],
   )
 }
 
 export async function getPosts(): Promise<Post[]> {
-  return sortBy(await getCollection("posts"), p => -p.data.date.getTime())
+  return sortBy(await getCollection("posts"), [p => -p.data.date.getTime()])
 }
 
 export async function getTags(): Promise<string[]> {
-  return sortBy(uniq((await getCollection("posts")).flatMap(p => p.data.tags)))
+  return uniq((await getCollection("posts")).flatMap(p => p.data.tags)).toSorted()
 }
 
 export function pathsFrom<C, R extends GetStaticPathsItem>(

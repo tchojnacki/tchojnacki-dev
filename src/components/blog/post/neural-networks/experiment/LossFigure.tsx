@@ -1,4 +1,4 @@
-import { clamp } from "lodash-es"
+import { clamp } from "es-toolkit"
 
 import Chart from "~/components/blog/post/Chart"
 import { lerp } from "~/lib/math"

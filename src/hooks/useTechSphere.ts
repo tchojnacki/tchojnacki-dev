@@ -1,4 +1,4 @@
-import { clamp } from "lodash-es"
+import { clamp } from "es-toolkit"
 import { useEffect, useRef, type PointerEvent, type TouchEvent } from "react"
 
 import {

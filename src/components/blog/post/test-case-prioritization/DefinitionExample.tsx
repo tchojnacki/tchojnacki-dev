@@ -1,3 +1,4 @@
+import { range, sum } from "es-toolkit"
 import { useState } from "react"
 
 import PermArrows from "./PermArrows"
@@ -15,19 +16,19 @@ const dr = (seed: number) => {
 }
 
 const genDurations = (round: number) => {
-  const weights = Array.from({ length: NUM_CASES }).map((_, i) => 1 + dr(1000 * round + i))
-  const weightSum = weights.reduce((a, b) => a + b, 0)
+  const weights = range(NUM_CASES).map(i => 1 + dr(1000 * round + i))
+  const weightSum = sum(weights)
   return weights.map(w => (w / weightSum) * TOTAL_TIME_S)
 }
 
 const genFails = (round: number) => {
   const failIdx = 6 + Math.floor(dr(1000 * round) * 4)
-  return Array.from({ length: NUM_CASES }).map((_, i) => i === failIdx)
+  return range(NUM_CASES).map(i => i === failIdx)
 }
 
 const genPermutation = (round: number) => {
   const oldFails = genFails(round)
-  const perm = Array.from({ length: NUM_CASES }, (_, i) => i)
+  const perm = range(NUM_CASES)
   let seed = round
   do {
     for (let i = perm.length - 1; i > 0; i--) {
