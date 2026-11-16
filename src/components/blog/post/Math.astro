@@ -10,12 +10,10 @@ const { latex, block = false } = Astro.props
 const html = katex.renderToString(latex, { throwOnError: false, displayMode: block })
 ---
 
-{
-  block ? (
-    <figure class="my-2 flex justify-center" aria-label={`Math: ${latex}`}>
-      <span set:html={html} />
-    </figure>
-  ) : (
+{block ? (
+  <figure class="my-2 flex justify-center" aria-label={`Math: ${latex}`}>
     <span set:html={html} />
-  )
-}
+  </figure>
+) : (
+  <span set:html={html} />
+)}

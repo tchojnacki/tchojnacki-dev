@@ -14,5 +14,7 @@ const projects = (await getProjects()).filter(p => !filter || filter(p))
 ---
 
 <ul class="flex flex-col items-center gap-8 px-2 py-8 sm:gap-16 lg:px-16">
-  {projects.map((project, i) => <ProjectCard {heading} {project} flipped={i % 2 === 1} />)}
+  {projects.map((project, i) => (
+    <ProjectCard {heading} {project} flipped={i % 2 === 1} />
+  ))}
 </ul>

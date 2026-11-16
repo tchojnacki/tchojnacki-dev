@@ -27,9 +27,9 @@ const p = "my-2"
   <div class="flex flex-col items-center text-neutral-600 dark:text-neutral-400">
     {
       /* prettier-ignore */
-      (<div class="max-w-reading py-4 brightness-75 sm:text-justify sm:hyphens-auto dark:brightness-125">
+      <div class="max-w-reading py-4 brightness-75 sm:text-justify sm:hyphens-auto dark:brightness-125">
         <p class={p}>
-          I&nbsp;am a&nbsp;mid <strong class={s}>full-stack</strong> software engineer specializing in
+          I&nbsp;am a&nbsp;mid <strong class={s}>full-stack</strong> software engineer specializing in{" "}
           <strong class={s}>React and NestJS</strong>, with strong foundations in databases, DevOps, AI, Python, and Rust.
           Currently, I&nbsp;work on EPM and CPaaS solutions for a&nbsp;telecommunications company, supporting 2&#8239;000+
           networks and over 100&#8239;000+ VoIP customer lines. My role combines scalable system design with real-world
@@ -42,26 +42,24 @@ const p = "my-2"
           monthly users, translating business needs into practical technical solutions.
         </p>
         <p class={p}>
-          I&nbsp;hold both a&nbsp;Bachelor's and <strong class={s}>Master's degree in Applied Computer Science</strong>
-          from the Wrocław University of Science and Technology, graduating top of my class. I&nbsp;also
+          I&nbsp;hold both a&nbsp;Bachelor's and <strong class={s}>Master's degree in Applied Computer Science</strong>{" "}
+          from the Wrocław University of Science and Technology, graduating top of my class. I&nbsp;also{" "}
           <strong class={s}>published scientific</strong> research in Information and Software Technology, a&nbsp;top
           10% journal according to CORE rankings.
         </p>
-      </div>)
+      </div>
     }
     <ul class="grid grid-cols-3 gap-8 py-4 sm:gap-12">
-      {
-        metrics.map(({ value, label }) => (
-          <li class="text-center">
-            <div class="text-2xl font-bold text-indigo-700 dark:text-indigo-300">{value}</div>
-            <div class="text-sm text-neutral-900 dark:text-neutral-100">
-              {label[0]}
-              <br />
-              {label[1]}
-            </div>
-          </li>
-        ))
-      }
+      {metrics.map(({ value, label }) => (
+        <li class="text-center">
+          <div class="text-2xl font-bold text-indigo-700 dark:text-indigo-300">{value}</div>
+          <div class="text-sm text-neutral-900 dark:text-neutral-100">
+            {label[0]}
+            <br />
+            {label[1]}
+          </div>
+        </li>
+      ))}
     </ul>
   </div>
 </main>

@@ -8,12 +8,10 @@ const skills = await getSkills()
 
 <Listing name="Skills" description="List of all skills from Tomasz Chojnacki's projects.">
   <ul>
-    {
-      skills.map(s => (
-        <li>
-          <Link href={`/skills/${s.id}`}>{s.name}</Link>
-        </li>
-      ))
-    }
+    {skills.map(s => (
+      <li>
+        <Link href={`/skills/${s.id}`}>{s.name}</Link>
+      </li>
+    ))}
   </ul>
 </Listing>

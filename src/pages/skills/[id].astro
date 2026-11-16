@@ -35,7 +35,9 @@ const relatedSkills = calculateRelatedSkills(skillList, projectList)
     <section class="bg-indigo-100 dark:bg-indigo-900">
       <SectionHeader text="Related skills" />
       <SkillCardWrapper>
-        {relatedSkills[skill.id]!.map(skillId => <SkillCard {skillId} />)}
+        {relatedSkills[skill.id]!.map(skillId => (
+          <SkillCard {skillId} />
+        ))}
       </SkillCardWrapper>
     </section>
     <Wave inverted />
@@ -44,7 +46,8 @@ const relatedSkills = calculateRelatedSkills(skillList, projectList)
       <ProjectList
         heading={3}
         filter={project =>
-          project.parts.some(part => part.skills.some(({ id }) => id === skill.id))}
+          project.parts.some(part => part.skills.some(({ id }) => id === skill.id))
+        }
       />
     </section>
   </main>

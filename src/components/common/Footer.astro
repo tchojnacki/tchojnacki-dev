@@ -12,46 +12,46 @@ const socials = [github, linkedin, resume]
 ---
 
 <Wave className="max-h-32!" />
-<footer
-  class="bg-indigo-100 px-6 text-sm text-neutral-600 dark:bg-indigo-900 dark:text-neutral-400"
->
+<footer class="bg-indigo-100 px-6 text-sm text-neutral-600 dark:bg-indigo-900 dark:text-neutral-400">
   <section class="flex flex-col justify-center text-center sm:flex-row sm:gap-32 sm:text-left">
     <ul>
-      {
-        entries.map(({ href, label }) => (
-          <li>
-            <a {href} class={linkClass}>
-              {label}
-            </a>
-          </li>
-        ))
-      }
+      {entries.map(({ href, label }) => (
+        <li>
+          <a {href} class={linkClass}>
+            {label}
+          </a>
+        </li>
+      ))}
     </ul>
     <ul>
-      {
-        socials.map(({ href, label }) => (
-          <li>
-            <a {href} target="_blank" rel="noreferrer" class={linkClass}>
-              {label}
-            </a>
-          </li>
-        ))
-      }
+      {socials.map(({ href, label }) => (
+        <li>
+          <a {href} target="_blank" rel="noreferrer" class={linkClass}>
+            {label}
+          </a>
+        </li>
+      ))}
     </ul>
     <ul>
       <li>
-        <a href="/sitemap" class={linkClass}>Sitemap</a>
+        <a href="/sitemap" class={linkClass}>
+          Sitemap
+        </a>
       </li>
       <li>
-        <a href="/rss.xml" class={linkClass}>RSS Feed</a>
+        <a href="/rss.xml" class={linkClass}>
+          RSS Feed
+        </a>
       </li>
       <li>
         <a
           href="https://github.com/tchojnacki/tchojnacki-dev"
           target="_blank"
           rel="noreferrer"
-          class={linkClass}>Source & Issues</a
+          class={linkClass}
         >
+          Source & Issues
+        </a>
       </li>
     </ul>
   </section>
@@ -59,6 +59,8 @@ const socials = [github, linkedin, resume]
     <p class="pt-8 pb-2 text-center">
       Designed and developed by <strong>Tomasz&nbsp;Chojnacki</strong>
     </p>
-    <p class="pt-2 pb-8 text-center"><strong>NIP:</strong> 8863041925</p>
+    <p class="pt-2 pb-8 text-center">
+      <strong>NIP:</strong> 8863041925
+    </p>
   </section>
 </footer>

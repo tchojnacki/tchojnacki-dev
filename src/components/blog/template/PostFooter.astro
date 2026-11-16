@@ -44,36 +44,35 @@ const socials = [
 
 <footer class="mt-8 flex flex-col gap-4 px-6 py-4 text-center text-sm">
   <ul class="flex justify-center gap-4">
-    {
-      socials.map(({ Icon, name, href }) => {
-        const title = `Share on ${name}...`
-        return (
-          <li>
-            <a
-              {href}
-              {title}
-              draggable={false}
-              target="_blank"
-              rel="noreferrer"
-              class="hover:text-neutral-1000 dark:hover:text-neutral-0 group text-purple-700 duration-200 dark:text-purple-300"
-            >
-              <Icon className="group-active:scale-95 duration-200" size={32} aria-label={title} />
-            </a>
-          </li>
-        )
-      })
-    }
+    {socials.map(({ Icon, name, href }) => {
+      const title = `Share on ${name}...`
+      return (
+        <li>
+          <a
+            {href}
+            {title}
+            draggable={false}
+            target="_blank"
+            rel="noreferrer"
+            class="hover:text-neutral-1000 dark:hover:text-neutral-0 group text-purple-700 duration-200 dark:text-purple-300"
+          >
+            <Icon className="group-active:scale-95 duration-200" size={32} aria-label={title} />
+          </a>
+        </li>
+      )
+    })}
   </ul>
   <p>
     <Link
       href={`https://github.com/tchojnacki/tchojnacki-dev/edit/main/src/content/posts/${id}.mdx`}
     >
-      Fix a typo on <IconBrandGithub size={16} className="inline-block" role="presentation" /> GitHub.
+      Fix a typo on <IconBrandGithub size={16} className="inline-block" role="presentation" />{" "}
+      GitHub.
     </Link>
   </p>
   <p>
-    <Link href="/rss.xml"
-      >Subscribe to <IconRss size={16} className="inline-block" role="presentation" /> RSS.</Link
-    >
+    <Link href="/rss.xml">
+      Subscribe to <IconRss size={16} className="inline-block" role="presentation" /> RSS.
+    </Link>
   </p>
 </footer>

@@ -32,22 +32,24 @@ const tags = [...post.data.skills.map(s => s.id), ...post.data.tags].toSorted()
       {post.data.title}
     </H>
     <div class="flex flex-col gap-2 text-sm sm:flex-row sm:justify-between">
-      <span
-        ><time
+      <span>
+        <time
           itemprop="dateCreated dateModified datePublished"
           datetime={post.data.date.toISOString()}
-          >{
-            post.data.date.toLocaleDateString("en-US", {
-              weekday: undefined,
-              day: "numeric",
-              month: "short",
-              year: "numeric",
-            })
-          }</time
-        > &bull; <span itemprop="timeRequired">{readingTime} min read</span></span
-      >
+        >
+          {post.data.date.toLocaleDateString("en-US", {
+            weekday: undefined,
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          })}
+        </time>{" "}
+        &bull; <span itemprop="timeRequired">{readingTime} min read</span>
+      </span>
       <ul itemprop="keywords" class="flex gap-2 text-purple-700 dark:text-purple-300">
-        {tags.map(t => <li>#{t}</li>)}
+        {tags.map(t => (
+          <li>#{t}</li>
+        ))}
       </ul>
     </div>
     <p
@@ -56,10 +58,9 @@ const tags = [...post.data.skills.map(s => s.id), ...post.data.tags].toSorted()
     >
       {post.data.abstract}
     </p>
-    <div
-      class="text-neutral-1000 dark:text-neutral-0 flex items-center gap-1 text-sm leading-none font-bold"
-    >
-      Read more <IconArrowRight
+    <div class="text-neutral-1000 dark:text-neutral-0 flex items-center gap-1 text-sm leading-none font-bold">
+      Read more{" "}
+      <IconArrowRight
         role="presentation"
         className="stroke-neutral-1000 dark:stroke-neutral-0 inline-block opacity-0 group-hover:opacity-100"
         size="16"

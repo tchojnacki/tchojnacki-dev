@@ -7,7 +7,6 @@ import sitemap from "@astrojs/sitemap"
 import tailwindcss from "@tailwindcss/vite"
 import compress from "astro-compress"
 import expressiveCode from "astro-expressive-code"
-import robotsTxt from "astro-robots-txt"
 import { defineConfig, fontProviders } from "astro/config"
 
 import { remarkReadingTime } from "./src/lib/readingTime"
@@ -16,13 +15,11 @@ import { remarkReadingTime } from "./src/lib/readingTime"
 export default defineConfig({
   site: "https://tchojnacki.dev",
   trailingSlash: "never",
-  compressHTML: true,
   integrations: [
     react({ compiler: true }),
     expressiveCode(),
     mdx(),
     sitemap(),
-    robotsTxt(),
     compress({ HTML: false }),
   ],
   markdown: { processor: unified({ remarkPlugins: [remarkReadingTime] }) },

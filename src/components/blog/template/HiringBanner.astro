@@ -8,17 +8,15 @@ const s = "font-bold text-neutral-1000 dark:text-neutral-0"
 
 <div class:list={["mt-8 sm:text-justify sm:hyphens-auto", openToWork ? null : "opacity-50"]}>
   <Banner kind="info">
-    {
-      openToWork ? (
-        statement.map(p => {
-          let node = p.t
-          if (p.a) node = <Link href={p.a}>{node}</Link>
-          if (p.b) node = <strong class={s}>{node}</strong>
-          return node
-        })
-      ) : (
-        <>The views expressed in this post are my own and do not reflect those of my employer.</>
-      )
-    }
+    {openToWork ? (
+      statement.map(p => {
+        let node = p.t
+        if (p.a) node = <Link href={p.a}>{node}</Link>
+        if (p.b) node = <strong class={s}>{node}</strong>
+        return node
+      })
+    ) : (
+      <>The views expressed in this post are my own and do not reflect those of my employer.</>
+    )}
   </Banner>
 </div>
