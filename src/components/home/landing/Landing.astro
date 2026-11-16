@@ -24,7 +24,8 @@ const skillNames = await Promise.all(techSphereSkills.map(id => getSkillById(id)
 >
   <section class="place-self-center p-6 text-center [grid-area:text] lg:text-left">
     <p class="text-2xl font-bold">
-      Hello&nbsp;<WavingEmoji client:idle />, my name is
+      Hello&nbsp;
+      <WavingEmoji client:idle />, my name is
     </p>
     <h1 class="text-5xl leading-tight font-bold text-indigo-700 dark:text-indigo-300">
       Tomasz Chojnacki
@@ -45,9 +46,7 @@ const skillNames = await Promise.all(techSphereSkills.map(id => getSkillById(id)
       {openToWork ? <HiringDialog client:idle /> : null}
     </nav>
   </section>
-  <section
-    class="grid h-full min-h-[75vw] w-full items-center justify-items-center overflow-hidden p-6 [grid-area:sphere] lg:min-h-full lg:items-end"
-  >
+  <section class="grid h-full min-h-[75vw] w-full items-center justify-items-center overflow-hidden p-6 [grid-area:sphere] lg:min-h-full lg:items-end">
     <TechSphere client:idle {skillNames} />
   </section>
   <div class="bottom-0 flex h-full w-full flex-col justify-end lg:absolute lg:h-[20vh]">

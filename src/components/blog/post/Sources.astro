@@ -12,13 +12,11 @@ const { sources } = Astro.props
 
 <section>
   <ol class="mt-8 list-decimal pl-8 [counter-reset:cite]">
-    {
-      sources.map((s, i) => (
-        <li class="[counter-increment:cite]" id={`cite-${i + 1}`}>
-          <Link href={s.href}>{s.title}</Link>
-        </li>
-      ))
-    }
+    {sources.map((s, i) => (
+      <li class="[counter-increment:cite]" id={`cite-${i + 1}`}>
+        <Link href={s.href}>{s.title}</Link>
+      </li>
+    ))}
   </ol>
 </section>
 

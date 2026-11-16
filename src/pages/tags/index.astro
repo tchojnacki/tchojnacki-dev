@@ -11,12 +11,10 @@ const counts = countBy((await getPosts()).flatMap(p => p.data.tags))
 
 <Listing name="Tags" description="List of all tags from Tomasz Chojnacki's blog.">
   <ul>
-    {
-      tags.map(tag => (
-        <li>
-          <TagLink {tag} count={counts[tag]!} />
-        </li>
-      ))
-    }
+    {tags.map(tag => (
+      <li>
+        <TagLink {tag} count={counts[tag]!} />
+      </li>
+    ))}
   </ul>
 </Listing>

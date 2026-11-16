@@ -31,36 +31,40 @@ const tags = sortBy(
       itemprop="author accountablePerson copyrightHolder editor"
       itemscope
       itemtype="https://schema.org/Person"
-      >by&nbsp;<address
+    >
+      by&nbsp;
+      <address
         itemprop="name"
         class="text-neutral-1000 dark:text-neutral-0 inline-block font-bold not-italic"
       >
         {post.data.author}
-      </address></span
-    >
-    <Bullet />on&nbsp;<time
+      </address>
+    </span>
+    <Bullet />
+    on&nbsp;
+    <time
       itemprop="dateCreated dateModified datePublished"
       datetime={post.data.date.toISOString()}
       class="text-neutral-1000 dark:text-neutral-0 font-bold"
-      >{
-        post.data.date.toLocaleDateString("en-US", {
-          weekday: undefined,
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-        })
-      }</time
-    ><Bullet /><span itemprop="timeRequired" class="text-neutral-1000 dark:text-neutral-0 font-bold"
-      >{readingTime}&nbsp;min</span
-    >&nbsp;read
+    >
+      {post.data.date.toLocaleDateString("en-US", {
+        weekday: undefined,
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })}
+    </time>
+    <Bullet />
+    <span itemprop="timeRequired" class="text-neutral-1000 dark:text-neutral-0 font-bold">
+      {readingTime}&nbsp;min
+    </span>
+    &nbsp;read
   </div>
   <ul itemprop="keywords" class="flex flex-wrap justify-center gap-4 sm:justify-start">
-    {
-      tags.map(({ tag, href }) => (
-        <li>
-          <Link {href}>#{tag}</Link>
-        </li>
-      ))
-    }
+    {tags.map(({ tag, href }) => (
+      <li>
+        <Link {href}>#{tag}</Link>
+      </li>
+    ))}
   </ul>
 </header>

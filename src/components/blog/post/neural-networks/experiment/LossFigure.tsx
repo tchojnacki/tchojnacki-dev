@@ -6,13 +6,13 @@ import { lerp } from "~/lib/math"
 type LossFigureProps = { losses: number[] }
 
 export default function LossFigure({ losses }: LossFigureProps) {
-  losses = losses.map(l => clamp(l, 0, 1))
-  const max = Math.max(...losses)
-  const data = losses.map(
-    (l, i) => [lerp(i, [0, losses.length - 1], [0, 1]), l / max] as [number, number],
+  const clamped = losses.map(l => clamp(l, 0, 1))
+  const max = Math.max(...clamped)
+  const data = clamped.map(
+    (l, i) => [lerp(i, [0, clamped.length - 1], [0, 1]), l / max] as [number, number],
   )
 
-  const loss = losses.at(-1)
+  const loss = clamped.at(-1)
 
   return (
     <figure>
