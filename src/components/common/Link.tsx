@@ -7,7 +7,7 @@ export default function Link({ children, href, ...props }: ComponentProps<"a">) 
     <a
       href={href}
       {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
-      className="hover:text-neutral-1000 dark:hover:text-neutral-0 text-purple-700 duration-200 hover:underline dark:text-purple-300"
+      className="text-purple-700 duration-200 hover:text-neutral-1000 hover:underline dark:text-purple-300 dark:hover:text-neutral-0"
       {...props}
     >
       {children}

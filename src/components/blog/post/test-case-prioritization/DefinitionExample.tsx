@@ -78,7 +78,7 @@ export default function DefinitionExample() {
         <button
           type="button"
           onClick={() => setRound(r => r + 1)}
-          className="text-neutral-0 rounded-lg bg-indigo-600 p-2 leading-none duration-200 select-none hover:bg-indigo-500 active:scale-95"
+          className="rounded-lg bg-indigo-600 p-2 leading-none text-neutral-0 duration-200 select-none hover:bg-indigo-500 active:scale-95"
         >
           Regenerate
         </button>

@@ -4,7 +4,7 @@ import Link from "~/components/common/Link"
 
 function H1({ children, id }: ComponentProps<"h1">) {
   return (
-    <h2 id={id} className="text-neutral-1000 dark:text-neutral-0 mt-6 mb-1.5 text-2xl font-bold">
+    <h2 id={id} className="mt-6 mb-1.5 text-2xl font-bold text-neutral-1000 dark:text-neutral-0">
       <a href={`#${id}`}>{children}</a>
     </h2>
   )
@@ -12,7 +12,7 @@ function H1({ children, id }: ComponentProps<"h1">) {
 
 function H2({ children, id }: ComponentProps<"h2">) {
   return (
-    <h3 id={id} className="text-neutral-1000 dark:text-neutral-0 mt-5 mb-1.5 text-xl font-bold">
+    <h3 id={id} className="mt-5 mb-1.5 text-xl font-bold text-neutral-1000 dark:text-neutral-0">
       <a href={`#${id}`}>{children}</a>
     </h3>
   )
@@ -20,7 +20,7 @@ function H2({ children, id }: ComponentProps<"h2">) {
 
 function H3({ children, id }: ComponentProps<"h3">) {
   return (
-    <h4 id={id} className="text-neutral-1000 dark:text-neutral-0 mt-4 mb-1.5 text-lg font-bold">
+    <h4 id={id} className="mt-4 mb-1.5 text-lg font-bold text-neutral-1000 dark:text-neutral-0">
       <a href={`#${id}`}>{children}</a>
     </h4>
   )
@@ -28,7 +28,7 @@ function H3({ children, id }: ComponentProps<"h3">) {
 
 function H4({ children, id }: ComponentProps<"h4">) {
   return (
-    <h5 id={id} className="text-neutral-1000 dark:text-neutral-0 mt-3 mb-1.5 text-base font-bold">
+    <h5 id={id} className="mt-3 mb-1.5 text-base font-bold text-neutral-1000 dark:text-neutral-0">
       <a href={`#${id}`}>{children}</a>
     </h5>
   )
@@ -40,7 +40,7 @@ function P({ children }: ComponentProps<"p">) {
 
 function Code({ children }: ComponentProps<"code">) {
   return (
-    <code className="bg-ghl-background outline-ghl-border dark:bg-ghd-background dark:outline-ghd-border -my-0.5 rounded-md px-1 py-0.5 outline-1">
+    <code className="-my-0.5 rounded-md bg-ghl-background px-1 py-0.5 outline-1 outline-ghl-border dark:bg-ghd-background dark:outline-ghd-border">
       {children}
     </code>
   )
