@@ -48,6 +48,7 @@
   - [/lib](./src/lib) - domain logic and utilities
   - [/pages](./src/pages) - routes used by Astro for static site generation
 - [/CONTRIBUTING.md](./CONTRIBUTING.md) - guidelines for external contributors
+- [/SECURITY.md](./SECURITY.md) - security vulnerability reporting policy
 
 ## Deployment 🚀
 
