@@ -29,7 +29,7 @@
 - **Helpers:** es-toolkit, clsx, tailwind-merge
 - **Tools:** Vitest, Storybook, Vite, Git
 - **CI/CD:** GitHub Actions, Codecov
-- **Formatting:** Prettier, commitlint, Husky
+- **Formatting:** oxfmt, commitlint, Husky
 - **Platforms:** Vercel, Squarespace
 
 ## Repository 🗃️

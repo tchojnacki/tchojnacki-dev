@@ -49,7 +49,7 @@ export default function Chart({
   return (
     <svg
       viewBox={`${xMin} ${yMin} ${xSpan} ${ySpan}`}
-      className="bg-ghl-background dark:bg-ghd-background -scale-y-100"
+      className="-scale-y-100 bg-ghl-background dark:bg-ghd-background"
     >
       <title>A line chart.</title>
       {elements.map((element, fi) => {

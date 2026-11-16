@@ -43,13 +43,13 @@ const popularTags = sortBy(allTags, [
       )}
     >
       <section class="py-4 [grid-area:posts]">
-        <h2 class="text-neutral-1000 dark:text-neutral-0 px-6 text-center text-2xl font-bold sm:text-left">
+        <h2 class="px-6 text-center text-2xl font-bold text-neutral-1000 sm:text-left dark:text-neutral-0">
           Recent posts
         </h2>
         <PostList heading={3} />
       </section>
       <aside class="px-6 py-4 text-center [grid-area:tags] sm:text-left lg:justify-self-center">
-        <h2 class="text-neutral-1000 dark:text-neutral-0 pb-3 text-2xl font-bold">Popular tags</h2>
+        <h2 class="pb-3 text-2xl font-bold text-neutral-1000 dark:text-neutral-0">Popular tags</h2>
         <nav>
           <ul>
             {popularTags.map(({ tag, href }) => (

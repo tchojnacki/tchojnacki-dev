@@ -10,7 +10,7 @@ const { tag, count, href = `/tags/${tag}` } = Astro.props
 
 <a
   {href}
-  class="hover:text-neutral-1000 dark:hover:text-neutral-0 group text-purple-700 duration-200 dark:text-purple-300"
+  class="group text-purple-700 duration-200 hover:text-neutral-1000 dark:text-purple-300 dark:hover:text-neutral-0"
 >
   <span class="group-hover:underline">#{tag}</span>{" "}
   <span class="text-sm text-neutral-900 opacity-50 dark:text-neutral-100">({count})</span>
