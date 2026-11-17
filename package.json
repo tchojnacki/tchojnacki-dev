@@ -9,8 +9,7 @@
     "storybook": "storybook dev -p 6006",
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "prepare": "husky"
+    "preview": "astro preview"
   },
   "dependencies": {
     "@expressive-code/plugin-line-numbers": "^0.44.3",
@@ -54,8 +53,7 @@
     "eslint-plugin-jsx-a11y-x": "^0.2.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-storybook": "^10.6.6",
-    "husky": "^9.1.7",
-    "lint-staged": "^17.6.0",
+    "lefthook": "^2.2.2",
     "mdast-util-to-string": "^4.0.0",
     "oxc-transform-react": "^0.156.0",
     "oxfmt": "^0.78.0",
