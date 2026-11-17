@@ -3,13 +3,14 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "check": "oxfmt --check && eslint . && astro check",
+    "check:fix": "eslint --fix . && oxfmt",
+    "test": "vitest run --coverage",
+    "storybook": "storybook dev -p 6006",
     "dev": "astro dev",
-    "test": "eslint \"src/**/*.{js,jsx,ts,tsx,astro}\" && astro check && vitest run --coverage",
     "build": "astro build",
     "preview": "astro preview",
-    "format": "oxfmt",
-    "prepare": "husky",
-    "storybook": "storybook dev -p 6006"
+    "prepare": "husky"
   },
   "dependencies": {
     "@expressive-code/plugin-line-numbers": "^0.44.3",
@@ -54,6 +55,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-storybook": "^10.6.6",
     "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
     "mdast-util-to-string": "^4.0.0",
     "oxc-transform-react": "^0.156.0",
     "oxfmt": "^0.78.0",
