@@ -4,10 +4,11 @@ import eslint from "@eslint/js"
 import astro from "eslint-plugin-astro"
 import reactHooks from "eslint-plugin-react-hooks"
 import storybook from "eslint-plugin-storybook"
-import { defineConfig } from "eslint/config"
+import { defineConfig, globalIgnores } from "eslint/config"
 import tseslint from "typescript-eslint"
 
 export default defineConfig([
+  globalIgnores(["dist/", ".astro/", "coverage/", "storybook-static/"]),
   eslint.configs.recommended,
   tseslint.configs.recommended,
   tseslint.configs.stylistic,

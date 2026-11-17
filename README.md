@@ -25,12 +25,13 @@
 
 - **Core:** Astro, React, TypeScript
 - **Design:** Tailwind CSS, Tabler Icons, Simple Icons, Figma
-- **Blog:** MDX, KaTeX, nanostores
-- **Helpers:** es-toolkit, clsx, tailwind-merge
-- **Tools:** Vitest, Storybook, Vite, Git
+- **Blog:** MDX, Expressive Code, KaTeX, Nano Stores
+- **Utilities:** es-toolkit, clsx, tailwind-merge
+- **Tooling:** Node.js, pnpm, Vite, Git
+- **Code quality:** ESLint, typescript-eslint, Oxfmt, Vitest, Storybook
+- **Git hooks:** Husky, lint-staged, commitlint
 - **CI/CD:** GitHub Actions, Codecov
-- **Formatting:** oxfmt, commitlint, Husky
-- **Platforms:** Vercel, Squarespace
+- **Platforms:** Vercel, Porkbun
 
 ## Repository 🗃️
 
@@ -49,6 +50,38 @@
   - [/pages](./src/pages) - routes used by Astro for static site generation
 - [/CONTRIBUTING.md](./CONTRIBUTING.md) - guidelines for external contributors
 - [/SECURITY.md](./SECURITY.md) - security vulnerability reporting policy
+
+## Validation 🧪
+
+### Checks 🔍
+
+Check formatting, linting, and types (including Astro components) without modifying any files:
+
+```bash
+pnpm check
+```
+
+Apply lint autofixes and formatting:
+
+```bash
+pnpm check:fix
+```
+
+### Testing 🧫
+
+Enter the following command:
+
+```bash
+pnpm test
+```
+
+Test results will be printed alongside a coverage report. Note that only the logic is tested - there are no visual tests.
+
+### Hooks 🪝
+
+Git hooks are installed automatically by Husky on `pnpm install`. The pre-commit hook checks staged files with oxfmt and ESLint (without modifying them), and the commit-msg hook validates the message with commitlint (see [CONTRIBUTING.md](./CONTRIBUTING.md)).
+
+Checks, build, and tests are also run as part of the CI/CD process on every pull request.
 
 ## Deployment 🚀
 
@@ -72,17 +105,6 @@ You can build the project and preview an optimized version using:
 pnpm build
 pnpm preview
 ```
-
-### Testing 🧪
-
-Enter the following command:
-
-```bash
-pnpm test
-```
-
-Test results will be printed alongside a coverage report. The tests are also run as part of the CI/CD process
-on every pull request. Note that only the logic is tested - there are no visual tests.
 
 ## Storybook 📚
 

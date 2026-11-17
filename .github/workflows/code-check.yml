@@ -14,8 +14,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-and-test:
-    name: Build & test
+  check-build-test:
+    name: Check, build & test
     runs-on: ubuntu-26.04
     timeout-minutes: 15
 
@@ -37,7 +37,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Check and test with coverage
+      - name: Check
+        run: pnpm check
+
+      - name: Build
+        run: pnpm build
+
+      - name: Test with coverage
         run: pnpm test
 
       - name: Upload coverage to Codecov
