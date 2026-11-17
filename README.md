@@ -29,7 +29,7 @@
 - **Utilities:** es-toolkit, clsx, tailwind-merge
 - **Tooling:** Node.js, pnpm, Vite, Git
 - **Code quality:** ESLint, typescript-eslint, Oxfmt, Vitest, Storybook
-- **Git hooks:** Husky, lint-staged, commitlint
+- **Git hooks:** Lefthook, commitlint
 - **CI/CD:** GitHub Actions, Codecov
 - **Platforms:** Vercel, Porkbun
 
@@ -79,7 +79,7 @@ Test results will be printed alongside a coverage report. Note that only the log
 
 ### Hooks 🪝
 
-Git hooks are installed automatically by Husky on `pnpm install`. The pre-commit hook checks staged files with oxfmt and ESLint (without modifying them), and the commit-msg hook validates the message with commitlint (see [CONTRIBUTING.md](./CONTRIBUTING.md)).
+Git hooks are installed automatically by Lefthook on `pnpm install`. The pre-commit hook checks staged files with oxfmt and ESLint (without modifying them), and the commit-msg hook validates the message with commitlint (see [CONTRIBUTING.md](./CONTRIBUTING.md)).
 
 Checks, build, and tests are also run as part of the CI/CD process on every pull request.
 
