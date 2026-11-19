@@ -3,6 +3,7 @@ import Analytics from "@vercel/analytics/astro"
 import SpeedInsights from "@vercel/speed-insights/astro"
 import { SEO } from "astro-seo"
 import { Font } from "astro:assets"
+import { createHash } from "node:crypto"
 
 import { canonize } from "~/lib/format"
 
@@ -21,6 +22,23 @@ const { name, description = DEFAULT_DESCRIPTION } = Astro.props
 const title = name === undefined ? DEFAULT_TITLE : `${name} - ${DEFAULT_TITLE}`
 const image = new URL("/static/open-graph.png", Astro.site).href
 const canonical = canonize(Astro.url.href)
+
+const themeScript = `
+  const theme = (() => {
+    const local = localStorage.getItem("theme")
+    if (local === "dark" || local === "light") return local
+    return "dark"
+  })()
+
+  if (theme === "dark") {
+    document.documentElement.classList.add("dark")
+    document.documentElement.dataset["theme"] = "github-dark"
+  } else {
+    document.documentElement.classList.remove("dark")
+    document.documentElement.dataset["theme"] = "github-light"
+  }
+`
+Astro.csp?.insertScriptHash(`sha256-${createHash("sha256").update(themeScript).digest("base64")}`)
 ---
 
 <!doctype html>
@@ -58,21 +76,7 @@ const canonical = canonize(Astro.url.href)
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternative" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
     <Font cssVariable="--font-inter" preload />
-    <script is:inline>
-      const theme = (() => {
-        const local = localStorage.getItem("theme")
-        if (local === "dark" || local === "light") return local
-        return "dark"
-      })()
-
-      if (theme === "dark") {
-        document.documentElement.classList.add("dark")
-        document.documentElement.dataset["theme"] = "github-dark"
-      } else {
-        document.documentElement.classList.remove("dark")
-        document.documentElement.dataset["theme"] = "github-light"
-      }
-    </script>
+    <script is:inline set:html={themeScript} />
   </head>
   <body class="overflow-x-hidden bg-neudigo-50 text-neutral-900 dark:bg-neudigo-950 dark:text-neutral-100">
     <slot />

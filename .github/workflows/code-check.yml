@@ -43,6 +43,9 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Build Storybook
+        run: pnpm exec storybook build --quiet
+
       - name: Test with coverage
         run: pnpm test
 
