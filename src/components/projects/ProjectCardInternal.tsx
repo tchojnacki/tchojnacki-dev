@@ -34,8 +34,8 @@ export default function ProjectCardInternal({
   const maxImageScroll = Math.floor(100 - (75 * image.width) / image.height)
   const imageScrollDuration = Math.round(maxImageScroll * 100)
 
-  const activeIcon = maxImageScroll !== 0 ? IconPlayerPause : IconZoomCancel
-  const inactiveIcon = maxImageScroll !== 0 ? IconPlayerPlay : IconZoomIn
+  const activeIcon = maxImageScroll === 0 ? IconZoomCancel : IconPlayerPause
+  const inactiveIcon = maxImageScroll === 0 ? IconZoomIn : IconPlayerPlay
   const ZoomIcon = isActive ? activeIcon : inactiveIcon
   const H1 = `h${heading}` as "h1" | "h2" | "h3" | "h4" | "h5"
   const H2 = `h${heading + 1}` as "h2" | "h3" | "h4" | "h5" | "h6"
@@ -46,7 +46,7 @@ export default function ProjectCardInternal({
         className={cn(
           "relative aspect-4/3 overflow-hidden rounded-t-3xl lg:col-span-5 lg:row-span-full lg:rounded-b-3xl",
           flipped ? "lg:col-start-4" : "lg:col-start-1",
-          "opacity-0 duration-200 ease-in will-change-[opacity,_scale] lg:scale-75",
+          "opacity-0 duration-200 ease-in will-change-[opacity,scale] lg:scale-75",
           isLoaded && "opacity-100 lg:scale-100",
           isActive && "lg:scale-105",
         )}
@@ -55,7 +55,7 @@ export default function ProjectCardInternal({
           {...image}
           className={cn(
             "absolute h-auto w-full",
-            styles.animateScrollProjectImage,
+            styles["animateScrollProjectImage"],
             isActive ? "[animation-play-state:running]!" : "[animation-play-state:paused]!",
           )}
           style={{
@@ -75,7 +75,7 @@ export default function ProjectCardInternal({
           <button
             aria-label="Zoom"
             className={cn(
-              "z-1 col-start-1 col-end-[-1] row-start-1 row-end-[-1]",
+              "z-1 col-start-1 -col-end-1 row-start-1 -row-end-1",
               "group flex items-center justify-center duration-200",
               !isActive && "bg-neutral-1000/25",
             )}

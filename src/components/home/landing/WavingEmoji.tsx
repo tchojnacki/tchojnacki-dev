@@ -15,16 +15,22 @@ export default function WavingEmoji() {
       setIsPlaying(true)
     }, WAVING_DELAY)
 
-    return () => clearTimeout(timeoutId)
+    return () => {
+      clearTimeout(timeoutId)
+    }
   }, [])
 
   return (
     <button
-      onClick={() => setIsPlaying(true)}
-      onAnimationEnd={() => setIsPlaying(false)}
+      onClick={() => {
+        setIsPlaying(true)
+      }}
+      onAnimationEnd={() => {
+        setIsPlaying(false)
+      }}
       className={cn(
         "inline-block origin-[75%_75%] cursor-pointer",
-        isPlaying && styles.animateEmojiWave,
+        isPlaying && styles["animateEmojiWave"],
       )}
     >
       <Emoji text="wave" />

@@ -16,7 +16,13 @@ export default function Dialog({ isOpen, setIsOpen, children, ...props }: Dialog
   }, [isOpen])
 
   return (
-    <dialog ref={ref} onCancel={() => setIsOpen(false)} {...props}>
+    <dialog
+      ref={ref}
+      onCancel={() => {
+        setIsOpen(false)
+      }}
+      {...props}
+    >
       {children}
     </dialog>
   )

@@ -16,7 +16,7 @@ export default function TechSphere({ skillNames }: TechSphereProps) {
       role="presentation"
       className={cn(
         "cursor-grab touch-none select-none active:cursor-grabbing",
-        "transition-[opacity,_scale] ease-out will-change-[opacity,_scale] motion-safe:duration-500",
+        "transition-[opacity,scale] ease-out will-change-[opacity,scale] motion-safe:duration-500",
         isHydrated ? "scale-100 opacity-100" : "scale-0 opacity-0",
       )}
       ref={canvasRef}

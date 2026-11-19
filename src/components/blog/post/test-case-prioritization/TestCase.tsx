@@ -6,20 +6,20 @@ export const CASE_HEIGHT_PX = 100
 export const CASE_PX_PER_S = 100
 
 type TestCaseProps = {
-  name?: string
+  name?: string | undefined
   x?: number
   y?: number
-  delay?: number
-  duration?: number
-  fail?: boolean
+  delay?: number | undefined
+  duration?: number | undefined
+  fail?: boolean | undefined
 }
 
 export default function TestCase({
   name = "",
   x = 0,
   y = 0,
-  delay = 0.0,
-  duration = 1.0,
+  delay = 0,
+  duration = 1,
   fail = false,
 }: TestCaseProps) {
   const d = { width: duration * CASE_PX_PER_S, height: CASE_HEIGHT_PX }
@@ -37,8 +37,8 @@ export default function TestCase({
       )}
     >
       <rect {...d} className="fill-indigo-100 dark:fill-indigo-900" />
-      <rect {...d} className={styles.animateTcpProgress} />
-      <rect {...d} className={fail ? styles.animateTcpFail : styles.animateTcpPass} />
+      <rect {...d} className={styles["animateTcpProgress"]} />
+      <rect {...d} className={fail ? styles["animateTcpFail"] : styles["animateTcpPass"]} />
       <rect {...d} className="fill-transparent stroke-[#626264] stroke-3 dark:stroke-[#a7a6ae]" />
       <text
         x={d.width / 2}

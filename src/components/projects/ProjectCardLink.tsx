@@ -39,7 +39,7 @@ export default function ProjectCardLink({
       >
         <Icon role="presentation" />
         <span>
-          {label + (part ? ` – ${part}` : "")}{" "}
+          {label + (part === undefined ? "" : ` – ${part}`)}{" "}
           {polish ? <small className="text-xs">(PL)</small> : null}
         </span>
       </LinkButton>

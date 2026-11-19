@@ -12,12 +12,12 @@ const { code } = Astro.props
 ---
 
 <Layout name={code.toString()}>
-  <main class="mt-[calc(-1*var(--spacing-nav-height))] grid min-h-screen place-items-center p-6">
+  <main class="-mt-(--spacing-nav-height) grid min-h-screen place-items-center p-6">
     <header class="text-center">
       <h1
         class={cn(
           "mb-4 text-6xl font-bold text-indigo-700 dark:text-indigo-300",
-          styles.animateErrorShake,
+          styles["animateErrorShake"],
         )}
       >
         {code}

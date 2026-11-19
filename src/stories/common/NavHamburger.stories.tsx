@@ -30,7 +30,15 @@ export const Closed: Story = {
 export const Toggle: Story = {
   render: args => {
     const [menuOpen, setMenuOpen] = useState(args.menuOpen)
-    return <NavHamburger {...args} menuOpen={menuOpen} onClick={() => setMenuOpen(!menuOpen)} />
+    return (
+      <NavHamburger
+        {...args}
+        menuOpen={menuOpen}
+        onClick={() => {
+          setMenuOpen(!menuOpen)
+        }}
+      />
+    )
   },
   args: {
     menuOpen: false,

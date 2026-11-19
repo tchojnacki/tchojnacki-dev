@@ -33,7 +33,7 @@ function resolveSkillEntry(entry: CollectionEntry<"skills">): Skill {
     return { id: entry.id, icon: entry.data.name, name: entry.data.name, description }
   }
   if (!(entry.data.icon in ICONS)) throw new Error(`Icon "${entry.data.icon}" not available`)
-  const icon = ICONS[entry.data.icon as keyof typeof ICONS] as ICONS.SimpleIcon
+  const icon = ICONS[entry.data.icon as keyof typeof ICONS]
   return { id: entry.id, icon, name: entry.data.name ?? icon.title, description }
 }
 
@@ -70,12 +70,14 @@ export async function getPosts(): Promise<Post[]> {
 }
 
 export async function getTags(): Promise<string[]> {
-  return uniq((await getCollection("posts")).flatMap(p => p.data.tags)).toSorted()
+  return uniq((await getCollection("posts")).flatMap(p => p.data.tags)).toSorted((a, b) =>
+    a.localeCompare(b),
+  )
 }
 
 export function pathsFrom<C, R extends GetStaticPathsItem>(
   getContent: () => Promise<C[]>,
   mapper: (c: C) => R,
 ): () => Promise<R[]> {
-  return () => getContent().then(c => c.map(mapper))
+  return async () => (await getContent()).map(mapper)
 }

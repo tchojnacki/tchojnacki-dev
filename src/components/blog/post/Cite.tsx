@@ -15,7 +15,7 @@ export default function Cite({ ordinal }: CiteProps) {
       {numbers.map((n, i) => (
         <Fragment key={n}>
           <Link href={`#cite-${n}`}>{n}</Link>
-          {i !== numbers.length - 1 ? <>,&nbsp;</> : null}
+          {i === numbers.length - 1 ? null : <>,&nbsp;</>}
         </Fragment>
       ))}
       ]

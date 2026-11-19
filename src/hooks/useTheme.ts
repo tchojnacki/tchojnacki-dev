@@ -8,8 +8,7 @@ const neudigo950 = "#14122b"
 function initialTheme() {
   if (typeof window === "undefined") return "dark"
   const local = localStorage.getItem("theme")
-  if (local !== "dark" && local !== "light") return "dark"
-  return local
+  return local === "dark" || local === "light" ? local : "dark"
 }
 
 export function useTheme() {
@@ -18,10 +17,10 @@ export function useTheme() {
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark")
-      document.documentElement.dataset.theme = "github-dark"
+      document.documentElement.dataset["theme"] = "github-dark"
     } else {
       document.documentElement.classList.remove("dark")
-      document.documentElement.dataset.theme = "github-light"
+      document.documentElement.dataset["theme"] = "github-light"
     }
 
     localStorage.setItem("theme", theme)
@@ -48,7 +47,9 @@ export function useTheme() {
 
     adjustHtmlBackground()
     document.addEventListener("scroll", adjustHtmlBackground)
-    return () => document.removeEventListener("scroll", adjustHtmlBackground)
+    return () => {
+      document.removeEventListener("scroll", adjustHtmlBackground)
+    }
   }, [theme])
 
   function toggleTheme() {

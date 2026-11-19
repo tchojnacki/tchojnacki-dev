@@ -16,7 +16,7 @@ function topologicalSort<Node>(start: Node, neighbors: (node: Node) => Node[]): 
   }
 
   visit(start)
-  return acc.reverse()
+  return acc.toReversed()
 }
 
 class Scalar {
@@ -33,7 +33,9 @@ class Scalar {
   static #op(children: Scalar[], value: number, propagate: (out: Scalar) => void): Scalar {
     const out = new Scalar(value)
     out.$children = children
-    out.$propagate = () => propagate(out)
+    out.$propagate = () => {
+      propagate(out)
+    }
     return out
   }
 

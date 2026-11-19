@@ -25,7 +25,7 @@ export default function DiffCanvases({ model, losses }: DiffCanvasesProps) {
         const x1 = lerp(px + 0.5, [0, 100], [-1, 1])
         const x2 = lerp(py + 0.5, [0, 100], [-1, 1])
 
-        const real = Math.sqrt(x1 ** 2 + x2 ** 2) - 0.5
+        const real = Math.hypot(x1, x2) - 0.5
         const pred = model.predict([x1, x2])
         const loss = Math.abs(real - pred)
 

@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest"
 import { cumSum, lerp, lerpUnbound } from "~/lib/math"
 
 describe(lerpUnbound, () => {
-  it.each([-20, -5, -2, 0, 1.5, 3.14, 4.5, 10])(
+  it.each([-20, -5, -2, 0, 1.5, 3.25, 4.5, 10])(
     "returns the same input (%d) if ranges are equal",
     value => {
       const range = [-5, 4.5] as [number, number]
@@ -42,7 +42,7 @@ describe(lerpUnbound, () => {
 describe(lerp, () => {
   it.each([
     [5, [0, 10], [0, 100]],
-    [3.14, [0, 10], [-5, -10]],
+    [3.25, [0, 10], [-5, -10]],
     [-2, [-10, 10], [0, 1]],
   ] as [number, [number, number], [number, number]][])(
     "works same as lerpUnbound for values in range",

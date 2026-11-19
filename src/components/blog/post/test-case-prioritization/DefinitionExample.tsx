@@ -33,7 +33,9 @@ const genPermutation = (round: number) => {
   do {
     for (let i = perm.length - 1; i > 0; i--) {
       const j = Math.floor(dr(seed++) * (i + 1))
-      ;[perm[i], perm[j]] = [perm[j]!, perm[i]!]
+      const tmp = perm[i]!
+      perm[i] = perm[j]!
+      perm[j] = tmp
     }
   } while (perm.map(i => oldFails[i]).findIndex(Boolean) > 3)
   return perm
@@ -77,7 +79,9 @@ export default function DefinitionExample() {
       <div className="mt-4 flex justify-center">
         <button
           type="button"
-          onClick={() => setRound(r => r + 1)}
+          onClick={() => {
+            setRound(r => r + 1)
+          }}
           className="rounded-lg bg-indigo-600 p-2 leading-none text-neutral-0 duration-200 select-none hover:bg-indigo-500 active:scale-95"
         >
           Regenerate

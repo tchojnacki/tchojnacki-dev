@@ -30,7 +30,7 @@ export default function ThemeButton({ useTheme = useThemeImpl }: ThemeButtonProp
       <ThemeIcon
         role="presentation"
         className={cn(
-          styles.animateThemeLoad,
+          styles["animateThemeLoad"],
           "duration-200",
           "stroke-neutral-600 group-hover:stroke-neutral-900",
           "dark:stroke-neutral-400 dark:group-hover:stroke-neutral-100",

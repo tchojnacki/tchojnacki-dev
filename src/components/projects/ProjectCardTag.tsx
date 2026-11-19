@@ -6,7 +6,7 @@ interface ProjectCardTagProps {
   small?: boolean
 }
 
-export default function ProjectCardTag({ tag, small }: ProjectCardTagProps) {
+export default function ProjectCardTag({ tag, small = false }: ProjectCardTagProps) {
   const { label, backgroundColor } = {
     personal: { label: "Personal", backgroundColor: "#115e59" },
     academic: { label: "Academic", backgroundColor: "#115e59" },
