@@ -22,7 +22,7 @@ export default defineConfig({
     sitemap(),
     compress({ HTML: false }),
   ],
-  markdown: { processor: unified({ remarkPlugins: [remarkReadingTime] }) },
+  markdown: { processor: unified({ remarkPlugins: [remarkReadingTime] }), syntaxHighlight: false },
   vite: { plugins: [tailwindcss()] },
   fonts: [
     {
