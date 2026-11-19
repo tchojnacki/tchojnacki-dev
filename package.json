@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "oxfmt --check && eslint . && astro check",
+    "check": "astro sync && oxfmt --check && eslint . && astro check",
     "check:fix": "eslint --fix . && oxfmt",
     "test": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
