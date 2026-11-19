@@ -9,7 +9,7 @@ interface SkillIconProps {
 export default function SkillIcon({
   skill: { icon, name },
   className,
-  decoration,
+  decoration = false,
 }: SkillIconProps) {
   return (
     <svg

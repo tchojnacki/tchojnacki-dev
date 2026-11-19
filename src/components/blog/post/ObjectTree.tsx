@@ -7,8 +7,7 @@ const propertiesOf = (instance: object): [string, unknown][] => {
   const fields = Object.entries(instance)
   const getters = Object.entries(Object.getOwnPropertyDescriptors(Reflect.getPrototypeOf(instance)))
     .filter(e => typeof e[1].get === "function" && e[0] !== "__proto__")
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- name is definitely in instance
-    .map(([name]) => [name, name in (instance as any)[name]] as [string, unknown])
+    .map(([name]): [string, unknown] => [name, Reflect.get(instance, name)])
   return [...fields, ...getters]
 }
 
@@ -21,11 +20,9 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
   const [open, toggleOpen] = useReducer(prev => !prev, false)
 
   const nameFrag = (() => {
-    if (!name) {
-      return <></>
-    }
+    if (name === null) return <></>
     const formatted = name.replace("$", "#")
-    const isIndex = !isNaN(parseInt(name))
+    const isIndex = !Number.isNaN(parseInt(name))
     return (
       <>
         <span className={isIndex ? "opacity-50" : ""}>{formatted}</span>
@@ -68,7 +65,7 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
       }
       return (
         <ol>
-          {value.map((item, index) => (
+          {value.map((item: unknown, index) => (
             <PropertyNode key={index} name={index.toString()} value={item} />
           ))}
         </ol>
@@ -95,7 +92,7 @@ function PropertyNode({ name, value }: PropertyNodeProps) {
     if (typeof value === "string") {
       return ` = "${value}"`
     }
-    return ` = ${value}`
+    return ` = ${String(value)}`
   })()
 
   const isExpandable = (() => {

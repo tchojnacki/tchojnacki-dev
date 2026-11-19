@@ -18,7 +18,9 @@ import SocialLink from "./SocialLink.astro"
 import TechSphere from "./TechSphere"
 import WavingEmoji from "./WavingEmoji"
 
-const skillNames = await Promise.all(techSphereSkills.map(id => getSkillById(id).then(s => s.name)))
+const skillNames = await Promise.all(
+  techSphereSkills.map(async id => (await getSkillById(id)).name),
+)
 ---
 
 <header

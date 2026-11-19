@@ -6,7 +6,7 @@ import ProjectList from "~/components/projects/ProjectList.astro"
 import SkillCard from "~/components/skills/SkillCard.astro"
 import SkillCardWrapper from "~/components/skills/SkillCardWrapper.astro"
 import SkillIcon from "~/components/skills/SkillIcon"
-import { getProjects, getSkillById, getSkills, pathsFrom } from "~/content"
+import { getProjects, getSkillById, getSkills, pathsFrom, type Post, type Project } from "~/content"
 import Layout from "~/layouts/Layout.astro"
 import { calculateRelatedSkills } from "~/lib/relatedSkills"
 
@@ -29,7 +29,7 @@ const relatedSkills = calculateRelatedSkills(skillList, projectList)
       <p>{skill.description}</p>
     </header>
     <section class="mx-auto max-w-[calc(var(--spacing-reading)+3rem)]">
-      <PostList heading={3} filter={p => p.data.skills.some(s => s.id === skill.id)} />
+      <PostList heading={3} filter={(p: Post) => p.data.skills.some(s => s.id === skill.id)} />
     </section>
     <Wave />
     <section class="bg-indigo-100 dark:bg-indigo-900">
@@ -45,7 +45,7 @@ const relatedSkills = calculateRelatedSkills(skillList, projectList)
       <SectionHeader text="Related projects" />
       <ProjectList
         heading={3}
-        filter={project =>
+        filter={(project: Project) =>
           project.parts.some(part => part.skills.some(({ id }) => id === skill.id))
         }
       />

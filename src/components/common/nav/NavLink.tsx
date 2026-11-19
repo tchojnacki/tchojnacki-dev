@@ -5,7 +5,7 @@ interface NavLinkProps {
   href: string
   children: string
   pathname: string
-  className?: string
+  className?: string | undefined
 }
 
 export default function NavLink({ href, children, pathname, className }: NavLinkProps) {

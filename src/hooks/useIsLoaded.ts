@@ -4,7 +4,10 @@ export function useIsLoaded() {
   const [isLoaded, handleLoad] = useReducer(() => true, false)
 
   const imgRef = (node: HTMLImageElement) => {
-    if (node.complete) return handleLoad()
+    if (node.complete) {
+      handleLoad()
+      return
+    }
 
     node.addEventListener("load", handleLoad)
     return () => {

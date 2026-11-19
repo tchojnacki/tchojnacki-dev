@@ -1,3 +1,5 @@
+// @ts-check
+
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers"
 import { createInlineSvgUrl, defineEcConfig } from "astro-expressive-code"
 

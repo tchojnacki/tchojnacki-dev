@@ -1,12 +1,14 @@
 {
   "extends": "astro/tsconfigs/strictest",
+  "include": [".astro/types.d.ts", "**/*", ".storybook/**/*"],
+  "exclude": ["dist", "coverage", "storybook-static"],
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "react",
     "paths": {
       "~/*": ["./src/*"],
       "@post/*": ["./src/components/blog/post/*"]
     },
-    "exactOptionalPropertyTypes": false
+    "noPropertyAccessFromIndexSignature": true,
+    "erasableSyntaxOnly": true
   }
 }

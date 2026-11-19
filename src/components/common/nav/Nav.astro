@@ -7,7 +7,7 @@ import navBlobLight from "~/assets/nav-blob-light.svg"
 
 import NavInternal from "./NavInternal"
 
-const url = (src: ImageMetadata) => getImage({ src }).then(({ src }) => `url("${src}")`)
+const url = async (src: ImageMetadata) => `url("${(await getImage({ src })).src}")`
 
 const { pathname } = Astro.url
 const blobDarkUrl = await url(navBlobDark)

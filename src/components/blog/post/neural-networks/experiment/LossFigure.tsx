@@ -22,7 +22,9 @@ export default function LossFigure({ losses }: LossFigureProps) {
           { type: "path", color: "orange", data },
         ]}
       />
-      <figcaption className="text-center">Loss{loss ? ` = ${loss.toFixed(5)}` : null}</figcaption>
+      <figcaption className="text-center">
+        Loss{loss === undefined ? null : ` = ${loss.toFixed(5)}`}
+      </figcaption>
     </figure>
   )
 }

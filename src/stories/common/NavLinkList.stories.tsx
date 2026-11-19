@@ -20,7 +20,7 @@ export const Desktop: Story = {
   },
   decorators: [
     Story => (
-      <nav className="flex h-[var(--spacing-nav-height)] items-center justify-end p-[calc(var(--spacing-nav-height)/4)] leading-none">
+      <nav className="flex h-(--spacing-nav-height) items-center justify-end p-[calc(var(--spacing-nav-height)/4)] leading-none">
         <Story />
       </nav>
     ),

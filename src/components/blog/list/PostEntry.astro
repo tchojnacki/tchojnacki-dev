@@ -16,7 +16,9 @@ const {
 
 const H = `h${heading}` as "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
 
-const tags = [...post.data.skills.map(s => s.id), ...post.data.tags].toSorted()
+const tags = [...post.data.skills.map(s => s.id), ...post.data.tags].toSorted((a, b) =>
+  a.localeCompare(b),
+)
 ---
 
 <article itemscope itemtype="https://schema.org/BlogPosting">

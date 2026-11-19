@@ -2,7 +2,7 @@ import type { Brt } from "~/lib/brt"
 
 // import { linkedin, resume } from "./socials"
 
-export const openToWork = false
+export const openToWork: boolean = false
 
 // prettier-ignore
 export const statement: Brt = [

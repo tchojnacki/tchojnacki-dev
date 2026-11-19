@@ -16,7 +16,7 @@ interface Props {
 
 const { id } = Astro.props
 
-const url = new URL(`/blog/${id}`, Astro.site).toString()
+const url = new URL(`/blog/${id}`, Astro.site).href
 
 const socials = [
   {

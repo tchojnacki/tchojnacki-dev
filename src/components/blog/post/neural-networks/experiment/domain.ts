@@ -15,7 +15,7 @@ function topologicalSort<Node>(start: Node, neighbors: (node: Node) => Node[]): 
   }
 
   visit(start)
-  return acc.reverse()
+  return acc.toReversed()
 }
 
 class Scalar {
@@ -38,7 +38,9 @@ class Scalar {
   static $op(children: Scalar[], value: number, propagate: (out: Scalar) => void): Scalar {
     const out = new Scalar(value)
     out.$children = children
-    out.$propagate = () => propagate(out)
+    out.$propagate = () => {
+      propagate(out)
+    }
     return out
   }
 
@@ -46,10 +48,11 @@ class Scalar {
     return Scalar.$op(
       scalars,
       scalars.reduce((acc, s) => acc + s.value, 0),
-      out =>
-        scalars.forEach(s => {
+      out => {
+        for (const s of scalars) {
           s.partial += out.partial
-        }),
+        }
+      },
     )
   }
 
@@ -78,12 +81,12 @@ class Scalar {
     return this.mul(other.pow(-1))
   }
 
-  linear(): Scalar {
+  linear(): this {
     return this
   }
 
   relu(): Scalar {
-    return Scalar.$op([this], this.value < 0 ? 0 : this.value, out => {
+    return Scalar.$op([this], Math.max(this.value, 0), out => {
       this.partial += out.value > 0 ? out.partial : 0
     })
   }
@@ -185,7 +188,7 @@ export class Network extends Model {
     const sizes = [inputCount, ...layers]
     this.$layers = [
       ...layers.map((_, i) => new Layer(sizes[i]!, sizes[i + 1]!, "relu")),
-      new Layer(sizes[sizes.length - 1]!, 1, "linear"),
+      new Layer(sizes.at(-1)!, 1, "linear"),
     ]
   }
 

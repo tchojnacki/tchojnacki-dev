@@ -15,7 +15,9 @@ export default function JsdocSwitch() {
         name={id}
         checked={$isJsdocShown}
         autoComplete="off"
-        onChange={e => isJsdocShown.set(e.target.checked)}
+        onChange={e => {
+          isJsdocShown.set(e.target.checked)
+        }}
       />
       Enable JSDoc type annotations in code snippets.
     </label>

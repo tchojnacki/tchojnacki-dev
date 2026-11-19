@@ -30,21 +30,22 @@ export default function Experiment({ children }: PropsWithChildren) {
 
   const disabled = progress !== null
 
-  const run = (times: number) => {
+  const run = async (times: number) => {
     setProgress(0)
-    cpuBoundLoop(times, async t => {
+    await cpuBoundLoop(times, t => {
       const X = []
       const y = []
       for (let i = 0; i < batch; i++) {
         const x0 = lerp(Math.random(), [0, 1], [-1, 1])
         const x1 = lerp(Math.random(), [0, 1], [-1, 1])
         X.push([x0, x1])
-        y.push(Math.sqrt(x0 * x0 + x1 * x1) - 0.5)
+        y.push(Math.hypot(x0, x1) - 0.5)
       }
       const loss = model.fit(X, y, eta)
       setLosses(l => [...l, loss])
       setProgress(lerp(t + 1, [0, times], [0, 1]))
-    }).then(() => setProgress(null))
+    })
+    setProgress(null)
   }
 
   const reset = () => {
@@ -60,9 +61,11 @@ export default function Experiment({ children }: PropsWithChildren) {
         <Select
           options={layerOptions}
           current={layers}
-          setCurrent={l => setLayers(l)}
+          setCurrent={l => {
+            setLayers(l)
+          }}
           serialize={JSON.stringify}
-          deserialize={JSON.parse}
+          deserialize={s => JSON.parse(s) as number[]}
           label="Network layer structure."
           display={l => `[${l.join(", ")}]`}
           onChange={l => {
@@ -83,7 +86,7 @@ export default function Experiment({ children }: PropsWithChildren) {
           current={batch}
           setCurrent={setBatch}
           serialize={String}
-          deserialize={parseInt}
+          deserialize={Number.parseInt}
           label="Batch size for training."
           disabled={disabled}
         />
@@ -93,7 +96,7 @@ export default function Experiment({ children }: PropsWithChildren) {
           current={eta}
           setCurrent={setEta}
           serialize={e => e.toFixed(3)}
-          deserialize={parseFloat}
+          deserialize={Number.parseFloat}
           label="Learning rate for training."
           display={String}
           disabled={disabled}
@@ -103,7 +106,13 @@ export default function Experiment({ children }: PropsWithChildren) {
         {[1, 10, 100].map(n => (
           <Fragment key={n}>
             {" "}
-            <Button text={`RUN x${n}`} onClick={() => run(n)} disabled={disabled} />
+            <Button
+              text={`RUN x${n}`}
+              onClick={() => {
+                void run(n)
+              }}
+              disabled={disabled}
+            />
           </Fragment>
         ))}
       </PromptBlock>

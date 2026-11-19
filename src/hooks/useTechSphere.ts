@@ -35,7 +35,7 @@ export function useTechSphere({ skillNames, prefersReducedMotion = false }: UseT
   const pointsRef = useRef(initialPositionsOf(skillNames))
 
   const hoverPosRef = useRef({ x: 0, y: 0 })
-  const lastMoveTimeStampRef = useRef(0)
+  const lastMoveTimestampRef = useRef(0)
   const dragStartPosRef = useRef<Vec3D | null>(null)
   const dragPixelsPerMsRef = useRef({ x: 0, y: 0 })
   const movementStateRef = useRef<"STABLE" | "DAMPING">("STABLE")
@@ -129,8 +129,8 @@ export function useTechSphere({ skillNames, prefersReducedMotion = false }: UseT
 
   function handlePointerMove(event: PointerEvent) {
     const now = Date.now()
-    const deltaTime = now - lastMoveTimeStampRef.current
-    lastMoveTimeStampRef.current = now
+    const deltaTime = now - lastMoveTimestampRef.current
+    lastMoveTimestampRef.current = now
 
     const { offsetX, offsetY } = event.nativeEvent
 

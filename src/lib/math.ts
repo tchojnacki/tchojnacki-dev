@@ -13,4 +13,4 @@ export function lerp(x: number, [inMin, inMax]: [number, number], out: [number, 
 }
 
 export const cumSum = (arr: number[]) =>
-  arr.slice(0, -1).reduce((acc, v) => [...acc, (acc[acc.length - 1] ?? 0) + v], [0])
+  arr.slice(0, -1).reduce((acc, v) => [...acc, (acc.at(-1) ?? 0) + v], [0])

@@ -11,7 +11,7 @@ export const layerOptions = [
 ]
 export const defaultLayer = [8, 8, 8]
 
-export const batchOptions = [1, 10, 100, 1000, 10000]
+export const batchOptions = [1, 10, 100, 1000, 10_000]
 export const defaultBatch = 100
 
 export const etaOptions = [0.001, 0.01, 0.1, 1]

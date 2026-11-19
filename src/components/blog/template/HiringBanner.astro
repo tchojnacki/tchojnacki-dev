@@ -11,8 +11,8 @@ const s = "font-bold text-neutral-1000 dark:text-neutral-0"
     {openToWork ? (
       statement.map(p => {
         let node = p.t
-        if (p.a) node = <Link href={p.a}>{node}</Link>
-        if (p.b) node = <strong class={s}>{node}</strong>
+        if (p.a !== undefined) node = <Link href={p.a}>{node}</Link>
+        if (p.b === true) node = <strong class={s}>{node}</strong>
         return node
       })
     ) : (

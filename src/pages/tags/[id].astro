@@ -1,6 +1,6 @@
 ---
 import PostList from "~/components/blog/list/PostList.astro"
-import { getTags, pathsFrom } from "~/content"
+import { getTags, pathsFrom, type Post } from "~/content"
 
 import Layout from "../../layouts/Layout.astro"
 
@@ -15,7 +15,7 @@ const tag = Astro.params.id
       <h1 class="pb-4 text-3xl text-purple-700 sm:text-4xl dark:text-purple-300">#{tag}</h1>
     </header>
     <section class="mx-auto max-w-[calc(var(--spacing-reading)+3rem)]">
-      <PostList heading={2} filter={p => p.data.tags.includes(tag)} />
+      <PostList heading={2} filter={(p: Post) => p.data.tags.includes(tag)} />
     </section>
   </main>
 </Layout>

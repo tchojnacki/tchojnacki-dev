@@ -35,7 +35,13 @@ export default function NavInternal({ pathname, blobDarkUrl, blobLightUrl }: Nav
         )}
       >
         <nav className="p-[calc(var(--spacing-nav-height)/4)]">
-          <NavHamburger menuOpen={isOpen} onClick={() => setIsOpen(false)} className="ml-auto" />
+          <NavHamburger
+            menuOpen={isOpen}
+            onClick={() => {
+              setIsOpen(false)
+            }}
+            className="ml-auto"
+          />
           <NavLinkList
             listClassName="mt-2"
             itemClassName="px-4 py-2 text-xl text-right"
@@ -55,7 +61,13 @@ export default function NavInternal({ pathname, blobDarkUrl, blobLightUrl }: Nav
             <ThemeButton />
           </li>
           <li>
-            <NavHamburger menuOpen={isOpen} onClick={() => setIsOpen(true)} className="sm:hidden" />
+            <NavHamburger
+              menuOpen={isOpen}
+              onClick={() => {
+                setIsOpen(true)
+              }}
+              className="sm:hidden"
+            />
           </li>
         </ul>
       </nav>

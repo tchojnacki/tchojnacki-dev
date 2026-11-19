@@ -36,7 +36,9 @@ function useThemeImpl() {
   const [theme, setTheme] = useState<"dark" | "light">("light")
   return {
     theme,
-    toggleTheme: () => setTheme(prev => (prev === "dark" ? "light" : "dark")),
+    toggleTheme: () => {
+      setTheme(prev => (prev === "dark" ? "light" : "dark"))
+    },
   }
 }
 

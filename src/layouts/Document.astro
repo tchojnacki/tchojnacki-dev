@@ -18,19 +18,19 @@ interface Props {
 }
 
 const { name, description = DEFAULT_DESCRIPTION } = Astro.props
-const title = name ? `${name} - ${DEFAULT_TITLE}` : DEFAULT_TITLE
-const image = new URL("/static/open-graph.png", Astro.site).toString()
+const title = name === undefined ? DEFAULT_TITLE : `${name} - ${DEFAULT_TITLE}`
+const image = new URL("/static/open-graph.png", Astro.site).href
 const canonical = canonize(Astro.url.href)
 ---
 
 <!doctype html>
 <html lang="en" class="dark">
   <head>
+    <meta charset="utf-8" />
     <SEO
       {title}
       {description}
       {canonical}
-      charset="UTF-8"
       openGraph={{
         basic: {
           title,
@@ -67,10 +67,10 @@ const canonical = canonize(Astro.url.href)
 
       if (theme === "dark") {
         document.documentElement.classList.add("dark")
-        document.documentElement.dataset.theme = "github-dark"
+        document.documentElement.dataset["theme"] = "github-dark"
       } else {
         document.documentElement.classList.remove("dark")
-        document.documentElement.dataset.theme = "github-light"
+        document.documentElement.dataset["theme"] = "github-light"
       }
     </script>
   </head>

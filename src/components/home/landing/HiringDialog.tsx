@@ -15,7 +15,12 @@ export default function HiringDialog() {
 
   return (
     <>
-      <CtaButton label="Hire me" action={() => setIsOpen(true)} />
+      <CtaButton
+        label="Hire me"
+        action={() => {
+          setIsOpen(true)
+        }}
+      />
       <Dialog
         isOpen={isOpen}
         setIsOpen={setIsOpen}
@@ -33,15 +38,21 @@ export default function HiringDialog() {
           )}
         >
           <span id={titleId}>Looking for work</span>
-          <button type="button" aria-label="Close" onClick={() => setIsOpen(false)}>
+          <button
+            type="button"
+            aria-label="Close"
+            onClick={() => {
+              setIsOpen(false)
+            }}
+          >
             <IconX role="presentation" />
           </button>
         </header>
         <p className="p-4 text-neutral-600 sm:p-6 sm:text-justify sm:hyphens-auto dark:text-neutral-400">
           {statement.map(p => {
             let node: ReactNode = p.t
-            if (p.a) node = <Link href={p.a}>{node}</Link>
-            if (p.b) node = <strong className={s}>{node}</strong>
+            if (p.a !== undefined) node = <Link href={p.a}>{node}</Link>
+            if (p.b === true) node = <strong className={s}>{node}</strong>
             return <Fragment key={p.t}>{node}</Fragment>
           })}
         </p>

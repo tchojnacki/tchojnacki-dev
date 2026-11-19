@@ -16,8 +16,7 @@ function asset(text: string): ImageMetadata | string {
 
 // Makes assets work in both Astro and Vite contexts
 function source(asset: ImageMetadata | string): string {
-  if (typeof asset === "string") return asset
-  return asset.src
+  return typeof asset === "string" ? asset : asset.src
 }
 
 interface EmojiProps {
