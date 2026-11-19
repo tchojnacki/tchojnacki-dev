@@ -38,4 +38,10 @@ export default defineConfig({
   prefetch: {
     prefetchAll: true,
   },
+  security: {
+    csp: {
+      directives: ["default-src 'self'", "font-src 'self' data:", "img-src 'self' data:"],
+      styleDirective: { resources: ["'self'", "'unsafe-inline'"] },
+    },
+  },
 })

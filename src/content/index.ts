@@ -3,7 +3,7 @@ import { getCollection, getEntry, type CollectionEntry } from "astro:content"
 import { keyBy, sortBy, uniq } from "es-toolkit"
 import * as ICONS from "simple-icons"
 
-import { projectImportanceOrder } from "~/consts/featured"
+import { featuredPosts, featuredProjects, projectImportanceOrder } from "~/consts/featured"
 
 export type Skill = {
   id: string
@@ -26,6 +26,11 @@ export type Project = {
 }
 
 export type Post = CollectionEntry<"posts">
+
+function assertKnownIds(kind: string, ids: string[], known: string[]): void {
+  const unknown = ids.find(id => !known.includes(id))
+  if (unknown !== undefined) throw new Error(`Unknown ${kind} id "${unknown}"`)
+}
 
 function resolveSkillEntry(entry: CollectionEntry<"skills">): Skill {
   const { description } = entry.data
@@ -50,6 +55,13 @@ export async function getSkills(): Promise<Skill[]> {
 export async function getProjects(): Promise<Project[]> {
   const skillById = keyBy(await getSkills(), s => s.id)
   const projectEntries = await getCollection("projects")
+  const projectIds = projectEntries.map(p => p.id)
+  assertKnownIds("featured project", featuredProjects, projectIds)
+  assertKnownIds("ordered project", projectImportanceOrder, projectIds)
+  const unordered = projectIds.find(id => !projectImportanceOrder.includes(id))
+  if (unordered !== undefined) {
+    throw new Error(`Project "${unordered}" missing from projectImportanceOrder`)
+  }
   return sortBy(
     projectEntries.map(({ id, data }) => ({
       id,
@@ -66,7 +78,13 @@ export async function getProjects(): Promise<Project[]> {
 }
 
 export async function getPosts(): Promise<Post[]> {
-  return sortBy(await getCollection("posts"), [p => -p.data.date.getTime()])
+  const posts = await getCollection("posts")
+  assertKnownIds(
+    "featured post",
+    featuredPosts,
+    posts.map(p => p.id),
+  )
+  return sortBy(posts, [p => -p.data.date.getTime()])
 }
 
 export async function getTags(): Promise<string[]> {
