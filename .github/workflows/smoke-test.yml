@@ -1,0 +1,39 @@
+name: Smoke Test
+
+on:
+  deployment_status:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  smoke-test:
+    name: Smoke test production
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+
+    steps:
+      - name: Check index page
+        run: |
+          status=$(curl --silent --show-error --location \
+            --retry 5 --retry-delay 10 --retry-all-errors \
+            --output index.html --write-out '%{http_code}' \
+            https://tchojnacki.dev)
+          echo "Status: $status"
+          (( status < 400 ))
+          grep -q "Tomasz Chojnacki" index.html
+
+      - name: Check sitemap index
+        run: |
+          result=$(curl --silent --show-error --location \
+            --retry 5 --retry-delay 10 --retry-all-errors \
+            --output sitemap-index.xml --write-out '%{http_code} %{content_type}' \
+            https://tchojnacki.dev/sitemap-index.xml)
+          read -r status content_type <<< "$result"
+          echo "Status: $status, Content-Type: $content_type"
+          (( status < 400 ))
+          [[ "$content_type" =~ ^(application|text)/xml ]]
+          python3 -c 'import sys, xml.etree.ElementTree as ET; ET.parse(sys.argv[1])' sitemap-index.xml
